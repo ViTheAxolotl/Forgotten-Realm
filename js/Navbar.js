@@ -23,6 +23,7 @@ document.write(
             '<li class="nav-item"><a class="nav-link active" aria-current="page" href="index.html">Unbalanced Powers</a></li>' +
             '<li class="nav-item"><a class="nav-link active" aria-current="page" href="creationStory.html">Birth Of The Universe</a></li>' +
             '<li class="nav-item"><a class="nav-link active" aria-current="page" href="deities.html">Deities</a></li>' +
+            '<li class="nav-item"><a class="nav-link active" aria-current="page" href="mapAndTowns.html">Maps And Towns</a></li>' +
         '</ul>' +
     '</div>' +
 '</div>');

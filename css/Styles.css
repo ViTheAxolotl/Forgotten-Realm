@@ -70,7 +70,7 @@ body
     margin: 20px 10px 0px 0px;
 }
 
-#story
+#story, #map, #towns
 {
     margin-top: 20px;
 }
