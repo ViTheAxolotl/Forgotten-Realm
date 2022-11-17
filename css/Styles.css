@@ -80,7 +80,7 @@ p
     text-indent: 30px;
 }
 
-#info, #hometown, #footer, #header, #story, #list, #display
+#info, #hometown, #footer, #header, #story, #list, #display, #map, #towns
 {
     border: #555555 4px solid;
     padding: 10px 10px 0px 10px;
@@ -117,6 +117,24 @@ button
 .m-bottom-margin
 {
     margin-bottom: 20px;
+}
+
+#map, #towns
+{
+    text-align: center;
+}
+
+#map img, #towns img
+{
+    width: 550px;
+    height: 425px;
+    margin: 10px 0px 20px 0px;
+    border: solid black 4px;
+}
+
+#towns p
+{
+    text-align: left;
 }
 
 .navbar-primary .navbar-toggler-icon 
@@ -175,5 +193,11 @@ button
     {
         margin: 0px;
         margin-top: 20px;
+    }
+
+    #map img, #towns img
+    {
+        height: 225px;
+        width: 325px;
     }
   }
