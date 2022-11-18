@@ -132,7 +132,15 @@ button
     border: solid black 4px;
 }
 
-#towns p
+#hometown img
+{
+    width: 400px;
+    height: fit-content;
+    margin: 10px 0px 20px 0px;
+    border: solid black 4px;
+}
+
+#towns p, #info p, #hometown p
 {
     text-align: left;
 }
