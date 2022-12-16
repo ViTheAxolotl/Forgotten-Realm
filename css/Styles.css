@@ -65,6 +65,11 @@ body
     margin: 20px 0px 0px 10px;
 }
 
+#search, #item
+{
+    margin-top: 20px;
+}
+
 #info, #list
 {
     margin: 20px 10px 0px 0px;
@@ -80,7 +85,7 @@ p
     text-indent: 30px;
 }
 
-#info, #hometown, #footer, #header, #story, #list, #display, #map, #towns
+#info, #hometown, #footer, #header, #story, #list, #display, #map, #towns, #search, #item
 {
     border: #555555 4px solid;
     padding: 10px 10px 0px 10px;
@@ -98,11 +103,6 @@ h5
     text-decoration: underline;
 }
 
-table
-{
-    margin-left: auto;
-    margin-right: auto;
-}
 
 button
 {
@@ -112,6 +112,18 @@ button
     margin: 5px 0px;
     background-color: #510086;
     color: #AD9622;
+}
+
+table, .itemSearch, #itemImg
+{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.itemSearch
+{
+    width: 40%;
+    display: block;
 }
 
 .m-bottom-margin
@@ -128,6 +140,21 @@ button
 {
     width: 550px;
     height: 425px;
+    margin: 10px 0px 20px 0px;
+    border: solid black 4px;
+}
+
+table, .itemSearch, #itemImg
+{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.itemImg
+{
+    display: block;
+    width: 300px;
+    height: 300px;
     margin: 10px 0px 20px 0px;
     border: solid black 4px;
 }
@@ -207,5 +234,11 @@ button
     {
         height: 225px;
         width: 325px;
+    }
+
+    #itemImg
+    {
+        height: 250px;
+        width: 250px;
     }
   }
