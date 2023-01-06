@@ -21,9 +21,17 @@ document.write(
     '<div class="collapse navbar-collapse" id="navbarSupportedContent"> ' +
         '<ul class="navbar-nav me-auto my-2 my-lg-0 " style="--bs-scroll-height: 100px;"> ' +
             '<li class="nav-item"><a class="nav-link active" aria-current="page" href="index.html">Unbalanced Powers</a></li>' +
-            '<li class="nav-item"><a class="nav-link active" aria-current="page" href="creationStory.html">Birth Of The Universe</a></li>' +
-            '<li class="nav-item"><a class="nav-link active" aria-current="page" href="deities.html">Deities</a></li>' +
-            '<li class="nav-item"><a class="nav-link active" aria-current="page" href="mapAndTowns.html">Maps And Towns</a></li>' +
+            '<li class="nav-item dropdown">' +
+                '<a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">' +
+                    'World Information' +
+                '</a>' +
+                '<ul class="dropdown-menu bg-dark" aria-labelledby="navbarScrollingDropdown">' +
+                    '<li class="nav-item"><a class="nav-link active" aria-current="page" href="creationStory.html">Birth Of The Universe</a></li>' +
+                    '<li class="nav-item"><a class="nav-link active" aria-current="page" href="deities.html">Deities</a></li>' +
+                    '<li class="nav-item"><a class="nav-link active" aria-current="page" href="characters.html">Characters</a></li>' +
+                    '<li class="nav-item"><a class="nav-link active" aria-current="page" href="mapAndTowns.html">Maps And Towns</a></li>' +
+                '</ul>' +
+            '</li>' +
             '<li class="nav-item"><a class="nav-link active" aria-current="page" href="itemIndex.html">Magic Item Index</a></li>' +    
         '</ul>' +
     '</div>' +
