@@ -49,8 +49,8 @@ let charImg =
     "Talon" : "images/characters/Talon.jpg",
     "Kaylin" : "images/characters/Kaylin.jpg",
     "Lyla" : "images/characters/Lyla.jpg",
-    "Ja" : "images/npcs/ja.jpg",
-    "Max" : "images/npcs/max.jpg",
+    "Ja" : "images/npcs/Ja.jpg",
+    "Max" : "images/npcs/Max.jpg",
     "Sal" : "images/npcs/Sal.PNG",
     "Uni" : "images/npcs/Uni.jpg"
 }
