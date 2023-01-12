@@ -14,6 +14,7 @@ function handleSearch()
     let display = document.getElementById("description");
     let image = document.getElementById("itemImg");
     display.innerHTML = items[txtBox.value];
+    image.setAttribute("class", "visible")
     image.src = img[txtBox.value];
     document.getElementById("display").scrollIntoView({behavior: 'smooth'});
 }

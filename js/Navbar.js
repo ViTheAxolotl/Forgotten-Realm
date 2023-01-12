@@ -32,6 +32,7 @@ document.write(
                     '<li class="nav-item"><a class="nav-link active" aria-current="page" href="mapAndTowns.html">Maps And Towns</a></li>' +
                 '</ul>' +
             '</li>' +
+            '<li class="nav-item"><a class="nav-link active" aria-current="page" href="questAndNotes.html">Quests & Personal Notes</a></li>' + 
             '<li class="nav-item"><a class="nav-link active" aria-current="page" href="itemIndex.html">Magic Item Index</a></li>' +    
         '</ul>' +
     '</div>' +

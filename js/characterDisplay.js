@@ -17,6 +17,7 @@ function handleCharacterButton()
     let txtBox = document.getElementById("description");
     let image = document.getElementById("charImg");
     txtBox.innerHTML = charStories[this.id];
+    image.setAttribute("class", "visible")
     image.src = charImg[this.id];
     document.getElementById("display").scrollIntoView({behavior: 'smooth'});
 }

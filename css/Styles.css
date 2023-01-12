@@ -55,12 +55,12 @@ body
     color: #510086;
 }
 
-#hometown, #info
+#hometown, #info, #quests, #notes
 {
     text-align: center;
 }
 
-#hometown, #display
+#hometown, #display, #notes
 {
     margin: 20px 0px 0px 10px;
 }
@@ -70,7 +70,7 @@ body
     margin-top: 20px;
 }
 
-#info, #list
+#info, #list, #quests
 {
     margin: 20px 10px 0px 0px;
 }
@@ -85,7 +85,7 @@ p
     text-indent: 30px;
 }
 
-#info, #hometown, #footer, #header, #story, #list, #display, #map, #towns, #search, #item
+#info, #hometown, #footer, #header, #story, #list, #display, #map, #towns, #search, #item, #quests, #notes
 {
     border: #555555 4px solid;
     padding: 10px 10px 0px 10px;
@@ -185,7 +185,7 @@ table, .itemSearch, #itemImg
     border: solid black 4px;
 }
 
-#towns p, #info p, #hometown p
+#towns p, #info p, #hometown p, #quests p, #notes p
 {
     text-align: left;
 }
@@ -206,31 +206,77 @@ table, .itemSearch, #itemImg
     color: #0d6efd;
 }
 
+.complete
+{
+    background: green;
+    border-color: black;
+    border-radius: 10%;
+}
+
+.complete p
+{
+    text-decoration: line-through;
+}
+
+.uncomplete
+{
+    background: #555555;
+    border-color: black;
+    border-radius: 10%;
+}
+
+.card
+{
+    margin-bottom: 20px;
+    border-color: black;
+    border-radius: 10%;
+}
+
 @media (max-width: 1399px) {
-    .col-md-6 
+    .col-md-6
     {
         width: 49%;
+    }
+
+    .col-md-9
+    {
+        width: 73.2%;
     }
   }
 
 @media (max-width: 1199px) {
-    .col-md-6 
+    .col-md-6
     {
         width: 48.9%;
+    }
+
+    .col-md-9
+    {
+        width: 72.8%;
     }
   }
 
 @media (max-width: 991px) {
-    .col-md-6 
+    .col-md-6
     {
         width: 48.6%;
+    }
+
+    .col-md-9
+    {
+        width: 72.2%;
     }
   }
 
   @media (max-width: 767px) {
-    .col-md-6 
+    .col-md-6  
     {
         width: 47.9%;
+    }
+
+    .col-md-9
+    {
+        width: 100%;
     }
 
     #charImg
@@ -241,14 +287,14 @@ table, .itemSearch, #itemImg
   }
 
 @media (max-width: 574px) {
-    .col-md-6 
+    .col-md-6  
     {
         width: 100%;
     }
   }
 
   @media (max-width: 574px) {
-    #info, #hometown, #story, #list, #display
+    #info, #hometown, #story, #list, #display, #quests, #notes
     {
         margin: 0px;
         margin-top: 20px;
