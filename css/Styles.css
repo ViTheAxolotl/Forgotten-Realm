@@ -213,12 +213,7 @@ table, .itemSearch, #itemImg
     border-radius: 10%;
 }
 
-.complete p
-{
-    text-decoration: line-through;
-}
-
-.uncomplete
+.incomplete
 {
     background: #555555;
     border-color: black;
@@ -227,7 +222,7 @@ table, .itemSearch, #itemImg
 
 .card
 {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     border-color: black;
     border-radius: 10%;
 }
