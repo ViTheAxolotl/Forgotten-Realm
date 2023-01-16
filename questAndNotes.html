@@ -28,19 +28,24 @@
 
         <div id = "quests" class = "bg-UP-blue color-UP-black col-md-3 col-sm-12">
           <h3>Quests</h3> <hr>
+            <a href="#notes"><p class = "center sLink"><b>Notes</b></p></a>
             <script src="js/quests.js"></script>
         </div>
 
         <div id = "notes" class = "bg-UP-purple color-UP-black col-md-9 col-sm-12 ">
-          <h3>Notes</h3>
-          <p>Will be added soon ;)</p>
+          <h3>Notes</h3> <hr>
+            <a href="#quests"><p class = "center sLink"><b>Quests</b></p></a>
+            <script src="js/notes.js" defer></script>
+            <div id = "notesDisplay"><p>Enter Character Name to begin.</p></div>
+            <input type="text" class = "itemSearch" id = "searchBar" placeholder="Name"/>
+            <button id="enter"><b>Enter</b></button>
         </div>
       
         <div id = "footer" class = "col-12">
           <h6>Copyright &copy; Vi Snyder 2023</h6>
         </div>
       </div>
-	</div>
+	  </div>
 
      <!-- Bootstrap JavaScript Components-LOAD LAST -->
      <script scr="js/scripts.js"></script>
