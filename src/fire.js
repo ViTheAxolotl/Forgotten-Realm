@@ -8,7 +8,7 @@ require("firebase/firestore");
 const firebaseApp = initializeApp
 ({
     apiKey: "AIzaSyDojcHZEmju8ix9EK8hQcvg3jsqZ4Okub0",
-    authDomain: "unbalancedpowers.firebaseapp.com",s
+    authDomain: "unbalancedpowers.firebaseapp.com",
     projectId: "unbalancedpowers",
     storageBucket: "unbalancedpowers.appspot.com",
     messagingSenderId: "88358926340",
