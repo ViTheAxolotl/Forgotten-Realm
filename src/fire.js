@@ -1,5 +1,5 @@
-import { initializeApp } from "../firebase/app";
-import { getFirestore, collection, addDoc } from '../firebase/firestore';
+import { initializeApp } from "../node_modules/firebase/app";
+import { getFirestore, collection, addDoc } from '../node_modules/firebase/firestore';
 
 
 const firebase = require("firebase");
