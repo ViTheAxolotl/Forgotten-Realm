@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js";
-import { getFirestore, collection, add } from 'https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js';
+import { getFirestore, collection } from 'firebase/firestore';
 
 
 const firebase = require("firebase");
@@ -8,7 +8,7 @@ require("firebase/firestore");
 const firebaseApp = initializeApp
 ({
     apiKey: "AIzaSyDojcHZEmju8ix9EK8hQcvg3jsqZ4Okub0",
-    authDomain: "unbalancedpowers.firebaseapp.com",
+    authDomain: "unbalancedpowers.firebaseapp.com",s
     projectId: "unbalancedpowers",
     storageBucket: "unbalancedpowers.appspot.com",
     messagingSenderId: "88358926340",
@@ -21,21 +21,17 @@ const db = getFirestore(app);
 
 async function addNote()
 {
-    try 
-    {
-        const docRef = await add(collection(db, "users"), {
-          first: "Alan",
-          middle: "Mathison",
-          last: "Turing",
-          born: 1912
-        });
-      
+    db.collection("users").add({
+        first: "Ada",
+        last: "Lovelace",
+        born: 1815
+    })
+    .then((docRef) => {
         console.log("Document written with ID: ", docRef.id);
-    } 
-    catch (e)
-    {
-        console.error("Error adding document: ", e);
-    }
+    })
+    .catch((error) => {
+        console.error("Error adding document: ", error);
+    });
 }
 
 addNote();
