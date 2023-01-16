@@ -1,4 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
+import { getFirestore, collection, addDoc } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js';
 
 const firebaseApp = initializeApp
 ({
@@ -16,17 +17,21 @@ const db = getFirestore(app);
 
 async function addNote()
 {
-    db.collection("users").add({
-        first: "Ada",
-        last: "Lovelace",
-        born: 1815
-    })
-    .then((docRef) => {
+    try 
+    {
+        const docRef = await addDoc(collection(db, "users"), 
+        {
+            first: "Ada",
+            last: "Lovelace",
+            born: 1815
+        });
         console.log("Document written with ID: ", docRef.id);
-    })
-    .catch((error) => {
-        console.error("Error adding document: ", error);
-    });
+    } 
+    
+    catch (e) 
+    {
+        console.error("Error adding document: ", e);
+    }
 }
 
 addNote();
