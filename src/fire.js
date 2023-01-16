@@ -12,18 +12,17 @@ const firebaseApp = initializeApp
     measurementId: "G-FYM8384HMN"
 });
 
-//const app = initializeApp(firebaseApp);
 const db = getFirestore(firebaseApp);
 
 async function addNote()
 {
     try 
     {
-        const docRef = await addDoc(collection(db, "users"), 
+        const docRef = await addDoc(collection(db, "Test"), 
         {
-            first: "Ada",
-            last: "Lovelace",
-            born: 1815
+            Title : "Test(Test)",
+            Text: "Test??",
+            id: "Test Title"
         });
         console.log("Document written with ID: ", docRef.id);
     } 
