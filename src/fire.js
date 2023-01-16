@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js";
-import { getFirestore, collection, addDoc } from 'https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js';
+import { getFirestore, collection, add } from 'https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js';
 
 
 const firebase = require("firebase");
