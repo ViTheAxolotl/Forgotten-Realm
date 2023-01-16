@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
-import { getFirestore, collection, setDoc } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js';
+import { getFirestore, setDoc, doc } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js';
 
 const firebaseApp = initializeApp
 ({
@@ -18,7 +18,7 @@ async function addNote()
 {
     try 
     {
-        const docRef = await setDoc(doc(collection(db, "Test", "Test Title")), 
+        const docRef = await setDoc(doc(db, "Test", "Test Title"), 
         {
             Title : "Test(Test)",
             Text: "Test??",
