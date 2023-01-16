@@ -1,5 +1,5 @@
-import { initializeApp } from "../node_modules/firebase/app";
-import { getFirestore, collection, addDoc } from '../node_modules/firebase/firestore';
+import { initializeApp } from "https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js";
+import { getFirestore, collection, addDoc } from 'https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js';
 
 
 const firebase = require("firebase");
@@ -23,7 +23,7 @@ async function addNote()
 {
     try 
     {
-        const docRef = await addDoc(collection(db, "users"), {
+        const docRef = await add(collection(db, "users"), {
           first: "Alan",
           middle: "Mathison",
           last: "Turing",
