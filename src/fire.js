@@ -1,4 +1,4 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js";
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js';
 
 const firebaseApp = initializeApp
 ({
