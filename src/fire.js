@@ -1,5 +1,5 @@
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
-import { getFirestore, collection, addDoc } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js';
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
+import { getFirestore, collection, addDoc } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js';
 
 const firebaseApp = initializeApp
 ({
@@ -12,8 +12,8 @@ const firebaseApp = initializeApp
     measurementId: "G-FYM8384HMN"
 });
 
-const app = initializeApp(firebaseApp);
-const db = getFirestore(app);
+//const app = initializeApp(firebaseApp);
+const db = getFirestore(firebaseApp);
 
 async function addNote()
 {
