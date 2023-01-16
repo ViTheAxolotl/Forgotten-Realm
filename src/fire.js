@@ -24,7 +24,6 @@ async function addNote()
             Text: "Test??",
             id: "Test Title"
         });
-        console.log("Document written with ID: ", docRef.id);
     } 
     
     catch (e) 
