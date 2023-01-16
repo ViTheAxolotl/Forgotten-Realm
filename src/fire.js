@@ -18,7 +18,7 @@ async function addNote()
 {
     try 
     {
-        const docRef = await addDoc(collection(db, "Test"), 
+        const docRef = await setDoc(doc(collection(db, "Test", "Test Title")), 
         {
             Title : "Test(Test)",
             Text: "Test??",
