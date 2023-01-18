@@ -4,7 +4,7 @@ import { getFirestore, setDoc, doc } from 'https://www.gstatic.com/firebasejs/9.
 
 function init()
 {
-    let button = document.getElementsById("enter");
+    let button = document.getElementById("enter");
 
     button.onclick = handleEnter;
 }
