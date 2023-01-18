@@ -222,7 +222,7 @@ table, .itemSearch, #itemImg
 
 .card
 {
-    margin-bottom: 10px;
+    margin: 10px;
     border-color: black;
     border-radius: 10%;
 }
