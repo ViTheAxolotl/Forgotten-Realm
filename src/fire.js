@@ -4,9 +4,9 @@ import { getFirestore, setDoc, doc } from 'https://www.gstatic.com/firebasejs/9.
 
 function init()
 {
-    let buttons = document.getElementsByTagName("button");
+    let button = document.getElementsById("enter");
 
-    buttons[0].onclick = handleEnter;
+    button.onclick = handleEnter;
 }
 
 const firebaseApp = initializeApp
@@ -30,6 +30,12 @@ function handleEnter()
         let user = txtFeild.value;
         document.getElementById("notesDisplay").value = user;
     }
+
+    else
+    {
+        document.getElementById("notesDisplay").value = "User not gotten";
+        hasSearched = true;
+    }
 }
 
 async function addNote(user, title, text)
@@ -51,4 +57,3 @@ async function addNote(user, title, text)
 
 window.onload = init;
 let hasSearched = false;
-addNote("Test", "Written Test", "This is to see if we can write a test.");
