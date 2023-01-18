@@ -62,7 +62,7 @@ async function readNotes(user)
     const querySnapshot = await getDocs(collection(db, user));
     querySnapshot.forEach((doc) => 
     {
-        display.innerHTML = display.innerHTML + (`${doc.id} => ${doc.Text}`);
+        display.innerHTML = display.innerHTML + (`${doc.id} => ${doc.data().Text}`);
     });
 }
 
