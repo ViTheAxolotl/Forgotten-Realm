@@ -247,11 +247,6 @@ table, .itemSearch, #itemImg
     margin-left: -25px;
 }
 
-#notesDisplay
-{
-    background-color: black;
-}
-
 .hide
 {
     display: none;
