@@ -71,7 +71,19 @@ async function readNotes(user)
 
 function createCard(title, text)
 {
-    document.write
+    let cardDiv = document.createElement("div").setAttribute("class", "card .bg-UP-blue");
+    let cardBody = document.createElement("div").setAttribute("class", "card-body");
+    let cardTitle = document.createElement("h5").setAttribute("class", "card-title");
+    cardTitle.innerHTML = title;
+    let cardText = document.createElement("p").setAttribute("class", "card-text");
+    cardText.innerHTML = text;
+    let noteDisplay = document.getElementById("notesDisplay");
+    noteDisplay.appendChild(cardDiv);
+    cardDiv.appendChild(cardBody);
+    cardBody.appendChild(cardTitle);
+    cardBody.appendChild(cardText);
+    
+    /*document.write
     (
         '<div class="card .bg-UP-blue">'+
             '<div class="card-body">'+
@@ -79,7 +91,7 @@ function createCard(title, text)
                 '<p class="card-text">' + text + '</p>'+
             '</div>'+
         '</div>'
-    );
+    );*/
 }
 
 window.onload = init;
