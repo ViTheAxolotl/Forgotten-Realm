@@ -58,13 +58,12 @@ async function addNote(user, title, text)
 async function readNotes(user)
 {
     let display = document.getElementById("notesDisplay");
+    display.innerHTML = "";
     const querySnapshot = await getDocs(collection(db, user));
     querySnapshot.forEach((doc) => 
     {
-        display.innerHTML = display.innerHTML + (`${doc.id} => ${doc.data()}`);
-        console.log(`${doc.id} => ${doc.data()
-    }`);
-});
+        display.innerHTML = display.innerHTML + (`${doc.id} => ${doc.Text}`);
+    });
 }
 
 function createCard(title, text)
