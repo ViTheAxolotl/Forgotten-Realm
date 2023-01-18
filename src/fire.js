@@ -28,6 +28,7 @@ function handleEnter()
     {
         let txtFeild = document.getElementById("searchBar");
         let user = txtFeild.value;
+        user = user[0].toUpperCase() + user.substring(1).toLowerCase();
         readNotes(user);
     }
 
@@ -64,7 +65,7 @@ async function readNotes(user)
     {
         let title = doc.id;
         let text = doc.data().Text;
-        display.innerHTML = display.innerHTML + (title + ": " + text + "\n");
+        createCard(title, text);
     });
 }
 
