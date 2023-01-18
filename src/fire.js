@@ -71,7 +71,8 @@ async function readNotes(user)
 
 function createCard(title, text)
 {
-    let cardDiv = document.createElement("div").setAttribute("class", "card .bg-UP-blue");
+    let cardDiv = document.createElement("div");
+    cardDiv.setAttribute("class", "card .bg-UP-blue");
     let cardBody = document.createElement("div").setAttribute("class", "card-body");
     let cardTitle = document.createElement("h5").setAttribute("class", "card-title");
     cardTitle.innerHTML = title;
