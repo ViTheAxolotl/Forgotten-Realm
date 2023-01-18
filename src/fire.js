@@ -1,5 +1,13 @@
+"use strict";
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
 import { getFirestore, setDoc, doc } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js';
+
+function init()
+{
+    let buttons = document.getElementsByTagName("button");
+
+    buttons[0].onclick = handleEnter;
+}
 
 const firebaseApp = initializeApp
 ({
@@ -14,15 +22,24 @@ const firebaseApp = initializeApp
 
 const db = getFirestore(firebaseApp);
 
-async function addNote()
+function handleEnter()
+{
+    if (hasSearched == false)
+    {
+        let txtFeild = document.getElementById("searchBar");
+        let user = txtFeild.value;
+        document.getElementById("notesDisplay").value = user;
+    }
+}
+
+async function addNote(user, title, text)
 {
     try 
     {
-        const docRef = await setDoc(doc(db, "Test", "Test Title"), 
+        const docRef = await setDoc(doc(db, user, title), 
         {
-            Title : "Test(Test)",
-            Text: "Test??",
-            id: "Test Title"
+            Title : title,
+            Text: text,
         });
     } 
     
@@ -32,4 +49,6 @@ async function addNote()
     }
 }
 
-addNote();
+window.onload = init;
+let hasSearched = false;
+addNote("Test", "Written Test", "This is to see if we can write a test.");
