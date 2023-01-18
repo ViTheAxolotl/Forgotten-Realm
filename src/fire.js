@@ -1,6 +1,6 @@
 "use strict";
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
-import { getFirestore, setDoc, doc } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js';
+import { getFirestore, setDoc, getDoc, doc, collection } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js';
 
 function init()
 {
@@ -28,7 +28,7 @@ function handleEnter()
     {
         let txtFeild = document.getElementById("searchBar");
         let user = txtFeild.value;
-        document.getElementById("notesDisplay").value = user;
+        readNotes(user);
     }
 
     else
@@ -53,6 +53,31 @@ async function addNote(user, title, text)
     {
         console.error("Error adding document: ", e);
     }
+}
+
+async function readNotes(user)
+{
+    let display = document.getElementById("notesDisplay");
+    const querySnapshot = await getDocs(collection(db, user));
+    querySnapshot.forEach((doc) => 
+    {
+        display.innerHTML = display.innerHTML + (`${doc.id} => ${doc.data()}`);
+        console.log(`${doc.id} => ${doc.data()
+    }`);
+});
+}
+
+function createCard(title, text)
+{
+    document.write
+    (
+        '<div class="card .bg-UP-blue">'+
+            '<div class="card-body">'+
+                '<h5 class="card-title">' + title + '</h5>'+
+                '<p class="card-text">' + text + '</p>'+
+            '</div>'+
+        '</div>'
+    );
 }
 
 window.onload = init;

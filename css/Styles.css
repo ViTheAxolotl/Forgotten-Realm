@@ -245,6 +245,16 @@ table, .itemSearch, #itemImg
     background-color: black;
 }
 
+.hide
+{
+    display: none;
+}
+
+.unhide
+{
+    display: block;
+}
+
 @media (max-width: 1399px) {
     .col-md-6
     {
