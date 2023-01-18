@@ -73,10 +73,13 @@ function createCard(title, text)
 {
     let cardDiv = document.createElement("div");
     cardDiv.setAttribute("class", "card .bg-UP-blue");
-    let cardBody = document.createElement("div").setAttribute("class", "card-body");
-    let cardTitle = document.createElement("h5").setAttribute("class", "card-title");
+    let cardBody = document.createElement("div");
+    cardBody.setAttribute("class", "card-body");
+    let cardTitle = document.createElement("h5");
+    cardTitle.setAttribute("class", "card-title");
     cardTitle.innerHTML = title;
-    let cardText = document.createElement("p").setAttribute("class", "card-text");
+    let cardText = document.createElement("p");
+    cardText.setAttribute("class", "card-text");
     cardText.innerHTML = text;
     let noteDisplay = document.getElementById("notesDisplay");
     noteDisplay.appendChild(cardDiv);
