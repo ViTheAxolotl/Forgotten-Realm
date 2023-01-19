@@ -23,7 +23,6 @@ function setUpCards()
 
 let titleAndText =
 {
-    "Unlocked Powers" : "Go to Galno base and get tattoos removed, to unlocking the powers within.",
     "Learning Powers" : "Fight some Growth in the forest to learn new powers.",
     "Releasing Ceremony" : "Go to ceremony and release your inner feelings to the world.",
     "Missing Shipments" : "Find the pirates and the shipments. Return shipments back to the Quadrant 4.",
@@ -36,7 +35,6 @@ let titleAndText =
 
 let titleAndStatus =
 {
-    "Unlocked Powers" : "complete",
     "Learning Powers" : "complete",
     "Releasing Ceremony" : "complete",
     "Missing Shipments" : "complete",

@@ -33,7 +33,7 @@ function handleEnter()
         txtFeild.value = "";
         let addButton = document.createElement("img");
         addButton.setAttribute("src", "img/addIcon");
-        addButton.setAttribute("class", "addButton");
+        addButton.setAttribute("id", "addButton");
         addButton.onclick = handleAddButton;
         let noteDisplay = document.getElementById("notesDisplay");
         noteDisplay.appendChild(addButton);
@@ -49,7 +49,13 @@ function handleEnter()
 
 function handleAddButton()
 {
-
+    notes = document.getElementsByClassName("notes");
+    addButton = document.getElementById("addButton");
+    
+    while(notes.length > 0)
+    {
+        notes[0].parentNode.removeChild(elements[0]);
+    }
 }
 
 async function addNote(user, title, text)
