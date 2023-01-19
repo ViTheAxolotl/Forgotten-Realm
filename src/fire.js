@@ -30,13 +30,26 @@ function handleEnter()
         let user = txtFeild.value;
         user = user[0].toUpperCase() + user.substring(1).toLowerCase();
         readNotes(user);
+        txtFeild.value = "";
+        let addButton = document.createElement("img");
+        addButton.setAttribute("src", "img/addIcon");
+        addButton.setAttribute("class", "addButton");
+        addButton.onclick = handleAddButton;
+        let noteDisplay = document.getElementById("notesDisplay");
+        noteDisplay.appendChild(addButton);
+        hasSearched = true;
+
     }
 
     else
     {
         document.getElementById("notesDisplay").value = "User not gotten";
-        hasSearched = true;
     }
+}
+
+function handleAddButton()
+{
+
 }
 
 async function addNote(user, title, text)
