@@ -51,7 +51,7 @@ function handleAddButton()
 {
     notes = document.getElementsByClassName("notes");
     addButton = document.getElementById("addButton");
-
+    
     while(notes.length > 0)
     {
         notes[0].parentNode.removeChild(elements[0]);
