@@ -32,7 +32,7 @@ function handleEnter()
         readNotes(user);
         txtFeild.value = "";
         let addButton = document.createElement("img");
-        addButton.setAttribute("src", "img/addIcon");
+        addButton.setAttribute("src", "images/addIcon");
         addButton.setAttribute("id", "addButton");
         addButton.onclick = handleAddButton;
         let noteDisplay = document.getElementById("notesDisplay");
