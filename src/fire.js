@@ -71,7 +71,7 @@ function setAddScreen()
     text.placeholder = "Write Text Here";
 
     let addButton = document.getElementById("enter");
-    addButton.innerHTML("Upload");
+    addButton.innerHTML = "Upload";
     addButton.parentNode.removeChild(addButton);
 
     let title = document.getElementById("searchBar");
