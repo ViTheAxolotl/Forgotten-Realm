@@ -32,12 +32,7 @@ function handleEnter()
         currentUser = user;
         readNotes(user);
         txtFeild.value = "";
-        let addButton = document.createElement("img");
-        addButton.setAttribute("src", "images/addIcon.png");
-        addButton.setAttribute("id", "addButton");
-        addButton.onclick = handleAddButton;
-        let noteDisplay = document.getElementById("notesDisplay");
-        noteDisplay.appendChild(addButton);
+        createAddButton();
         txtFeild.setAttribute("placeholder", " ");
         hasSearched = true;
     }
@@ -49,17 +44,7 @@ function handleEnter()
         let text = document.getElementById("text");
 
         addNote(currentUser, title.value, text.value);
-        text.parentNode.removeChild(text);
-        enter.innerHTML = "Enter";
-        title.placeholder = " ";
-        title.value = " ";
-        readNotes(currentUser);
-        let addButton = document.createElement("img");
-        addButton.setAttribute("src", "images/addIcon.png");
-        addButton.setAttribute("id", "addButton");
-        addButton.onclick = handleAddButton;
-        let noteDisplay = document.getElementById("notesDisplay");
-        noteDisplay.appendChild(addButton);
+        setCardScreen(enter, title, text);
     }
 }
 
@@ -94,6 +79,26 @@ function setAddScreen()
     title.parentNode.appendChild(text);
     title.parentNode.appendChild(addButton);
     
+}
+
+function setCardScreen(enter, title, text)
+{
+    text.parentNode.removeChild(text);
+    enter.innerHTML = "Enter";
+    title.placeholder = " ";
+    title.value = " ";
+    readNotes(currentUser);
+    createAddButton();
+}
+
+function createAddButton()
+{
+    let addButton = document.createElement("img");
+    addButton.setAttribute("src", "images/addIcon.png");
+    addButton.setAttribute("id", "addButton");
+    addButton.onclick = handleAddButton;
+    let noteDisplay = document.getElementById("notesDisplay");
+    noteDisplay.appendChild(addButton);
 }
 
 async function addNote(user, title, text)
