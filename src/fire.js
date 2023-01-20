@@ -37,6 +37,7 @@ function handleEnter()
         addButton.onclick = handleAddButton;
         let noteDisplay = document.getElementById("notesDisplay");
         noteDisplay.appendChild(addButton);
+        txtFeild.setAttribute("placeholder", " ");
         hasSearched = true;
 
     }
@@ -54,7 +55,7 @@ function handleAddButton()
 
     while(notes.length > 0)
     {
-        notes[0].parentNode.removeChild(elements[0]);
+        notes[0].parentNode.removeChild(notes[0]);
     }
 }
 
