@@ -70,9 +70,15 @@ function setAddScreen()
     text.setAttribute("cols", "50");
     text.placeholder = "Write Text Here";
 
+    let addButton = document.getElementById("enter");
+    addButton.innerHTML("Upload");
+    addButton.parentNode.removeChild(addButton);
+
     let title = document.getElementById("searchBar");
     title.placeholder = "Write Title Here";
     title.parentNode.appendChild(text);
+    title.parentNode.appendChild(addButton);
+    
 }
 
 async function addNote(user, title, text)
