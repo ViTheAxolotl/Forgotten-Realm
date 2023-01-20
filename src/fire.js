@@ -29,6 +29,7 @@ function handleEnter()
         let txtFeild = document.getElementById("searchBar");
         let user = txtFeild.value;
         user = user[0].toUpperCase() + user.substring(1).toLowerCase();
+        currentUser = user;
         readNotes(user);
         txtFeild.value = "";
         let addButton = document.createElement("img");
@@ -39,12 +40,19 @@ function handleEnter()
         noteDisplay.appendChild(addButton);
         txtFeild.setAttribute("placeholder", " ");
         hasSearched = true;
-
     }
 
     else
     {
-        document.getElementById("notesDisplay").value = "User not gotten";
+        let addButton = document.getElementById("enter");
+        let title = document.getElementById("searchBar");
+        let text = document.getElementById("text");
+
+        addNote(currentUser, title.value, text.value);
+        text.parentNode.removeChild(text);
+        addButton.innerHTML = "Enter";
+        title.placeholder = " ";
+        readNotes(currentUser);
     }
 }
 
@@ -142,3 +150,4 @@ function createCard(title, text)
 
 window.onload = init;
 let hasSearched = false;
+let currentUser;
