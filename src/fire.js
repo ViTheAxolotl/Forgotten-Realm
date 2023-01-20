@@ -58,6 +58,21 @@ function handleAddButton()
     {
         notes[0].parentNode.removeChild(notes[0]);
     }
+
+    setAddScreen();
+}
+
+function setAddScreen()
+{
+    let text = document.createElement("textarea");
+    text.setAttribute("id", "text");
+    text.setAttribute("rows", "5");
+    text.setAttribute("cols", "50");
+    text.placeholder = "Write Text Here";
+
+    let title = document.getElementById("searchBar");
+    title.placeholder = "Write Title Here";
+    title.parentNode.appendChild(text);
 }
 
 async function addNote(user, title, text)
