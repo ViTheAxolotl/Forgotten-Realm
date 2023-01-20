@@ -44,15 +44,22 @@ function handleEnter()
 
     else
     {
-        let addButton = document.getElementById("enter");
+        let enter = document.getElementById("enter");
         let title = document.getElementById("searchBar");
         let text = document.getElementById("text");
 
         addNote(currentUser, title.value, text.value);
         text.parentNode.removeChild(text);
-        addButton.innerHTML = "Enter";
+        enter.innerHTML = "Enter";
         title.placeholder = " ";
+        title.value = " ";
         readNotes(currentUser);
+        let addButton = document.createElement("img");
+        addButton.setAttribute("src", "images/addIcon.png");
+        addButton.setAttribute("id", "addButton");
+        addButton.onclick = handleAddButton;
+        let noteDisplay = document.getElementById("notesDisplay");
+        noteDisplay.appendChild(addButton);
     }
 }
 
