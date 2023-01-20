@@ -49,8 +49,8 @@ function handleEnter()
 
 function handleAddButton()
 {
-    notes = document.getElementsByClassName("notes");
-    addButton = document.getElementById("addButton");
+    let notes = document.getElementsByClassName("notes");
+    let addButton = document.getElementById("addButton");
 
     while(notes.length > 0)
     {
