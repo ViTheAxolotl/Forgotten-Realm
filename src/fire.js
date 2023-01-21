@@ -50,7 +50,7 @@ function handleEnter()
 
         else
         {
-            addNote(currentUser, title.value, text.value);
+            addNote(currentUser, title, text);
             setCardScreen(enter, title, text);
         }   
     }
