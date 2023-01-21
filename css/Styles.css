@@ -257,6 +257,11 @@ table, .itemSearch, #itemImg
     display: block;
 }
 
+#deleteButton
+{
+    clear: both;
+}
+
 @media (max-width: 1399px) {
     .col-md-6
     {

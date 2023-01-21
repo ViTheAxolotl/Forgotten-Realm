@@ -90,7 +90,10 @@ function handleDeleteButton()
     let enter = document.getElementById("enter");
     let title = document.getElementById("searchBar");
     let text = document.getElementById("text");
+    let deleteButton = document.getElementById("deleteButton");
 
+    deleteButton.parentNode.removeChild(deleteButton);
+    
     deleteNote();
     setCardScreen(enter, title, text);
 }
