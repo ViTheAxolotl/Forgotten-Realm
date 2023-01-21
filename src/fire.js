@@ -25,7 +25,7 @@ function handleEnter()
 {
     if (hasSearched == false)
     {
-        let txtFeild = elements["searchBar"];
+        let txtFeild = document.getElementById("searchBar");
         let user = txtFeild.value;
         user = user[0].toUpperCase() + user.substring(1).toLowerCase();
         currentUser = user;
@@ -38,9 +38,9 @@ function handleEnter()
 
     else
     {
-        let enter = elements["enterButton"];
-        let title = elements["searchBar"];
-        let text = elements["text"];
+        let enter = document.getElementById("enter");
+        let title = document.getElementById("searchBar");
+        let text = document.getElementById("text");
 
         if(title.value == null || text.value == null || title.value == "" || text.value == "")
         {
@@ -57,8 +57,8 @@ function handleEnter()
 
 function handleAddButton()
 {
-    let notes = elements["notes"];
-    let addButton = elements["addButton"];
+    let notes = document.getElementsByClassName("notes");
+    let addButton = document.getElementById("addButton");
 
     addButton.parentNode.removeChild(addButton);
     while(notes.length > 0)
@@ -77,15 +77,21 @@ function handleCardClick()
     currentTitle = children[0].innerHTML;
     currentText = children[1].innerHTML;
     handleAddButton();
-
-    elements["searchBar"].value = currentTitle;
-    elements["text"].value = currentText;
+    
+    let title = document.getElementById("searchBar");
+    let text = document.getElementById("text");
+    title.value = currentTitle;
+    text.value = currentText;
 }
 
 function handleDeleteButton()
 {
+    let enter = document.getElementById("enter");
+    let title = document.getElementById("searchBar");
+    let text = document.getElementById("text");
+
     deleteNote();
-    setCardScreen(elements["enterButton"], elements["searchBar"], elements["text"]);
+    setCardScreen(enter, title, text);
 }
 
 function setAddScreen()
@@ -96,20 +102,20 @@ function setAddScreen()
     text.setAttribute("cols", "50");
     text.placeholder = "Write Text Here";
 
-    let enterButton = elements["enterButton"];
-    enterButton.innerHTML = "Upload";
-    enterButton.parentNode.removeChild(enterButton);
+    let addButton = document.getElementById("enter");
+    addButton.innerHTML = "Upload";
+    addButton.parentNode.removeChild(addButton);
 
-    let title = elements["searchBar"];
+    let title = document.getElementById("searchBar");
     title.placeholder = "Write Title Here";
     title.parentNode.appendChild(text);
-    title.parentNode.appendChild(enterButton);
+    title.parentNode.appendChild(addButton);
     
 }
 
 function setCardScreen(enter, title, text)
 {
-    let deleteButton = elements["deleteButton"];
+    let deleteButton = document.getElementById("deleteButton");
     deleteButton.parentNode.removeChild(deleteButton);
     text.parentNode.removeChild(text);
     enter.innerHTML = "Enter";
@@ -131,7 +137,7 @@ function createAddButton()
     instructions.setAttribute("class", "center");
     instructions.innerHTML = "Click a note to edit it, or delete it.";
 
-    let noteDisplay = elements["notesDisplay"];
+    let noteDisplay = document.getElementById("notesDisplay");
     noteDisplay.appendChild(addButton);
     noteDisplay.appendChild(instructions);
 }
@@ -143,16 +149,16 @@ function createDeleteButton()
     deleteButton.setAttribute("id", "deleteButton");
     deleteButton.onclick = handleDeleteButton;
 
-    let instructions = elements["instructions"];
+    let instructions = document.getElementById("instruc");
     instructions.innerHTML = "Type in a title and description for your note. If you change your mind, hit the trash icon.";
 
-    let enterButton = elements["enterButton"];
-    enterButton.innerHTML = "Upload";
-    enterButton.parentNode.removeChild(enterButton);
+    let addButton = document.getElementById("enter");
+    addButton.innerHTML = "Upload";
+    addButton.parentNode.removeChild(addButton);
 
-    let notes = elements["notes"];
+    let notes = document.getElementById("notes");
     notes.appendChild(deleteButton);
-    notes.appendChild(enterButton);
+    notes.appendChild(addButton);
 }
 
 async function addNote(user, title, text)
@@ -174,7 +180,7 @@ async function addNote(user, title, text)
 
 async function readNotes(user)
 {
-    let display = elements["notesDisplay"];
+    let display = document.getElementById("notesDisplay");
     display.innerHTML = "";
     const querySnapshot = await getDocs(collection(db, user));
     querySnapshot.forEach((doc) => 
@@ -206,23 +212,11 @@ function createCard(title, text)
     let cardText = document.createElement("p");
     cardText.setAttribute("class", "card-text");
     cardText.innerHTML = text;
-    let noteDisplay = elements["noteDisplay"];
+    let noteDisplay = document.getElementById("notesDisplay");
     noteDisplay.appendChild(cardDiv);
     cardDiv.appendChild(cardBody);
     cardBody.appendChild(cardTitle);
     cardBody.appendChild(cardText);
-}
-
-let elements = 
-{
-    "enterButton" : document.getElementById("enter"),
-    "searchBar" : document.getElementById("searchBar"),
-    "text" : document.getElementById("text"),
-    "notes" : document.getElementsByClassName("notes"),
-    "addButton" : document.getElementById("addButton"),
-    "deleteButton" : document.getElementById("deleteButton"),
-    "instructions" : document.getElementById("instruc"),
-    "notesDisplay" : document.getElementById("notesDisplay")
 }
 
 window.onload = init;
