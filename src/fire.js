@@ -40,17 +40,17 @@ function handleEnter()
     else
     {
         let enter = document.getElementById("enter");
-        let title = document.getElementById("searchBar").value;
-        let text = document.getElementById("text").value;
+        let title = document.getElementById("searchBar");
+        let text = document.getElementById("text");
 
-        if(title == null || text == null || title == undefined || text == undefined)
+        if(title.value == null || text.value == null || title.value == undefined || text.value == undefined)
         {
             alert("Please enter both a title and text for your note.");
         }
 
         else
         {
-            addNote(currentUser, title, text);
+            addNote(currentUser, title.value, text.value);
             setCardScreen(enter, title, text);
         }   
     }
@@ -119,8 +119,13 @@ function createAddButton()
     addButton.setAttribute("src", "images/addIcon.png");
     addButton.setAttribute("id", "addButton");
     addButton.onclick = handleAddButton;
+
+    let instructions = document.createElement("p");
+    instructions.innerHTML = "Click a note to edit it, or delete it."
+
     let noteDisplay = document.getElementById("notesDisplay");
     noteDisplay.appendChild(addButton);
+    noteDisplay.appendChild(instructions);
 }
 
 async function addNote(user, title, text)
