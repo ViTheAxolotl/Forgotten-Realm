@@ -43,8 +43,16 @@ function handleEnter()
         let title = document.getElementById("searchBar");
         let text = document.getElementById("text");
 
-        addNote(currentUser, title.value, text.value);
-        setCardScreen(enter, title, text);
+        if(title == null || text == null || title == undefined || text == undefined)
+        {
+            alert("Please enter both a title and text for your note.");
+        }
+
+        else
+        {
+            addNote(currentUser, title.value, text.value);
+            setCardScreen(enter, title, text);
+        }   
     }
 }
 
@@ -60,6 +68,20 @@ function handleAddButton()
     }
 
     setAddScreen();
+}
+
+function handleCardClick()
+{
+    let children = this.childNodes;
+    let title = document.getElementById("searchBar");
+    let text = document.getElementById("text");
+
+    currentTitle = children[0].innerHTML;
+    currentText = children[1].innerHTML;
+    handleAddButton();
+    
+    title.innerHTML = currentTitle;
+    text.innerHTML = currentText;
 }
 
 function setAddScreen()
@@ -137,6 +159,7 @@ function createCard(title, text)
     cardDiv.setAttribute("class", "card .bg-UP-blue notes");
     let cardBody = document.createElement("div");
     cardBody.setAttribute("class", "card-body notes");
+    cardBody.onclick = handleCardClick;
     let cardTitle = document.createElement("h5");
     cardTitle.setAttribute("class", "card-title");
     cardTitle.innerHTML = title;
@@ -148,18 +171,10 @@ function createCard(title, text)
     cardDiv.appendChild(cardBody);
     cardBody.appendChild(cardTitle);
     cardBody.appendChild(cardText);
-    
-    /*document.write
-    (
-        '<div class="card .bg-UP-blue">'+
-            '<div class="card-body">'+
-                '<h5 class="card-title">' + title + '</h5>'+
-                '<p class="card-text">' + text + '</p>'+
-            '</div>'+
-        '</div>'
-    );*/
 }
 
 window.onload = init;
 let hasSearched = false;
 let currentUser;
+let currentTitle;
+let currentText;
