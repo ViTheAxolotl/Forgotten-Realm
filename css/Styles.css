@@ -260,9 +260,15 @@ table, .itemSearch, #itemImg
 #deleteButton, #text
 {
     display: block;
-    text-align: center !important; 
     margin-left: auto;
     margin-right: auto;
+    margin-top: 5px;
+}
+
+#deleteButton
+{
+    width: 60%;
+    height: 60%;
 }
 
 @media (max-width: 1399px) {
