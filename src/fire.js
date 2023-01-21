@@ -40,8 +40,8 @@ function handleEnter()
     else
     {
         let enter = document.getElementById("enter");
-        let title = document.getElementById("searchBar");
-        let text = document.getElementById("text");
+        let title = document.getElementById("searchBar").value;
+        let text = document.getElementById("text").value;
 
         if(title == null || text == null || title == undefined || text == undefined)
         {
@@ -80,8 +80,8 @@ function handleCardClick()
     
     let title = document.getElementById("searchBar");
     let text = document.getElementById("text");
-    title.innerHTML = currentTitle;
-    text.innerHTML = currentText;
+    title.value = currentTitle;
+    text.value = currentText;
 }
 
 function setAddScreen()
