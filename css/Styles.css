@@ -265,7 +265,7 @@ table, .itemSearch, #itemImg
     margin-top: 5px;
 }
 
-#deleteButton
+#deleteButton, #addButton
 {
     width: 75px;
     height: 75px;
