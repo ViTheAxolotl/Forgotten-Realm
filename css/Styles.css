@@ -257,9 +257,9 @@ table, .itemSearch, #itemImg
     display: block;
 }
 
-#deleteButton
+#deleteButton, #text
 {
-    clear: both;
+    display: block;
 }
 
 @media (max-width: 1399px) {
