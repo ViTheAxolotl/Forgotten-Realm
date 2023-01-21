@@ -73,13 +73,13 @@ function handleAddButton()
 function handleCardClick()
 {
     let children = this.childNodes;
-    let title = document.getElementById("searchBar");
-    let text = document.getElementById("text");
 
     currentTitle = children[0].innerHTML;
     currentText = children[1].innerHTML;
     handleAddButton();
     
+    let title = document.getElementById("searchBar");
+    let text = document.getElementById("text");
     title.innerHTML = currentTitle;
     text.innerHTML = currentText;
 }
