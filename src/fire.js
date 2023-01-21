@@ -134,7 +134,9 @@ function createAddButton()
     addButton.onclick = handleAddButton;
 
     let instructions = document.createElement("p");
-    instructions.innerHTML = "Click a note to edit it, or delete it."
+    instructions.setAttribute("id", "instruc");
+    instructions.setAttribute("class", "center");
+    instructions.innerHTML = "Click a note to edit it, or delete it.";
 
     let noteDisplay = document.getElementById("notesDisplay");
     noteDisplay.appendChild(addButton);
@@ -147,6 +149,9 @@ function createDeleteButton()
     deleteButton.setAttribute("src", "images/trashIcon.png");
     deleteButton.setAttribute("id", "deleteButton");
     deleteButton.onclick = handleDeleteButton;
+
+    let instructions = document.getElementById("instruc");
+    instructions.innerHTML = "Type in a title and description for your note. If you change your mind, hit the trash icon.";
 
     let addButton = document.getElementById("enter");
     addButton.innerHTML = "Upload";
