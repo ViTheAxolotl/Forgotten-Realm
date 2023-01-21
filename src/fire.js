@@ -1,6 +1,6 @@
 "use strict";
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
-import { getFirestore, setDoc, getDocs, doc, collection } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js';
+import { getFirestore, setDoc, getDocs, deleteDoc, doc, collection } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js';
 
 function init()
 {
@@ -43,7 +43,7 @@ function handleEnter()
         let title = document.getElementById("searchBar");
         let text = document.getElementById("text");
 
-        if(title.value == null || text.value == null || title.value == undefined || text.value == undefined)
+        if(title.value == null || text.value == null || title.value == "" || text.value == "")
         {
             alert("Please enter both a title and text for your note.");
         }
@@ -68,6 +68,7 @@ function handleAddButton()
     }
 
     setAddScreen();
+    createDeleteButton();
 }
 
 function handleCardClick()
@@ -82,6 +83,16 @@ function handleCardClick()
     let text = document.getElementById("text");
     title.value = currentTitle;
     text.value = currentText;
+}
+
+function handleDeleteButton()
+{
+    let enter = document.getElementById("enter");
+    let title = document.getElementById("searchBar");
+    let text = document.getElementById("text");
+
+    deleteNote();
+    setCardScreen(enter, title, text);
 }
 
 function setAddScreen()
@@ -128,6 +139,22 @@ function createAddButton()
     noteDisplay.appendChild(instructions);
 }
 
+function createDeleteButton()
+{
+    let deleteButton = document.createElement("img");
+    deleteButton.setAttribute("src", "images/trashIcon.png");
+    deleteButton.setAttribute("id", "deleteButton");
+    deleteButton.onclick = handleDeleteButton;
+
+    let addButton = document.getElementById("enter");
+    addButton.innerHTML = "Upload";
+    addButton.parentNode.removeChild(addButton);
+
+    let notes = document.getElementById("notes");
+    notes.appendChild(deleteButton);
+    notes.appendChild(addButton);
+}
+
 async function addNote(user, title, text)
 {
     try 
@@ -156,6 +183,14 @@ async function readNotes(user)
         let text = doc.data().Text;
         createCard(title, text);
     });
+}
+
+async function deleteNote()
+{
+    if(currentTitle != undefined)
+    {
+        await deleteDoc(doc(db, currentUser, currentTitle));
+    }
 }
 
 function createCard(title, text)
