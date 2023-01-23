@@ -30,7 +30,8 @@ let titleAndText =
     "Find Max & Avenge Ja" : "Max is missing after finding Ja dead on the floor. Find Max and avenge Ja.",
     "Growth On Maynor Border" : "The Growth has been moving closer to Maynor since the festival. Maynor is defenseless since it has no Galno base set up. Help defeat Growth before they reach the town.",
     "Missing Kid" : "A worried mom has tried to reach out to the guards to find her missing kid, but the guards are too busy to help her. The kid has been missing for a few days, the mom knows the last whereabouts of her kid.",
-    "Stolen Artifact" : "A merchant's family heirloom was stolen during the ceremony. The merchant owns an antique shop in town."
+    "Stolen Artifact" : "A merchant's family heirloom was stolen during the ceremony. The merchant owns an antique shop in town.",
+    "Help Maxion" : "Maxion believes their is a key that can counter act the Monster Key. They believe it is on SunStar island, go there and help them get the key."
 };
 
 let titleAndStatus =
@@ -42,7 +43,8 @@ let titleAndStatus =
     "Find Max & Avenge Ja" : "incomplete",
     "Growth On Maynor Border " : "incomplete",
     "Missing Kid" : "incomplete",
-    "Stolen Artifact" : "incomplete"
+    "Stolen Artifact" : "incomplete",
+    "Help Maxion " : "incomplete"
 };
 
 setUpCards();
