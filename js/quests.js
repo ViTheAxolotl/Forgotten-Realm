@@ -42,7 +42,7 @@ let titleAndStatus =
     "Meet Up With Quadrand 2's Recruits" : "incomplete",
     "Find Max & Avenge Ja" : "incomplete",
     "Growth On Maynor Border" : "incomplete",
-    "Missing Kid" : "incomplete",
+    "Missing Kid" : "complete",
     "Stolen Artifact" : "incomplete",
     "Help Maxion " : "incomplete"
 };
