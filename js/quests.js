@@ -41,7 +41,7 @@ let titleAndStatus =
     "Missing Shipments" : "complete",
     "Meet Up With Quadrand 2's Recruits" : "incomplete",
     "Find Max & Avenge Ja" : "incomplete",
-    "Growth On Maynor Border " : "incomplete",
+    "Growth On Maynor Border" : "incomplete",
     "Missing Kid" : "incomplete",
     "Stolen Artifact" : "incomplete",
     "Help Maxion " : "incomplete"
