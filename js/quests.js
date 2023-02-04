@@ -44,7 +44,7 @@ let titleAndStatus =
     "Growth On Maynor Border" : "incomplete",
     "Missing Kid" : "complete",
     "Stolen Artifact" : "incomplete",
-    "Help Maxion " : "incomplete"
+    "Help Maxion" : "incomplete"
 };
 
 setUpCards();
