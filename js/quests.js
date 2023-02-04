@@ -43,7 +43,7 @@ let titleAndStatus =
     "Find Max & Avenge Ja" : "incomplete",
     "Growth On Maynor Border" : "incomplete",
     "Missing Kid" : "complete",
-    "Stolen Artifact" : "incomplete",
+    "Stolen Artifact" : "complete",
     "Help Maxion" : "incomplete"
 };
 
