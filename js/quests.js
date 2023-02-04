@@ -39,7 +39,7 @@ let titleAndStatus =
     "Learning Powers" : "complete",
     "Releasing Ceremony" : "complete",
     "Missing Shipments" : "complete",
-    "Meet Up With Quadrand 2's Recruits" : "incomplete",
+    "Meet Up With Quadrand 2's Recruits" : "complete",
     "Find Max & Avenge Ja" : "incomplete",
     "Growth On Maynor Border" : "incomplete",
     "Missing Kid" : "complete",
