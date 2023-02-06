@@ -23,28 +23,24 @@ function setUpCards()
 
 let titleAndText =
 {
-    "Learning Powers" : "Fight some Growth in the forest to learn new powers.",
-    "Releasing Ceremony" : "Go to ceremony and release your inner feelings to the world.",
-    "Missing Shipments" : "Find the pirates and the shipments. Return shipments back to the Quadrant 4.",
     "Meet Up With Quadrand 2's Recruits" : "Since Quadrant 2's base burned down to the ground, the recruits are coming to Sal's base. Current mission is to meet up with them, then come up with a game plan.",
-    "Find Max & Avenge Ja" : "Max is missing after finding Ja dead on the floor. Find Max and avenge Ja.",
-    "Growth On Maynor Border" : "The Growth has been moving closer to Maynor since the festival. Maynor is defenseless since it has no Galno base set up. Help defeat Growth before they reach the town.",
     "Missing Kid" : "A worried mom has tried to reach out to the guards to find her missing kid, but the guards are too busy to help her. The kid has been missing for a few days, the mom knows the last whereabouts of her kid.",
     "Stolen Artifact" : "A merchant's family heirloom was stolen during the ceremony. The merchant owns an antique shop in town.",
-    "Help Maxion" : "Maxion believes their is a key that can counter act the Monster Key. They believe it is on SunStar island, go there and help them get the key."
+    "Find Max & Avenge Ja" : "Max is missing after finding Ja dead on the floor. Find Max and avenge Ja.",
+    "Growth On Maynor Border" : "The Growth has been moving closer to Maynor since the festival. Maynor is defenseless since it has no Galno base set up. Help defeat Growth before they reach the town.",
+    "Help Maxion" : "Maxion believes their is a key that can counter act the Monster Key. They believe it is on SunStar island, go there and help them get the key.",
+    "Stolen Artifact Pt. 2" : "After fighting the Sea Growth, the Boat's Master told the party that the 2 green teenagers went to Smil with the box. Now that the party has a boat, they can head to Maun, the place the robbers are suspected to go."
 };
 
 let titleAndStatus =
 {
-    "Learning Powers" : "complete",
-    "Releasing Ceremony" : "complete",
-    "Missing Shipments" : "complete",
     "Meet Up With Quadrand 2's Recruits" : "complete",
-    "Find Max & Avenge Ja" : "incomplete",
-    "Growth On Maynor Border" : "incomplete",
     "Missing Kid" : "complete",
     "Stolen Artifact" : "complete",
-    "Help Maxion" : "incomplete"
+    "Find Max & Avenge Ja" : "incomplete",
+    "Growth On Maynor Border" : "incomplete",
+    "Help Maxion" : "incomplete",
+    "Stolen Artifact Pt. 2" : "incomplete"
 };
 
 setUpCards();
