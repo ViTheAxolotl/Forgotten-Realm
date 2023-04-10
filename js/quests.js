@@ -29,7 +29,9 @@ let titleAndText =
     "Find Max & Avenge Ja" : "Max is missing after finding Ja dead on the floor. Find Max and avenge Ja.",
     "Growth On Maynor Border" : "The Growth has been moving closer to Maynor since the festival. Maynor is defenseless since it has no Galno base set up. Help defeat Growth before they reach the town.",
     "Help Maxion" : "Maxion believes their is a key that can counter act the Monster Key. They believe it is on SunStar island, go there and help them get the key.",
-    "Stolen Artifact Pt. 2" : "After fighting the Sea Growth, the Boat's Master told the party that the 2 green teenagers went to Smil with the box. Now that the party has a boat, they can head to Maun, the place the robbers are suspected to go."
+    "Stolen Artifact Pt. 2" : "After fighting the Sea Growth, the Boat's Master told the party that the 2 green teenagers went to Smil with the box. Now that the party has a boat, they can head to Maun, the place the robbers are suspected to go.",
+    "Missing Villagers" : "7 Villages have been reported missing, the poster is trying to raise awarness of the dangers in the swamps. But there seems to be more to this then that. The 7 names are listed, the barkeep says they visited frequently. Ask around town to build a profile on the case.",
+    "Jumping the Fence" : "A Growth has been jumping the fence during the night and destroying the port. During the day it stays in the swamp. Reward is 30 gold, the head of the Growth needs to be given to Steve the border guard."
 };
 
 let titleAndStatus =
@@ -40,7 +42,9 @@ let titleAndStatus =
     "Find Max & Avenge Ja" : "incomplete",
     "Growth On Maynor Border" : "incomplete",
     "Help Maxion" : "incomplete",
-    "Stolen Artifact Pt. 2" : "incomplete"
+    "Stolen Artifact Pt. 2" : "incomplete",
+    "Missing Villagers" : "incomplete ",
+    "Jumping the Fence" : "incomplete"
 };
 
 setUpCards();
