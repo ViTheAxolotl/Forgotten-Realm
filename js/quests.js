@@ -43,7 +43,7 @@ let titleAndStatus =
     "Growth On Maynor Border" : "incomplete",
     "Help Maxion" : "incomplete",
     "Stolen Artifact Pt. 2" : "incomplete",
-    "Missing Villagers " : "incomplete",
+    "Missing Villagers" : "incomplete",
     "Jumping the Fence" : "incomplete"
 };
 
