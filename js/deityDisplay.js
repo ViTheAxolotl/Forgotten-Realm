@@ -15,6 +15,8 @@ function init()
 function handleDeityButton()
 {
     let txtBox = document.getElementById("description");
+    let deityImg = document.getElementById("deitySymbol");
+    deityImg.src = images[this.id];
     txtBox.innerHTML = stories[this.id];
     document.getElementById("display").scrollIntoView({behavior: 'smooth'});
 }
@@ -50,4 +52,25 @@ let stories =
     "Falion" : "<h3><b>Falion (Goddess of The Future, The Present, and Empathy):</b></h3> <p>Blink is in love with Timey, no one knows how, but they had a baby with him. This baby is named Falion. Falion grew up with Blink, she traveled the universe with her mom. Not much is known about Falion, but when it came to her ascension day Falion didn’t go to the gathering grounds. The main reason is all the marble was taken already. So there was no ascension able to happen. However, most people believe Falion is still a goddess. Since her dad is in a coma, Falion is the only one who is in control of time. It is said, what ever Falion says, will come to reality. People say that they see Falion on the streets, asking for gold to give people their futures. After Falion reads their future, she vanishes leaving a statue of herself where she stood. Thousands of these statues are all over the place. She usually doesn’t appear in the same town twice, for she doesn’t like to be recognized as a goddess.</p>",
     "Kasie" : "<h3><b>Kasie (Deity of Magic, Mafia Boss, Blink):</b></h3> <p>Kasie comes from a different world. They were from a head of a mafia family in their home world. They have spiky long red hair and red eyes. In their time on their homeworld, they were traumatized by their “family” backstabbing them when they arrived home. They later found out most of their family was killed, and replaced by shapeshifters. Just before Kasie and their group went to kill a “evil” necromancer, Blink brought them into a new world. While traveling time and space, a bond around them wouldn't allow them to travel. When Blink broke the bond it changed Kasie, their DNA and body shifted, from a male to a female. Blink after seeing all that traumatized them, decided to take them in. Blink became a motherly figure to Kasie. Kasie asked Blink to change them back into a guy, but Blink wasn’t able to. So Blink brought them to The Enchantress, she tried to change them back; however, what ever the bond was, it was impossible to be undone. </p><p>On Kasie’s 21st birthday, Blink gave them a full tour around Exanina. Blink decided they were ready to see some of the most sacred places in her homeland. She brought them to the gathering grounds and showed them the Altar. The Altar held one last marble, the marble of magic. Kasie went to look at the marble, when suddenly it started to glow. It chose them to be its champion. The marble merged with them, making the two become one. Blink was surprised the marble chose them, for all the marble merged with their champions at age 16. Not only that, but the magic marble refused to choose anyone for centuries. It was as if the marble was waiting for Kasie to have it. Blink organized the deities together and they had a party. Kasie was quickly welcomed into the big family of deities. Kasie was truly happy, after all that happened to them. Kasie finally had a family who loved them for them, not because they were the mafia boss, but because Kasie was Kasie.</p><p>When Kasie went home from the party, they spent all night trying to fix their gender. But nothing worked, even with all magic in the universe at their will, it couldn’t fix them. They cut their hair and started using a binder. Blink supported Kasie with all that they did. Blink went on a journey to try to find out a way to help their child. But Blink couldn’t find anything, this power was stronger than anything Blink could do or seek. Kasie decided to try and redefine magic itself, they created a new connection to magic, a stronger connection. This connection allowed people to be more diverse with magic. They created thousands of different spells and spread them widely. Making common people able to learn magic. Kasie decided to rule over planet 169, with the help of some of their friends. Kasie, May (Goddess of War and Binding), Vale (God of Water), and Valley (Goddess of Animals) all came together to rule planet 169. Just because Kasie cares about people, doesn’t mean they will not hesitate to smite people who deserve it.</p>",
     "May" : "<h3><b>May (Goddess of War and Binding, Youngest):</b></h3> <p>May grew up in a normal family, she was very smart and intelligent. She knew that one day, she would be something more than a farm hand. One day, a group of ragtag adventurers approached her and said, “Kid do you want to be a god”. May followed the adventures to their bar’s backroom. There lay a dying old man, she was told that she was a descendant of a god. That she had to take his powers to stop the universe from going into countless wars. May accepted her duties and was fused with the marble. She then ascended into the heavens and became one with the deities. Though May was 13 when she ascended, the youngest anyone has ascended, she was welcomed into the family. When the deities learned that Zanthith was dead after the party, they held a funeral to put him to rest. When pushed on how Zanthith died, May refused to tell them. </p><p>May is the last of the deities to ascend. Not much is known about her since she ascended so recently, all we know is that she took over quickly to all of Zanthith’s duties. It was so quick, people started wondering how she knew how to use the marble so easily. May just told them that she was smart, that she knew what the marble did from her studies, and from her family history.</p>",
+};
+
+let images = 
+{
+    "Blink" : "",
+    "Timey" : "images/symbols/Timey.png",
+    "Zanthith" : "",
+    "Hunmie" : "",
+    "The Enchantress" : "",
+    "Saildor" : "",
+    "Slicer" : "images/symbols/Slicer.png",
+    "Gaymon" : "",
+    "Valley" : "",
+    "Forsway" : "",
+    "Galsmore" : "",
+    "Vale" : "",
+    "Nomanie" : "",
+    "Mailar" : "",
+    "Falion" : "",
+    "Kasie" : "",
+    "May" : "images/symbols/May.png"
 };
