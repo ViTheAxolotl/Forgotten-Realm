@@ -305,6 +305,18 @@ table, .itemSearch, #itemImg
     {
         width: 72.2%;
     }
+
+    #info img 
+    {
+        height: 140px;
+        width: 290px;
+    }
+
+    #hometown img 
+    {
+        width: 224px;
+        height: 225px;
+    }
   }
 
   @media (max-width: 767px) {
@@ -323,18 +335,24 @@ table, .itemSearch, #itemImg
         height: 250px;
         width: 180px;
     }
-
-    #info img 
-    {
-        height: 25%;
-        width: 80%;
-    }
   }
 
 @media (max-width: 574px) {
     .col-md-6  
     {
         width: 100%;
+    }
+
+    #info img 
+    {
+        height: 201px;
+        width: 363px;
+    }
+
+    #hometown img 
+    {
+        width: 280px;
+        height: 282px;
     }
   }
 
