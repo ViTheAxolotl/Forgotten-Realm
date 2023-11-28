@@ -177,7 +177,7 @@ table, .itemSearch, #itemImg
     text-align: center;
 }
 
-#hometown img
+#hometown img, #info img
 {
     width: 400px;
     height: fit-content;
@@ -322,6 +322,12 @@ table, .itemSearch, #itemImg
     {
         height: 250px;
         width: 180px;
+    }
+
+    #info img 
+    {
+        height: 25%;
+        width: 80%;
     }
   }
 
