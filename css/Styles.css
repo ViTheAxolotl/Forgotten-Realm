@@ -271,6 +271,18 @@ table, .itemSearch, #itemImg
     height: 75px;
 }
 
+#havenport
+{
+    height: 235px;
+    width: 313px !important;
+}
+
+#flyer
+{
+    width: 101px;
+    height: 400px !important;
+}
+
 @media (max-width: 1399px) {
     .col-md-6
     {
@@ -312,10 +324,10 @@ table, .itemSearch, #itemImg
         width: 290px;
     }
 
-    #hometown img 
+    #flyer
     {
-        width: 224px;
-        height: 225px;
+        width: 203px;
+        height: 204px;
     }
   }
 
@@ -349,7 +361,7 @@ table, .itemSearch, #itemImg
         width: 363px;
     }
 
-    #hometown img 
+    #flyer 
     {
         width: 280px;
         height: 282px;
