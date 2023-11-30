@@ -277,11 +277,13 @@ table, .itemSearch, #itemImg
 
 #havenport
 {
+    height: 300px;
     width: 313px;
 }
 
 #flyer
 {
+    height: 300px;
     width: 325px;
 }
 
