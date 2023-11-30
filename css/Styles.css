@@ -367,14 +367,14 @@ table, .itemSearch, #itemImg
 
     #info img 
     {
-        height: 201px;
+        height: 201px !important;
         width: 363px;
     }
 
     #flyer 
     {
         width: 280px;
-        height: 282px;
+        height: 282px !important;
     }
   }
 
@@ -401,15 +401,5 @@ table, .itemSearch, #itemImg
     {
         height: 250px;
         width: 180px;
-    }
-
-    #info img 
-    {
-        width: 200px;
-    }
-
-    #flyer 
-    {
-        width: 200px;
     }
   }
