@@ -322,7 +322,7 @@ table, .itemSearch, #itemImg
         width: 72.2%;
     }
 
-    #info img 
+    #info img, #havenport 
     {
         height: 140px;
         width: 290px;
@@ -365,7 +365,7 @@ table, .itemSearch, #itemImg
         width: 100%;
     }
 
-    #info img 
+    #info img, #havenport 
     {
         height: 201px !important;
         width: 363px;
