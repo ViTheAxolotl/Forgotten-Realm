@@ -31,15 +31,7 @@ document.write(
                     '<li class="nav-item"><a class="nav-link active" aria-current="page" href="characters.html">Characters</a></li>' +
                 '</ul>' +
             '</li>' +
-            '<li class="nav-item dropdown">' +
-                        '<a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">' +
-                            'Maps & Towns' +
-                        '</a>' +
-                        '<ul class="dropdown-menu bg-dark" aria-labelledby="navbarScrollingDropdown">' +
-                            '<li class="nav-item"><a class="nav-link active" aria-current="page" href="mapAndTowns.html">General</a></li>' +
-                            '<li class="nav-item"><a class="nav-link active" aria-current="page" href="kasieIslands.html">Kasie\'s Islands</a></li>' +
-                        '</ul>' +
-                    '</li>' +
+            '<li class="nav-item"><a class="nav-link active" aria-current="page" href="mapAndTowns.html">Maps</a></li>' +
             '<li class="nav-item"><a class="nav-link active" aria-current="page" href="questAndNotes.html">Quests & Personal Notes</a></li>' + 
             '<li class="nav-item"><a class="nav-link active" aria-current="page" href="itemIndex.html">Magic Item Index</a></li>' +    
         '</ul>' +
