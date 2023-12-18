@@ -12,7 +12,7 @@ function init()
     
     for(let i = 0; i < titles.length; i++)
     {
-        titles[i].innerHTML = mapName;
+        titles[i].innerHTML = "Map of " + mapName;
     }
 
     img.src = mapImg[mapName];
@@ -20,8 +20,8 @@ function init()
 
 let mapImg = 
 {
-    "Havenport" : "../images/maps/mapOfHavenport.png",
-    "Salatude" : "../images/maps/mapOfSalatude.png"
+    "Havenport" : "images/maps/mapOfHavenport.png",
+    "Salatude" : "images/maps/mapOfSalatude.png"
 };
 
 init();
