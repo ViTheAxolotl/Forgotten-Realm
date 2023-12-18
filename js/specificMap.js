@@ -23,3 +23,5 @@ let mapImg =
     "Havenport" : "../images/maps/mapOfHavenport.png",
     "Salatude" : "../images/maps/mapOfSalatude.png"
 };
+
+init();
