@@ -10,10 +10,10 @@ function init()
     htmlInfo = htmlInfo.split("?");
     mapName = htmlInfo[1];
     
-    titles.forEach((title) =>
+    for(let i = 0; i < titles.length; i++)
     {
-        title.innerHTML = mapName;
-    });
+        titles[i].innerHTML = mapName;
+    }
 
     img.src = mapImg[mapName];
 }
