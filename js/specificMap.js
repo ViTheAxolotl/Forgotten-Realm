@@ -10,7 +10,7 @@ function init()
     htmlInfo = htmlInfo.split("?");
     mapName = htmlInfo[1];
     
-    titles.forEach(title =>
+    titles.forEach((title) =>
     {
         title.innerHTML = mapName;
     });
