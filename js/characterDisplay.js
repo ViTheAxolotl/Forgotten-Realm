@@ -40,8 +40,8 @@ let charStories =
 {
     "Nook" : "",
     "Nibbly" : "",
-    "Jac'U" : "Jac'U is the girl who interviewed and put up the flyer for the escort job. Jac'U has always worked with the royal family, she is well liked in the consol. She is also the Forgen Realtions expert, she can speak many of Zaydia's languages fluently. She spends most of her time learning about other places and their culture. She has friends from all over.",
-    "Grado" : "Grado is the prince of Havenport, he is the only child to the king. Grado tries his best to serve his kingdom in any way he can. He created the Clean Food & Water act to help those who can't afford food. He helped open homeless centers in each of his towns. Many people don't like him, they hate that their tax money is going to the freeloaders. Multiple assassign attacks happened in the resent years, causing Grado to have to be more careful. He still tries to be wild and have a fun time, even with some moles in his castle."
+    "Jac'U" : "Jac'U is the girl who interviewed and put up the flier for the escort job. Jac'U has always worked with the royal family, she is well-liked in the console. She is also a Foreign Relations expert, she can speak many of Zaydia's languages fluently. She spends most of her time learning about other places and their culture. She has friends from all over.",
+    "Grado" : "Grado is the prince of Havenport, the only child of the king. Grado tries his best to serve his kingdom in any way he can. He created the Clean Food & Water Act to help those who can't afford food. He helped open homeless centers in each of his towns. Many people don't like him, they hate that their tax money goes to the freeloaders. Multiple assassin attacks happened in recent years, causing Grado to have to be more careful. He still tries to be wild and have fun, even with some moles in his castle."
 };
 
 let charImg = 
