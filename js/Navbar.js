@@ -27,6 +27,7 @@ document.write(
                 '</a>' +
                 '<ul class="dropdown-menu bg-dark" aria-labelledby="navbarScrollingDropdown">' +
                     '<li class="nav-item"><a class="nav-link active" aria-current="page" href="creationStory.html">Birth Of The Universe</a></li>' +
+                    '<li class="nav-item"><a class="nav-link active" aria-current="page" href="calamity.html">The Calamity</a></li>' +
                     '<li class="nav-item"><a class="nav-link active" aria-current="page" href="deities.html">Deities</a></li>' +
                     '<li class="nav-item"><a class="nav-link active" aria-current="page" href="characters.html">Characters</a></li>' +
                 '</ul>' +
