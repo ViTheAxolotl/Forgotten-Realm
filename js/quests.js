@@ -25,14 +25,14 @@ let titleAndText =
 {
     "Reach Dull Knife's Bar" : "After getting the acceptance letter, you are asked go to the town of Silver Tooth to meeth with Prince Grado.",
     "Reach Kingdom of Salatude" : "After reaching Dull Knife, you are ready for the escort to the Castle. What dangers will great you?",
-    "Find the Murderer" : "The lights went out, and panic sat in. Now there a dead bodies, someone in the ball killed them, find out who and bring them to the Prince."
+    "Find the Murderer" : "The lights went out, and panic sat in. Now there are dead bodies, someone in the ball killed them, find out who and bring them to the Prince."
 };
 
 let titleAndStatus =
 {
     "Reach Dull Knife's Bar" : "complete",
-    "Reach Kingdom of Salatude " : " incomplete",
-    "Find the Murderer " : " incomplete"
+    "Reach Kingdom of Salatude" : "complete",
+    "Find the Murderer" : "incomplete"
 };
 
 setUpCards();

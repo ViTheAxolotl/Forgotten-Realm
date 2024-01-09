@@ -40,14 +40,19 @@ let charStories =
 {
     "Nook" : "",
     "Nibbly" : "",
+    "Leonier" : "",
+    "Razor" : "",
     "Jac'U" : "Jac'U is the girl who interviewed and put up the flier for the escort job. Jac'U has always worked with the royal family, she is well-liked in the console. She is also a Foreign Relations expert, she can speak many of Zaydia's languages fluently. She spends most of her time learning about other places and their culture. She has friends from all over.",
-    "Grado" : "Grado is the prince of Havenport, the only child of the king. Grado tries his best to serve his kingdom in any way he can. He created the Clean Food & Water Act to help those who can't afford food. He helped open homeless centers in each of his towns. Many people don't like him, they hate that their tax money goes to the freeloaders. Multiple assassin attacks happened in recent years, causing Grado to have to be more careful. He still tries to be wild and have fun, even with some moles in his castle."
+    "Grado" : "Grado is the prince of Havenport, the only child of the king. Grado tries his best to serve his kingdom in any way he can. He created the Clean Food & Water Act to help those who can't afford food. He helped open homeless centers in each of his towns. Many people don't like him, they hate that their tax money goes to the freeloaders. Multiple assassin attacks happened in recent years, causing Grado to have to be more careful. He still tries to be wild and have fun, even with some moles in his castle.",
+    "Thallos" : "Prince Thallos is one of the wildest royals. Could it be his Succubus ways or the fact that he is the only one of his family 'left'? Thallos has his dads and his sister, however they are all MIA. King Alm went to go find his husband and daughter, leaving Thallos as the only one in charge of Salatude. It has been over 40 years since King Alm's disappearance, however, Thallos has not taken on the king's role. In his words, 'Where is the fun in that, I don't want to be one of those boring rulers. My Kingdom is prospering with me as the ruler, prince or king, doesn't matter.'"
 };
 
 let charImg = 
 {
     "Nook" : "images/characters/Nook.jpg",
     "Nibbly" : "images/characters/Nibbly.png",
+    "Leonier" : "images/characters/Leonier.png",
     "Jac'U" : "images/npcs/Jac'U.jpg",
-    "Grado" : "images/npcs/Grado.jpeg"
+    "Grado" : "images/npcs/Grado.jpeg",
+    "Thallos" : "images/npcs/princeThallos.PNG"
 }
