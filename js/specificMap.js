@@ -21,6 +21,7 @@ function init()
 let mapImg = 
 {
     "Havenport" : "images/maps/mapOfHavenport.png",
+    "CastleHavenport" : "images/maps/mapOfCastleHavenport.png",
     "Salatude" : "images/maps/mapOfSalatude.png"
 };
 
