@@ -44,7 +44,9 @@ let charStories =
     "Razor" : "",
     "Jac'U" : "Jac'U is the girl who interviewed and put up the flier for the escort job. Jac'U has always worked with the royal family, she is well-liked in the console. She is also a Foreign Relations expert, she can speak many of Zaydia's languages fluently. She spends most of her time learning about other places and their culture. She has friends from all over.",
     "Grado" : "Grado is the prince of Havenport, the only child of the king. Grado tries his best to serve his kingdom in any way he can. He created the Clean Food & Water Act to help those who can't afford food. He helped open homeless centers in each of his towns. Many people don't like him, they hate that their tax money goes to the freeloaders. Multiple assassin attacks happened in recent years, causing Grado to have to be more careful. He still tries to be wild and have fun, even with some moles in his castle.",
-    "Thallos" : "Prince Thallos is one of the wildest royals. Could it be his Succubus ways or the fact that he is the only one of his family 'left'? Thallos has his dads and his sister, however they are all MIA. King Alm went to go find his husband and daughter, leaving Thallos as the only one in charge of Salatude. It has been over 40 years since King Alm's disappearance, however, Thallos has not taken on the king's role. In his words, 'Where is the fun in that, I don't want to be one of those boring rulers. My Kingdom is prospering with me as the ruler, prince or king, doesn't matter.'"
+    "Thallos" : "Prince Thallos is one of the wildest royals. Could it be his Succubus ways or the fact that he is the only one of his family 'left'? Thallos has his dads and his sister, however they are all MIA. King Alm went to go find his husband and daughter, leaving Thallos as the only one in charge of Salatude. It has been over 40 years since King Alm's disappearance, however, Thallos has not taken on the king's role. In his words, 'Where is the fun in that, I don't want to be one of those boring rulers. My Kingdom is prospering with me as the ruler, prince or king, doesn't matter.'",
+    "Haven" : "Haven is the person who messagers go to. He takes all the letters and info and distributes it to the right people. Haven is also in charge of the mail throughout Castle Havenport. He has the office space next to him to store mail until his associates take it. He spends most of his time sorting mail by importance and category. He was raised by his father, and when his father passed he took over the family business in the castle. The party will need to talk with him to sign up for the quest, he will get the final say on all quest-related matters.",
+    "Laura" : "Laura is the residential/housing lead, not much is known about her. She seems to be close with some of the guards. Even though she doesn't get paid much, she lives in the biggest house and takes many vacations. Something feels off about her, but you can't quite place your finger on it."
 };
 
 let charImg = 
@@ -54,5 +56,7 @@ let charImg =
     "Leonier" : "images/characters/Leonier.png",
     "Jac'U" : "images/npcs/Jac'U.jpg",
     "Grado" : "images/npcs/Grado.jpeg",
-    "Thallos" : "images/npcs/princeThallos.PNG"
+    "Thallos" : "images/npcs/princeThallos.PNG",
+    "Haven" : "images/npcs/questGiverHaven.PNG",
+    "Laura" : "images/npcs/resLaura.PNG"
 }
