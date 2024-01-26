@@ -46,5 +46,7 @@ let img =
     "ItSM0GA" : "images/items/bladeOfStarMagic.png",
     "ItXI1Da" : "images/items/xOfForgoten.png",
     "KeTS1Ss" : "images/items/TSKey.png",
-    "KeMR2Mi" : "images/items/MRKey.png"
+    "KeMR2Mi" : "images/items/MRKey.png",
+    "KeAM1Bd" : "images/items/KeAM1Bd.png",
+    "ItDh2Bd" : "images/items/ITdh2Bd.png"
 };
