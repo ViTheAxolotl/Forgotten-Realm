@@ -38,6 +38,11 @@ body
     color: #dddddd;
 }
 
+#corkBoard
+{
+    background: url(../images/cork-board.jpg) brown;
+}
+
 #header
 {
     text-align: center;
