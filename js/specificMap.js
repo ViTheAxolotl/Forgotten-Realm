@@ -9,6 +9,12 @@ function init()
 
     htmlInfo = htmlInfo.split("?");
     mapName = htmlInfo[1];
+
+    if(mapName.includes("_"))
+    {
+        let temp = mapName.split("_");
+        mapName = temp[0] + " " + temp[1];
+    }
     
     for(let i = 0; i < titles.length; i++)
     {
@@ -21,7 +27,7 @@ function init()
 let mapImg = 
 {
     "Havenport" : "images/maps/mapOfHavenport.png",
-    "CastleHavenport" : "images/maps/mapOfCastleHavenport.png",
+    "Castle Havenport" : "images/maps/mapOfCastleHavenport.png",
     "Salatude" : "images/maps/mapOfSalatude.png"
 };
 
