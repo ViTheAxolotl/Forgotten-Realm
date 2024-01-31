@@ -47,13 +47,6 @@ function createCards(title, text, status, cell)
 
     titleNode.innerHTML = title + ' (' + taken[0].toUpperCase() + taken.substring(1)  + ')';
     textNode.innerHTML = text;
-
-    //let card ='<div class="card '+ status +'">'+
-            //'<div class="card-body '+ status + '">'+
-               //'<h5 class="card-title">' + title + ' (' + taken[0].toUpperCase() + taken.substring(1)  + ')</h5>'+
-               // '<p class="card-text ' + status +'">' + text + '</p>'+
-           // '</div>'+
-       // '</div>';
 }
 
 let titleAndText =
