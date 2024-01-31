@@ -13,16 +13,21 @@ function init()
             let cardNode = document.createElement("div");
             cardNode.classList = "card";
             cardNode.style = "min-height: 200px;"
+            let nailNode = document.createElement("img");
+            nailNode.src = "images/nail.png";
+            nailNode.style = "height: 8%; width: 8%; margin: 5px auto;";
             let cardBodyNode = document.createElement("div");
             cardBodyNode.classList = "card-body --bs-gray-200";
             let titleNode = document.createElement("h5");
             titleNode.classList = "card-title";
+            titleNode.style = "margin-top: -20px;"
             let textNode = document.createElement("p");
             textNode.classList = "card-text";
             textNode.style = "color: black; font-size: 14px;"
             
             cols[z].appendChild(cellNode);
             cellNode.appendChild(cardNode);
+            cardNode.appendChild(nailNode);
             cardNode.appendChild(cardBodyNode);
             cardBodyNode.appendChild(titleNode);
             cardBodyNode.appendChild(textNode);
@@ -32,20 +37,19 @@ function init()
 
     for(let title in titleAndText)
     {
-        createCards(title, titleAndText[title], titleAndStatus[title], cellNumber[title]);
+        createCards(title, titleAndText[title], cellNumber[title]);
     }
 }
 
-function createCards(title, text, status, cell)
+function createCards(title, text, cell)
 {
-    let taken = statusToTaken[status];
     let card = document.getElementById(cell);
     let cardNode = card.childNodes[0];
-    let bodyNode = cardNode.childNodes[0];
+    let bodyNode = cardNode.childNodes[1];
     let titleNode = bodyNode.childNodes[0];
     let textNode = bodyNode.childNodes[1];
 
-    titleNode.innerHTML = title + ' (' + taken[0].toUpperCase() + taken.substring(1)  + ')';
+    titleNode.innerHTML = title;
     textNode.innerHTML = text;
 }
 
