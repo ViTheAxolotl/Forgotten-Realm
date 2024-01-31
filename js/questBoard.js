@@ -70,7 +70,7 @@ let cellNumber =
 {
     "Researching MagicVoid (M)" : "qBCell1",
     "Missing People (S)" : "qBCell5",
-    "Nightly Attacks (S)" : "qBCell7"
+    "Nightly Attacks (S)" : "qBCell3"
 };
 
 init();

@@ -292,6 +292,26 @@ table, .itemSearch, #itemImg
     width: 325px;
 }
 
+.qBCol
+{
+    width: 49%; 
+}
+#qBCol1
+{
+    float: left;
+}
+
+#qBCol2
+{
+    float: right;
+}
+
+.nail
+{
+    width: 4%;
+    height: 4%;
+}
+
 @media (max-width: 1399px) {
     .col-md-6
     {
@@ -406,5 +426,17 @@ table, .itemSearch, #itemImg
     {
         height: 250px;
         width: 180px;
+    }
+
+    .qBCol
+    {
+        float: none !important;
+        width: 100%;
+    }
+
+    .nail
+    {
+        width: 10%;
+        height: 10%;
     }
   }
