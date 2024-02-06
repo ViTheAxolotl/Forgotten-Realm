@@ -9,7 +9,13 @@ var mainLocation;
 if(parentFolder == "noParent")
 {
     mainLocation = "";
-    imageLocation = "images/"
+    imageLocation = "images/";
+}
+
+if(parentFolder == "downOne")
+{
+    mainLocation = "../";
+    imageLocation = "../images/";
 }
 
 document.write(
@@ -20,22 +26,22 @@ document.write(
     '</button>' +
     '<div class="collapse navbar-collapse" id="navbarSupportedContent"> ' +
         '<ul class="navbar-nav me-auto my-2 my-lg-0 " style="--bs-scroll-height: 100px;"> ' +
-            '<li class="nav-item"><a class="nav-link active" aria-current="page" href="index.html">Unbalanced Powers</a></li>' +
-            '<li class="nav-item dropdown">' +
+            '<li class="nav-item"><a class="nav-link active" aria-current="page" href="' + mainLocation + 'index.html">Unbalanced Powers</a></li>' +
+            '<li class="nav-item dropdown">' + 
                 '<a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">' +
                     'World Information' +
                 '</a>' +
                 '<ul class="dropdown-menu bg-dark" aria-labelledby="navbarScrollingDropdown">' +
-                    '<li class="nav-item"><a class="nav-link active" aria-current="page" href="creationStory.html">Birth Of The Universe</a></li>' +
-                    '<li class="nav-item"><a class="nav-link active" aria-current="page" href="calamity.html">The Calamity</a></li>' +
-                    '<li class="nav-item"><a class="nav-link active" aria-current="page" href="deities.html">Deities</a></li>' +
-                    '<li class="nav-item"><a class="nav-link active" aria-current="page" href="characters.html">Characters</a></li>' +
+                    '<li class="nav-item"><a class="nav-link active" aria-current="page" href="' + mainLocation + 'creationStory.html">Birth Of The Universe</a></li>' +
+                    '<li class="nav-item"><a class="nav-link active" aria-current="page" href="' + mainLocation + 'calamity.html">The Calamity</a></li>' +
+                    '<li class="nav-item"><a class="nav-link active" aria-current="page" href="' + mainLocation + 'deities.html">Deities</a></li>' +
+                    '<li class="nav-item"><a class="nav-link active" aria-current="page" href="' + mainLocation + 'characters.html">Characters</a></li>' +
                 '</ul>' +
             '</li>' +
-            '<li class="nav-item"><a class="nav-link active" aria-current="page" href="mapAndTowns.html">Maps</a></li>' +
-            '<li class="nav-item"><a class="nav-link active" aria-current="page" href="questAndNotes.html">Quests & Personal Notes</a></li>' + 
-            '<li class="nav-item"><a class="nav-link active" aria-current="page" href="recap.html">Sessions Recap</a></li>' + 
-            '<li class="nav-item"><a class="nav-link active" aria-current="page" href="itemIndex.html">Magic Item Index</a></li>' +    
+            '<li class="nav-item"><a class="nav-link active" aria-current="page" href="' + mainLocation + 'mapAndTowns.html">Maps</a></li>' +
+            '<li class="nav-item"><a class="nav-link active" aria-current="page" href="' + mainLocation + 'questAndNotes.html">Quests & Personal Notes</a></li>' + 
+            '<li class="nav-item"><a class="nav-link active" aria-current="page" href="' + mainLocation + 'recap.html">Sessions Recap</a></li>' + 
+            '<li class="nav-item"><a class="nav-link active" aria-current="page" href="' + mainLocation + 'itemIndex.html">Magic Item Index</a></li>' +    
         '</ul>' +
     '</div>' +
 '</div>');
