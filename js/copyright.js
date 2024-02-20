@@ -1,0 +1,1 @@
+document.write('<h6>Copyright &copy; Vi Snyder ' + new Date().getFullYear() + '</h6>');
