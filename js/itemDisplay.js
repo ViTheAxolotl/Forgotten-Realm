@@ -50,5 +50,5 @@ let img =
     "KeMR2Mi" : "images/items/MRKey.png",
     "KeAM1Bd" : "images/items/KeAM1Bd.png",
     "ItDh2Bd" : "images/items/ItDh2Bd.png",
-    "ItAh1TO" : "images/items/TrAh1TO.png"
+    "ItAh1TO" : "images/items/ItAh1TO.png"
 };
