@@ -39,7 +39,7 @@ let items =
     "KeMR2Mi" : "Gen 1. The Monster key is used to create an army for the most part. When you insert the key into a person and twist it to the left, the person will become infected. This infection changes in a matter of things. If the person is whole, their mind will get scrambled, causing them to attack the first person they see. If the person is not whole, they will keep their minds, but they will be more aggressive. No matter how whole the infected are, they become super strong and fast. The degrees of these powers are based on their power level. If the key is turned to the right, then the person will be able to command the infected. They become puppets to their master. Any command that is long-term will continue after the key is taken out. Furthermore, the user can take over any body of the infected and issue commands from them.",
     "KeAM1Bd" : "Gen 2. The Any-Item key is used to turn items into other items. Whether a ball to a house, or a car to a pencil. These transformations are permanent till the key is used once more. When turning the key to the right and taking it out, whatever item the user thinks of will become in reality. When turning to the left it will undo whatever item was turned. (The key is using the Key Points system, or KP for short. KP the user has is = Spell casting modifier + Proficiency + Character level. You regenerate KP after a long rest. To turn this key left to undo a transformation it cost 2 KP, no matter the size. To turn an item to something of similar size it costs 3 KP. To make something bigger or smaller it costs 3 + how many sizes change. Some sizes are, Tiny, Small, medium, huge, giant. Tiny is baseball and smaller, small is a basketball, medium is human 5’9”, huge is a normal car size, and giant is a house and bigger. An example Baseball to a Basketball would take 4 KP. Baseball to a human size cutout would be 5 KP. House to a car would be 4 KP.)",
     "ItDh2Bd" : "Dagger of the truth, Relic. The person not on the team, stabbed with this dagger can only tell the truth till long rest, if they answer a yes or no question or anything of the sort, they must follow through with it. Can be used twice a day.",
-    "TrAh1TO" : "This necklace is the trophy to show that you are a Trusted member of the Trazoth Clan. After bonding with the necklace, while wearing it the user's intelligence is increased by 2."
+    "ItAh1TO" : "This necklace is the trophy to show that you are a Trusted member of the Trazoth Clan. After bonding with the necklace, while wearing it the user's intelligence is increased by 2."
 };
 
 let img =
@@ -50,5 +50,5 @@ let img =
     "KeMR2Mi" : "images/items/MRKey.png",
     "KeAM1Bd" : "images/items/KeAM1Bd.png",
     "ItDh2Bd" : "images/items/ItDh2Bd.png",
-    "TrAh1TO" : "images/items/TrAh1TO.png"
+    "ItAh1TO" : "images/items/TrAh1TO.png"
 };
