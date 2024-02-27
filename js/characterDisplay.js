@@ -51,6 +51,8 @@ let charStories =
     "Mal" : "Mal is the Bar/Innkeep of Lago. He cares for each of his patrons, not only for their gold. He listens to all their woes, and he tries to confert them. By doing this he doesn't only have loyal customers, but he learns what is happening around town. If you need any information, Mal is where you should start.",
     "Skinin" : "Skinin is an assassin for hire.",
     "Cliven" : "Cliven is the mayor of Lake View, she is also a part-time college student at Stavin University. She spends most of her time reading and learning about magic/magical objects. She is the best friend of the Royal Scientist, she tries to help him with what she can. Her people look up to her and aspire to be just like her.",
+    "Fargate" : "Fargate is the owner of the Tiger's Pub. He left the village, needing to get out and find himself. He opened his bar in Lago, and quickly made friends with the locals. He was like an uncle to Leonier, being there for events and making food and baked goods for him and the village.",
+    "Grain" : "Grain is the 8th in line at Slarus' Coast, he is a petty theif.",
     "Howard" : "Howard is the mad scientist of Castle Havenport, he uses what he finds to help anyone he can. His great-great-grandpa was one of the people King Alm brought from Main to help his kingdom grow and advance. Howard's family has been loyal to the king ever since, but when he vanished, Howard found other employment. Working for Castle Havenport.",
     "Slavve" : "King Slavve is the figurehead of Havenport, however, all he does is sign the papers he is told to. His son, Grado, handles everything in the kingdom. Slavve isn't the man he used to be, he used to be the active king who would go on quests and adventures to benefit his kingdom. That all changed when his husband of 35 years died in battle, the king took it hard. Now he barely leaves his bed, the only time he leaves is to eat. This is because the staff refuses to let him stay in his bed all day. They will not serve food to him in his bed with him only wearing underwear."
 };
@@ -70,6 +72,8 @@ let charImg =
     "Mal" : "images/npcs/barkeepMal.PNG",
     "Skinin" : "images/npcs/skinin.png",
     "Cliven" : "images/npcs/mayorCliven.PNG",
+    "Fargate" : "tigersPubFargate.PNG",
+    "Grain" : "princeGrain.PNG",
     "Howard" : "images/npcs/madHoward.PNG",
     "Slavve" : "images/npcs/kingSlavve.PNG"
 }
