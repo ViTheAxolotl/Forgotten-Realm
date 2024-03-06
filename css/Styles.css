@@ -312,6 +312,27 @@ table, .itemSearch, #itemImg
     height: 4%;
 }
 
+#arrows img
+{
+    width: 10%;
+    height: 10%;
+}
+
+#arrows #down
+{
+    transform: rotate(90deg);
+}
+
+#arrows #left
+{
+    transform: rotate(180deg);
+}
+
+#arrows #up
+{
+    transform: rotate(270deg);
+}
+
 @media (max-width: 1399px) {
     .col-md-6
     {
@@ -321,6 +342,19 @@ table, .itemSearch, #itemImg
     .col-md-9
     {
         width: 73.2%;
+    }
+
+    #arrows img
+    {
+        width: 4%;
+        height: 4%;
+    }
+
+    #grid
+    {
+        width: 80%;
+        height: 80%;
+        margin: 10%;
     }
   }
 
@@ -345,6 +379,19 @@ table, .itemSearch, #itemImg
     .col-md-9
     {
         width: 72.2%;
+    }
+
+    #grid
+    {
+        width: 100%;
+        height: 100%;
+        margin: 0%;
+    }
+
+    #arrows img
+    {
+        width: 8%;
+        height: 8%;
     }
 
     #info img, #havenport 
