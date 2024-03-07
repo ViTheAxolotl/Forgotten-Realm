@@ -80,7 +80,7 @@ body
     margin: 20px 10px 0px 0px;
 }
 
-#story, #map, #towns, #controls
+#story, #map, #towns, #controls, #gridMap
 {
     margin-top: 20px;
 }
@@ -90,7 +90,7 @@ p
     text-indent: 30px;
 }
 
-#info, #hometown, #footer, #header, #story, #list, #display, #map, #towns, #search, #item, #quests, #notes, #controls
+#info, #hometown, #footer, #header, #story, #list, #display, #map, #towns, #search, #item, #quests, #notes, #controls, #gridMap
 {
     border: #555555 4px solid;
     padding: 10px 10px 0px 10px;
@@ -344,6 +344,18 @@ table, .itemSearch, #itemImg
     display: block;
 }
 
+#gridMap
+{
+    position: relative;
+}
+
+.tokens
+{
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+}
+
 @media (max-width: 1399px) {
     .col-md-6
     {
@@ -366,6 +378,12 @@ table, .itemSearch, #itemImg
         width: 80%;
         height: 90%;
         margin: 0px 10%;
+    }
+
+    .tokens
+    {
+        width: 5%;
+        height: 5%;
     }
   }
 
@@ -472,7 +490,7 @@ table, .itemSearch, #itemImg
   }
 
   @media (max-width: 574px) {
-    #info, #hometown, #story, #list, #display, #quests, #notes, #controls
+    #info, #hometown, #story, #list, #display, #quests, #notes, #controls, #gridMap
     {
         margin: 0px;
         margin-top: 20px;

@@ -25,14 +25,17 @@
           <h1>Map</h1><br>
         </div>
 
-        <div id = "story" class = "bg-UP-purple color-UP-black col-md-12 col-sm-12">
-          <img id = "grid" src="images/map/grid.png"/>
+        <div id = "gridMap" class = "bg-UP-purple color-UP-black col-md-12 col-sm-12">
+          <img id = "grid" src = "images/map/grid.png"/>
+          <img id = "nook" class = "tokens" src="images/map/tokens/nook.png"/>
+          <img id = "nookBorder" title = "Nook: Paralized" class = "tokens" src="images/map/tokens/greyBorder.png"/>
         </div>
 
         <div id = "controls" class = "bg-UP-purple color-UP-black col-md-12 col-sm-12">
             <h3 id = "name">Vi</h3>
             <div id = "arrows">
             <img id = "up" src="images/map/Arrow.png"/>
+            <p id="temp"></p>
             <img id = "left" src="images/map/Arrow.png"/>
             <img id = "down" src="images/map/Arrow.png"/>
             <img id = "right" src="images/map/Arrow.png"/>
@@ -47,5 +50,6 @@
      <!-- Bootstrap JavaScript Components-LOAD LAST -->
      <script scr="js/bootstrap/scripts.js"></script>
      <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
+     <script src="js/mapControler.js"></script>
   </body>
 </html>
