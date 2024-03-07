@@ -1,8 +1,8 @@
 "use strict";
 
-let char = document.getElementById("nook");
-let charB = document.getElementById("nookBorder");
-let characterO = [char, charB];
+let char = [];
+char.push(document.getElementById("nook"));
+char.push(document.getElementById("nookBorder"))
 
 const GRIDMAP = document.querySelector("#gridMap");
 const RECT = GRIDMAP.getBoundingClientRect();
@@ -32,13 +32,13 @@ let startPos = distance + bumper;
 let bounds = [startPos, startPos + distance * 10];
 let currentPos;
 
-let upArrow = document.getElementById("up");
-let leftArrow = document.getElementById("left");
-let rightArrow = document.getElementById("right");
-let downArrow = document.getElementById("down");
-let arrows = [upArrow, leftArrow, downArrow, rightArrow];
 let temp = document.getElementById("temp");
 let key;
+let arrows = [];
+arrows.push(document.getElementById("up"));
+arrows.push(document.getElementById("left"));
+arrows.push(document.getElementById("right"));
+arrows.push(document.getElementById("down"));
 
 function init()
 {
@@ -53,7 +53,7 @@ function init()
 
 function moveChar(xPos, yPos)
 {
-    for(let prop of characterO)
+    for(let prop of char)
     {
         prop.style.left = xPos + "px";
         prop.style.top = yPos + "px";

@@ -356,6 +356,11 @@ table, .itemSearch, #itemImg
     bottom: 0px;
 }
 
+.arrows
+{
+    touch-action: manipulation;
+}
+
 @media (max-width: 1399px) {
     .col-md-6
     {
