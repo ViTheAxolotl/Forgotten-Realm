@@ -376,8 +376,8 @@ table, .itemSearch, #itemImg
     #grid
     {
         width: 80%;
-        height: 90%;
-        margin: 0px 10%;
+        height: 80%;
+        margin: 10%;
     }
 
     .tokens

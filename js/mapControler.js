@@ -4,15 +4,32 @@ let char = document.getElementById("nook");
 let charB = document.getElementById("nookBorder");
 let characterO = [char, charB];
 
-const gridMap = document.querySelector("#gridMap");
-const RECT = gridMap.getBoundingClientRect();
-let dimentions = [RECT.height, RECT.width];
-let buffer = [2, (RECT.width / 10) - 15];
+const GRIDMAP = document.querySelector("#gridMap");
+const RECT = GRIDMAP.getBoundingClientRect();
+let mapSize;
+let bumper;
 
-let startX = (dimentions[1] / 14) + buffer[1];
-let startY = (dimentions[0] / 14) + buffer[0];
-let xBounds = [(startX)];
-let yBounds = [(startY)];
+let distance = Math.round(mapSize / 14);
+let movement = distance - 6;
+
+if(RECT.width < 999)
+{
+    mapSize = RECT.width;
+    bumper = 9;
+    distance = Math.round(mapSize / 14);
+    movement = distance - 4;
+}
+
+else
+{
+    mapSize = (RECT.width * (8 / 10));
+    bumper = Math.round(RECT.width / 10) + 2;
+    distance = Math.round(mapSize / 14);
+    movement = distance - 6;
+}
+
+let startPos = distance + bumper;
+let bounds = [startPos, startPos + distance * 10];
 let currentPos;
 
 let upArrow = document.getElementById("up");
@@ -30,8 +47,8 @@ function init()
         arrow.onclick = handleArrow;
     }
 
-    document.addEventListener("keydown", (ev) => {handleArrowKey(ev)});
-    moveChar(startX, startY);
+    document.addEventListener("keydown", (ev) => {key = ev; handleArrow()});
+    moveChar(startPos, startPos);
 }
 
 function moveChar(xPos, yPos)
@@ -44,76 +61,54 @@ function moveChar(xPos, yPos)
 
     currentPos = [xPos, yPos];
 
-    temp.innerHTML = `Location of ${char.id}: ${xPos}, ${yPos}.`;
+    temp.innerHTML = `Nook X: ${currentPos[0]}, Nook Y: ${currentPos[1]}`;
 }
 
 function handleArrow()
 {
-    switch(this.id)
+    let arr = "", ke = 0;
+
+    if(key != undefined)
     {
-        case "up":
-            if(yBounds[0] != currentPos[1])
-            {
-                moveChar(currentPos[0], currentPos[1] - 1);
-            }   
-        break;
-        
-        case "left":
-            if(yBounds[0] != currentPos[1])
-            {
-                moveChar(currentPos[0] - 1, currentPos[1]);
-            }   
-        break;
-        
-        case "down":
-            //if(yBounds[0] != currentPos[1])
-            //{
-                moveChar(currentPos[0], currentPos[1] + 1);
-            //}       
-        break;
-        
-        case "right":
-            //if(yBounds[0] != currentPos[1])
-            //{
-                moveChar(currentPos[0] + 1, currentPos[1]);
-            //}               
-        break;
+        key.preventDefault();
+        ke = key.keyCode;
     }
-}
 
-function handleArrowKey(ev)
-{
-    ev.preventDefault(); // Prevent Browser scroll if overflow
-
-    switch (ev.keyCode) 
+    if(this != undefined)
     {
-        case 38: //Up
-            if(yBounds[0] <= currentPos[1])
-            {
-                moveChar(currentPos[0], currentPos[1] - 1);
-            }   
-        break;
-        
-        case 37: //Left
-            if(xBounds[0] <= currentPos[0])
-            {
-                moveChar(currentPos[0] - 1, currentPos[1]);
-            }   
-        break;
-        
-        case 40: //Down
-            //if(yBounds[0] != currentPos[1])
-            //{
-                moveChar(currentPos[0], currentPos[1] + 1);
-            //}       
-        break;
-        
-        case 39: //Right
-            //if(yBounds[0] != currentPos[1])
-            //{
-                moveChar(currentPos[0] + 1, currentPos[1]);
-            //}               
-        break;
+        arr = this.id;
+    }
+
+    if(arr == "up" || ke == 38)
+    {
+        if(bounds[0] < currentPos[1])
+        {
+            moveChar(currentPos[0], currentPos[1] - movement);
+        }   
+    }
+
+    else if (arr == "left" || ke == 37)
+    {
+        if(bounds[0] < currentPos[0])
+        {
+            moveChar(currentPos[0] - movement, currentPos[1]);
+        }
+    }
+
+    else if (arr == "down" || ke == 40)
+    {
+        if(bounds[1] > currentPos[1])
+        {
+            moveChar(currentPos[0], currentPos[1] + movement);
+        }       
+    }
+
+    else if (arr == "right" || ke == 39)
+    {
+        if(bounds[1] > currentPos[0])
+        {
+            moveChar(currentPos[0] + movement, currentPos[1]);
+        } 
     }
 }
 
