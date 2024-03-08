@@ -1,8 +1,21 @@
 "use strict";
+let div = document.getElementById("gridMap");
+let htmlInfo = window.location.href;
+htmlInfo = htmlInfo.split("?");
+htmlInfo = htmlInfo[1];
+htmlInfo = htmlInfo.split("_");
+htmlInfo[1] += "Border";
 
-let char = [];
-char.push(document.getElementById("nook"));
-char.push(document.getElementById("nookBorder"))
+let char = [document.createElement("img"), document.createElement("img")];
+char[0].title = `${char[0].id}: Paralized`;
+
+for(let i = 0; i < 2; i++)
+{
+    char[i].classList = "tokens";
+    char[i].src = `images/map/tokens/${htmlInfo[i]}.png`;
+    char[i].id = htmlInfo[i];
+    div.appendChild(char[i]);
+}
 
 const GRIDMAP = document.querySelector("#gridMap");
 const RECT = GRIDMAP.getBoundingClientRect();
