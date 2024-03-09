@@ -52,13 +52,23 @@
      <script src="js/mapControler.js"></script>
 
      <script>
-        function successFunc(data) 
-        {
-          let temp = document.getElementById("temp");
-          temp.innerHTML = data;
-        }
-        // Read whole spreadsheet
-        Sheetsu.read("https://sheetsu.com/apis/v1.0su/50e3d9c71b25", {}, successFunc);
-     </script>
+      function successFunc(data) {
+        console.log(data);
+      }
+  
+      // Adds single row to spreadsheet
+      var data = {
+        id: "nook",
+        name: "nook",
+        xPos: "1",
+        yPos: "A",
+        title: "Nook: Scared",
+        border: "blue",
+        maxHP: 20,
+        currentHP: 20,
+        map: "current"
+      };
+      Sheetsu.write("https://sheetsu.com/apis/v1.0su/8259ccedb7ed", data, {}, successFunc);
+    </script>
   </body>
 </html>
