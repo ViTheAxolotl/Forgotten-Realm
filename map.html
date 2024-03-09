@@ -54,7 +54,8 @@
      <script>
         function successFunc(data) 
         {
-          console.log(data);
+          let temp = document.getElementById("temp");
+          temp.innerHTML = data;
         }
         // Read whole spreadsheet
         Sheetsu.read("https://sheetsu.com/apis/v1.0su/50e3d9c71b25", {}, successFunc);
