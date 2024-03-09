@@ -1,7 +1,7 @@
 "use strict";
 
-let gridMap = document.querySelector("#gridMap");
-let rect = gridMap.getBoundingClientrect();
+const gridMap = document.querySelector("#gridMap");
+const rect = gridMap.getBoundingClientrect();
 let mapSize;
 let bumper;
 let distance;
@@ -37,7 +37,7 @@ function setMainVaribles()
     htmlInfo = htmlInfo[1];
     htmlInfo = htmlInfo.split("_");
     playerName.innerHTML = htmlInfo[0];
-    
+
     if(rect.width < 999)
     {
         mapSize = rect.width;
