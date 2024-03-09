@@ -38,7 +38,7 @@ function setMainVaribles()
     htmlInfo = htmlInfo.split("?");
     htmlInfo = htmlInfo[1];
     htmlInfo = htmlInfo.split("_");
-    html[htmlInfo[0]] = {"border" : htmlInfo[1], "name" : html[0]};
+    html[htmlInfo[0]] = {"border" : htmlInfo[1], "name" : html[0], title : ""};
 
     if(rect.width < 999)
     {
@@ -96,7 +96,7 @@ function addCharacter(character)
     let x = pos[0];
     let y = pos[0];
 
-    if(character.title != null || character.title != undefined)
+    if(character.title != "")
     {
         char[0].title = char[0].title + ` ${character["title"]}.`;
         x = pos[xPos.indexOf(character["xPos"])];
