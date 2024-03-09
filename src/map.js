@@ -1,6 +1,6 @@
 "use strict";
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
-import { getFirestore, setDoc, getDocs, deleteDoc, doc, collection, firebase, firestore, get } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js';
+import { getFirestore, setDoc, getDocs, deleteDoc, doc, collection, query, where } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js';
 
 const firebaseApp = initializeApp
 ({
@@ -14,11 +14,18 @@ const firebaseApp = initializeApp
 });
 const db = getFirestore(firebaseApp);
 let temp = document.getElementById("temp");
+let wholeData = {};
 
 async function readTokens()
 {
-    const snapshot = await firebase.firestore().collection('events').get()
-    temp.innerHTML = `${snapshot.docs.map(doc => doc.data())}.`
+    const q = query(collection(db, "CurrentMap"));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => 
+    {
+        // doc.data() is never undefined for query doc snapshots
+        wholeData[doc.id] = doc.data();
+    });
+    temp.innerHTML = `${wholeData}.`;
 
     /*const querySnapshot = await getDocs(collection(db, "CurrentMap"));
     querySnapshot.forEach((doc) => 
