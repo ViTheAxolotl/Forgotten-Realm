@@ -1,7 +1,6 @@
 "use strict";
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
 import { getFirestore, setDoc, getDocs, deleteDoc, doc, collection, query, where } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js';
-import { DISTANCE, BUMPER, MOVEMENT } from '../js/mapControler';
 
 const firebaseApp = initializeApp
 ({
@@ -20,11 +19,45 @@ let wholeData = {};
 let div = document.getElementById("gridMap");
 let htmlInfo = window.location.href;
 let html = {};
-htmlInfo = htmlInfo.split("?");
-htmlInfo = htmlInfo[1];
-htmlInfo = htmlInfo.split("_");
-html[htmlInfo[0]] = {"border" : htmlInfo[1], "name" : html[0]};
-let disAndBum = DISTANCE + BUMPER;
+let gridMap = document.querySelector("#gridMap");
+let rect = gridMap.getBoundingClientrect();
+let mapSize;
+let bumper;
+let distance;
+let movement;
+let bounds;
+
+function init()
+{
+    setMainVaribles();
+    readTokens();
+}
+
+function setMainVaribles()
+{   
+    htmlInfo = htmlInfo.split("?");
+    htmlInfo = htmlInfo[1];
+    htmlInfo = htmlInfo.split("_");
+    html[htmlInfo[0]] = {"border" : htmlInfo[1], "name" : html[0]};
+
+    if(rect.width < 999)
+    {
+        mapSize = rect.width;
+        bumper = 9;
+        distance = Math.round(mapSize / 14);
+        movement = distance - 4;
+    }
+
+    else
+    {
+        mapSize = (rect.width * (8 / 10));
+        bumper = Math.round(rect.width / 10) + 2;
+        distance = Math.round(mapSize / 14);
+        movement = distance - 6;
+    }
+
+    bounds = [startPos, startPos + distance * 10];
+}
 
 async function readTokens()
 {
@@ -54,7 +87,8 @@ function addTokens()
 
 function addCharacter(character)
 {
-    let pos = [disAndBum, disAndBum + MOVEMENT, disAndBum + (MOVEMENT * 2), disAndBum + (MOVEMENT * 3), disAndBum + (MOVEMENT * 4), disAndBum + (MOVEMENT * 5), disAndBum + (MOVEMENT * 6), disAndBum + (MOVEMENT * 7), disAndBum + (MOVEMENT * 8), disAndBum + (MOVEMENT * 9), disAndBum + (MOVEMENT * 10), disAndBum + (MOVEMENT * 11), disAndBum + (MOVEMENT * 12)];
+    let disAndBum = distance + bumper;
+    let pos = [disAndBum, disAndBum + movement, disAndBum + (movement * 2), disAndBum + (movement * 3), disAndBum + (movement * 4), disAndBum + (movement * 5), disAndBum + (movement * 6), disAndBum + (movement * 7), disAndBum + (movement * 8), disAndBum + (movement * 9), disAndBum + (movement * 10), disAndBum + (movement * 11), disAndBum + (movement * 12)];
     let yPos = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"];
     let xPos = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"];
     let char = [document.createElement("img"), document.createElement("img")];
@@ -83,11 +117,6 @@ function placeTokens(x, y, prop)
 {
     prop.style.left = x + "px";
     prop.style.top = y + "px";
-}
-
-function init()
-{
-    readTokens();
 }
 
 init();
