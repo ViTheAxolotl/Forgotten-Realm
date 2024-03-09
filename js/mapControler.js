@@ -1,21 +1,4 @@
 "use strict";
-let div = document.getElementById("gridMap");
-let htmlInfo = window.location.href;
-htmlInfo = htmlInfo.split("?");
-htmlInfo = htmlInfo[1];
-htmlInfo = htmlInfo.split("_");
-htmlInfo[1] += "Border";
-
-let char = [document.createElement("img"), document.createElement("img")];
-char[0].title = `${char[0].id}: Paralized`;
-
-for(let i = 0; i < 2; i++)
-{
-    char[i].classList = "tokens";
-    char[i].src = `images/map/tokens/${htmlInfo[i]}.png`;
-    char[i].id = htmlInfo[i];
-    div.appendChild(char[i]);
-}
 
 const GRIDMAP = document.querySelector("#gridMap");
 const RECT = GRIDMAP.getBoundingClientRect();
@@ -41,13 +24,18 @@ else
     movement = distance - 6;
 }
 
+const DISTANCE = distance;
+const BUMPER = bumper;
+const MOVEMENT = movement;
 let startPos = distance + bumper;
 let bounds = [startPos, startPos + distance * 10];
 let currentPos;
 
 let temp = document.getElementById("temp");
+let playerName = document.getElementById("name");
 let key;
 let arrows = [];
+let currentCharacter;
 arrows.push(document.getElementById("up"));
 arrows.push(document.getElementById("left"));
 arrows.push(document.getElementById("right"));
@@ -66,7 +54,14 @@ function init()
 
 function moveChar(xPos, yPos)
 {
-    for(let prop of char)
+    let htmlInfo = window.location.href;
+    htmlInfo = htmlInfo.split("?");
+    htmlInfo = htmlInfo[1];
+    htmlInfo = htmlInfo.split("_");
+    currentCharacter = document.getElementsByClassName(htmlInfo[0]);
+    playerName.innerHTML = htmlInfo[0];
+
+    for(let prop of currentCharacter)
     {
         prop.style.left = xPos + "px";
         prop.style.top = yPos + "px";
@@ -74,7 +69,7 @@ function moveChar(xPos, yPos)
 
     currentPos = [xPos, yPos];
 
-    temp.innerHTML = `Nook X: ${currentPos[0]}, Nook Y: ${currentPos[1]}`;
+    temp.innerHTML = `${htmlInfo[0]} X: ${currentPos[0]}, Nook Y: ${currentPos[1]}`;
 }
 
 function handleArrow()
