@@ -53,37 +53,6 @@ arrows.push(document.getElementById("left"));
 arrows.push(document.getElementById("right"));
 arrows.push(document.getElementById("down"));
 
-function successFunc(data) 
-{
-    console.log(data);
-}
-
-function loadScript(scriptUrl) 
-{
-    const script = document.createElement('script');
-    script.src = scriptUrl;
-    document.body.appendChild(script);
-    
-    return new Promise((res, rej) => {
-      script.onload = function() {
-        res();
-      }
-      script.onerror = function () {
-        rej();
-      }
-    });
-}
-  
-// use
-loadScript('//script.sheetsu.com/')
-.then(() => {
-    console.log('Script loaded!');
-})
-.catch(() => {
-    console.error('Script loading failed! Handle this error');
-});
-Sheetsu.read("https://sheetsu.com/apis/v1.0su/50e3d9c71b25", {}, successFunc);
-
 function init()
 {
     for(let arrow of arrows)

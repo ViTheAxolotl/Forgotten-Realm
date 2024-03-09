@@ -12,6 +12,7 @@
     <link href = "css/Styles.css" rel = "stylesheet" />
 
     <title>Map</title>
+    <script src="//script.sheetsu.com/"></script>
   </head>
   
   <body>
@@ -49,5 +50,14 @@
      <script scr="js/bootstrap/scripts.js"></script>
      <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
      <script src="js/mapControler.js"></script>
+
+     <script>
+        function successFunc(data) 
+        {
+          console.log(data);
+        }
+        // Read whole spreadsheet
+        Sheetsu.read("https://sheetsu.com/apis/v1.0su/50e3d9c71b25", {}, successFunc);
+     </script>
   </body>
 </html>
