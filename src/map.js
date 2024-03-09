@@ -20,7 +20,7 @@ let div = document.getElementById("gridMap");
 let htmlInfo = window.location.href;
 let html = {};
 const gridMap = document.querySelector("#gridMap");
-const rect = gridMap.getBoundingClientrect();
+const rect = gridMap.getBoundingClientRect();
 let mapSize;
 let bumper;
 let distance;
