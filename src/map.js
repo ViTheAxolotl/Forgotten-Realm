@@ -17,11 +17,20 @@ let temp = document.getElementById("temp");
 
 async function readTokens()
 {
-    const querySnapshot = await getDocs(collection(db, "CurrentMap"));
+    const markers = [];
+    await firebase.firestore().collection('CurrentMap').get()
+        .then(querySnapshot => {
+        querySnapshot.docs.forEach(doc => {
+        markers.push(doc.data());
+        });
+    });
+    temp.innerHTML = `${markers}.`
+
+    /*const querySnapshot = await getDocs(collection(db, "CurrentMap"));
     querySnapshot.forEach((doc) => 
     {
         temp.innerHTML = `${doc.id}, ${doc.data().border}`;
-    });
+    });*/
 }
 
 function init()
