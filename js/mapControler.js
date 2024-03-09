@@ -9,7 +9,7 @@ let movement;
 let bounds;
 let currentPos;
 let htmlInfo = window.location.href;
-let currentCharacter = document.getElementsByClassName(htmlInfo[0]);
+let currentCharacter = document.getElementsByClassName(htmlInfo[0].charAt(0).toUpperCase() + htmlInfo[0].slice(1));
 let temp = document.getElementById("temp");
 let playerName = document.getElementById("name");
 let key;
