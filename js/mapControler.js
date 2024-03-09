@@ -54,7 +54,7 @@ function setMainVaribles()
         movement = distance - 6;
     }
 
-    bounds = [startPos, startPos + distance * 10];
+    bounds = [distance + bumper, (distance + bumper) + distance * 10];
 }
 
 function moveChar(xPos, yPos)

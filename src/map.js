@@ -25,7 +25,7 @@ let mapSize;
 let bumper;
 let distance;
 let movement;
-let bounds;
+
 
 function init()
 {
@@ -55,8 +55,6 @@ function setMainVaribles()
         distance = Math.round(mapSize / 14);
         movement = distance - 6;
     }
-
-    bounds = [startPos, startPos + distance * 10];
 }
 
 async function readTokens()
