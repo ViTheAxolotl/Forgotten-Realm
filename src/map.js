@@ -59,7 +59,7 @@ function addCharacter(character)
     let xPos = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"];
     let char = [document.createElement("img"), document.createElement("img")];
     char[0].src = `images/map/tokens/${character["name"]}.png`;
-    char[1].src = `images/map/tokens/${character["border"]}.png`;
+    char[1].src = `images/map/tokens/${character["border"]}Border.png`;
     char[0].title = `${character["name"]}:`;
     let x = pos[0];
     let y = pos[0];
