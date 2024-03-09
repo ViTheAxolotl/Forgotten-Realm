@@ -96,7 +96,7 @@ function addCharacter(character)
     let x = pos[0];
     let y = pos[0];
 
-    if("title" in Object.keys(character))
+    if(character.title in Object.keys(character))
     {
         char[0].title = char[0].title + ` ${character["title"]}.`;
         x = pos[xPos.indexOf(character["xPos"])];
