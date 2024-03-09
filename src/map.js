@@ -72,12 +72,12 @@ async function readTokens()
 
 function addTokens()
 {
-    for(let key of wholeData.keys)
+    for(let key of Object.keys(wholeData))
     {
 
     }
 
-    if(!wholeData.keys.contains(htmlInfo[0]))
+    if(!Object.keys(wholeData).contains(htmlInfo[0]))
     {
         addCharacter(html[htmlInfo[0]]);
     }
@@ -96,7 +96,7 @@ function addCharacter(character)
     let x = pos[0];
     let y = pos[0];
 
-    if(character.keys.contains("title"))
+    if(Object.keys(character).contains("title"))
     {
         char[0].title = char[0].title + ` ${character["title"]}.`;
         x = pos[xPos.indexOf(character["xPos"])];
