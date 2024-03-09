@@ -50,25 +50,6 @@
      <script scr="js/bootstrap/scripts.js"></script>
      <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
      <script src="js/mapControler.js"></script>
-
-     <script>
-      function successFunc(data) {
-        console.log(data);
-      }
-  
-      // Adds single row to spreadsheet
-      var data = {
-        id: "nook",
-        name: "nook",
-        xPos: "1",
-        yPos: "A",
-        title: "Nook: Scared",
-        border: "blue",
-        maxHP: 20,
-        currentHP: 20,
-        map: "current"
-      };
-      Sheetsu.write("https://sheetsu.com/apis/v1.0su/8259ccedb7ed", data, {}, successFunc);
-    </script>
+     <script src="src/map.js"></script>
   </body>
 </html>
