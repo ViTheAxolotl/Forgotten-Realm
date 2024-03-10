@@ -74,7 +74,7 @@ function moveChar(xPos, yPos)
 function handleArrow()
 {
     let arr = "", ke = 0;
-    currentPos = [currentCharacter[0].style.left.trim("px"), currentCharacter[0].style.top.trim("px")]
+    currentPos = [currentCharacter[0].style.left.replace("px", ""), currentCharacter[0].style.top.replace("px", "")];
 
     if(key != undefined)
     {
