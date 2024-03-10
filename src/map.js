@@ -93,6 +93,11 @@ function addTokens()
     {
         for(let token of currentTokens)
         {
+            if(token.classList.contains("update"))
+            {
+                break;
+            }
+
             token.remove();
         }
     }
@@ -110,27 +115,30 @@ function addTokens()
 
 function addCharacter(character)
 {
-    let char = [document.createElement("img"), document.createElement("img")];
-    char[0].src = `images/map/tokens/${character["name"]}.png`;
-    char[0].id = character["name"];
-    char[1].src = `images/map/tokens/${character["border"]}Border.png`;
-    char[1].id = character["border"];
-    char[0].title = `${character["name"]}:`;
-    let x = pos[0];
-    let y = pos[0];
-
-    if(character.title != "")
+    if(character["name"] != document.getElementById(character["name"]).id)
     {
-        char[0].title = char[0].title + ` ${character["title"]}.`;
-        x = pos[xPos.indexOf(character["xPos"])];
-        y = pos[yPos.indexOf(character["yPos"])];
-    }
+        let char = [document.createElement("img"), document.createElement("img")];
+        char[0].src = `images/map/tokens/${character["name"]}.png`;
+        char[0].id = character["name"];
+        char[1].src = `images/map/tokens/${character["border"]}Border.png`;
+        char[1].id = character["border"];
+        char[0].title = `${character["name"]}:`;
+        let x = pos[0];
+        let y = pos[0];
 
-    for(let i = 0; i < 2; i++)
-    {
-        char[i].classList = `tokens ${character["name"]}`;
-        placeTokens(x, y, char[i]);
-        div.appendChild(char[i]);
+        if(character.title != "")
+        {
+            char[0].title = char[0].title + ` ${character["title"]}.`;
+            x = pos[xPos.indexOf(character["xPos"])];
+            y = pos[yPos.indexOf(character["yPos"])];
+        }
+
+        for(let i = 0; i < 2; i++)
+        {
+            char[i].classList = `tokens ${character["name"]}`;
+            placeTokens(x, y, char[i]);
+            div.appendChild(char[i]);
+        }
     }
 }
 
@@ -144,7 +152,7 @@ function timer()
 {
     let seconds = 1000;
     setTimeout(() => {checkUpdates()}, seconds * 20);
-    setTimeout(() => {readTokens()}, seconds * 35);
+    setTimeout(() => {readTokens()}, seconds * 30);
 }
 
 function checkUpdates()
@@ -176,6 +184,7 @@ async function updateToken(token)
 
         for(let token of currentTokens)
         {
+            token.classList = token.classList.replace(" update", "");
             if(token.id == "border")
             {
                 borderColor = token.src.split('/');
