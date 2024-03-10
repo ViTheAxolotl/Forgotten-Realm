@@ -102,16 +102,16 @@ function addTokens()
 
     for(let key of Object.keys(wholeData))
     {
-        addCharacter(wholeData[key]);
+        addCharacter(wholeData[key], fasle);
     }
 
     if(!(names.includes(htmlInfo[0])))
     {
-        addCharacter(html[htmlInfo[0]]);
+        addCharacter(html[htmlInfo[0]], true);
     }
 }
 
-function addCharacter(character)
+function addCharacter(character, update)
 {
     if(document.getElementById(character["name"]) == null)
     {
@@ -135,6 +135,12 @@ function addCharacter(character)
         {
             char[i].classList = `tokens ${character["name"]}`;
             placeTokens(x, y, char[i]);
+            
+            if(update)
+            {
+                char[i].classList += " update";
+            }
+
             div.appendChild(char[i]);
         }
     }
@@ -161,12 +167,15 @@ function checkUpdates()
     for(let name of names)
     {
         let token = document.getElementById(name);
-        if(token.classList.contains("update"))
+        if(token != null)
         {
-            updateToken(token);
-        }
+            if(token.classList.contains("update"))
+            {
+                updateToken(token);
+            }
 
-        tokens.push(token);
+            tokens.push(token);
+        }
     }
 }
 
