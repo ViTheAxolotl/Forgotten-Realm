@@ -66,15 +66,13 @@ function moveChar(xPos, yPos)
         prop.style.top = yPos + "px";
     }   
 
-    currentPos = [xPos, yPos];
-
     temp.innerHTML = `${htmlInfo[0]} X: ${currentPos[0]}, Nook Y: ${currentPos[1]}`;
 }
 
 function handleArrow()
 {
     let arr = "", ke = 0;
-    currentPos = [currentCharacter[0].style.left.replace("px", ""), currentCharacter[0].style.top.replace("px", "")];
+    currentPos = [parseInt(currentCharacter[0].style.left.replace("px", "")), parseInt(currentCharacter[0].style.top.replace("px", ""))];
 
     if(key != undefined)
     {
