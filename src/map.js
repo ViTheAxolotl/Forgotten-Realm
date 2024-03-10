@@ -77,7 +77,7 @@ function addTokens()
         addCharacter(wholeData[key]);
     }
 
-    if(!htmlInfo[0] in Object.keys(wholeData))
+    if(htmlInfo[0] in Object.keys(wholeData))
     {
         addCharacter(html[htmlInfo[0]]);
     }
