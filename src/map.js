@@ -190,7 +190,7 @@ async function updateToken(token)
 
         for(let token of currentTokens)
         {
-            token.classList.pop();
+            token.classList = `${token.classList[0]} ${token.classList[1]}`;
             if(token.id == "border")
             {
                 borderColor = token.src.split('/');
