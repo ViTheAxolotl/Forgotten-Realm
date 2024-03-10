@@ -26,6 +26,9 @@ let bumper;
 let distance;
 let movement;
 let names = [];
+let pos = [disAndBum, disAndBum + movement, disAndBum + (movement * 2), disAndBum + (movement * 3), disAndBum + (movement * 4), disAndBum + (movement * 5), disAndBum + (movement * 6), disAndBum + (movement * 7), disAndBum + (movement * 8), disAndBum + (movement * 9), disAndBum + (movement * 10), disAndBum + (movement * 11), disAndBum + (movement * 12)];
+let yPos = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"];
+let xPos = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"];
 
 function init()
 {
@@ -78,7 +81,7 @@ function addTokens()
         addCharacter(wholeData[key]);
     }
 
-    if(!(htmlInfo[0] in names))
+    if(!(names.includes(htmlInfo[0])))
     {
         addCharacter(html[htmlInfo[0]]);
     }
@@ -87,9 +90,6 @@ function addTokens()
 function addCharacter(character)
 {
     let disAndBum = distance + bumper;
-    let pos = [disAndBum, disAndBum + movement, disAndBum + (movement * 2), disAndBum + (movement * 3), disAndBum + (movement * 4), disAndBum + (movement * 5), disAndBum + (movement * 6), disAndBum + (movement * 7), disAndBum + (movement * 8), disAndBum + (movement * 9), disAndBum + (movement * 10), disAndBum + (movement * 11), disAndBum + (movement * 12)];
-    let yPos = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"];
-    let xPos = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"];
     let char = [document.createElement("img"), document.createElement("img")];
     char[0].src = `images/map/tokens/${character["name"]}.png`;
     char[1].src = `images/map/tokens/${character["border"]}Border.png`;
