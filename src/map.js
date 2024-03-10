@@ -126,7 +126,7 @@ function addCharacter(character, update)
 
         if(character.title != "")
         {
-            char[0].title = char[0].title + ` ${character["title"]}.`;
+            char[0].title = `${character["title"]}.`;
             x = pos[xPos.indexOf(character["xPos"])];
             y = pos[yPos.indexOf(character["yPos"])];
         }
@@ -187,7 +187,6 @@ async function updateToken(token)
         let x;
         let y;
         let currentTokens = document.getElementsByClassName(token.id);
-        let titleList;
 
         for(let token of currentTokens)
         {
@@ -201,7 +200,6 @@ async function updateToken(token)
 
         x = xPos[pos.indexOf(token.style.left.replace("px", ""))];
         y = yPos[pos.indexOf(token.style.top.replace("px", ""))];
-        titleList = token.title.replace(`${token.id}: `, "");
 
         const docRef = await setDoc(doc(db, "CurrentMap", token.id), 
         {
@@ -210,7 +208,7 @@ async function updateToken(token)
             maxHp : "",
             map : "",
             name : token.id,
-            title : titleList,
+            title : token.title,
             xPos : x,
             yPos : y
         });
