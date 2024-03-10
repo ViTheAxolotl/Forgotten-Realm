@@ -9,7 +9,7 @@ let movement;
 let bounds;
 let currentPos;
 let htmlInfo = window.location.href;
-let currentCharacter = document.getElementsByClassName(htmlInfo[0].charAt(0).toUpperCase() + htmlInfo[0].slice(1));
+let currentCharacter;
 let temp = document.getElementById("temp");
 let playerName = document.getElementById("name");
 let key;
@@ -36,7 +36,8 @@ function setMainVaribles()
     htmlInfo = htmlInfo.split("?");
     htmlInfo = htmlInfo[1];
     htmlInfo = htmlInfo.split("_");
-    playerName.innerHTML = htmlInfo[0];
+    currentCharacter = document.getElementsByClassName(htmlInfo[0]);
+    playerName.innerHTML = htmlInfo[0].charAt(0).toUpperCase() + htmlInfo[0].slice(1);
 
     if(rect.width < 999)
     {
@@ -73,6 +74,7 @@ function moveChar(xPos, yPos)
 function handleArrow()
 {
     let arr = "", ke = 0;
+    currentPos = []
 
     if(key != undefined)
     {
