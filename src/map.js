@@ -29,11 +29,17 @@ let names = [];
 let pos; 
 let yPos;
 let xPos;
+let tokens = [];
 
 function init()
 {
     setMainVaribles();
     readTokens();
+    
+    /*while(true)
+    {
+        timer();
+    }*/
 }
 
 function setMainVaribles()
@@ -67,6 +73,7 @@ function setMainVaribles()
 
 async function readTokens()
 {
+    wholeData = {};
     const q = query(collection(db, "CurrentMap"));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => 
@@ -81,6 +88,15 @@ async function readTokens()
 
 function addTokens()
 {
+    let currentTokens = document.getElementsByClassName("tokens");
+    if(!currentTokens == [])
+    {
+        for(let token of currentTokens)
+        {
+            token.remove();
+        }
+    }
+
     for(let key of Object.keys(wholeData))
     {
         addCharacter(wholeData[key]);
@@ -96,7 +112,9 @@ function addCharacter(character)
 {
     let char = [document.createElement("img"), document.createElement("img")];
     char[0].src = `images/map/tokens/${character["name"]}.png`;
+    char[0].id = character["name"];
     char[1].src = `images/map/tokens/${character["border"]}Border.png`;
+    char[1].id = character["border"];
     char[0].title = `${character["name"]}:`;
     let x = pos[0];
     let y = pos[0];
@@ -120,6 +138,72 @@ function placeTokens(x, y, prop)
 {
     prop.style.left = x + "px";
     prop.style.top = y + "px";
+}
+
+function timer()
+{
+    let seconds = 1000;
+    setTimeout(() => {checkUpdates()}, seconds * 20);
+    setTimeout(() => {readTokens()}, seconds * 35);
+}
+
+function checkUpdates()
+{
+    tokens = [];
+
+    names.push(html.name);
+    for(let name of names)
+    {
+        let token = document.getElementById(name);
+        if(token.classList.contains("update"))
+        {
+            updateToken(token);
+        }
+
+        tokens.push(token);
+    }
+}
+
+async function updateToken(token)
+{
+    try 
+    {
+        let borderColor;
+        let x;
+        let y;
+        let currentTokens = document.getElementsByClassName(token.id);
+        let titleList;
+
+        for(let token of currentTokens)
+        {
+            if(token.id == "border")
+            {
+                borderColor = token.src.split('/');
+                borderColor = border[3].slice(0, border[3].indexOf("Border"));
+            }
+        }
+
+        x = xPos[pos.indexOf(token.style.left.replace("px", ""))];
+        y = yPos[pos.indexOf(token.style.top.replace("px", ""))];
+        titleList = token.title.replace(`${token.id}: `, "");
+
+        const docRef = await setDoc(doc(db, "CurrentMap", token.id), 
+        {
+            border : borderColor,
+            currentHp : "",
+            maxHp : "",
+            map : "",
+            name : "token.id",
+            title : titleList,
+            xPos : x,
+            yPos : y
+        });
+    } 
+    
+    catch (e) 
+    {
+        console.error("Error adding document: ", e);
+    }
 }
 
 init();
