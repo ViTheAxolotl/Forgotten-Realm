@@ -119,7 +119,7 @@ function addCharacter(character, update)
         char[0].src = `images/map/tokens/${character["name"]}.png`;
         char[0].id = character["name"];
         char[0].title = `${character["name"]}:`;
-        char[0].classList = `tokens ${character["name"]} ${character["name"]}`;
+        char[0].classList = `tokens ${character["name"]} char`;
         char[1].src = `images/map/tokens/${character["border"]}Border.png`;
         char[1].id = character["border"];
         char[1].classList = `tokens ${character["name"]} border}`;
