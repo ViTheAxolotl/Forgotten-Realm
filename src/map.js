@@ -118,9 +118,11 @@ function addCharacter(character, update)
         let char = [document.createElement("img"), document.createElement("img")];
         char[0].src = `images/map/tokens/${character["name"]}.png`;
         char[0].id = character["name"];
+        char[0].title = `${character["name"]}:`;
+        char[0].classList = `tokens ${character["name"]} ${character["name"]}`;
         char[1].src = `images/map/tokens/${character["border"]}Border.png`;
         char[1].id = character["border"];
-        char[0].title = `${character["name"]}:`;
+        char[1].classList = `tokens ${character["name"]} border}`;
         let x = pos[0];
         let y = pos[0];
 
@@ -133,7 +135,6 @@ function addCharacter(character, update)
 
         for(let i = 0; i < 2; i++)
         {
-            char[i].classList = `tokens ${character["name"]}`;
             placeTokens(x, y, char[i]);
             
             if(update)
@@ -190,8 +191,8 @@ async function updateToken(token)
 
         for(let token of currentTokens)
         {
-            token.classList = `${token.classList[0]} ${token.classList[1]}`;
-            if(token.id == "border")
+            token.classList = `${token.classList[0]} ${token.classList[1]}, ${token.classList[2]}`;
+            if(token.classList[2] == "border")
             {
                 borderColor = token.src.split('/');
                 borderColor = border[3].slice(0, border[3].indexOf("Border"));
