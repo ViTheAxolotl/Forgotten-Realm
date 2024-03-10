@@ -25,7 +25,7 @@ let mapSize;
 let bumper;
 let distance;
 let movement;
-
+let names;
 
 function init()
 {
@@ -65,6 +65,7 @@ async function readTokens()
     {
         // doc.data() is never undefined for query doc snapshots
         wholeData[doc.id] = doc.data();
+        names.push(doc.data().name);
     });
 
     addTokens();
@@ -77,7 +78,7 @@ function addTokens()
         addCharacter(wholeData[key]);
     }
 
-    if(htmlInfo[0] in Object.keys(wholeData))
+    if(htmlInfo[0] in names)
     {
         addCharacter(html[htmlInfo[0]]);
     }
