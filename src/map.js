@@ -163,7 +163,7 @@ function checkUpdates()
 {
     tokens = [];
 
-    names.push(html.name);
+    names.push(html["name"]);
     for(let name of names)
     {
         let token = document.getElementById(name);
