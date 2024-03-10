@@ -102,7 +102,7 @@ function addTokens()
 
     for(let key of Object.keys(wholeData))
     {
-        addCharacter(wholeData[key], fasle);
+        addCharacter(wholeData[key], false);
     }
 
     if(!(names.includes(htmlInfo[0])))
