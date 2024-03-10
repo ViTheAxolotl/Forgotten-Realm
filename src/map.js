@@ -187,7 +187,7 @@ async function updateToken(token)
         let borderColor;
         let x;
         let y;
-        let currentTokens = document.getElementsByClassName(htmlInfo[0]);
+        const currentTokens = document.getElementsByClassName(htmlInfo[0]);
 
         for(let token of currentTokens)
         {
