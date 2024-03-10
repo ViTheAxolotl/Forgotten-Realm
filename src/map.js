@@ -113,7 +113,7 @@ function addTokens()
 
 function addCharacter(character)
 {
-    if(character["name"] != document.getElementById(character["name"]).id)
+    if(document.getElementById(character["name"]) == null)
     {
         let char = [document.createElement("img"), document.createElement("img")];
         char[0].src = `images/map/tokens/${character["name"]}.png`;
