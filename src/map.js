@@ -209,7 +209,7 @@ async function updateToken(token)
             currentHp : "",
             maxHp : "",
             map : "",
-            name : "token.id",
+            name : token.id,
             title : titleList,
             xPos : x,
             yPos : y
