@@ -78,7 +78,7 @@ function addTokens()
         addCharacter(wholeData[key]);
     }
 
-    if(htmlInfo[0] in names)
+    if(!(htmlInfo[0] in names))
     {
         addCharacter(html[htmlInfo[0]]);
     }
