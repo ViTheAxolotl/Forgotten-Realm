@@ -25,7 +25,7 @@ let mapSize;
 let bumper;
 let distance;
 let movement;
-let names;
+let names = [];
 
 function init()
 {
