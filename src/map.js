@@ -93,12 +93,10 @@ function addTokens()
     {
         for(let token of currentTokens)
         {
-            if(token.classList.contains("update"))
+            if(!token.classList.contains("update"))
             {
-                break;
+                token.remove();
             }
-
-            token.remove();
         }
     }
 
