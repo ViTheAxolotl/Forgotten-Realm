@@ -89,7 +89,7 @@ async function readTokens()
 function addTokens()
 {
     let currentTokens = document.getElementsByClassName("tokens");
-    if(!currentTokens == [])
+    if(currentTokens.length != 0)
     {
         for(let token of currentTokens)
         {
