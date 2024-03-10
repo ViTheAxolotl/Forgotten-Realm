@@ -38,7 +38,7 @@ function setMainVaribles()
     htmlInfo = htmlInfo.split("?");
     htmlInfo = htmlInfo[1];
     htmlInfo = htmlInfo.split("_");
-    html[htmlInfo[0]] = {"border" : htmlInfo[1], "name" : html[0], title : ""};
+    html[htmlInfo[0]] = {"border" : htmlInfo[1], "name" : htmlInfo[0], title : ""};
 
     if(rect.width < 999)
     {
