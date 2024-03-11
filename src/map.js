@@ -194,8 +194,8 @@ async function updateToken(token)
             token.classList = `${token.classList[0]} ${token.classList[1]} ${token.classList[2]}`;
         }
 
-        x = token.style.left.replace("px", "");
-        y = token.style.top.replace("px", "");
+        x = parseInt(token.style.left.replace("px", ""));
+        y = parseInt(token.style.top.replace("px", ""));
         x = xPos[pos.indexOf(x)];
         y = yPos[pos.indexOf(y)];
 
