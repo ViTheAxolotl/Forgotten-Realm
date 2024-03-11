@@ -135,17 +135,15 @@ function addTokens()
             }
         }
 
-        else if(pieces.length > 2)
+        else if(pieces.length >= 2)
         {
             let to = document.getElementById(name);
             for(let piece of pieces)
             {
                 if(piece.id != name)
                 {
-                    if((piece.style.top != to.style.top) || (piece.style.left != to.style.left))
-                    {
-                        piece.remove();
-                    }
+                    piece.style.top = to.style.top;
+                    piece.style.left = to.style.left;
                 }
             }
         }
