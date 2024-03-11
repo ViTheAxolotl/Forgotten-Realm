@@ -37,10 +37,7 @@ function init()
     setMainVaribles();
     readTokens();
     
-    while(true)
-    {
-        timer();
-    }
+    setInterval(timer, 1000);
 }
 
 function setMainVaribles()
