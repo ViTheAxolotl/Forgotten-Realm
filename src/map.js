@@ -119,6 +119,7 @@ function addTokens()
         {
             for(let data of Object.keys(wholeData))
             {
+                data = wholeData[data];
                 if(data.name == name)
                 {
                     let char = document.createElement("img");
