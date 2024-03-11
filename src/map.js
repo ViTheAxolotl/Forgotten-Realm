@@ -121,8 +121,8 @@ function addTokens()
             char.src = `images/map/tokens/${wholeData[name["border"]]}Border.png`;
             char.id = wholeData[name["border"]];
             char.classList = `tokens ${wholeData[name["name"]]} border_`;
-            x = pos[xPos.indexOf(wholeData[name["xPos"]])];
-            y = pos[yPos.indexOf(wholeData[name["yPos"]])];
+            let x = pos[xPos.indexOf(wholeData[name["xPos"]])];
+            let y = pos[yPos.indexOf(wholeData[name["yPos"]])];
             placeTokens(x, y, char);
             div.appendChild(char);
         }
