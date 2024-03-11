@@ -37,7 +37,7 @@ function init()
     setMainVaribles();
     readTokens();
     
-    //while(true)
+    while(true)
     {
         timer();
     }
@@ -159,7 +159,7 @@ function timer()
 {
     let c = new Date();
     let sec = c.getSeconds();
-    
+
     switch(sec)
     {
         case 10:
