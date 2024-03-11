@@ -184,19 +184,14 @@ async function updateToken(token)
 {
     try 
     {
-        let borderColor;
         let x;
         let y;
         const currentTokens = document.getElementsByClassName(htmlInfo[0]);
+        let borderColor = currentTokens[1].id;
 
         for(let token of currentTokens)
         {
             token.classList = `${token.classList[0]} ${token.classList[1]} ${token.classList[2]}`;
-            if(token.classList[2] == "border_")
-            {
-                borderColor = token.src.split('/');
-                borderColor = borderColor[3].slice(0, borderColor[3].indexOf("Border"));
-            }
         }
 
         x = xPos[pos.indexOf(token.style.left.replace("px", ""))];
