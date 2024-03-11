@@ -122,7 +122,7 @@ function addCharacter(character, update)
         char[0].classList = `tokens ${character["name"]} char`;
         char[1].src = `images/map/tokens/${character["border"]}Border.png`;
         char[1].id = character["border"];
-        char[1].classList = `tokens ${character["name"]} border}`;
+        char[1].classList = `tokens ${character["name"]} border`;
         let x = pos[0];
         let y = pos[0];
 
