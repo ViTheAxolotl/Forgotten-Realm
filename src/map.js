@@ -194,8 +194,10 @@ async function updateToken(token)
             token.classList = `${token.classList[0]} ${token.classList[1]} ${token.classList[2]}`;
         }
 
-        x = xPos[pos.indexOf(token.style.left.replace("px", ""))];
-        y = yPos[pos.indexOf(token.style.top.replace("px", ""))];
+        x = token.style.left.replace("px", "");
+        y = token.style.top.replace("px", "");
+        x = xPos[pos.indexOf(x)];
+        y = yPos[pos.indexOf(y)];
 
         const docRef = await setDoc(doc(db, "CurrentMap", token.id), 
         {
