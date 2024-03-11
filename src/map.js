@@ -109,6 +109,23 @@ function addTokens()
     if(!(names.has(htmlInfo[0])))
     {
         addCharacter(html[htmlInfo[0]], true);
+        names.add(htmlInfo[0]);
+    }
+
+    for(let name of names)
+    {
+        let pieces = document.getElementsByClassName(name)
+        if(pieces.length < 2)
+        {
+            let char = document.createElement("img");
+            char.src = `images/map/tokens/${wholeData[name["border"]]}Border.png`;
+            char.id = wholeData[name["border"]];
+            char.classList = `tokens ${wholeData[name["name"]]} border_`;
+            x = pos[xPos.indexOf(wholeData[name["xPos"]])];
+            y = pos[yPos.indexOf(wholeData[name["yPos"]])];
+            placeTokens(x, y, char);
+            div.appendChild(char);
+        }
     }
 }
 
@@ -173,7 +190,6 @@ function checkUpdates()
 {
     tokens = [];
 
-    names.add(htmlInfo[0]);
     for(let name of names)
     {
         let token = document.getElementById(name);
