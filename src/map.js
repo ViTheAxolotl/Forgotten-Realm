@@ -104,7 +104,7 @@ function addTokens()
         addCharacter(wholeData[key], false);
     }
 
-    if(!(names.includes(htmlInfo[0])))
+    if(!(names.has(htmlInfo[0])))
     {
         addCharacter(html[htmlInfo[0]], true);
     }
@@ -198,7 +198,7 @@ async function updateToken(token)
 
         for(let token of currentTokens)
         {
-            if(!names.includes(token.id))
+            if(!names.has(token.id))
             {
                 borderColor = token.id;
             }
