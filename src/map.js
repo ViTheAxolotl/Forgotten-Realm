@@ -117,14 +117,20 @@ function addTokens()
         let pieces = document.getElementsByClassName(name)
         if(pieces.length < 2)
         {
-            let char = document.createElement("img");
-            char.src = `images/map/tokens/${wholeData[name["border"]]}Border.png`;
-            char.id = wholeData[name["border"]];
-            char.classList = `tokens ${wholeData[name["name"]]} border_`;
-            let x = pos[xPos.indexOf(wholeData[name["xPos"]])];
-            let y = pos[yPos.indexOf(wholeData[name["yPos"]])];
-            placeTokens(x, y, char);
-            div.appendChild(char);
+            for(let data of wholeData)
+            {
+                if(data.name == name)
+                {
+                    let char = document.createElement("img");
+                    char.src = `images/map/tokens/${data.border}Border.png`;
+                    char.id = wholeData[name["border"]];
+                    char.classList = `tokens ${data.name} border_`;
+                    let x = pos[xPos.indexOf(data.xPos)];
+                    let y = pos[yPos.indexOf(data.yPos)];
+                    placeTokens(x, y, char);
+                    div.appendChild(char);
+                }
+            }
         }
     }
 }
