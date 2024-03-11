@@ -157,28 +157,22 @@ function timer()
     let c = new Date();
     let sec = Math.floor(c.getSeconds());
 
-    switch(sec)
+    if((sec < 12 && sec > 8) || (sec < 32 && sec > 28) || (sec < 52 && sec > 48))
     {
-        case 10:
-        case 30:
-        case 50:
-            if(stage == 1)
-            {
-                checkUpdates();
-                stage = 2;
-            }
+        if(stage == 1)
+        {
+            checkUpdates();
+            stage = 2;
+        }
+    }
 
-            break;
-
-        case 20:
-        case 40:
-        case 60:
-            if(stage == 2)
-            {
-                readTokens();
-                stage = 1;
-            }
-            break;
+    elif((sec < 22 && sec > 18) || (sec < 42 && sec > 38) || (sec < 60 && sec > 58))
+    {
+        if(stage == 2)
+        {
+            readTokens();
+            stage = 1;
+        }
     }
     
     /*let seconds = 1000;
