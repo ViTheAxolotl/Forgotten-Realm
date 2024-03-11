@@ -30,6 +30,7 @@ let pos;
 let yPos;
 let xPos;
 let tokens = [];
+let stage = 1;
 
 function init()
 {
@@ -156,10 +157,37 @@ function placeTokens(x, y, prop)
 
 function timer()
 {
-    let seconds = 1000;
+    let c = new Date();
+    let sec = c.getSeconds();
+    
+    switch(sec)
+    {
+        case 10:
+        case 30:
+        case 50:
+            if(stage == 1)
+            {
+                checkUpdates();
+                stage = 2;
+            }
+
+            break;
+
+        case 20:
+        case 40:
+        case 60:
+            if(stage == 2)
+            {
+                readTokens();
+                stage = 1;
+            }
+            break;
+    }
+    
+    /*let seconds = 1000;
     setTimeout(() => {checkUpdates()}, seconds * 15);
     setTimeout(() => {readTokens()}, seconds * 25);
-    setTimeout(() => {timer()}, seconds * 30);
+    setTimeout(() => {timer()}, seconds * 30);*/
 }
 
 function checkUpdates()
