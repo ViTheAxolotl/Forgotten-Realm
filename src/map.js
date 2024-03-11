@@ -90,7 +90,7 @@ function addTokens()
     let currentTokens = document.getElementsByClassName("tokens");
     if(currentTokens.length != 0)
     {
-        temp.innerHTML = 0;
+        temp.innerHTML = "0";
         for(let token of currentTokens)
         {
             if(!token.classList.contains("update"))
