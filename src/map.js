@@ -193,7 +193,7 @@ async function updateToken(token)
 
         for(let token of currentTokens)
         {
-            if(!names.contains(token.id))
+            if(!names.includes(token.id))
             {
                 borderColor = token.id;
             }
