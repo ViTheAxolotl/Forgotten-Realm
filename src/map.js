@@ -156,8 +156,9 @@ function placeTokens(x, y, prop)
 function timer()
 {
     let seconds = 1000;
-    setTimeout(() => {checkUpdates()}, seconds * 20);
-    setTimeout(() => {readTokens()}, seconds * 30);
+    setTimeout(() => {checkUpdates()}, seconds * 15);
+    setTimeout(() => {readTokens()}, seconds * 25);
+    setTimeout(() => {timer()}, seconds * 30);
 }
 
 function checkUpdates()
