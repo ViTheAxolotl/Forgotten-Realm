@@ -25,7 +25,7 @@ let mapSize;
 let bumper;
 let distance;
 let movement;
-let names = [];
+let names = new Set();
 let pos; 
 let yPos;
 let xPos;
@@ -72,7 +72,7 @@ function setMainVaribles()
 async function readTokens()
 {
     wholeData = {};
-    names = [];
+    names = new Set();
     const q = query(collection(db, "CurrentMap"));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => 
@@ -127,7 +127,7 @@ function addCharacter(character, update)
 
         if(character.title != "")
         {
-            char[0].title = `${character["title"]}.`;
+            char[0].title = `${character["title"]}`;
             x = pos[xPos.indexOf(character["xPos"])];
             y = pos[yPos.indexOf(character["yPos"])];
         }
