@@ -135,7 +135,7 @@ function addTokens()
             }
         }
 
-        else if(pieces.length >= 2)
+        if(pieces.length >= 2)
         {
             let to = document.getElementById(name);
             for(let piece of pieces)
