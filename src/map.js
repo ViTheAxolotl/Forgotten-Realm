@@ -195,7 +195,7 @@ async function updateToken(token)
             if(token.classList[2] == "border")
             {
                 borderColor = token.src.split('/');
-                borderColor = border[3].slice(0, border[3].indexOf("Border"));
+                borderColor = borderColor[3].slice(0, border[3].indexOf("Border"));
             }
         }
 
