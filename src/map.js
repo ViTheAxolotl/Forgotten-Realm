@@ -122,7 +122,7 @@ function addCharacter(character, update)
         char[0].classList = `tokens ${character["name"]} char`;
         char[1].src = `images/map/tokens/${character["border"]}Border.png`;
         char[1].id = character["border"];
-        char[1].classList = `tokens ${character["name"]} border`;
+        char[1].classList = `tokens ${character["name"]} border_`;
         let x = pos[0];
         let y = pos[0];
 
@@ -192,7 +192,7 @@ async function updateToken(token)
         for(let token of currentTokens)
         {
             token.classList = `${token.classList[0]} ${token.classList[1]} ${token.classList[2]}`;
-            if(token.classList[2] == "border")
+            if(token.classList[2] == "border_")
             {
                 borderColor = token.src.split('/');
                 borderColor = borderColor[3].slice(0, borderColor[3].indexOf("Border"));
