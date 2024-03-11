@@ -74,6 +74,7 @@ function setMainVaribles()
 async function readTokens()
 {
     wholeData = {};
+    names = [];
     const q = query(collection(db, "CurrentMap"));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => 
@@ -188,10 +189,15 @@ async function updateToken(token)
         let x;
         let y;
         const currentTokens = document.getElementsByClassName(htmlInfo[0]);
-        let borderColor = currentTokens[1].id;
+        let borderColor;
 
         for(let token of currentTokens)
         {
+            if(!names.contains(token.id))
+            {
+                borderColor = token.id;
+            }
+
             token.classList = `${token.classList[0]} ${token.classList[1]} ${token.classList[2]}`;
         }
 
