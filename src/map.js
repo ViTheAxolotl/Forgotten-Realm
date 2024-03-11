@@ -155,7 +155,7 @@ function placeTokens(x, y, prop)
 function timer()
 {
     let c = new Date();
-    let sec = c.getSeconds();
+    let sec = Math.floor(c.getSeconds());
 
     switch(sec)
     {
