@@ -37,7 +37,7 @@ function init()
     setMainVaribles();
     readTokens();
     
-    setInterval(timer, 1000);
+    setInterval(timer, 7500);
 }
 
 function setMainVaribles()
@@ -154,31 +154,17 @@ function placeTokens(x, y, prop)
 
 function timer()
 {
-    let c = new Date();
-    let sec = Math.floor(c.getSeconds());
-
-    if((sec < 12 && sec > 8) || (sec < 32 && sec > 28) || (sec < 52 && sec > 48))
+    if(stage == 1)
     {
-        if(stage == 1)
-        {
-            checkUpdates();
-            stage = 2;
-        }
+        checkUpdates();
+        stage = 2;
     }
 
-    elif((sec < 22 && sec > 18) || (sec < 42 && sec > 38) || (sec < 60 && sec > 58))
+    else if(stage == 2)
     {
-        if(stage == 2)
-        {
-            readTokens();
-            stage = 1;
-        }
+        readTokens();
+        stage = 1;
     }
-    
-    /*let seconds = 1000;
-    setTimeout(() => {checkUpdates()}, seconds * 15);
-    setTimeout(() => {readTokens()}, seconds * 25);
-    setTimeout(() => {timer()}, seconds * 30);*/
 }
 
 function checkUpdates()
