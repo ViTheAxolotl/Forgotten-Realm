@@ -93,11 +93,12 @@ function addTokens()
         temp.innerHTML = "0";
         for(let token of currentTokens)
         {
-            if(!token.classList.contains("update"))
+            if(token.classList.contains("update"))
             {
-                temp.innerHTML = parseInt(temp.innerHTML) + 1;
-                token.remove();
+                break;
             }
+            
+            token.remove();
         }
     }
 
