@@ -117,13 +117,13 @@ function addTokens()
         let pieces = document.getElementsByClassName(name)
         if(pieces.length < 2)
         {
-            for(let data of wholeData)
+            for(let data of Object.keys(wholeData))
             {
                 if(data.name == name)
                 {
                     let char = document.createElement("img");
                     char.src = `images/map/tokens/${data.border}Border.png`;
-                    char.id = wholeData[name["border"]];
+                    char.id = data.border;
                     char.classList = `tokens ${data.name} border_`;
                     let x = pos[xPos.indexOf(data.xPos)];
                     let y = pos[yPos.indexOf(data.yPos)];
