@@ -79,7 +79,7 @@ async function readTokens()
     {
         // doc.data() is never undefined for query doc snapshots
         wholeData[doc.id] = doc.data();
-        names.push(doc.data().name);
+        names.add(doc.data().name);
     });
 
     addTokens();
@@ -171,7 +171,7 @@ function checkUpdates()
 {
     tokens = [];
 
-    names.push(htmlInfo[0]);
+    names.add(htmlInfo[0]);
     for(let name of names)
     {
         let token = document.getElementById(name);
