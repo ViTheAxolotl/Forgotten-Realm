@@ -97,7 +97,7 @@ function addTokens()
             {
                 break;
             }
-            
+
             token.remove();
         }
     }
@@ -133,6 +133,11 @@ function addTokens()
                     div.appendChild(char);
                 }
             }
+        }
+
+        else if(pieces.length > 2)
+        {
+            pieces[2].remove();
         }
     }
 }
