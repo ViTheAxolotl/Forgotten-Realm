@@ -49,7 +49,7 @@ function setUpCharacters(currentName)
         case "axolotl":
             let mapLink = document.createElement("a");
             mapLink.innerHTML = "Map Link";
-            mapLink.href = "map.html?invisible-_invisible-_vi";
+            mapLink.href = "map.html?invisible-_invisible_vi";
             mapLink.classList = "blo";
             let dmLink = document.createElement("a");
             dmLink.innerHTML = "DM Link";
