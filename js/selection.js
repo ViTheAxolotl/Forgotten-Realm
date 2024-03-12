@@ -3,7 +3,7 @@ let enter = document.getElementById("enter");
 let charName = document.getElementById("name");
 let currentName;
 let div = document.getElementById("story");
-let characters = ["nook", "nibbly", "leonier", "razor"];
+let characters = ["nook", "nibbly", "leonier", "razor", "axolotl"];
 let borders = ["blue", "golden", "green", "grey", "orange", "pink", "purple", "red"];
 let char = document.createElement("h3");
 let bord = document.createElement("h3");
@@ -46,6 +46,17 @@ function setUpCharacters(currentName)
 
     switch(currentName)
     {
+        case "axolotl":
+            let mapLink = document.createElement("a");
+            mapLink.innerHTML = "Map Link";
+            mapLink.href = "map.html";
+            let dmLink = document.createElement("a");
+            dmLink.innerHTML = "DM Link";
+            dmLink.href = "dmSite.html";
+            div.appendChild(dmLink);
+            div.appendChild(mapLink);
+            break;
+
         case "nook":
             for(let i = 0; i < 2; i++)
             {
@@ -75,6 +86,16 @@ function setUpCharacters(currentName)
             break;
     }
 
+    if(currentName != "axolotl")
+    {
+        addCharacters();
+        addBorders();
+        div.appendChild(go);
+    }
+}
+
+function addCharacters()
+{
     for(let char of people)
     {
         let person = document.createElement("img");
@@ -84,9 +105,6 @@ function setUpCharacters(currentName)
         person.onclick = select;
         div.appendChild(person);
     }
-
-    addBorders();
-    div.appendChild(go);
 }
 
 function addBorders()
