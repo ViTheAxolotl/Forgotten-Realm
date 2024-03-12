@@ -49,7 +49,7 @@ function setUpCharacters(currentName)
         case "axolotl":
             let mapLink = document.createElement("a");
             mapLink.innerHTML = "Map Link";
-            mapLink.href = "map.html?invisible_invisible_vi";
+            mapLink.href = "map.html?invisible-_invisible-_vi";
             mapLink.classList = "blo";
             let dmLink = document.createElement("a");
             dmLink.innerHTML = "DM Link";
@@ -62,28 +62,28 @@ function setUpCharacters(currentName)
         case "nook":
             for(let i = 0; i < 2; i++)
             {
-                people.push(currentName + numToLet[i]);
+                people.push(currentName + '-' + numToLet[i]);
             }
             break;
 
         case "leonier":
             for(let i = 0; i < 2; i++)
             {
-                people.push(currentName + numToLet[i]);
+                people.push(currentName + '-' + numToLet[i]);
             }
             break;
 
         case "razor":
             for(let i = 0; i < 2; i++)
             {
-                people.push(currentName + numToLet[i]);
+                people.push(currentName + '-' + numToLet[i]);
             }
             break;
 
         case "nibbly":
             for(let i = 0; i < 2; i++)
             {
-                people.push(currentName + numToLet[i]);
+                people.push(currentName + '-' + numToLet[i]);
             }
             break;
     }
