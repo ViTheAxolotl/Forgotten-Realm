@@ -49,7 +49,7 @@ function setUpCharacters(currentName)
         case "axolotl":
             let mapLink = document.createElement("a");
             mapLink.innerHTML = "Map Link";
-            mapLink.href = "map.html?invisible_invisible";
+            mapLink.href = "map.html?invisible_invisible_vi";
             mapLink.classList = "blo";
             let dmLink = document.createElement("a");
             dmLink.innerHTML = "DM Link";
@@ -161,7 +161,7 @@ function handleGoButton()
     {
         let curBorder = currentSelected[1].id;
         let curCharacter = currentSelected[0].id;
-        window.location.href= `map.html?${curCharacter}_${curBorder}`;
+        window.location.href= `map.html?${curCharacter}_${curBorder}_x`;
     }
 }
 

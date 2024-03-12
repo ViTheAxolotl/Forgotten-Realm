@@ -162,6 +162,7 @@ function addCharacter(character, update)
         char[1].src = `images/map/tokens/${character["border"]}Border.png`;
         char[1].id = character["border"];
         char[1].classList = `tokens ${character["name"]} border_`;
+        char[1].onclick = handleCharClick;
         let x = pos[0];
         let y = pos[0];
 
@@ -185,6 +186,17 @@ function addCharacter(character, update)
         }
     }
 }
+
+
+function handleCharClick()
+{
+    if(htmlInfo[2] == "vi")
+    {
+        let charToken = document.getElementById(this.classList[1]);
+        window.location.href= `map.html?${charToken.id}_${this.id}_vi`;
+    }
+}
+
 
 function placeTokens(x, y, prop)
 {
