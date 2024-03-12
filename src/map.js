@@ -166,7 +166,7 @@ function addCharacter(character, update)
         char[1].classList = `tokens ${character["name"]} border_`;
         char[1].onclick = handleCharClick;
         let x = pos[0];
-        let y = pos[0];
+        let y = pos[0]; 
 
         if(character.title != "")
         {
