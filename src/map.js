@@ -154,10 +154,12 @@ function addCharacter(character, update)
 {
     if(document.getElementById(character["name"]) == null)
     {
+        let letterRemover = htmlInfo[0].indexOf("-");
+        playerName.innerHTML = htmlInfo[0].charAt(0);
         let char = [document.createElement("img"), document.createElement("img")];
         char[0].src = `images/map/tokens/${character["name"]}.png`;
         char[0].id = character["name"];
-        char[0].title = `${character["name"]}:`;
+        char[0].title = `${character["name"].toUpperCase() + character["name"].slice(1, letterRemover)}:`;
         char[0].classList = `tokens ${character["name"]} char`;
         char[1].src = `images/map/tokens/${character["border"]}Border.png`;
         char[1].id = character["border"];
