@@ -8,10 +8,8 @@ let borders = ["blue", "golden", "green", "grey", "orange", "pink", "purple", "r
 let char = document.createElement("h3");
 let bord = document.createElement("h3");
 let go = document.createElement("button");
-let nooks = ["nook"];
-let leoniers = ["leonier"];
-let nibblys = ["nibbly"];
-let razors = ["razor"];
+let people = [];
+let numToLet = {0 : "", 1 : "a"};
 
 function init()
 {
@@ -49,52 +47,42 @@ function setUpCharacters(currentName)
     switch(currentName)
     {
         case "nook":
-            for(let char of nooks)
+            for(let i = 0; i < 2; i++)
             {
-                let nook = document.createElement("img");
-                nook.id = char;
-                nook.src = `images/map/tokens/${char}.png`;
-                nook.classList = "char";
-                nook.onclick = select;
-                div.appendChild(nook);
+                people.push(currentName + numToLet[i]);
             }
             break;
 
         case "leonier":
-            for(let char of leoniers)
+            for(let i = 0; i < 2; i++)
             {
-                let nook = document.createElement("img");
-                nook.id = char;
-                nook.src = `images/map/tokens/${char}.png`;
-                nook.classList = "char";
-                nook.onclick = select;
-                div.appendChild(nook);
+                people.push(currentName + numToLet[i]);
             }
             break;
 
         case "razor":
-            for(let char of razors)
+            for(let i = 0; i < 2; i++)
             {
-                let nook = document.createElement("img");
-                nook.id = char;
-                nook.src = `images/map/tokens/${char}.png`;
-                nook.classList = "char";
-                nook.onclick = select;
-                div.appendChild(nook);
+                people.push(currentName + numToLet[i]);
             }
             break;
 
         case "nibbly":
-            for(let char of nibblys)
+            for(let i = 0; i < 2; i++)
             {
-                let nook = document.createElement("img");
-                nook.id = char;
-                nook.src = `images/map/tokens/${char}.png`;
-                nook.classList = "char";
-                nook.onclick = select;
-                div.appendChild(nook);
+                people.push(currentName + numToLet[i]);
             }
             break;
+    }
+
+    for(let char of people)
+    {
+        let person = document.createElement("img");
+        person.id = char;
+        person.src = `images/map/tokens/${char}.png`;
+        person.classList = "char";
+        person.onclick = select;
+        div.appendChild(person);
     }
 
     addBorders();
