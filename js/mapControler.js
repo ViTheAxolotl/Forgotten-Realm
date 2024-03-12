@@ -67,8 +67,6 @@ function moveChar(xPos, yPos)
         prop.style.top = yPos + "px";
         prop.classList += " update";
     }   
-
-    temp.innerHTML = `${htmlInfo[0]} X: ${currentPos[0]}, Nook Y: ${currentPos[1]}`;
 }
 
 function handleArrow()
