@@ -62,7 +62,6 @@ async function handleRemove()
     hideButtons();
     
     wholeData = {};
-    doneButton.classList = "";
     const q = query(collection(db, "CurrentMap"));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => 
