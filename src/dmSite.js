@@ -19,6 +19,7 @@ let fiveButtons = [];
 let doneButton = document.getElementById("done");
 let stage;
 let wholeData = {};
+let div = document.getElementById("story");
 
 function init()
 {
@@ -80,8 +81,25 @@ async function handleRemove()
     
     for(let key of Object.keys(wholeData))
     {
-        
+        let token = [document.createElement("div"), document.createElement("img"), document.createElement("img")];
+        token[0].id = `${key.name}-div`;
+        token[1].src = `images/map/tokens/${key.name}.png`;
+        token[1].id = key.name;
+        token[1].classList = `tokens ${key.name} char`;
+        token[2].src = `images/map/tokens/${key.border}Border.png`;
+        token[2].id = key.border;
+        token[2].classList = `tokens ${key.name} border_`;
+        token[2].onclick = handleDelete;
+
+        token[0].appendChild(token[1]);
+        token[0].appendChild(token[2]);
+        div.appendChild(token[0]);
     }
+}
+
+function handleDelete()
+{
+    
 }
 
 function handleChangeMap()
