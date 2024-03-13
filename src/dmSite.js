@@ -114,21 +114,37 @@ function handleDeleteOrEdit()
 
     editB.innerHTML = "edit";
     editB.onclick = handleEdit;
-    editB.classList = "eOrD";
+    editB.classList = `eOrD ${this.classList[1]}`;
     editB.id = "edit";
     editB.style.margin = `5px 5px 5px 79px`;
     deleteB.innerHTML = "delete";
     deleteB.onclick = deleteToken;
-    deleteB.classList = "eOrD";
+    deleteB.classList = `eOrD ${this.classList[1]}`;
     currentDiv.appendChild(editB);
     currentDiv.appendChild(deleteB);
 }
 
-function deleteToken()
+async function deleteToken()
 {
+    let tokenToDelete;
+    let aboveDiv = currentDiv.parentElement;
+    for(let key of Object.keys(wholeData))
+    {
+        if(wholeData[key].name = this.classList[1])
+        {
+            tokenToDelete = wholeData[key];
+            await deleteDoc(doc(db, "CurrentMap", tokenToDelete));
+        }
+    }
 
+    currentDiv.remove();
+    currentDiv = document.createElement("div");
+    currentDiv.id = "story";
+    currentDiv.classList = "bg-UP-purple color-UP-black col-md-12 col-sm-12";
+    aboveDiv.insertBefore(currentDiv, aboveDiv.childNodes[2]);
+    handleRemove();
 }
-
+ 
 function handleEdit()
 {
     addToken();
@@ -156,9 +172,14 @@ function handleDone()
 
 function hideButtons()
 {
-    for(let button of fiveButtons)
+    if(fiveButtons != [])
     {
-        button.remove();
+        for(let button of fiveButtons)
+        {
+            button.remove();
+        }
+
+        fiveButtons = [];
     }
 }
 
