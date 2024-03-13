@@ -53,7 +53,7 @@ function setUpCharacters(currentName)
             mapLink.classList = "blo";
             let dmLink = document.createElement("a");
             dmLink.innerHTML = "DM Link";
-            dmLink.href = "dmSite.html";
+            dmLink.onclick = window.open('dmSite.html', '_blank');
             mapLink.classList = "blo";
             div.appendChild(dmLink);
             div.appendChild(mapLink);
