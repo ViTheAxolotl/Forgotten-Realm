@@ -108,7 +108,7 @@ function handleDeleteOrEdit()
     {
         for(let i = 0; i < 2; i++)
         {
-            currentEOrD.parentElement.removeChild(currentDiv.lastChild);
+            currentEOrD[i].parentElement.removeChild(currentDiv.lastChild);
         }
     }
 
@@ -118,7 +118,7 @@ function handleDeleteOrEdit()
         editB.onclick = handleEdit;
         editB.classList = "eOrD";
         editB.id = "edit";
-        editB.margin = `5px 5px 5px ${this.style.right + 5}px`;
+        editB.style.margin = `5px 5px 5px ${this.style.right + 5}px`;
         deleteB.innerHTML = "delete";
         deleteB.onclick = deleteToken;
         deleteB.classList = "eOrD";
