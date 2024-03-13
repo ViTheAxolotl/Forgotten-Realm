@@ -112,19 +112,16 @@ function handleDeleteOrEdit()
         }
     }
 
-    else
-    {
-        editB.innerHTML = "edit";
-        editB.onclick = handleEdit;
-        editB.classList = "eOrD";
-        editB.id = "edit";
-        editB.style.margin = `5px 5px 5px 79px`;
-        deleteB.innerHTML = "delete";
-        deleteB.onclick = deleteToken;
-        deleteB.classList = "eOrD";
-        currentDiv.appendChild(editB);
-        currentDiv.appendChild(deleteB);
-    }
+    editB.innerHTML = "edit";
+    editB.onclick = handleEdit;
+    editB.classList = "eOrD";
+    editB.id = "edit";
+    editB.style.margin = `5px 5px 5px 79px`;
+    deleteB.innerHTML = "delete";
+    deleteB.onclick = deleteToken;
+    deleteB.classList = "eOrD";
+    currentDiv.appendChild(editB);
+    currentDiv.appendChild(deleteB);
 }
 
 function deleteToken()
