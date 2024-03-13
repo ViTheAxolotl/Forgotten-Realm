@@ -354,6 +354,11 @@ table, .itemSearch, #itemImg
     position: absolute;
 }
 
+#story .tokens
+{
+    position: relative;
+}
+
 .arrows
 {
     touch-action: manipulation;
