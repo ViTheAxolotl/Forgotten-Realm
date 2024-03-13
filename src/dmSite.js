@@ -14,10 +14,7 @@ const firebaseApp = initializeApp
 });
 
 const db = getFirestore(firebaseApp);
-let temp = document.getElementById("temp");
 let fiveButtons = [];
-let doneButton = document.getElementById("done");
-let stage;
 let wholeData = {};
 let div = document.getElementById("story");
 
@@ -50,10 +47,6 @@ function init()
             case "load":
                 fiveButtons.push(button);
                 button.onclick = handleLoad;
-                break;
-
-            case "done":
-                button.onclick = handleDone;
                 break;
         }
     }
@@ -95,6 +88,8 @@ async function handleRemove()
         token[0].appendChild(token[2]);
         div.appendChild(token[0]);
     }
+
+    addDone();
 }
 
 function handleDelete()
@@ -128,6 +123,15 @@ function hideButtons()
     {
         button.remove();
     }
+}
+
+function addDone()
+{
+    let doneButton = document.createElement("button");
+    doneButton.id = "done";
+    doneButton.innerHTML = "Done";
+    doneButton.onclick = handleDone;
+    div.appendChild(doneButton);
 }
 
 /*function setMainVaribles()
