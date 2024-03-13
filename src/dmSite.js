@@ -126,7 +126,7 @@ function hideButtons()
 {
     for(let button of fiveButtons)
     {
-        button.classList = "invisible";
+        button.remove();
     }
 }
 
