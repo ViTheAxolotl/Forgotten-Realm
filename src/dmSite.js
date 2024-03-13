@@ -85,7 +85,7 @@ async function handleRemove()
 
         token[0].appendChild(token[1]);
         token[0].appendChild(token[2]);
-        div.appendChild(token[0]);
+        div.parentNode.appendChild(token[0]);
     }
 
     addDone();
