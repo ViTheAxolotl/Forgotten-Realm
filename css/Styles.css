@@ -360,14 +360,14 @@ table, .itemSearch, #itemImg
     position: relative;
 }
 
-.tokens
+#controls .tokens
 {
     position: absolute;
 }
 
-#story .tokens
+#story .tokens .border_
 {
-    position: fixed;
+    position: absolute;
 }
 
 .arrows
