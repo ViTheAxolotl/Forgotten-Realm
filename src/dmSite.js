@@ -86,14 +86,10 @@ async function handleRemove()
         token[1].src = `images/map/tokens/${wholeData[key].name}.png`;
         token[1].id = wholeData[key].name;
         token[1].classList = `tokens ${wholeData[key].name} char`;
-        token[1].style.left = "0px";
-        token[1].style.top = "0px";
         token[2].src = `images/map/tokens/${wholeData[key].border}Border.png`;
         token[2].id = wholeData[key].border;
         token[2].classList = `tokens ${wholeData[key].name} border_`;
         token[2].onclick = handleDelete;
-        token[2].style.left = "0px";
-        token[2].style.top = "0px";
 
         token[0].appendChild(token[1]);
         token[0].appendChild(token[2]);
