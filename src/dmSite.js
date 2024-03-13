@@ -91,7 +91,7 @@ async function handleRemove()
 
             token[0].appendChild(token[1]);
             token[0].appendChild(token[2]);
-            div.appendChild(token[0]);
+            div.cappendChild(token[0]);
         }
     }
 
@@ -108,19 +108,31 @@ function handleDeleteOrEdit()
     {
         for(let i = 0; i < 2; i++)
         {
-            currentEOrD[i].remove();
+            currentEOrD[i].classList = "eOrD invisible";
         }
     }
 
-    editB.innerHTML = "edit";
-    editB.onclick = handleEdit;
-    editB.classList = "eOrD";
-    editB.margin = "5px, 5px, 5px, 87px";
-    deleteB.innerHTML = "delete";
-    deleteB.onclick = deleteToken;
-    deleteB.classList = "eOrD";
-    currentDiv.appendChild(editB);
-    currentDiv.appendChild(deleteB);
+    if(currentDiv.childrenNodes.length > 2)
+    {
+        for(let i = 2; i < 4; i++)
+        {
+            currentDiv.childrenNodes[i].classList = "eOrD";
+        }
+    }
+
+    else
+    {
+        editB.innerHTML = "edit";
+        editB.onclick = handleEdit;
+        editB.classList = "eOrD";
+        editB.id = "edit";
+        editB.margin = "5px 5px 5px 87px";
+        deleteB.innerHTML = "delete";
+        deleteB.onclick = deleteToken;
+        deleteB.classList = "eOrD";
+        currentDiv.appendChild(editB);
+        currentDiv.appendChild(deleteB);
+    }
 }
 
 function deleteToken()
