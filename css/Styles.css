@@ -101,6 +101,12 @@ p
     padding: 10px 10px 0px 10px;
 }
 
+.objectBorder
+{
+    border: #555555 4px solid;
+    padding: 10px 10px 0px 10px;
+}
+
 h3, h5
 {
     text-align: center;

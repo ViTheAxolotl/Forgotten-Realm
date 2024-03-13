@@ -76,7 +76,7 @@ async function handleRemove()
         {
             let token = [document.createElement("div"), document.createElement("img"), document.createElement("img")];
             token[0].id = `${wholeData[key].name}-div`;
-            token[0].classList = "bg-UP-grey";
+            token[0].classList = "bg-UP-grey objectBorder";
             token[0].style.margin = "5px";
             token[1].src = `images/map/tokens/${wholeData[key].name}.png`;
             token[1].id = wholeData[key].name;
