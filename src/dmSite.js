@@ -79,8 +79,8 @@ async function handleRemove()
             token[0].classList = "bg-UP-grey objectBorder";
             token[0].style.margin = "5px";
             token[0].style.position = "relative";
-            token[0].style.height = "74px";
-            token[0].style.width = "74px";
+            token[0].style.minHeight = "82px";
+            token[0].style.minWidth = "82px";
             token[1].src = `images/map/tokens/${wholeData[key].name}.png`;
             token[1].id = wholeData[key].name;
             token[1].classList = `tokens ${wholeData[key].name} char`;
