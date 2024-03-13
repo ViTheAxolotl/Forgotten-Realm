@@ -106,18 +106,20 @@ function handleDeleteOrEdit()
     let deleteB = document.createElement("button");
     if(currentEOrD.length > 0)
     {
-        for(let button of currentEOrD)
+        for(let i = 0; i < 2; i++)
         {
-            button.remove();
+            currentEOrD[i].remove();
         }
     }
 
     editB.innerHTML = "edit";
     editB.onclick = handleEdit;
     editB.classList = "eOrD";
+    editB.style.width = "20%";
     deleteB.innerHTML = "delete";
     deleteB.onclick = deleteToken;
     deleteB.classList = "eOrD";
+    deleteB.style.width = "20%";
     currentDiv.appendChild(editB);
     currentDiv.appendChild(deleteB);
 }
