@@ -118,7 +118,7 @@ function handleDeleteOrEdit()
         editB.onclick = handleEdit;
         editB.classList = "eOrD";
         editB.id = "edit";
-        editB.margin = "5px 5px 5px 87px";
+        editB.margin = `5px 5px 5px ${this.style.right + 5}px`;
         deleteB.innerHTML = "delete";
         deleteB.onclick = deleteToken;
         deleteB.classList = "eOrD";
