@@ -23,7 +23,7 @@ let div = document.getElementById("story");
 
 function init()
 {
-    for(button of document.getElementsByTagName("button"))
+    for(let button of document.getElementsByTagName("button"))
     {
         switch(button.id)
         {
@@ -99,7 +99,7 @@ async function handleRemove()
 
 function handleDelete()
 {
-    
+
 }
 
 function handleChangeMap()
