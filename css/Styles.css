@@ -365,9 +365,11 @@ table, .itemSearch, #itemImg
     position: absolute;
 }
 
-#story .border_
+#story .token
 {
     position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .arrows

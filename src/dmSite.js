@@ -78,6 +78,7 @@ async function handleRemove()
             token[0].id = `${wholeData[key].name}-div`;
             token[0].classList = "bg-UP-grey objectBorder";
             token[0].style.margin = "5px";
+            token[0].style.position = "relative";
             token[1].src = `images/map/tokens/${wholeData[key].name}.png`;
             token[1].id = wholeData[key].name;
             token[1].classList = `tokens ${wholeData[key].name} char`;
@@ -89,9 +90,6 @@ async function handleRemove()
             token[0].appendChild(token[1]);
             token[0].appendChild(token[2]);
             div.appendChild(token[0]);
-            
-            token[2].style.top = token[1].style.top;
-            token[2].style.left = token[1].style.left;
         }
     }
 
