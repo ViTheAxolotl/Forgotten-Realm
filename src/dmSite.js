@@ -72,20 +72,24 @@ async function handleRemove()
 
     for(let key of Object.keys(wholeData))
     {
-        let token = [document.createElement("div"), document.createElement("img"), document.createElement("img")];
-        token[0].id = `${wholeData[key].name}-div`;
-        token[0].classList = "bg-UP-grey";
-        token[1].src = `images/map/tokens/${wholeData[key].name}.png`;
-        token[1].id = wholeData[key].name;
-        token[1].classList = `tokens ${wholeData[key].name} char`;
-        token[2].src = `images/map/tokens/${wholeData[key].border}Border.png`;
-        token[2].id = wholeData[key].border;
-        token[2].classList = `tokens ${wholeData[key].name} border_`;
-        token[2].onclick = handleDelete;
+        if(key != "invisible-")
+        {
+            let token = [document.createElement("div"), document.createElement("img"), document.createElement("img")];
+            token[0].id = `${wholeData[key].name}-div`;
+            token[0].classList = "bg-UP-grey";
+            token[0].style.margin = "5px";
+            token[1].src = `images/map/tokens/${wholeData[key].name}.png`;
+            token[1].id = wholeData[key].name;
+            token[1].classList = `tokens ${wholeData[key].name} char`;
+            token[2].src = `images/map/tokens/${wholeData[key].border}Border.png`;
+            token[2].id = wholeData[key].border;
+            token[2].classList = `tokens ${wholeData[key].name} border_`;
+            token[2].onclick = handleDelete;
 
-        token[0].appendChild(token[1]);
-        token[0].appendChild(token[2]);
-        div.appendChild(token[0]);
+            token[0].appendChild(token[1]);
+            token[0].appendChild(token[2]);
+            div.appendChild(token[0]);
+        }
     }
 
     addDone();
