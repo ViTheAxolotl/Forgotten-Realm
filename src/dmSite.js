@@ -91,7 +91,7 @@ async function handleRemove()
 
             token[0].appendChild(token[1]);
             token[0].appendChild(token[2]);
-            div.cappendChild(token[0]);
+            div.appendChild(token[0]);
         }
     }
 
