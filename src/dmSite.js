@@ -108,7 +108,7 @@ function handleDeleteOrEdit()
     {
         for(let i = 0; i < 2; i++)
         {
-            currentEOrD[i].parentElement.removeChild(currentDiv.lastChild);
+            currentEOrD[i].parentElement.removeChild(currentEOrD[i].lastChild);
         }
     }
 
