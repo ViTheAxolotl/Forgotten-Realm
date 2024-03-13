@@ -108,17 +108,9 @@ function handleDeleteOrEdit()
     {
         for(let i = 0; i < 2; i++)
         {
-            currentEOrD[i].classList = "eOrD invisible";
+            currentDiv.removeChild(currentDiv.lastChild);
         }
     }
-
-    if(currentDiv.childrenNodes.length > 2)
-    {
-        for(let i = 2; i < 4; i++)
-        {
-            currentDiv.childrenNodes[i].classList = "eOrD";
-        }
-    } 
 
     else
     {
