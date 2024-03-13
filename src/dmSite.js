@@ -70,11 +70,11 @@ async function handleRemove()
         wholeData[doc.id] = doc.data();
     });
 
-    
     for(let key of Object.keys(wholeData))
     {
         let token = [document.createElement("div"), document.createElement("img"), document.createElement("img")];
         token[0].id = `${wholeData[key].name}-div`;
+        token[0].classList = "bg-UP-grey";
         token[1].src = `images/map/tokens/${wholeData[key].name}.png`;
         token[1].id = wholeData[key].name;
         token[1].classList = `tokens ${wholeData[key].name} char`;
