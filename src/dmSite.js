@@ -127,7 +127,7 @@ function handleDeleteOrEdit()
 async function deleteToken()
 {
     let tokenToDelete;
-    let aboveDiv = currentDiv.parentElement;
+    let aboveDiv = div.parentElement;
     for(let key of Object.keys(wholeData))
     {
         if(wholeData[key].name = this.classList[1])
@@ -137,11 +137,11 @@ async function deleteToken()
         }
     }
 
-    currentDiv.remove();
-    currentDiv = document.createElement("div");
-    currentDiv.id = "story";
-    currentDiv.classList = "bg-UP-purple color-UP-black col-md-12 col-sm-12";
-    aboveDiv.insertBefore(currentDiv, aboveDiv.childNodes[2]);
+    div.remove();
+    div = document.createElement("div");
+    div.id = "story";
+    div.classList = "bg-UP-purple color-UP-black col-md-12 col-sm-12";
+    aboveDiv.insertBefore(div, aboveDiv.childNodes[2]);
     handleRemove();
 }
  
