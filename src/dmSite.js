@@ -115,11 +115,10 @@ function handleDeleteOrEdit()
     editB.innerHTML = "edit";
     editB.onclick = handleEdit;
     editB.classList = "eOrD";
-    editB.style.width = "20%";
+    editB.margin = "5px, 5px, 5px, 87px";
     deleteB.innerHTML = "delete";
     deleteB.onclick = deleteToken;
     deleteB.classList = "eOrD";
-    deleteB.style.width = "20%";
     currentDiv.appendChild(editB);
     currentDiv.appendChild(deleteB);
 }

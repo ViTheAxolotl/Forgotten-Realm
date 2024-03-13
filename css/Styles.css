@@ -372,6 +372,12 @@ table, .itemSearch, #itemImg
     left: 0;
 }
 
+.eOrD
+{
+    width: 20%;
+    margin: 5px;
+}
+
 .arrows
 {
     touch-action: manipulation;
