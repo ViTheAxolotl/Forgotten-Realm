@@ -118,7 +118,7 @@ function handleDeleteOrEdit()
         {
             currentDiv.childrenNodes[i].classList = "eOrD";
         }
-    }
+    } 
 
     else
     {
