@@ -89,10 +89,10 @@ async function handleRemove()
             token[0].appendChild(token[1]);
             token[0].appendChild(token[2]);
             div.appendChild(token[0]);
-            token[1].style.top = token[0].style.top;
+            /*token[1].style.top = token[0].style.top;
             token[1].style.left = token[0].style.left;
             token[2].style.top = token[0].style.top;
-            token[2].style.left = token[0].style.left;
+            token[2].style.left = token[0].style.left;*/
         }
     }
 

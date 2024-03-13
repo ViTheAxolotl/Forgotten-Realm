@@ -367,7 +367,7 @@ table, .itemSearch, #itemImg
 
 #story .tokens
 {
-    position: absolute;
+    position: fixed;
 }
 
 .arrows
