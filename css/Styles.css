@@ -416,7 +416,7 @@ table, .itemSearch, #itemImg
         margin: 10%;
     }
 
-    .tokens
+    #controls .tokens
     {
         width: 5%;
         height: 5%;
