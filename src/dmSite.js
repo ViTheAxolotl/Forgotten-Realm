@@ -75,10 +75,10 @@ async function handleRemove()
     {
         let token = [document.createElement("div"), document.createElement("img"), document.createElement("img")];
         token[0].id = `${wholeData[key].name}-div`;
-        token[1].src = `../images/map/tokens/${wholeData[key].name}.png`;
+        token[1].src = `images/map/tokens/${wholeData[key].name}.png`;
         token[1].id = wholeData[key].name;
         token[1].classList = `tokens ${wholeData[key].name} char`;
-        token[2].src = `../images/map/tokens/${wholeData[key].border}Border.png`;
+        token[2].src = `images/map/tokens/${wholeData[key].border}Border.png`;
         token[2].id = wholeData[key].border;
         token[2].classList = `tokens ${wholeData[key].name} border_`;
         token[2].onclick = handleDelete;
