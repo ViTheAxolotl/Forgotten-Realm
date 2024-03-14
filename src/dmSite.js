@@ -206,8 +206,9 @@ function handleEdit()
                 let currentBorder = imgs["borders"][key];
                 let option = document.createElement("option");
                 option.value = key;
-                option.text = currentBorder.slice(currentBorder.indexOf("ns/") + 2);
+                option.text = currentBorder.slice(currentBorder.indexOf("ns/") + 3).replace("Border.png", "");
                 option.style.backgroundImage = `url(${currentBorder})`;
+                option.onclick = function(){this.parentNode.parentNode.childNodes[1].src=currentBorder;};
                 txtFeilds[i].appendChild(option);
             }
         }
