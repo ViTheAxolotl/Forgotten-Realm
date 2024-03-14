@@ -31,6 +31,7 @@ let yPos;
 let xPos;
 let tokens = [];
 let stage = 1;
+let imgs;
 
 function init()
 {
@@ -42,6 +43,7 @@ function init()
 
 function setMainVaribles()
 {   
+    fetch('https://vitheaxolotl.github.io/Forgotten-Realm/src/files.json').then(res => res.json()).then((json) => imgs = json);
     htmlInfo = htmlInfo.split("?");
     htmlInfo = htmlInfo[1];
     htmlInfo = htmlInfo.split("_");
@@ -80,6 +82,10 @@ async function readTokens()
         // doc.data() is never undefined for query doc snapshots
         wholeData[doc.id] = doc.data();
         names.add(doc.data().name);
+        if(doc.data().name == "invisible-")
+        {
+            document.getElementById("grid").src = imgs["mapName"][doc.data().map];
+        }
     });
 
     addTokens();
