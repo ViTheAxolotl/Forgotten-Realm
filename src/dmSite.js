@@ -133,7 +133,7 @@ async function deleteToken()
         if(wholeData[key].name = this.classList[1])
         {
             try
-            {
+            { 
                 await deleteDoc(doc(db, "CurrentMap", key));
             }
             
