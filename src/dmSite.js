@@ -72,10 +72,18 @@ async function readTokens()
     });
 }
 
-function handleRemove()
+async function handleRemove()
 {
     hideButtons();
-    readTokens();
+    
+    wholeData = {};
+    const q = query(collection(db, "CurrentMap"));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => 
+    {
+        // doc.data() is never undefined for query doc snapshots
+        wholeData[doc.id] = doc.data();
+    });
 
     for(let key of Object.keys(wholeData))
     {
