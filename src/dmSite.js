@@ -202,7 +202,7 @@ function handleEdit()
             txtFeilds[i] = document.createElement("select");
             txtFeilds[i].name = names[i];
             txtFeilds[i].onchange = updateBorderPic;
-            
+
             for(let key of Object.keys(imgs["borders"]))
             {
                 let currentBorder = imgs["borders"][key];
@@ -238,7 +238,7 @@ function handleEdit()
 
 function updateBorderPic()
 {
-    this.parentNode.parentNode.childNodes[1].src = currentBorder;
+    this.parentNode.childNodes[1].src = currentBorder;
 }
 
 function resetDelete()
