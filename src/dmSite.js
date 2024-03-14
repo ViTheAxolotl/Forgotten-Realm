@@ -22,7 +22,7 @@ let imgs;
 
 function init()
 {
-    fetch("./files.json").then(res => res.json()).then(js => {imgs = js;});
+    fetch('https://vitheaxolotl.github.io/Forgotten-Realm/src/files.json').then(res => res.json()).then(js => {imgs = js;});
     for(let button of document.getElementsByTagName("button"))
     {
         switch(button.id)
