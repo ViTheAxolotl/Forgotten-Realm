@@ -60,10 +60,8 @@ async function handleAdd()
     hideButtons();
 }
 
-async function handleRemove()
+async function readTokens()
 {
-    hideButtons();
-    
     wholeData = {};
     const q = query(collection(db, "CurrentMap"));
     const querySnapshot = await getDocs(q);
@@ -72,6 +70,12 @@ async function handleRemove()
         // doc.data() is never undefined for query doc snapshots
         wholeData[doc.id] = doc.data();
     });
+}
+
+function handleRemove()
+{
+    hideButtons();
+    readTokens();
 
     for(let key of Object.keys(wholeData))
     {
@@ -254,8 +258,10 @@ function resetDelete()
 function handleChangeMap()
 {
     hideButtons();
+    readTokens();
 
     let select = document.createElement("select");
+    select.classList = "center";
     for(let keys of Object.keys(imgs["mapName"]))
     {
         let mapImg = imgs["mapName"][keys];
@@ -304,6 +310,8 @@ async function updateMap()
         xPos : x,
         yPos : y
     });
+
+    handleDone();
 }
 
 function handleSave()
