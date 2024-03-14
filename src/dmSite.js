@@ -174,6 +174,7 @@ function handleEdit()
     edit.onclick = addToken;
     edit.innerHTML = "edit";
     edit.style.display = "inline";
+    edit.style.width = "80px";
 
     for(let key of Object.keys(wholeData))
     {
