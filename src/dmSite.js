@@ -206,7 +206,10 @@ function handleEdit()
                 let currentBorder = imgs["borders"][key];
                 let option = document.createElement("option");
                 option.value = key;
-                option.style.backgroundImage = `url(${currentBorder})`;
+                option.text = currentBorder;
+                option.style.backgroundImage = `url(\\${currentBorder}\\)`;
+                option.style.backgroundImage = option.style.backgroundImage.replace("\\\"", "\'");
+                option.style.backgroundImage = option.style.backgroundImage.replace("\"\\", "\'");
                 txtFeilds[i].appendChild(option);
             }
         }
