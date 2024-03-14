@@ -201,7 +201,6 @@ function handleEdit()
             label.style.margin = `5px 5px 5px 79px`;
             txtFeilds[i] = document.createElement("select");
             txtFeilds[i].name = names[i];
-            txtFeilds[i].onchange = updateBorderPic;
 
             for(let key of Object.keys(imgs["borders"]))
             {
@@ -211,6 +210,7 @@ function handleEdit()
                 option.text = currentBorder.slice(currentBorder.indexOf("ns/") + 3).replace("Border.png", "");
                 option.style.backgroundImage = `url(${currentBorder})`;
                 txtFeilds[i].appendChild(option);
+                txtFeilds[i].onchange = updateBorderPic(currentBorder);
             }
         }
 
@@ -236,7 +236,7 @@ function handleEdit()
     buttons.forEach(em => {editDiv.appendChild(em)});
 }
 
-function updateBorderPic()
+function updateBorderPic(currentBorder)
 {
     this.parentNode.childNodes[1].src = currentBorder;
 }
