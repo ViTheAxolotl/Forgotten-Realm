@@ -209,7 +209,7 @@ function handleEdit()
                 bor.src = currentBorder;
                 option.appendChild(bor);
                 option.value = key;
-                option.text = currentBorder;
+                //option.text = currentBorder;
                 option.style.backgroundImage = `url(${currentBorder})`;
                 txtFeilds[i].appendChild(option);
             }
