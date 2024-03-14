@@ -17,6 +17,7 @@ const db = getFirestore(firebaseApp);
 let fiveButtons = [];
 let wholeData = {};
 let div = document.getElementById("story");
+let editDiv;
 
 function init()
 {
@@ -104,6 +105,7 @@ function handleDeleteOrEdit()
     let currentEOrD = document.getElementsByClassName("eOrD");
     let editB = document.createElement("button");
     let deleteB = document.createElement("button");
+
     if(currentEOrD.length > 0)
     {
         for(let i = 0; i < 2; i++)
@@ -112,6 +114,7 @@ function handleDeleteOrEdit()
         }
     }
 
+    editDiv = currentDiv;
     editB.innerHTML = "edit";
     editB.onclick = handleEdit;
     editB.classList = `eOrD ${this.classList[1]}`;
@@ -183,7 +186,7 @@ function handleEdit()
         txtFeilds[i] = document.createElement("input");
         txtFeilds[i].style.width = "50px";
         txtFeilds[i].id = names[i];
-        this.parentElement.appendChild(txtFeilds[i]);
+        editDiv.appendChild(txtFeilds[i]);
     }
 
     txtFeilds[0].value = curCharacter.border;
@@ -193,7 +196,7 @@ function handleEdit()
     txtFeilds[4].value = curCharacter.title;
     txtFeilds[5].value = curCharacter.xPos;
     txtFeilds[6].value = curCharacter.yPos;
-    this.parentElement.appendChild(edit);
+    editDiv.appendChild(edit);
 }
 
 function handleChangeMap()
