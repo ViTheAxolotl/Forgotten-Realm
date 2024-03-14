@@ -108,10 +108,13 @@ function handleDeleteOrEdit()
 
     if(currentEOrD.length > 0)
     {
+        
         for(let i = 0; i < 2; i++)
         {
             currentEOrD[0].parentElement.removeChild(currentEOrD[0]);
         }
+
+
     }
 
     editDiv = currentDiv;
@@ -129,8 +132,6 @@ function handleDeleteOrEdit()
 
 async function deleteToken()
 {
-    let tokenToDelete;
-    let aboveDiv = div.parentElement;
     for(let key of Object.keys(wholeData))
     {
         if(wholeData[key].name == this.classList[1])
@@ -146,13 +147,8 @@ async function deleteToken()
             }
         }
     }
-
-    div.remove();
-    div = document.createElement("div");
-    div.id = "story";
-    div.classList = "bg-UP-purple color-UP-black col-md-12 col-sm-12";
-    aboveDiv.insertBefore(div, aboveDiv.childNodes[2]);
-    handleRemove();
+    
+    resetDelete();
 }
  
 function handleEdit()
@@ -160,7 +156,8 @@ function handleEdit()
     let names = ["border", "currentHp", "maxHp", "name", "title", "xPos", "yPos"];
     let txtFeilds = [];
     let curCharacter;
-    let edit = document.createElement("button");
+    let buttons = [document.createElement("button"), document.createElement("button")];
+    let buttonsName = ["edit", "back"];
     let currentEOrD = document.getElementsByClassName("eOrD");
 
     if(currentEOrD.length > 0)
@@ -171,10 +168,17 @@ function handleEdit()
         }
     }
 
-    edit.onclick = addToken;
-    edit.innerHTML = "edit";
-    edit.style.display = "inline";
-    edit.style.width = "80px";
+    for(let i = 0; i < 2; i++)
+    {
+        buttons[i].id = buttonsName[i];
+        buttons[i].innerHTML = buttonsName[i];
+        buttons[i].style.display = "inline";
+        buttons[i].style.width = "80px";
+        buttons[i].classList = "center";
+    }
+
+    buttons[0].onclick = addToken;
+    buttons[1].onclick = resetDelete;
 
     for(let key of Object.keys(wholeData))
     {
@@ -212,6 +216,17 @@ function handleEdit()
     txtFeilds[5].value = curCharacter.xPos;
     txtFeilds[6].value = curCharacter.yPos;
     editDiv.appendChild(edit);
+}
+
+function resetDelete()
+{
+    let aboveDiv = div.parentElement;
+    div.remove();
+    div = document.createElement("div");
+    div.id = "story";
+    div.classList = "bg-UP-purple color-UP-black col-md-12 col-sm-12";
+    aboveDiv.insertBefore(div, aboveDiv.childNodes[2]);
+    handleRemove();
 }
 
 function handleChangeMap()
@@ -278,13 +293,7 @@ async function addToken()
         yPos : y
     });
 
-    let aboveDiv = div.parentElement;
-    div.remove();
-    div = document.createElement("div");
-    div.id = "story";
-    div.classList = "bg-UP-purple color-UP-black col-md-12 col-sm-12";
-    aboveDiv.insertBefore(div, aboveDiv.childNodes[2]);
-    handleRemove();
+    resetDelete();
 }
 
 init();
