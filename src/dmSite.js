@@ -158,6 +158,7 @@ function handleEdit()
     let txtFeilds = [];
     let curCharacter;
     let edit = document.createElement("button");
+    let currentEOrD = document.getElementsByClassName("eOrD");
 
     if(currentEOrD.length > 0)
     {
