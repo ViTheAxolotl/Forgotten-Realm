@@ -291,7 +291,7 @@ async function updateMap()
             b = wholeData[key].border;
             c = wholeData[key].currentHp;
             mH = wholeData[key].maxHp;
-            m = imgs["mapName"][this.parentNode.childNodes[6][this.parentNode.childNodes[6].selectedIndex].value];
+            m = this.parentNode.childNodes[6][this.parentNode.childNodes[6].selectedIndex].value;
             n = wholeData[key].name;
             t = wholeData[key].title;
             x = wholeData[key].xPos;
