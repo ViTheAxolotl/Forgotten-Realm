@@ -188,6 +188,12 @@ function handleEdit()
         let label = document.createElement("h3");
         label.innerHTML = `${names[i]}:`;
         label.style.position = "inline";
+        
+        if(i == 0)
+        {
+            label.style.margin = `5px 5px 5px 79px`;
+        }
+        
         txtFeilds[i] = document.createElement("input");
         txtFeilds[i].style.width = "75px";
         txtFeilds[i].id = names[i];
@@ -197,7 +203,6 @@ function handleEdit()
     }
 
     txtFeilds[0].value = curCharacter.border;
-    txtFeilds[0].style.margin = `5px 5px 5px 79px`;
     txtFeilds[1].value = curCharacter.currentHp;
     txtFeilds[2].value = curCharacter.maxHp;
     txtFeilds[3].value = curCharacter.name;
