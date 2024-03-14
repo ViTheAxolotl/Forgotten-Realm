@@ -363,6 +363,8 @@ table, .itemSearch, #itemImg
 #gridMap .tokens
 {
     position: absolute;
+    right: 0;
+    bottom: 0;
 }
 
 #story .tokens
