@@ -185,8 +185,9 @@ function handleEdit()
 
     for(let i = 0; i < 7; i++)
     {
-        let label = document.createElement("p");
+        let label = document.createElement("h3");
         label.innerHTML = `${names[i]}:`;
+        label.style.position = "inline";
         txtFeilds[i] = document.createElement("input");
         txtFeilds[i].style.width = "75px";
         txtFeilds[i].id = names[i];
