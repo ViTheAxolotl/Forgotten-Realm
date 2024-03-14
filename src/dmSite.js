@@ -173,6 +173,7 @@ function handleEdit()
 
     edit.onclick = addToken;
     edit.innerHTML = "edit";
+    edit.style.position = "inline";
 
     for(let key of Object.keys(wholeData))
     {
@@ -184,9 +185,13 @@ function handleEdit()
 
     for(let i = 0; i < 7; i++)
     {
+        let label = document.createElement("p");
+        label.innerHTML = `${names[i]}:`;
         txtFeilds[i] = document.createElement("input");
-        txtFeilds[i].style.width = "50px";
+        txtFeilds[i].style.width = "75px";
         txtFeilds[i].id = names[i];
+        txtFeilds.style.margin = "5px";
+        editDiv.appendChild(label);
         editDiv.appendChild(txtFeilds[i]);
     }
 
@@ -253,7 +258,7 @@ async function addToken()
     let x = document.getElementById("xPos").value;
     let y = document.getElementById("yPos").value;
 
-    const docRef = await setDoc(doc(db, "CurrentMap", curCharacter), 
+    const docRef = await setDoc(doc(db, "CurrentMap", n), 
     {
         border : b,
         currentHp : c,
