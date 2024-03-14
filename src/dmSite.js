@@ -334,7 +334,9 @@ function handleSave()
     label.innerHTML = `Save Name:`;
     label.style.display = "inline";
     label.classList = "color-UP-yellow";
+    label.style.margin = "5px 5px 5px 40%";
     saveName.id = "saveName";
+    saveName.style.margin = "5px";
     button.innerHTML = "Save";
     button.onclick = handleUploadeSave;
     div.appendChild(label);
