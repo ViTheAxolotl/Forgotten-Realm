@@ -250,6 +250,13 @@ async function addToken()
         xPos : x,
         yPos : y
     });
+
+    div.remove();
+    div = document.createElement("div");
+    div.id = "story";
+    div.classList = "bg-UP-purple color-UP-black col-md-12 col-sm-12";
+    aboveDiv.insertBefore(div, aboveDiv.childNodes[2]);
+    handleRemove();
 }
 
 init();
