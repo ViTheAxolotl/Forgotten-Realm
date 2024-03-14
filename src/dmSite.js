@@ -19,6 +19,7 @@ let wholeData = {};
 let div = document.getElementById("story");
 let editDiv;
 let imgs;
+let currentBorder;
 
 function init()
 {
@@ -204,13 +205,13 @@ function handleEdit()
 
             for(let key of Object.keys(imgs["borders"]))
             {
-                let currentBorder = imgs["borders"][key];
+                currentBorder = imgs["borders"][key];
                 let option = document.createElement("option");
                 option.value = key;
                 option.text = currentBorder.slice(currentBorder.indexOf("ns/") + 3).replace("Border.png", "");
                 option.style.backgroundImage = `url(${currentBorder})`;
                 txtFeilds[i].appendChild(option);
-                txtFeilds[i].onchange = updateBorderPic(currentBorder);
+                txtFeilds[i].onchange = updateBorderPic;
             }
         }
 
@@ -236,7 +237,7 @@ function handleEdit()
     buttons.forEach(em => {editDiv.appendChild(em)});
 }
 
-function updateBorderPic(currentBorder)
+function updateBorderPic()
 {
     this.parentNode.childNodes[1].src = currentBorder;
 }
