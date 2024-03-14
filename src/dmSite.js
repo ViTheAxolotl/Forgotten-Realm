@@ -190,7 +190,7 @@ function handleEdit()
         txtFeilds[i] = document.createElement("input");
         txtFeilds[i].style.width = "75px";
         txtFeilds[i].id = names[i];
-        txtFeilds.style.margin = "5px";
+        txtFeilds[i].style.margin = "5px";
         editDiv.appendChild(label);
         editDiv.appendChild(txtFeilds[i]);
     }
