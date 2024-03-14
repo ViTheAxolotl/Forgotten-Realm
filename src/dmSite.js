@@ -185,7 +185,7 @@ function handleEdit()
 
     for(let i = 0; i < 7; i++)
     {
-        let label = document.createElement("h3");
+        let label = document.createElement("h6");
         label.innerHTML = `${names[i]}:`;
         label.style.position = "inline";
         
