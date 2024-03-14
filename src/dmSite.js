@@ -172,7 +172,8 @@ function handleEdit()
     }
 
     edit.onclick = addToken;
-    edit.style.width = "50px";
+    edit.innerHTML = "edit";
+
     for(let key of Object.keys(wholeData))
     {
         if(wholeData[key].name == this.classList[1])
@@ -190,6 +191,7 @@ function handleEdit()
     }
 
     txtFeilds[0].value = curCharacter.border;
+    txtFeilds[0].style.margin = `5px 5px 5px 79px`;
     txtFeilds[1].value = curCharacter.currentHp;
     txtFeilds[2].value = curCharacter.maxHp;
     txtFeilds[3].value = curCharacter.name;
