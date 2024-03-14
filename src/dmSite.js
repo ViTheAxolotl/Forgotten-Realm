@@ -201,6 +201,8 @@ function handleEdit()
             label.style.margin = `5px 5px 5px 79px`;
             txtFeilds[i] = document.createElement("select");
             txtFeilds[i].name = names[i];
+            txtFeilds[i].onchange = updateBorderPic;
+            
             for(let key of Object.keys(imgs["borders"]))
             {
                 let currentBorder = imgs["borders"][key];
@@ -208,7 +210,6 @@ function handleEdit()
                 option.value = key;
                 option.text = currentBorder.slice(currentBorder.indexOf("ns/") + 3).replace("Border.png", "");
                 option.style.backgroundImage = `url(${currentBorder})`;
-                option.onclick = updateBorderPic;
                 txtFeilds[i].appendChild(option);
             }
         }
