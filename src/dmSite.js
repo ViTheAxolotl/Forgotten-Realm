@@ -325,6 +325,31 @@ async function updateMap()
 function handleSave()
 {
     hideButtons();
+    readTokens();
+
+    let saveName = document.createElement("input");
+    let label = document.createElement("h6");
+    let button = document.createElement("button");
+
+    label.innerHTML = `Save Name:`;
+    label.style.display = "inline";
+    label.classList = "color-UP-yellow";
+    saveName.id = "saveName";
+    button.innerHTML = "Save";
+    button.onclick = handleUploadeSave;
+    div.appendChild(label);
+    div.appendChild(saveName);
+    div.appendChild(button);
+}
+
+async function handleUploadeSave()
+{
+    let saveName = document.getElementById("saveName");
+
+    for(let key of Object.keys(wholeData))
+    {
+        const docRef = await setDoc(doc(db, saveName.value, wholeData[key].name), wholeData[key]);
+    }
 }
 
 function handleLoad()
