@@ -207,7 +207,7 @@ function handleEdit()
                 let option = document.createElement("option");
                 let bor = document.createElement("img");
                 bor.src = currentBorder;
-                option.appendChild(bor);
+                option.innerHTML = bor;
                 option.value = key;
                 //option.text = currentBorder;
                 option.style.backgroundImage = `url(${currentBorder})`;
