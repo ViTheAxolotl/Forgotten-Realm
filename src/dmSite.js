@@ -154,7 +154,37 @@ async function deleteToken()
  
 function handleEdit()
 {
-    addToken();
+    let names = ["border", "currentHp", "maxHp", "name", "title", "xPos", "yPos"];
+    let b, c, mH, n, t, x, y;
+    let txtFeilds = [b, c, mH, n, t, x, y];
+    let curCharacter;
+    let edit = document.createElement("button");
+
+    edit.onclick = addToken;
+    edit.style.width = "50px";
+    for(let key of Object.keys(wholeData))
+    {
+        if(wholeData[key].name == this.classList[1])
+        {
+            curCharacter = wholeData[key];
+        }
+    }
+
+    for(let i = 0; i < 7; i++)
+    {
+        txtFeilds[i] = document.createElement("input");
+        txtFeilds[i].style.width = "50px";
+        txtFeilds[i].id = names[i];
+        this.parentElement.appendChild(txtFeilds[i]);
+    }
+
+    b.value = curCharacter.border;
+    c.value = curCharacter.currentHp;
+    mH.value = curCharacter.maxHp;
+    n.value = curCharacter.name;
+    t.value = curCharacter.title;
+    x.value = curCharacter.xPos;
+    y.value = curCharacter.yPos;
 }
 
 function handleChangeMap()
@@ -199,9 +229,27 @@ function addDone()
     div.appendChild(doneButton);
 }
 
-function addToken()
+async function addToken()
 {
+    let b = document.getElementById("border").value;
+    let c = document.getElementById("currentHp").value;
+    let mH = document.getElementById("maxHp").value;
+    let n = document.getElementById("name").value;
+    let t = document.getElementById("title").value;
+    let x = document.getElementById("xPos").value;
+    let y = document.getElementById("yPos").value;
 
+    const docRef = await setDoc(doc(db, "CurrentMap", curCharacter), 
+    {
+        border : b,
+        currentHp : c,
+        maxHp : mH,
+        map : "",
+        name : n,
+        title : n + ": " + t,
+        xPos : x,
+        yPos : y
+    });
 }
 
 init();
