@@ -132,8 +132,15 @@ async function deleteToken()
     {
         if(wholeData[key].name = this.classList[1])
         {
-            tokenToDelete = wholeData[key];
-            await deleteDoc(doc(db, "CurrentMap", tokenToDelete));
+            try
+            {
+                await deleteDoc(doc(db, "CurrentMap", key));
+            }
+            
+            catch (e) 
+            {
+                console.error("Error adding document: ", e);
+            }
         }
     }
 
