@@ -177,7 +177,7 @@ function handleEdit()
     }
 
     buttons[0].onclick = addToken;
-    buttons[0].style.margin = "5px 2.5px 5px 40%";
+    buttons[0].style.margin = "5px 2.5px 5px 42%";
     buttons[1].onclick = resetDelete;
     buttons[1].style.margin = "5px 5px 5px 2.5px";
 
