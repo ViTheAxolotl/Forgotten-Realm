@@ -238,7 +238,7 @@ function handleEdit()
 
 function updateBorderPic()
 {
-    this.parentNode.childNodes[1].src = this[this.selectedIndex];
+    this.parentNode.childNodes[1].src = imgs["borders"][this[this.selectedIndex].value];
 }
 
 function resetDelete()
