@@ -215,6 +215,7 @@ function handleEdit()
     txtFeilds[4].value = curCharacter.title;
     txtFeilds[5].value = curCharacter.xPos;
     txtFeilds[6].value = curCharacter.yPos;
+    editDiv.appendChild(document.createElement("h6"));
     buttons.forEach(em => {editDiv.appendChild(em)});
 }
 
