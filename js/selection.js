@@ -1,4 +1,19 @@
 "use strict";
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
+import { getFirestore, setDoc, getDocs, deleteDoc, doc, collection, query, where } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js';
+
+const firebaseApp = initializeApp
+({
+    apiKey: "AIzaSyArcsmJkXSeuIHMysYtIzRdjIDlKNQA25Y",
+    authDomain: "forgottenrealmsmap.firebaseapp.com",
+    projectId: "forgottenrealmsmap",
+    storageBucket: "forgottenrealmsmap.appspot.com",
+    messagingSenderId: "697902154695",
+    appId: "1:697902154695:web:ffa5c47817f3097c89cfe2",
+    measurementId: "G-Q2W494NRDT"
+});
+
+const db = getFirestore(firebaseApp);
 let enter = document.getElementById("enter");
 let charName = document.getElementById("name");
 let currentName;
@@ -161,8 +176,24 @@ function handleGoButton()
     {
         let curBorder = currentSelected[1].id;
         let curCharacter = currentSelected[0].id;
-        window.location.href= `map.html?${curCharacter}_${curBorder}_x`;
+        createChar(curCharacter, curBorder);
     }
+}
+
+async function createChar(curCharacter, curBorder)
+{
+    const docRef = await setDoc(doc(db, "CurrentMap", curCharacter), 
+    {
+        border : curBorder,
+        currentHp : "",
+        maxHp : "",
+        map : "",
+        name : curCharacter,
+        title : curCharacter + ": ",
+        xPos : "1",
+        yPos : "A"
+    });
+    window.location.href= `map.html?${curCharacter}_${curBorder}_x`;
 }
 
 init();

@@ -109,7 +109,7 @@ function addTokens()
 
     if(!(names.has(htmlInfo[0])))
     {
-        addCharacter(html[htmlInfo[0]], true);
+        addCharacter(html[htmlInfo[0]], false);
         names.add(htmlInfo[0]);
     }
 
