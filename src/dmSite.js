@@ -261,7 +261,7 @@ function handleChangeMap()
     readTokens();
 
     let select = document.createElement("select");
-    select.classList = "center";
+    select.classList = "center blo";
     for(let keys of Object.keys(imgs["mapName"]))
     {
         let mapImg = imgs["mapName"][keys];
@@ -291,7 +291,7 @@ async function updateMap()
             b = wholeData[key].border;
             c = wholeData[key].currentHp;
             mH = wholeData[key].maxHp;
-            m = imgs["mapName"][this.parentNode.childNodes[0][this.parentNode.childNodes[0].selectedIndex].value];
+            m = imgs["mapName"][this.parentNode.childNodes[6][this.parentNode.childNodes[6].selectedIndex].value];
             n = wholeData[key].name;
             t = wholeData[key].title;
             x = wholeData[key].xPos;
