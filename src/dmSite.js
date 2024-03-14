@@ -19,7 +19,6 @@ let wholeData = {};
 let div = document.getElementById("story");
 let editDiv;
 let imgs;
-let currentBorder;
 
 function init()
 {
@@ -205,7 +204,7 @@ function handleEdit()
 
             for(let key of Object.keys(imgs["borders"]))
             {
-                currentBorder = imgs["borders"][key];
+                let currentBorder = imgs["borders"][key];
                 let option = document.createElement("option");
                 option.value = key;
                 option.text = currentBorder.slice(currentBorder.indexOf("ns/") + 3).replace("Border.png", "");
@@ -239,7 +238,7 @@ function handleEdit()
 
 function updateBorderPic()
 {
-    this.parentNode.childNodes[1].src = currentBorder;
+    this.parentNode.childNodes[1].src = this.selected;
 }
 
 function resetDelete()
