@@ -130,7 +130,7 @@ async function deleteToken()
     let aboveDiv = div.parentElement;
     for(let key of Object.keys(wholeData))
     {
-        if(wholeData[key].name = this.classList[1])
+        if(wholeData[key].name == this.classList[1])
         {
             try
             { 
