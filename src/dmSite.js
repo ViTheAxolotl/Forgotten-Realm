@@ -155,10 +155,17 @@ async function deleteToken()
 function handleEdit()
 {
     let names = ["border", "currentHp", "maxHp", "name", "title", "xPos", "yPos"];
-    let b, c, mH, n, t, x, y;
-    let txtFeilds = [b, c, mH, n, t, x, y];
+    let txtFeilds = [];
     let curCharacter;
     let edit = document.createElement("button");
+
+    if(currentEOrD.length > 0)
+    {
+        for(let i = 0; i < 2; i++)
+        {
+            currentEOrD[0].parentElement.removeChild(currentEOrD[0]);
+        }
+    }
 
     edit.onclick = addToken;
     edit.style.width = "50px";
@@ -178,13 +185,14 @@ function handleEdit()
         this.parentElement.appendChild(txtFeilds[i]);
     }
 
-    b.value = curCharacter.border;
-    c.value = curCharacter.currentHp;
-    mH.value = curCharacter.maxHp;
-    n.value = curCharacter.name;
-    t.value = curCharacter.title;
-    x.value = curCharacter.xPos;
-    y.value = curCharacter.yPos;
+    txtFeilds[0].value = curCharacter.border;
+    txtFeilds[1].value = curCharacter.currentHp;
+    txtFeilds[2].value = curCharacter.maxHp;
+    txtFeilds[3].value = curCharacter.name;
+    txtFeilds[4].value = curCharacter.title;
+    txtFeilds[5].value = curCharacter.xPos;
+    txtFeilds[6].value = curCharacter.yPos;
+    this.parentElement.appendChild(edit);
 }
 
 function handleChangeMap()
