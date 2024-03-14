@@ -18,9 +18,11 @@ let fiveButtons = [];
 let wholeData = {};
 let div = document.getElementById("story");
 let editDiv;
+let imgs;
 
 function init()
 {
+    fetch("./files.json").then(res => res.json()).then(js => {imgs = js;});
     for(let button of document.getElementsByTagName("button"))
     {
         switch(button.id)
@@ -113,8 +115,6 @@ function handleDeleteOrEdit()
         {
             currentEOrD[0].parentElement.removeChild(currentEOrD[0]);
         }
-
-
     }
 
     editDiv = currentDiv;
@@ -199,9 +199,23 @@ function handleEdit()
         if(i == 0)
         {
             label.style.margin = `5px 5px 5px 79px`;
+            txtFeilds[i] = document.createElement("select");
+            txtFeilds[i].name = names[i];
+            for(let key of Object.keys(imgs["borders"]))
+            {
+                let currentBorder = imgs["borders"][key];
+                let option = document.createElement("option");
+                option.value = key;
+                option.style.backgroundImage = `url(${currentBorder})`;
+                txtFeilds[i].appendChild(option);
+            }
+        }
+
+        else
+        {
+            txtFeilds[i] = document.createElement("input");
         }
         
-        txtFeilds[i] = document.createElement("input");
         txtFeilds[i].style.width = "75px";
         txtFeilds[i].id = names[i];
         txtFeilds[i].style.margin = "5px";
@@ -209,7 +223,6 @@ function handleEdit()
         editDiv.appendChild(txtFeilds[i]);
     }
 
-    txtFeilds[0].value = curCharacter.border;
     txtFeilds[1].value = curCharacter.currentHp;
     txtFeilds[2].value = curCharacter.maxHp;
     txtFeilds[3].value = curCharacter.name;

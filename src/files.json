@@ -1,0 +1,37 @@
+{
+    "mapName" : 
+    {
+        "grassland" : "../images/map/grassland.jpg"
+    }, 
+
+    "tokens" : 
+    {
+        "nook-" : "../images/map/tokens/nook-.png",
+        "nook-a" : "../images/map/tokens/nook-a.png",
+        "nibbly-" : "../images/map/tokens/nibbly-.png",
+        "nibbly-a" : "../images/map/tokens/nibbly-a.png",
+        "razor-" : "../images/map/tokens/razor-.png",
+        "razor-a" : "../images/map/tokens/razor-a.png",
+        "leonier-" : "../images/map/tokens/leonier-.png",
+        "leonier-a" : "../images/map/tokens/leonier-a.png",
+        "cult-" : "../images/map/tokens/cult-.png",
+        "bandit-" : "../images/map/tokens/bandit-.png",
+        "bandit-a" : "../images/map/tokens/bandit-a.png",
+        "sky-" : "../images/map/tokens/sky-.png",
+        "sky-a" : "../images/map/tokens/sky-a.png",
+        "sky-b" : "../images/map/tokens/sky-b.png"
+    },
+
+    "borders" : 
+    {
+        "invisible" : "../images/map/tokens/invisibleBorder.png",
+        "blue" : "../images/map/tokens/blueBorder.png",
+        "golden" : "../images/map/tokens/goldenBorder.png",
+        "green" : "../images/map/tokens/greenBorder.png",
+        "grey" : "../images/map/tokens/greyBorder.png",
+        "orange" : "../images/map/tokens/orangeBorder.png",
+        "pink" : "../images/map/tokens/pinkBorder.png",
+        "purple" : "../images/map/tokens/purpleBorder.png",
+        "red" : "../images/map/tokens/redBorder.png"
+    }
+}
