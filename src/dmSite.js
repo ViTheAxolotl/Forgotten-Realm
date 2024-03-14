@@ -173,7 +173,7 @@ function handleEdit()
 
     edit.onclick = addToken;
     edit.innerHTML = "edit";
-    edit.style.position = "inline";
+    edit.style.display = "inline";
 
     for(let key of Object.keys(wholeData))
     {
@@ -187,7 +187,8 @@ function handleEdit()
     {
         let label = document.createElement("h6");
         label.innerHTML = `${names[i]}:`;
-        label.style.position = "inline";
+        label.style.display = "inline";
+        label.classList = "color-UP-yellow";
         
         if(i == 0)
         {
@@ -276,6 +277,7 @@ async function addToken()
         yPos : y
     });
 
+    let aboveDiv = div.parentElement;
     div.remove();
     div = document.createElement("div");
     div.id = "story";
