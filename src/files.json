@@ -1,7 +1,8 @@
 {
     "mapName" : 
     {
-        "grassland" : "images/map/grassland.jpg"
+        "grassland" : "images/map/grassland.jpg",
+        "grid" : "images/map/grid.png"
     }, 
 
     "tokens" : 

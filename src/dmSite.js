@@ -208,7 +208,6 @@ function handleEdit()
                 let option = document.createElement("option");
                 option.value = key;
                 option.text = currentBorder.slice(currentBorder.indexOf("ns/") + 3).replace("Border.png", "");
-                option.style.backgroundImage = `url(${currentBorder})`;
                 txtFeilds[i].appendChild(option);
                 txtFeilds[i].onchange = updateBorderPic;
             }
@@ -255,6 +254,56 @@ function resetDelete()
 function handleChangeMap()
 {
     hideButtons();
+
+    let select = document.createElement("select");
+    for(let keys of Object.keys(imgs["mapName"]))
+    {
+        let mapImg = imgs["mapName"][keys];
+        let option = document.createElement("option");
+        option.value = keys;
+        option.text = mapImg.slice(mapImg.indexOf("ap/") + 3).replace(".jpg", "");
+        select.appendChild(option);
+    }
+
+    let button = document.createElement("button");
+    button.innerHTML = "Change";
+    button.onclick = updateMap;
+
+    div.appendChild(select);
+    div.appendChild(button);
+    addDone();
+}
+
+async function updateMap()
+{
+    let b, c, mH, m, n, t, x, y;
+    
+    for(let key of Object.keys(wholeData))
+    {
+        if(wholeData[key].name == "invisible-")
+        {
+            b = wholeData[key].border;
+            c = wholeData[key].currentHp;
+            mH = wholeData[key].maxHp;
+            m = imgs["mapName"][this.parentNode.childNodes[0][this.parentNode.childNodes[0].selectedIndex].value];
+            n = wholeData[key].name;
+            t = wholeData[key].title;
+            x = wholeData[key].xPos;
+            y = wholeData[key].yPos;
+        }
+    }
+
+    const docRef = await setDoc(doc(db, "CurrentMap", n), 
+    {
+        border : b,
+        currentHp : c,
+        maxHp : mH,
+        map : m,
+        name : n,
+        title : n + ": " + t,
+        xPos : x,
+        yPos : y
+    });
 }
 
 function handleSave()
