@@ -208,7 +208,7 @@ function handleEdit()
                 option.value = key;
                 option.text = currentBorder.slice(currentBorder.indexOf("ns/") + 3).replace("Border.png", "");
                 option.style.backgroundImage = `url(${currentBorder})`;
-                option.onclick = function(){this.parentNode.parentNode.childNodes[1].src=currentBorder;};
+                option.onclick = updateBorderPic;
                 txtFeilds[i].appendChild(option);
             }
         }
@@ -233,6 +233,11 @@ function handleEdit()
     txtFeilds[6].value = curCharacter.yPos;
     editDiv.appendChild(document.createElement("h6"));
     buttons.forEach(em => {editDiv.appendChild(em)});
+}
+
+function updateBorderPic()
+{
+    this.parentNode.parentNode.childNodes[1].src = currentBorder;
 }
 
 function resetDelete()
