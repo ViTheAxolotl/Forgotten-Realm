@@ -350,7 +350,7 @@ async function handleUploadeSave()
 
     for(let key of Object.keys(wholeData))
     {
-        const docRef = await setDoc(doc(db, saveName.value, wholeData[key].name), wholeData[key]);
+        firebase.firestore().collection(saveName.value).add(wholeData[key]);
     }
 }
 
