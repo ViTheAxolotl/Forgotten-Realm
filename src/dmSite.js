@@ -408,9 +408,63 @@ async function emptyCollection(cName)
     }
 }
 
-function handleLoad()
+async function handleLoad()
 {
     hideButtons();
+
+    collectionNames = [];
+    let goButton = document.createElement("button");
+    const q = query(collection(db, "list"));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => 
+    {
+        // doc.data() is never undefined for query doc snapshots
+        collectionNames.push(doc.data().name);
+    });
+    
+    let selectNames = document.createElement("select");
+    for(let cName of collectionNames)
+    {
+        if(cName != "CurrentMap")
+        {
+            let option = document.createElement("option");
+            option.value = cName;
+            option.text = cName;
+            selectNames.appendChild(option); 
+        }  
+    }
+
+    selectNames.classList = "center blo";
+    selectNames.id = "selectNames";
+    goButton.style.margin = "5px";
+    goButton.innerHTML = "Save";
+    goButton.onclick = loadMap;
+    div.appendChild(selectNames);
+    div.appendChild(goButton);
+}
+
+async function loadMap()
+{
+    let selectNames = document.getElementById("selectNames");
+    let cName = "";
+    cName = selectNames[selectNames.selectedIndex].value;
+    emptyCollection("CurrentMap");
+    wholeData = {};
+
+    const q = query(collection(db, cName));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => 
+    {
+        // doc.data() is never undefined for query doc snapshots
+        wholeData[doc.id] = doc.data();
+    });
+
+    for(let key of Object.keys(wholeData))
+    {
+        const docRef = await setDoc(doc(db, "CurrentMap", key), wholeData[key]);
+    }
+
+    handleDone();
 }
 
 function handleDone()
