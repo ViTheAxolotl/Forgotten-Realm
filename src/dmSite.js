@@ -441,6 +441,7 @@ async function handleLoad()
     goButton.onclick = loadMap;
     div.appendChild(selectNames);
     div.appendChild(goButton);
+    addDone();
 }
 
 async function loadMap()

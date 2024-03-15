@@ -115,6 +115,11 @@ function setUpCharacters(currentName)
 
 function openWindow()
 {
+    if(this.id == "map.html?invisible-_invisible_vi")
+    {
+        createChar("invisible-", "invisible");
+    }
+    
     window.open(this.id, '_blank');
 }
 
@@ -184,6 +189,7 @@ function handleGoButton()
         let curBorder = currentSelected[1].id;
         let curCharacter = currentSelected[0].id;
         createChar(curCharacter, curBorder);
+        window.location.href= `map.html?${curCharacter}_${curBorder}_x`;
     }
 }
 
@@ -200,7 +206,6 @@ async function createChar(curCharacter, curBorder)
         xPos : "1",
         yPos : "A"
     });
-    window.location.href= `map.html?${curCharacter}_${curBorder}_x`;
 }
 
 init();
