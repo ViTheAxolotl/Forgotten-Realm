@@ -344,10 +344,13 @@ async function handleSave()
 
     for(let cName of collectionNames)
     {
-        let option = document.createElement("option");
-        option.value = cName;
-        option.text = cName;
-        selectNames.appendChild(option);   
+        if(cName != "CurrentMap")
+        {
+            let option = document.createElement("option");
+            option.value = cName;
+            option.text = cName;
+            selectNames.appendChild(option); 
+        }  
     }
 
     selectNames.classList = "center blo";
