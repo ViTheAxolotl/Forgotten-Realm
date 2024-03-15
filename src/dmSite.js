@@ -364,6 +364,7 @@ async function handleSave()
     div.appendChild(label);
     div.appendChild(saveName);
     div.appendChild(button);
+    addDone();
 }
 
 async function handleUploadeSave()
@@ -383,6 +384,11 @@ async function handleUploadeSave()
     {
         firebase.firestore().collection(cName).add(wholeData[key]);
     }
+
+    const docRef = await setDoc(doc(db, "list", cName), 
+    {
+        name : cName
+    });
 
     handleDone();
 }
