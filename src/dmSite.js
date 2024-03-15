@@ -1,6 +1,6 @@
 "use strict";
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
-import { getFirestore, setDoc, getDocs, deleteDoc, doc, collection, query, where } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js';
+import { getFirestore, setDoc, getDocs, deleteDoc, doc, collection, query, listCollections } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js';
 
 const firebaseApp = initializeApp
 ({
@@ -329,8 +329,14 @@ async function handleSave()
     readTokens();
 
     collectionNames = [];
-    db.listCollections().then(snapshot=>{snapshot.forEach(snaps => {collectionNames.push(snaps["_queryOptions"].collectionId);})});
-
+    const q = query(collection(db, "list"));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => 
+    {
+        // doc.data() is never undefined for query doc snapshots
+        collectionNames.push(doc.data().name);
+    });
+    
     let selectNames = document.createElement("select");
     let saveName = document.createElement("input");
     let label = document.createElement("h6");
