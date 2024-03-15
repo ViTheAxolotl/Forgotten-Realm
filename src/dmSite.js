@@ -379,15 +379,7 @@ async function handleUploadeSave()
     if(saveName.value == "")
     {
         cName = selectNames[selectNames.selectedIndex].value;
-        let colToRemove = [];
-        const q = query(collection(db, cName));
-        const querySnapshot = await getDocs(q);
-        querySnapshot.forEach((doc) => {colToRemove.push(doc.data().name);});
-
-        for(let docum of colToRemove)
-        {
-            await deleteDoc(doc(db, cName, docum));
-        }
+        emptyCollection(cName);
     }
 
     for(let key of Object.keys(wholeData))
@@ -401,6 +393,19 @@ async function handleUploadeSave()
     });
 
     handleDone();
+}
+
+async function emptyCollection(cName)
+{
+    let colToRemove = [];
+    const q = query(collection(db, cName));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {colToRemove.push(doc.data().name);});
+
+    for(let docum of colToRemove)
+    {
+        await deleteDoc(doc(db, cName, docum));
+    }
 }
 
 function handleLoad()
