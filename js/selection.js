@@ -129,7 +129,7 @@ function openWindow()
         createChar("invisible-", "invisible");
     }
     
-    window.open(this.id, '_blank');
+    setInterval(() => {window.open(this.id, '_blank');}, 2000);
 }
 
 function addCharacters()
@@ -198,7 +198,7 @@ function handleGoButton()
         let curBorder = currentSelected[1].id;
         let curCharacter = currentSelected[0].id;
         createChar(curCharacter, curBorder);
-        window.location.href= `map.html?${curCharacter}_${curBorder}_x`;
+        setInterval(() => {window.location.href= `map.html?${curCharacter}_${curBorder}_x`;}, 2000);
     }
 }
 
@@ -215,6 +215,7 @@ async function createChar(curCharacter, curBorder)
             char.yPos = wholeData[key].yPos;
         }
     }
+
     const docRef = await setDoc(doc(db, "CurrentMap", curCharacter), char);
 }
 
