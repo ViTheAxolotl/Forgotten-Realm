@@ -379,8 +379,15 @@ async function handleUploadeSave()
     if(saveName.value == "")
     {
         cName = selectNames[selectNames.selectedIndex];
+        let colToRemove = [];
+        const q = query(collection(db, "list"));
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {colToRemove.push(doc.data().name);});
 
-        firebase.firestore().collection(cName).listDocuments().then(val => {val.map((val) => {val.delete()})});
+        for(let doc of colToRemove)
+        {
+            await deleteDoc(doc(db, cName, doc));
+        }
     }
 
     for(let key of Object.keys(wholeData))
