@@ -378,7 +378,7 @@ async function handleUploadeSave()
 
     if(saveName.value == "")
     {
-        cName = selectNames[selectNames.selectedIndex];
+        cName = selectNames[selectNames.selectedIndex].value;
         let colToRemove = [];
         const q = query(collection(db, "list"));
         const querySnapshot = await getDocs(q);
