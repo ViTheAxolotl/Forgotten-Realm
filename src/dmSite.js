@@ -347,7 +347,7 @@ async function handleSave()
         let option = document.createElement("option");
         option.value = cName;
         option.text = cName;
-        select.appendChild(option);   
+        selectNames.appendChild(option);   
     }
 
     selectNames.classList = "center blo";
@@ -360,6 +360,7 @@ async function handleSave()
     saveName.style.margin = "5px";
     button.innerHTML = "Save";
     button.onclick = handleUploadeSave;
+    div.appendChild(selectNames);
     div.appendChild(label);
     div.appendChild(saveName);
     div.appendChild(button);
