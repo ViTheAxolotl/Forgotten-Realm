@@ -33,7 +33,7 @@ async function init()
     char.classList = "blo";
     bord.innerHTML = "Select Boarder";
     bord.classList = "blo";
-    go.innerHTML = "Go!";
+    go.innerHTML = "Go! (It may take a few seconds to load)";
     go.classList = "blo";
 
     enter.onclick = handleEnterButton;
