@@ -384,9 +384,9 @@ async function handleUploadeSave()
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {colToRemove.push(doc.data().name);});
 
-        for(let doc of colToRemove)
+        for(let docum of colToRemove)
         {
-            await deleteDoc(doc(db, cName, doc));
+            await deleteDoc(doc(db, cName, docum));
         }
     }
 
