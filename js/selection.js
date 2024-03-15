@@ -25,8 +25,9 @@ let bord = document.createElement("h3");
 let go = document.createElement("button");
 let people = [];
 let numToLet = {0 : "", 1 : "a"};
+let wholeData = {};
 
-function init()
+async function init()
 {
     char.innerHTML = "Select Character";
     char.classList = "blo";
@@ -37,6 +38,14 @@ function init()
 
     enter.onclick = handleEnterButton;
     go.onclick = handleGoButton;
+
+    const q = query(collection(db, "CurrentMap"));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => 
+    {
+        // doc.data() is never undefined for query doc snapshots
+        wholeData[doc.id] = doc.data();
+    });
 }
 
 function handleEnterButton()
@@ -195,17 +204,18 @@ function handleGoButton()
 
 async function createChar(curCharacter, curBorder)
 {
-    const docRef = await setDoc(doc(db, "CurrentMap", curCharacter), 
+    let char = {border : curBorder, currentHp : "", maxHp : "", map : "", name : curCharacter, title : curCharacter + ": ", xPos : "1", yPos : "A"};
+    
+    for(let key of Object.keys(wholeData))
     {
-        border : curBorder,
-        currentHp : "",
-        maxHp : "",
-        map : "",
-        name : curCharacter,
-        title : curCharacter + ": ",
-        xPos : "1",
-        yPos : "A"
-    });
+        if(wholeData[key].name == char.name)
+        {
+            char.title = wholeData[key].title;
+            char.xPos = wholeData[key].xPos;
+            char.yPos = wholeData[key].yPos;
+        }
+    }
+    const docRef = await setDoc(doc(db, "CurrentMap", curCharacter), char);
 }
 
 init();
