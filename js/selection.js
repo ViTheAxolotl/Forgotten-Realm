@@ -64,11 +64,13 @@ function setUpCharacters(currentName)
         case "axolotl":
             let mapLink = document.createElement("a");
             mapLink.innerHTML = "Map Link";
-            mapLink.href = "map.html?invisible-_invisible_vi";
+            mapLink.onclick = openWindow;
+            mapLink.id = "map.html?invisible-_invisible_vi";
             mapLink.classList = "blo";
             let dmLink = document.createElement("a");
             dmLink.innerHTML = "DM Link";
-            dmLink.onclick = window.open('dmSite.html', '_blank');
+            dmLink.onclick = openWindow;
+            dmLink.id = "dmSite.html";
             mapLink.classList = "blo";
             div.appendChild(dmLink);
             div.appendChild(mapLink);
@@ -109,6 +111,11 @@ function setUpCharacters(currentName)
         addBorders();
         div.appendChild(go);
     }
+}
+
+function openWindow()
+{
+    window.open(this.id, '_blank');
 }
 
 function addCharacters()

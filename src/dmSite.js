@@ -437,7 +437,7 @@ async function handleLoad()
     selectNames.classList = "center blo";
     selectNames.id = "selectNames";
     goButton.style.margin = "5px";
-    goButton.innerHTML = "Save";
+    goButton.innerHTML = "Load";
     goButton.onclick = loadMap;
     div.appendChild(selectNames);
     div.appendChild(goButton);
