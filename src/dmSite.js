@@ -19,6 +19,7 @@ let wholeData = {};
 let div = document.getElementById("story");
 let editDiv;
 let imgs;
+let collectionNames = [];
 
 function init()
 {
@@ -322,15 +323,29 @@ async function updateMap()
     handleDone();
 }
 
-function handleSave()
+async function handleSave()
 {
     hideButtons();
     readTokens();
 
+    collectionNames = [];
+    db.listCollections().then(snapshot=>{snapshot.forEach(snaps => {collectionNames.push(snaps["_queryOptions"].collectionId);})});
+
+    let selectNames = document.createElement("select");
     let saveName = document.createElement("input");
     let label = document.createElement("h6");
     let button = document.createElement("button");
 
+    for(let cName of collectionNames)
+    {
+        let option = document.createElement("option");
+        option.value = cName;
+        option.text = cName;
+        select.appendChild(option);   
+    }
+
+    selectNames.classList = "center blo";
+    selectNames.id = "selectNames";
     label.innerHTML = `Save Name:`;
     label.style.display = "inline";
     label.classList = "color-UP-yellow";
@@ -347,11 +362,22 @@ function handleSave()
 async function handleUploadeSave()
 {
     let saveName = document.getElementById("saveName");
+    let selectNames = document.getElementById("selectNames");
+    let cName = saveName.value;
+
+    if(saveName.value == "")
+    {
+        cName = selectNames[selectNames.selectedIndex];
+
+        firebase.firestore().collection(cName).listDocuments().then(val => {val.map((val) => {val.delete()})});
+    }
 
     for(let key of Object.keys(wholeData))
     {
-        firebase.firestore().collection(saveName.value).add(wholeData[key]);
+        firebase.firestore().collection(cName).add(wholeData[key]);
     }
+
+    handleDone();
 }
 
 function handleLoad()
