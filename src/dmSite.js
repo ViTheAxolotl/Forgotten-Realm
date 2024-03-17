@@ -20,6 +20,7 @@ let div = document.getElementById("story");
 let editDiv;
 let imgs;
 let collectionNames = [];
+let curCharacter;
 
 function init()
 {
@@ -60,8 +61,8 @@ function handleAdd()
 {
     hideButtons();
 
-    let blank = {border: "invisible", currentHp: "20", map: "", maxHp: "20", name: "invisible-", title: "invisible-:", xPos: "5", yPos: "D"};
-    makeToken(blank);
+    curCharacter = {border: "invisible", currentHp: "20", map: "", maxHp: "20", name: "invisible-", title: "invisible-:", xPos: "5", yPos: "D"};
+    makeToken(curCharacter);
     editDiv = document.getElementById("invisible--div");
     handleEdit();
 }
@@ -178,7 +179,6 @@ function handleEdit()
 {
     let names = ["border", "currentHp", "maxHp", "name", "title", "xPos", "yPos"];
     let txtFeilds = [];
-    let curCharacter;
     let buttons = [document.createElement("button"), document.createElement("button")];
     let buttonsName = ["edit", "back"];
     let currentEOrD = document.getElementsByClassName("eOrD");
