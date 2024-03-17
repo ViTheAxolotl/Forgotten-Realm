@@ -61,11 +61,11 @@ function handleAdd()
 {
     hideButtons();
 
-    curCharacter = {border: "invisible", currentHp: "20", map: "", maxHp: "20", name: "invisible-", title: "invisible-:", xPos: "5", yPos: "D"};
+    curCharacter = {border: "invisible", currentHp: "20", map: "", maxHp: "20", name: "invisible-", title: "", xPos: "5", yPos: "D"};
     makeToken(curCharacter);
     editDiv = document.getElementById("invisible--div");
     handleEdit();
-    
+
     let reset = document.getElementById("reset");
     reset.onclick = handleDone;
 }
@@ -240,6 +240,23 @@ function handleEdit()
             }
         }
 
+        if(i == 1)
+        {
+            label.style.margin = `5px 5px 5px 79px`;
+            txtFeilds[i] = document.createElement("select");
+            txtFeilds[i].name = names[i];
+
+            for(let key of Object.keys(imgs["tokens"]))
+            {
+                let currentBorder = imgs["tokens"][key];
+                let option = document.createElement("option");
+                option.value = key;
+                option.text = currentBorder.slice(currentBorder.indexOf("ns/") + 3).replace(".png", "");
+                txtFeilds[i].appendChild(option);
+                txtFeilds[i].onchange = updateTokenPic;
+            }
+        }
+
         else
         {
             txtFeilds[i] = document.createElement("input");
@@ -265,6 +282,11 @@ function handleEdit()
 function updateBorderPic()
 {
     this.parentNode.childNodes[1].src = imgs["borders"][this[this.selectedIndex].value];
+}
+
+function updateTokenPic()
+{
+    this.parentNode.childNodes[0].src = imgs["tokens"][this[this.selectedIndex].value];
 }
 
 function resetDelete()
