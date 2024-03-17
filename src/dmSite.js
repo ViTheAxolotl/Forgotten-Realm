@@ -56,9 +56,35 @@ function init()
     }
 }
 
-async function handleAdd()
+function handleAdd()
 {
     hideButtons();
+
+    let blank = {border: "invisible", currentHp: "20", map: "", maxHp: "20", name: "invisible-", title: "invisible-:", xPos: "5", yPos: "D"};
+    makeToken(blank);
+    handleEdit();
+}
+
+function makeToken(key)
+{
+    let token = [document.createElement("div"), document.createElement("img"), document.createElement("img")];
+    token[0].id = `${key.name}-div`;
+    token[0].classList = "bg-UP-grey objectBorder";
+    token[0].style.margin = "5px";
+    token[0].style.position = "relative";
+    token[0].style.minHeight = "82px";
+    token[0].style.minWidth = "82px";
+    token[1].src = `images/map/tokens/${key.name}.png`;
+    token[1].id = ke.name;
+    token[1].classList = `tokens ${key.name} char`;
+    token[2].src = `images/map/tokens/${key.border}Border.png`;
+    token[2].id = key.border;
+    token[2].classList = `tokens ${key.name} border_`;
+    token[2].onclick = handleDeleteOrEdit;
+
+    token[0].appendChild(token[1]);
+    token[0].appendChild(token[2]);
+    div.appendChild(token[0]); 
 }
 
 async function readTokens()
@@ -90,24 +116,7 @@ async function handleRemove()
     {
         if(key != "invisible-")
         {
-            let token = [document.createElement("div"), document.createElement("img"), document.createElement("img")];
-            token[0].id = `${wholeData[key].name}-div`;
-            token[0].classList = "bg-UP-grey objectBorder";
-            token[0].style.margin = "5px";
-            token[0].style.position = "relative";
-            token[0].style.minHeight = "82px";
-            token[0].style.minWidth = "82px";
-            token[1].src = `images/map/tokens/${wholeData[key].name}.png`;
-            token[1].id = wholeData[key].name;
-            token[1].classList = `tokens ${wholeData[key].name} char`;
-            token[2].src = `images/map/tokens/${wholeData[key].border}Border.png`;
-            token[2].id = wholeData[key].border;
-            token[2].classList = `tokens ${wholeData[key].name} border_`;
-            token[2].onclick = handleDeleteOrEdit;
-
-            token[0].appendChild(token[1]);
-            token[0].appendChild(token[2]);
-            div.appendChild(token[0]);
+            makeToken(wholeData[key]);
         }
     }
 
