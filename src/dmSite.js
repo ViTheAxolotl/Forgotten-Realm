@@ -240,9 +240,9 @@ function handleEdit()
             }
         }
 
-        if(i == 1)
+        else if(i == 1)
         {
-            label.style.margin = `5px 5px 5px 79px`;
+            label.style.margin = `5px`;
             txtFeilds[i] = document.createElement("select");
             txtFeilds[i].name = names[i];
 
