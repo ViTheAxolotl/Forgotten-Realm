@@ -246,7 +246,6 @@ function handleEdit()
 
         else if(i == 1)
         {
-            label.style.margin = `5px`;
             txtFeilds[i] = document.createElement("select");
             txtFeilds[i].name = names[i];
 
@@ -259,6 +258,16 @@ function handleEdit()
                 txtFeilds[i].appendChild(option);
                 txtFeilds[i].onchange = updateTokenPic;
             }
+        }
+
+        else if(i == 2)
+        {
+            txtFeilds[i] = document.createElement("input");
+            txtFeilds[i].name = names[i];
+            txtFeilds[i].type = "number";
+            txtFeilds[i].min = "0";
+            txtFeilds[i].step = "1";
+            txtFeilds[i].onchange = updateHpPic;
         }
 
         else
@@ -291,6 +300,42 @@ function updateBorderPic()
 function updateTokenPic()
 {
     this.parentNode.childNodes[0].src = imgs["tokens"][this[this.selectedIndex].value];
+}
+
+function updateHpPic()
+{
+    let maxHp = document.getElementById("maxHp").value;
+    let fraction = parseInt(this.value) / parseInt(maxHp);
+
+    if(fraction == 1)
+    {
+        this.parentNode.childNodes[2].src = "images/map/hpBar/hpBar1.png";
+    }
+
+    else if(fraction >= .8)
+    {
+        this.parentNode.childNodes[2].src = "images/map/hpBar/hpBar2.png";
+    }
+
+    else if(fraction >= .6)
+    {
+        this.parentNode.childNodes[2].src = "images/map/hpBar/hpBar3.png";
+    }
+
+    else if(fraction >= .4)
+    {
+        this.parentNode.childNodes[2].src = "images/map/hpBar/hpBar4.png";
+    }
+
+    else if(fraction >= .2)
+    {
+        this.parentNode.childNodes[2].src = "images/map/hpBar/hpBar5.png";
+    }
+
+    else if(fraction == 0)
+    {
+        this.parentNode.childNodes[2].src = "images/map/hpBar/hpBar6.png";
+    }  
 }
 
 function resetDelete()
