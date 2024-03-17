@@ -88,7 +88,7 @@ function makeToken(key)
     token[3].src = `images/map/hpBar/hpBar1.png`;
     token[3].id = "hp";
     token[3].classList = `tokens ${key.name} hp`;
-    token[3].onclick = handleDeleteOrEdit;
+    token[2].onclick = handleDeleteOrEdit;
 
     token[0].appendChild(token[1]);
     token[0].appendChild(token[2]);
@@ -310,7 +310,7 @@ function updateHpPic()
     {
         this.value = maxHp;
     }
-    
+
     let fraction = parseInt(this.value) / parseInt(maxHp);
 
     if(fraction == 1)
