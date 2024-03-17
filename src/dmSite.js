@@ -304,6 +304,11 @@ function updateTokenPic()
 
 function updateHpPic()
 {
+    if(parseInt(this.value) > parseInt(maxHp))
+    {
+        this.value = maxHp;
+    }
+    
     let maxHp = document.getElementById("maxHp").value;
     let fraction = parseInt(this.value) / parseInt(maxHp);
 
