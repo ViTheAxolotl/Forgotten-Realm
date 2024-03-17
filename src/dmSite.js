@@ -62,6 +62,7 @@ function handleAdd()
 
     let blank = {border: "invisible", currentHp: "20", map: "", maxHp: "20", name: "invisible-", title: "invisible-:", xPos: "5", yPos: "D"};
     makeToken(blank);
+    editDiv = document.getElementById("invisible--div");
     handleEdit();
 }
 
