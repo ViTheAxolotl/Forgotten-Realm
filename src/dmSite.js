@@ -85,7 +85,7 @@ function makeToken(key)
     token[2].src = `images/map/tokens/${key.border}Border.png`;
     token[2].id = key.border;
     token[2].classList = `tokens ${key.name} border_`;
-    token[3].src = `images/map/tokens/hpBar/hpBar1.png`;
+    token[3].src = `images/map/hpBar/hpBar1.png`;
     token[3].id = "hp";
     token[3].classList = `tokens ${key.name} hp`;
     token[3].onclick = handleDeleteOrEdit;
