@@ -65,6 +65,9 @@ function handleAdd()
     makeToken(curCharacter);
     editDiv = document.getElementById("invisible--div");
     handleEdit();
+    
+    let reset = document.getElementById("reset");
+    reset.onclick = handleDone;
 }
 
 function makeToken(key)
@@ -177,7 +180,7 @@ async function deleteToken()
  
 function handleEdit()
 {
-    let names = ["border", "currentHp", "maxHp", "name", "title", "xPos", "yPos"];
+    let names = ["border", "name", "currentHp", "maxHp", "title", "xPos", "yPos"];
     let txtFeilds = [];
     let buttons = [document.createElement("button"), document.createElement("button")];
     let buttonsName = ["edit", "back"];
@@ -203,6 +206,7 @@ function handleEdit()
     buttons[0].style.margin = "5px 2.5px 5px 42%";
     buttons[1].onclick = resetDelete;
     buttons[1].style.margin = "5px 5px 5px 2.5px";
+    buttons[1].id = "reset";
 
     for(let key of Object.keys(wholeData))
     {
@@ -248,9 +252,9 @@ function handleEdit()
         editDiv.appendChild(txtFeilds[i]);
     }
 
-    txtFeilds[1].value = curCharacter.currentHp;
-    txtFeilds[2].value = curCharacter.maxHp;
-    txtFeilds[3].value = curCharacter.name;
+    txtFeilds[2].value = curCharacter.currentHp;
+    txtFeilds[3].value = curCharacter.maxHp;
+    txtFeilds[1].value = curCharacter.name;
     txtFeilds[4].value = curCharacter.title;
     txtFeilds[5].value = curCharacter.xPos;
     txtFeilds[6].value = curCharacter.yPos;
