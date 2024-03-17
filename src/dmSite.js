@@ -75,7 +75,7 @@ function makeToken(key)
     token[0].style.minHeight = "82px";
     token[0].style.minWidth = "82px";
     token[1].src = `images/map/tokens/${key.name}.png`;
-    token[1].id = ke.name;
+    token[1].id = key.name;
     token[1].classList = `tokens ${key.name} char`;
     token[2].src = `images/map/tokens/${key.border}Border.png`;
     token[2].id = key.border;
