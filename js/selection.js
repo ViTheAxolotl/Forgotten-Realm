@@ -191,6 +191,7 @@ function addHp()
         numbers[i].type = "number";
         numbers[i].min = "0";
         numbers[i].step = "1";
+        numbers[i].style.width = "10%";
         labels[i].style.margin = "5px";
         div.appendChild(numbers[i])
     }
