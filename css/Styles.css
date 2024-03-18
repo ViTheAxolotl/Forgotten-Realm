@@ -397,7 +397,7 @@ table, .itemSearch, #itemImg
 
 .hp
 {
-    z-index: 1100;
+    z-index: 900;
 }
 
 @media (max-width: 1399px) {
