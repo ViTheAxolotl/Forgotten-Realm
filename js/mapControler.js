@@ -26,6 +26,7 @@ function init()
     currentHp = document.getElementById("current");
     currentHp.onchange = updateHp;
     maxHp = document.getElementById("max");
+    maxHp.onchange = addUpdate;
 
     for(let arrow of arrows)
     {
@@ -72,6 +73,17 @@ function moveChar(xPos, yPos)
         prop.style.top = yPos + "px";
         prop.classList += " update";
     }   
+}
+
+function addUpdate()
+{
+    for(let prop of currentCharacter)
+    {
+        if(!(prop.classList.includes("update")))
+        {
+            prop.classList += " update";
+        }
+    }
 }
 
 function updateHp()

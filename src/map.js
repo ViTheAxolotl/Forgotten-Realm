@@ -136,10 +136,14 @@ function addTokens()
                     char.src = `images/map/tokens/${data.border}Border.png`;
                     char.id = data.border;
                     char.classList = `tokens ${data.name} border_`;
+                    let bor = document.createElement("img");
+                    bor.src = getHpImg(data);
+                    bor.classList = `tokens ${data.name} hp`;
                     let x = pos[xPos.indexOf(data.xPos)];
                     let y = pos[yPos.indexOf(data.yPos)];
                     placeTokens(x, y, char);
                     div.appendChild(char);
+                    div.appendChild(bor);
                 }
             }
         }
@@ -182,8 +186,11 @@ function addCharacter(character, update)
 
         if(htmlInfo[0] == character["name"])
         {
-            currentHp.value = character["currentHp"];
-            maxHp.value = character["maxHp"];
+            if(currentHp.value != "" && maxHp.value != "")
+            {
+                currentHp.value = character["currentHp"];
+                maxHp.value = character["maxHp"];
+            }
         }
 
         if(character.title != "")
