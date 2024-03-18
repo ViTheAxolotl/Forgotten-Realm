@@ -325,8 +325,8 @@ table, .itemSearch, #itemImg
 
 #arrows img
 {
-    width: 10%;
-    height: 10%;
+    width: 60%;
+    height: 60%;
 }
 
 #arrows #up
@@ -395,6 +395,11 @@ table, .itemSearch, #itemImg
     z-index: 1000;
 }
 
+.hp
+{
+    z-index: 1100;
+}
+
 @media (max-width: 1399px) {
     .col-md-6
     {
@@ -458,8 +463,8 @@ table, .itemSearch, #itemImg
 
     #arrows img
     {
-        width: 8%;
-        height: 8%;
+        width: 50%;
+        height: 50%;
     }
 
     #arrows #left
@@ -469,7 +474,7 @@ table, .itemSearch, #itemImg
 
     #arrows #up
     {
-        margin-left: 46%;
+        margin-left: 10%;
     }
 
     #info img, #havenport 

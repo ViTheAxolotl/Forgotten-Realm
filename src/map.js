@@ -120,7 +120,7 @@ function addTokens()
     for(let name of names)
     {
         let pieces = document.getElementsByClassName(name)
-        if(pieces.length < 2)
+        if(pieces.length < 3)
         {
             for(let data of Object.keys(wholeData))
             {
@@ -139,7 +139,7 @@ function addTokens()
             }
         }
 
-        if(pieces.length >= 2)
+        if(pieces.length >= 3)
         {
             let to = document.getElementById(name);
             for(let piece of pieces)
