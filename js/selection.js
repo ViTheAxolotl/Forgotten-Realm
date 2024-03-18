@@ -32,12 +32,16 @@ async function init()
 {
     char.innerHTML = "Select Character";
     char.classList = "blo";
+    char.style.margin = "5px";
     bord.innerHTML = "Select Boarder";
     bord.classList = "blo";
+    bord.style.margin = "5px";
     go.innerHTML = "Go! (It may take a few seconds to load)";
     go.classList = "blo";
+    go.style.margin = "5px";
     hp.innerHTML = "Current & Max Hp";
     hp.classList = "blo";
+    hp.style.margin = "5px";
 
     enter.onclick = handleEnterButton;
     go.onclick = handleGoButton;
@@ -180,12 +184,14 @@ function addHp()
         labels[i].innerHTML = names[i] + ':';
         labels[i].style.display = "inline";
         labels[i].classList = "color-UP-yellow";
+        labels[i].style.margin = "5px";
         div.appendChild(labels[i]);
 
         numbers[i].id = names[i];
         numbers[i].type = "number";
         numbers[i].min = "0";
         numbers[i].step = "1";
+        labels[i].style.margin = "5px";
         div.appendChild(numbers[i])
     }
 }
