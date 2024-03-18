@@ -62,17 +62,6 @@ function setMainVaribles()
     }
 
     bounds = [distance + bumper, (distance + bumper) + distance * 10];
-    
-    for(let prop of currentCharacter)
-    {
-        if(prop.classList.includes("hp"))
-        {
-            let title = prop.title;
-            title.split(" ");
-            currentHp.value = title[0];
-            maxHp.value = title[1];
-        }
-    }
 }
 
 function moveChar(xPos, yPos)

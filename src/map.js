@@ -31,6 +31,8 @@ let xPos;
 let tokens = [];
 let stage = 1;
 let imgs;
+let currentHp;
+let maxHp;
 
 function init()
 {
@@ -68,6 +70,9 @@ function setMainVaribles()
     pos = [disAndBum, disAndBum + movement, disAndBum + (movement * 2), disAndBum + (movement * 3), disAndBum + (movement * 4), disAndBum + (movement * 5), disAndBum + (movement * 6), disAndBum + (movement * 7), disAndBum + (movement * 8), disAndBum + (movement * 9), disAndBum + (movement * 10), disAndBum + (movement * 11), disAndBum + (movement * 12)];
     yPos = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"];
     xPos = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"];
+
+    currentHp = document.getElementById("current");
+    maxHp = document.getElementById("max");
 }
 
 async function readTokens()
@@ -174,6 +179,12 @@ function addCharacter(character, update)
         char[2].title = `${character["currentHp"]} ${character["maxHp"]}`;
         let x = pos[0];
         let y = pos[0]; 
+
+        if(htmlInfo[0] == character["name"])
+        {
+            currentHp.value = character["currentHp"];
+            maxHp.value = character["maxHp"];
+        }
 
         if(character.title != "")
         {

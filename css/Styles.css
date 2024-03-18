@@ -463,18 +463,18 @@ table, .itemSearch, #itemImg
 
     #arrows img
     {
-        width: 50%;
-        height: 50%;
+        width: 27%;
+        height: 27%;
     }
 
     #arrows #left
     {
-        margin-left: 36.8%;
+        margin-left: 10%;
     }
 
     #arrows #up
     {
-        margin-left: 10%;
+        margin-left: 41%;
     }
 
     #info img, #havenport 
