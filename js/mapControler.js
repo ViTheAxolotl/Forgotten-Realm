@@ -10,10 +10,11 @@ let bounds;
 let currentPos;
 let htmlInfo = window.location.href;
 let currentCharacter;
-let temp = document.getElementById("temp");
 let playerName = document.getElementById("name");
 let key;
 let arrows = [];
+let currentHp;
+let maxHp;
 
 function init()
 {
@@ -21,6 +22,10 @@ function init()
     arrows.push(document.getElementById("left"));
     arrows.push(document.getElementById("right"));
     arrows.push(document.getElementById("down"));
+    
+    currentHp = document.getElementById("current");
+    currentHp.onchange = updateHp;
+    maxHp = document.getElementById("max");
 
     for(let arrow of arrows)
     {
@@ -57,6 +62,17 @@ function setMainVaribles()
     }
 
     bounds = [distance + bumper, (distance + bumper) + distance * 10];
+    
+    for(let prop of currentCharacter)
+    {
+        if(prop.classList.includes("hp"))
+        {
+            let title = prop.title;
+            title.split(" ");
+            currentHp.value = title[0];
+            maxHp.value = title[1];
+        }
+    }
 }
 
 function moveChar(xPos, yPos)
@@ -67,6 +83,62 @@ function moveChar(xPos, yPos)
         prop.style.top = yPos + "px";
         prop.classList += " update";
     }   
+}
+
+function updateHp()
+{
+    let hpImg;
+    let maxHp = maxHp.value;
+
+    for(let prop of currentCharacter)
+    {
+        if(prop.classList.includes("hp"))
+        {
+            hpImg = prop;
+        }
+
+        if(!(prop.classList.includes("update")))
+        {
+            prop.classList += " update";
+        }
+    }
+
+    if(parseInt(this.value) > parseInt(maxHp))
+    {
+        this.value = maxHp;
+    }
+
+    let fraction = parseInt(this.value) / parseInt(maxHp);
+
+    if(fraction == 1)
+    {
+        hpImg.src = "images/map/hpBar/hpBar1.png";
+    }
+
+    else if(fraction >= .8)
+    {
+        hpImg.src = "images/map/hpBar/hpBar2.png";
+    }
+
+    else if(fraction >= .6)
+    {
+        hpImg.src = "images/map/hpBar/hpBar3.png";
+    }
+
+    else if(fraction >= .4)
+    {
+        hpImg.src = "images/map/hpBar/hpBar4.png";
+    }
+
+    else if(fraction >= .2)
+    {
+        hpImg.src = "images/map/hpBar/hpBar5.png";
+    }
+
+    else if(fraction == 0)
+    {
+        hpImg.src = "images/map/hpBar/hpBar6.png";
+    }  
 }
 
 function handleArrow()

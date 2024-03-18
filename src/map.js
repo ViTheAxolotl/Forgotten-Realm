@@ -14,7 +14,6 @@ const firebaseApp = initializeApp
 });
 
 const db = getFirestore(firebaseApp);
-let temp = document.getElementById("temp");
 let wholeData = {};
 let div = document.getElementById("gridMap");
 let htmlInfo = window.location.href;
@@ -96,7 +95,6 @@ function addTokens()
     let currentTokens = document.getElementsByClassName("tokens");
     if(currentTokens.length != 0)
     {
-        temp.innerHTML = "0";
         for(let token of currentTokens)
         {
             if(token.classList.contains("update"))
@@ -161,7 +159,7 @@ function addCharacter(character, update)
     if(document.getElementById(character["name"]) == null)
     {
         let letterRemover = htmlInfo[0].indexOf("-");
-        let char = [document.createElement("img"), document.createElement("img")];
+        let char = [document.createElement("img"), document.createElement("img"), document.createElement("img")];
         char[0].src = `images/map/tokens/${character["name"]}.png`;
         char[0].id = character["name"];
         char[0].title = `${character["name"].charAt(0).toUpperCase() + character["name"].slice(1, letterRemover)}:`;
@@ -170,6 +168,10 @@ function addCharacter(character, update)
         char[1].id = character["border"];
         char[1].classList = `tokens ${character["name"]} border_`;
         char[1].onclick = handleCharClick;
+        char[2].src = getHpImg(character);
+        char[2].id = "hp";
+        char[2].classList = `tokens ${character["name"]} hp`;
+        char[2].title = `${character["currentHp"]} ${character["maxHp"]}`;
         let x = pos[0];
         let y = pos[0]; 
 
@@ -180,7 +182,7 @@ function addCharacter(character, update)
             y = pos[yPos.indexOf(character["yPos"])];
         }
 
-        for(let i = 0; i < 2; i++)
+        for(let i = 0; i < 3; i++)
         {
             placeTokens(x, y, char[i]);
             
@@ -194,6 +196,43 @@ function addCharacter(character, update)
     }
 }
 
+function getHpImg(character)
+{
+    let maxHp = character["maxHp"];
+    let currentHp = character["currentHp"];
+
+    let fraction = parseInt(currentHp) / parseInt(maxHp);
+
+    if(fraction == 1)
+    {
+        return "images/map/hpBar/hpBar1.png";
+    }
+
+    else if(fraction >= .8)
+    {
+        return "images/map/hpBar/hpBar2.png";
+    }
+
+    else if(fraction >= .6)
+    {
+        return "images/map/hpBar/hpBar3.png";
+    }
+
+    else if(fraction >= .4)
+    {
+        return "images/map/hpBar/hpBar4.png";
+    }
+
+    else if(fraction >= .2)
+    {
+        return "images/map/hpBar/hpBar5.png";
+    }
+
+    else if(fraction == 0)
+    {
+        return "images/map/hpBar/hpBar6.png";
+    }  
+}
 
 function handleCharClick()
 {
@@ -272,8 +311,8 @@ async function updateToken(token)
         const docRef = await setDoc(doc(db, "CurrentMap", token.id), 
         {
             border : borderColor,
-            currentHp : "",
-            maxHp : "",
+            currentHp : document.getElementById("current").value,
+            maxHp : document.getElementById("max").value,
             map : "",
             name : token.id,
             title : token.title,
