@@ -22,6 +22,7 @@ let characters = ["nook", "nibbly", "leonier", "razor", "axolotl"];
 let borders = ["blue", "golden", "green", "grey", "orange", "pink", "purple", "red"];
 let char = document.createElement("h3");
 let bord = document.createElement("h3");
+let hp = document.createElement("h3");
 let go = document.createElement("button");
 let people = [];
 let numToLet = {0 : "", 1 : "a"};
@@ -35,6 +36,8 @@ async function init()
     bord.classList = "blo";
     go.innerHTML = "Go! (It may take a few seconds to load)";
     go.classList = "blo";
+    hp.innerHTML = "Current & Max Hp";
+    hp.classList = "blo";
 
     enter.onclick = handleEnterButton;
     go.onclick = handleGoButton;
@@ -118,6 +121,7 @@ function setUpCharacters(currentName)
     {
         addCharacters();
         addBorders();
+        addHp();
         div.appendChild(go);
     }
 }
@@ -161,6 +165,28 @@ function addBorders()
     for(let border of borders)
     {
         div.appendChild(border);
+    }
+}
+
+function addHp()
+{
+    div.appendChild(hp);
+    let names = ["Current Hp", "Max Hp"];
+    let labels = [document.createElement("h6"), document.createElement("h6")];
+    let numbers = [document.createElement("input"), document.createElement("input")];
+
+    for(let i = 0; i < 2; i++)
+    {
+        labels[i].innerHTML = names[i] + ':';
+        labels[i].style.display = "inline";
+        labels[i].classList = "color-UP-yellow";
+        div.appendChild(labels[i]);
+
+        numbers[i].id = names[i];
+        numbers[i].type = "number";
+        numbers[i].min = "0";
+        numbers[i].step = "1";
+        div.appendChild(numbers[i])
     }
 }
 
