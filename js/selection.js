@@ -181,11 +181,12 @@ function addHp()
 
     for(let i = 0; i < 2; i++)
     {
+        let seprateDiv = document.createElement("div");
         labels[i].innerHTML = names[i] + ':';
         labels[i].style.display = "inline";
         labels[i].classList = "color-UP-yellow";
         labels[i].style.margin = "5px";
-        div.appendChild(labels[i]);
+        seprateDiv.appendChild(labels[i]);
 
         numbers[i].id = names[i];
         numbers[i].type = "number";
@@ -193,7 +194,9 @@ function addHp()
         numbers[i].step = "1";
         numbers[i].style.width = "10%";
         labels[i].style.margin = "5px";
-        div.appendChild(numbers[i])
+        seprateDiv.appendChild(numbers[i])
+
+        div.appendChild(seprateDiv);
     }
 }
 
