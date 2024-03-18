@@ -417,6 +417,11 @@ table, .itemSearch, #itemImg
         height: 13%;
     }
 
+    #arrows #up
+    {
+        margin-left: 14%;
+    }
+
     #grid
     {
         width: 80%;
