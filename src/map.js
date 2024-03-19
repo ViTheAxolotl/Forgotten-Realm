@@ -178,11 +178,11 @@ function addCharacter(character, update)
 
         if(htmlInfo[0] == character["name"])
         {
-            if(currentHp.value == "" && maxHp.value == "")
+            if(currentHp.value == "" && maxHp.value == "" && title == "")
             {
                 currentHp.value = character["currentHp"];
                 maxHp.value = character["maxHp"];
-                document.getElementById("title").value = character["title"]
+                document.getElementById("title").value = character["title"];
             }
         }
 

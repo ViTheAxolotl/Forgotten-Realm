@@ -411,6 +411,7 @@ table, .itemSearch, #itemImg
 .numberInput 
 {
     margin: 5px;
+    width: 10%;
 }
 
 .labelS
