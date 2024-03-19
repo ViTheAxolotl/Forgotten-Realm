@@ -289,7 +289,7 @@ function getHpImg(character)
         return "images/map/hpBar/hpBar4.png";
     }
 
-    else if(fraction >= .2)
+    else if(fraction > 0)
     {
         return "images/map/hpBar/hpBar5.png";
     }
