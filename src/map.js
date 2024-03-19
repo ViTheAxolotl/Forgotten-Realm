@@ -104,7 +104,7 @@ function addTokens()
         {
             try 
             {
-                if(div.children.length > 0)
+                if(div.children.length > 1)
                 {
                     if(!(div.children[1].classList.contains("update")))
                     {
@@ -251,7 +251,12 @@ function getHpImg(character)
 
     let fraction = parseInt(currentHp) / parseInt(maxHp);
 
-    if(fraction == 1)
+    if(maxHp == "0" && currentHp == "0")
+    {
+        return "images/map/hpBar/invisible.png";
+    }
+
+    else if(fraction == 1)
     {
         return "images/map/hpBar/hpBar1.png";
     }
