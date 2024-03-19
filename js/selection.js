@@ -191,6 +191,7 @@ function addHp()
         numbers[i].min = "0";
         numbers[i].step = "1";
         numbers[i].style.width = "10%";
+        numbers[i].classList = "numberInput";
         seprateDiv.appendChild(numbers[i])
 
         div.appendChild(seprateDiv);

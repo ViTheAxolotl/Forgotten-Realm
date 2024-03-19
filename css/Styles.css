@@ -405,8 +405,12 @@ table, .itemSearch, #itemImg
     display: inline;
     background-color: rgb(70, 70, 70);
     color: white;
-    width: 10%;
-    height: 10%;
+}
+
+.numberInput 
+{
+    width: 20%;
+    margin: 5px;
 }
 
 .labelS
@@ -465,6 +469,17 @@ table, .itemSearch, #itemImg
     #hp .labelS
     {
         display: inline;
+    }
+
+    .inOrDe
+    {
+        width: 10%;
+        height: 10%;
+    }
+
+    .numberInput 
+    {
+        width: 20%;
     }
   }
 
@@ -598,5 +613,16 @@ table, .itemSearch, #itemImg
     #hp .labelS
     {
         display: block;
+    }
+
+    .inOrDe
+    {
+        width: 50%;
+        height: 50%;
+    }
+
+    .numberInput 
+    {
+        width: 30%;
     }
   }
