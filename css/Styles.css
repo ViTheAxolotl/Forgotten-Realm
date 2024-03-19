@@ -411,7 +411,7 @@ table, .itemSearch, #itemImg
 
 .labelS
 {
-    display: inline; 
+    display: inline;
     margin: 5px;
 }
 
@@ -461,6 +461,11 @@ table, .itemSearch, #itemImg
     {
         width: 72.8%;
     }
+
+    .hp .labelS
+    {
+        display: inline;
+    }
   }
 
 @media (max-width: 991px) {
@@ -507,11 +512,6 @@ table, .itemSearch, #itemImg
     {
         width: 300px;
         height: 204px;
-    }
-
-    .hp .labelS
-    {
-        display: block;
     }
   }
 
@@ -593,5 +593,10 @@ table, .itemSearch, #itemImg
     {
         width: 10%;
         height: 10%;
+    }
+
+    .hp .labelS
+    {
+        display: block;
     }
   }

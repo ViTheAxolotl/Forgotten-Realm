@@ -110,6 +110,7 @@ function increaseValue()
 function decreaseValue()
 {
     let cHp = parseInt(currentHp.value);
+    let mHp = parseInt(maxHp.value);
 
     if(this.name == "current")
     {
