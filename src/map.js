@@ -125,6 +125,12 @@ function addTokens()
                         }
                     }
                 }
+
+                else
+                {
+                    loop = false;
+                    break;
+                }
             } 
             
             catch (error) 
