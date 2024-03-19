@@ -97,7 +97,37 @@ async function readTokens()
 
 function addTokens()
 {
-    let currentTokens = document.getElementsByClassName("tokens");
+    if(div.children.length > 1)
+    {
+        let loop = true;
+        while(loop)
+        {
+            try 
+            {
+                if(div.children.length > 1)
+                {
+                    if(!(div.children[1].classList.contains("update")))
+                    {
+                        div.removeChild(div.children[1]);
+                    } 
+                }
+    
+                if(div.lastChild.classList.contains("update"))
+                {
+                    loop = false;
+                    break;
+                }
+            } 
+            
+            catch (error) 
+            {
+                alert(error);
+                loop = false;
+                break;
+            }
+        }
+    }
+    /*let currentTokens = document.getElementsByClassName("tokens");
     if(currentTokens.length != 0)
     {
         for(let token of currentTokens)
@@ -109,7 +139,7 @@ function addTokens()
 
             token.remove();
         }
-    }
+    }*/
 
     for(let key of Object.keys(wholeData))
     {
@@ -122,7 +152,7 @@ function addTokens()
         names.add(htmlInfo[0]);
     }
 
-    for(let name of names)
+    /*for(let name of names)
     {
         let pieces = document.getElementsByClassName(name)
         if(pieces.length < 3)
@@ -160,7 +190,7 @@ function addTokens()
                 }
             }
         }
-    }
+    }*/
 }
 
 function addCharacter(character, update)
