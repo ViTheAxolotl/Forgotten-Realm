@@ -110,18 +110,25 @@ function addTokens()
                     {
                         div.removeChild(div.children[1]);
                     } 
-                }
-    
-                if(div.lastChild.classList.contains("update"))
-                {
-                    loop = false;
-                    break;
+
+                    else
+                    {
+                        if(!(div.lastChild.classList.contains("update")))
+                        {
+                            div.removeChild(div.lastChild);
+                        }
+
+                        else
+                        {
+                            loop = false;
+                            break;
+                        }
+                    }
                 }
             } 
             
             catch (error) 
             {
-                alert(error);
                 loop = false;
                 break;
             }
