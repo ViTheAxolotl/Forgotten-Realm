@@ -462,7 +462,7 @@ table, .itemSearch, #itemImg
         width: 72.8%;
     }
 
-    .hp .labelS
+    #hp .labelS
     {
         display: inline;
     }
@@ -595,7 +595,7 @@ table, .itemSearch, #itemImg
         height: 10%;
     }
 
-    .hp .labelS
+    #hp .labelS
     {
         display: block;
     }
