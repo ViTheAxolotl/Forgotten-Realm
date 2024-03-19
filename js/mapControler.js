@@ -97,6 +97,14 @@ function increaseValue()
     {
         maxHp.value = `${mHp + 1}`;
     }
+
+    for(let prop of currentCharacter)
+    {
+        if(!(prop.classList.includes("update")))
+        {
+            prop.classList += " update";
+        }
+    }
 }
 
 function decreaseValue()
@@ -116,6 +124,14 @@ function decreaseValue()
         if(!(mHp - 1 < cHp))
         {
             maxHp.value = `${mHp - 1}`;
+        }
+    }
+
+    for(let prop of currentCharacter)
+    {
+        if(!(prop.classList.includes("update")))
+        {
+            prop.classList += " update";
         }
     }
 }
