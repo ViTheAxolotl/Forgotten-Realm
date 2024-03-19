@@ -61,7 +61,7 @@ function handleAdd()
 {
     hideButtons();
 
-    curCharacter = {border: "invisible", currentHp: "20", map: "", maxHp: "20", name: "invisible-", title: "", xPos: "5", yPos: "D"};
+    curCharacter = {border: "invisible", currentHp: "20", map: "", maxHp: "20", name: "invisible-", title: " ", xPos: "5", yPos: "D"};
     makeToken(curCharacter);
     editDiv = document.getElementById("invisible--div");
     handleEdit();
@@ -406,7 +406,7 @@ async function updateMap()
         maxHp : mH,
         map : m,
         name : n,
-        title : n + ": " + t,
+        title : t,
         xPos : x,
         yPos : y
     });
@@ -605,7 +605,7 @@ async function addToken()
         maxHp : mH,
         map : "",
         name : n,
-        title : n + ": " + t,
+        title : t,
         xPos : x,
         yPos : y
     });

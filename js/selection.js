@@ -238,7 +238,7 @@ function handleGoButton()
 
 async function createChar(curCharacter, curBorder)
 {
-    let char = {border : curBorder, currentHp : "10", maxHp : "10", map : "", name : curCharacter, title : curCharacter + ": ", xPos : "1", yPos : "A"};
+    let char = {border : curBorder, currentHp : "10", maxHp : "10", map : "", name : curCharacter, title : " ", xPos : "1", yPos : "A"};
     
     for(let key of Object.keys(wholeData))
     {

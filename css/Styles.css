@@ -405,7 +405,7 @@ table, .itemSearch, #itemImg
     display: inline;
     background-color: rgb(70, 70, 70);
     color: white;
-    width: 20%;
+    width: 10%;
 }
 
 .numberInput 
@@ -479,7 +479,7 @@ table, .itemSearch, #itemImg
 
     .numberInput 
     {
-        width: 20%;
+        width: 10%;
     }
   }
 

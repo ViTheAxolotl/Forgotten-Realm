@@ -33,6 +33,7 @@ let stage = 1;
 let imgs;
 let currentHp;
 let maxHp;
+let titleTxt;
 
 function init()
 {
@@ -73,6 +74,7 @@ function setMainVaribles()
 
     currentHp = document.getElementById("current");
     maxHp = document.getElementById("max");
+    titleTxt = document.getElementById("title");
 }
 
 async function readTokens()
@@ -140,19 +142,6 @@ function addTokens()
             }
         }
     }
-    /*let currentTokens = document.getElementsByClassName("tokens");
-    if(currentTokens.length != 0)
-    {
-        for(let token of currentTokens)
-        {
-            if(token.classList.contains("update"))
-            {
-                break;
-            }
-
-            token.remove();
-        }
-    }*/
 
     for(let key of Object.keys(wholeData))
     {
@@ -164,46 +153,6 @@ function addTokens()
         addCharacter(html[htmlInfo[0]], false);
         names.add(htmlInfo[0]);
     }
-
-    /*for(let name of names)
-    {
-        let pieces = document.getElementsByClassName(name)
-        if(pieces.length < 3)
-        {
-            for(let data of Object.keys(wholeData))
-            {
-                data = wholeData[data];
-                if(data.name == name)
-                {
-                    let char = document.createElement("img");
-                    char.src = `images/map/tokens/${data.border}Border.png`;
-                    char.id = data.border;
-                    char.classList = `tokens ${data.name} border_`;
-                    let bor = document.createElement("img");
-                    bor.src = getHpImg(data);
-                    bor.classList = `tokens ${data.name} hp`;
-                    let x = pos[xPos.indexOf(data.xPos)];
-                    let y = pos[yPos.indexOf(data.yPos)];
-                    placeTokens(x, y, char);
-                    div.appendChild(char);
-                    div.appendChild(bor);
-                }
-            }
-        }
-
-        if(pieces.length >= 3)
-        {
-            let to = document.getElementById(name);
-            for(let piece of pieces)
-            {
-                if(piece.id != name)
-                {
-                    piece.style.top = to.style.top;
-                    piece.style.left = to.style.left;
-                }
-            }
-        }
-    }*/
 }
 
 function addCharacter(character, update)
@@ -214,7 +163,7 @@ function addCharacter(character, update)
         let char = [document.createElement("img"), document.createElement("img"), document.createElement("img")];
         char[0].src = `images/map/tokens/${character["name"]}.png`;
         char[0].id = character["name"];
-        char[0].title = `${character["name"].charAt(0).toUpperCase() + character["name"].slice(1, letterRemover)}:`;
+        char[0].title = `${character["name"].charAt(0).toUpperCase() + character["name"].slice(1, letterRemover)}:${character["title"]}`;
         char[0].classList = `tokens ${character["name"]} char`;
         char[1].src = `images/map/tokens/${character["border"]}Border.png`;
         char[1].id = character["border"];
@@ -233,6 +182,7 @@ function addCharacter(character, update)
             {
                 currentHp.value = character["currentHp"];
                 maxHp.value = character["maxHp"];
+                document.getElementById("title").value = character["title"]
             }
         }
 
@@ -381,7 +331,7 @@ async function updateToken(token)
             maxHp : document.getElementById("max").value,
             map : "",
             name : token.id,
-            title : token.title,
+            title : document.getElementById("title").value,
             xPos : x,
             yPos : y
         });
