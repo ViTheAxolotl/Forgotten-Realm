@@ -183,9 +183,7 @@ function addHp()
     {
         let seprateDiv = document.createElement("div");
         labels[i].innerHTML = names[i] + ':';
-        labels[i].style.display = "inline";
-        labels[i].classList = "color-UP-yellow";
-        labels[i].style.margin = "5px";
+        labels[i].classList = "color-UP-yellow labelS";
         seprateDiv.appendChild(labels[i]);
 
         numbers[i].id = names[i];
@@ -193,7 +191,6 @@ function addHp()
         numbers[i].min = "0";
         numbers[i].step = "1";
         numbers[i].style.width = "10%";
-        labels[i].style.margin = "5px";
         seprateDiv.appendChild(numbers[i])
 
         div.appendChild(seprateDiv);

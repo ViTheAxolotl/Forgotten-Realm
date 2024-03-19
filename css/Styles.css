@@ -409,6 +409,12 @@ table, .itemSearch, #itemImg
     height: 10%;
 }
 
+.labelS
+{
+    display: inline; 
+    margin: 5px;
+}
+
 @media (max-width: 1399px) {
     .col-md-6
     {
@@ -501,6 +507,11 @@ table, .itemSearch, #itemImg
     {
         width: 300px;
         height: 204px;
+    }
+
+    .hp .labelS
+    {
+        display: block;
     }
   }
 

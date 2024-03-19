@@ -85,9 +85,17 @@ function increaseValue()
     let cHp = parseInt(currentHp.value);
     let mHp = parseInt(maxHp.value);
 
-    if(!(cHp + 1 > mHp))
+    if(this.name == "current")
     {
-        currentHp.value = `${cHp + 1}`;
+        if(!(cHp + 1 > mHp))
+        {
+            currentHp.value = `${cHp + 1}`;
+        }
+    } 
+
+    else if(this.name == "max")
+    {
+        maxHp.value = `${mHp + 1}`;
     }
 }
 
@@ -95,9 +103,20 @@ function decreaseValue()
 {
     let cHp = parseInt(currentHp.value);
 
-    if(!(cHp - 1 < 0))
+    if(this.name == "current")
     {
-        currentHp.value = `${cHp - 1}`;
+        if(!(cHp - 1 < 0))
+        {
+            currentHp.value = `${cHp - 1}`;
+        }
+    } 
+    
+    else if(this.name == "max")
+    {
+        if(!(mHp - 1 < cHp))
+        {
+            maxHp.value = `${mHp - 1}`;
+        }
     }
 }
 
