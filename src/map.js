@@ -104,11 +104,11 @@ function addTokens()
         {
             try 
             {
-                if(div.children.length > 1)
+                if(div.children.length > 0)
                 {
-                    if(!(div.children[1].classList.contains("update")))
+                    if(!(div.children[0].classList.contains("update")))
                     {
-                        div.removeChild(div.children[1]);
+                        div.removeChild(div.children[0]);
                     } 
                 }
     
