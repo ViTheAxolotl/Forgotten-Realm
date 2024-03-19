@@ -400,6 +400,15 @@ table, .itemSearch, #itemImg
     z-index: 900;
 }
 
+.inOrDe
+{
+    display: inline;
+    background-color: rgb(70, 70, 70);
+    color: white;
+    width: 10%;
+    height: 10%;
+}
+
 @media (max-width: 1399px) {
     .col-md-6
     {

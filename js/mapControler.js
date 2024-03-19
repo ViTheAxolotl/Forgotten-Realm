@@ -15,6 +15,7 @@ let key;
 let arrows = [];
 let currentHp;
 let maxHp;
+let buttons;
 
 function init()
 {
@@ -39,6 +40,7 @@ function init()
 
 function setMainVaribles()
 {   
+    buttons = document.getElementsByClassName("inOrDe");
     htmlInfo = htmlInfo.split("?");
     htmlInfo = htmlInfo[1];
     htmlInfo = htmlInfo.split("_");
@@ -63,6 +65,40 @@ function setMainVaribles()
     }
 
     bounds = [distance + bumper, (distance + bumper) + distance * 10];
+
+    for(let button of buttons)
+    {
+        if(button.innerHTML == "+")
+        {
+            button.onclick = increaseValue;
+        }
+
+        else
+        {
+            button.onclick = decreaseValue;
+        }
+    }
+}
+
+function increaseValue()
+{
+    let cHp = parseInt(currentHp.value);
+    let mHp = parseInt(maxHp.value);
+
+    if(!(cHp + 1 > mHp))
+    {
+        currentHp.value = `${cHp + 1}`;
+    }
+}
+
+function decreaseValue()
+{
+    let cHp = parseInt(currentHp.value);
+
+    if(!(cHp - 1 < 0))
+    {
+        currentHp.value = `${cHp - 1}`;
+    }
 }
 
 function moveChar(xPos, yPos)
