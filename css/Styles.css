@@ -409,7 +409,6 @@ table, .itemSearch, #itemImg
 
 .numberInput 
 {
-    width: 20%;
     margin: 5px;
 }
 
@@ -617,8 +616,8 @@ table, .itemSearch, #itemImg
 
     .inOrDe
     {
-        width: 50%;
-        height: 50%;
+        width: 30%;
+        height: 30%;
     }
 
     .numberInput 
