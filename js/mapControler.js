@@ -35,7 +35,7 @@ function init()
         arrow.onclick = handleArrow;
     }
 
-    div.addEventListener("keydown", (ev) => {key = ev; handleArrow()});
+    div.addEventListener("onkeydown", (ev) => {key = ev; handleArrow()});
     setMainVaribles();
 }
 
@@ -109,7 +109,7 @@ function increaseValue()
 
     for(let prop of currentCharacter)
     {
-        if(!(prop.classList.includes("update")))
+        if(!(prop.classList.contains("update")))
         {
             prop.classList += " update";
         }
@@ -147,7 +147,7 @@ function decreaseValue()
 
     for(let prop of currentCharacter)
     {
-        if(!(prop.classList.includes("update")))
+        if(!(prop.classList.contains("update")))
         {
             prop.classList += " update";
         }
@@ -168,7 +168,7 @@ function addUpdate()
 {
     for(let prop of currentCharacter)
     {
-        if(!(prop.classList.includes("update")))
+        if(!(prop.classList.contains("update")))
         {
             prop.classList += " update";
         }
@@ -182,12 +182,12 @@ function updateHp()
 
     for(let prop of currentCharacter)
     {
-        if(prop.classList.includes("hp"))
+        if(prop.classList.contains("hp"))
         {
             hpImg = prop;
         }
 
-        if(!(prop.classList.includes("update")))
+        if(!(prop.classList.contains("update")))
         {
             prop.classList += " update";
         }
