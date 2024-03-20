@@ -16,6 +16,7 @@ let arrows = [];
 let currentHp;
 let maxHp;
 let buttons;
+let statusHasFocas = false;
 
 function init()
 {
@@ -25,9 +26,9 @@ function init()
     arrows.push(document.getElementById("down"));
     
     currentHp = document.getElementById("current");
-    currentHp.onChange = updateHp;
+    currentHp.onchange = updateHp;
     maxHp = document.getElementById("max");
-    maxHp.onChange = addUpdate;
+    maxHp.onchange = addUpdate;
 
     for(let arrow of arrows)
     {
@@ -36,6 +37,8 @@ function init()
 
     document.addEventListener("keydown", (ev) => {key = ev; handleArrow()});
     document.addEventListener("keydown", (ev) => {key = ev; handleTyping()});
+    document.getElementById("status").onfocus = function(){statusHasFocas = true};
+    document.getElementById("status").onfocusout = function(){statusHasFocas = false};
     setMainVaribles();
 }
 
@@ -234,7 +237,7 @@ function updateHp()
 function handleTyping()
 {
     let status = document.getElementById("status");
-    if(status.hasFocas())
+    if(statusHasFocas)
     {
         status.value += String.fromCharCode(key.keyCode);
     }

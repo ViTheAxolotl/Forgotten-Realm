@@ -332,7 +332,7 @@ async function updateToken(token)
             maxHp : document.getElementById("max").value,
             map : "",
             name : token.id,
-            title : t.innerHTML.slice(t.indexOf(" ")),
+            title : t.innerHTML.slice(t.innerHTML.indexOf(" ")),
             xPos : x,
             yPos : y
         });
