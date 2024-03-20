@@ -180,8 +180,8 @@ function addCharacter(character, update)
         {
             if(currentHp.value == "" && maxHp.value == "" && title.innerHTML == "Status: ")
             {
-                currentHp.value = character["currentHp"];
-                maxHp.value = character["maxHp"];
+                currentHp.defaultValue = character["currentHp"];
+                maxHp.defaultValue = character["maxHp"];
                 document.getElementById("title").innerHTML += character["title"];
             }
         }

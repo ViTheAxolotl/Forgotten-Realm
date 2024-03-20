@@ -25,9 +25,9 @@ function init()
     arrows.push(document.getElementById("down"));
     
     currentHp = document.getElementById("current");
-    currentHp.onchange = updateHp;
+    currentHp.onChange = updateHp;
     maxHp = document.getElementById("max");
-    maxHp.onchange = addUpdate;
+    maxHp.onChange = addUpdate;
 
     for(let arrow of arrows)
     {
