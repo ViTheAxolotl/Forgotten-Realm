@@ -178,11 +178,11 @@ function addCharacter(character, update)
 
         if(htmlInfo[0] == character["name"])
         {
-            if(currentHp.value == "" && maxHp.value == "" && title.value == "")
+            if(currentHp.value == "" && maxHp.value == "" && title.innerHTML == "Status: ")
             {
                 currentHp.value = character["currentHp"];
                 maxHp.value = character["maxHp"];
-                document.getElementById("title").value = character["title"];
+                document.getElementById("title").innerHTML += character["title"];
             }
         }
 
@@ -323,6 +323,7 @@ async function updateToken(token)
         y = parseInt(token.style.top.replace("px", ""));
         x = xPos[pos.indexOf(x)];
         y = yPos[pos.indexOf(y)];
+        let t = document.getElementById("title");
 
         const docRef = await setDoc(doc(db, "CurrentMap", token.id.slice(0, token.id.indexOf("-"))), 
         {
@@ -331,7 +332,7 @@ async function updateToken(token)
             maxHp : document.getElementById("max").value,
             map : "",
             name : token.id,
-            title : document.getElementById("title").value,
+            title : t.innerHTML.slice(t.indexOf(" ")),
             xPos : x,
             yPos : y
         });

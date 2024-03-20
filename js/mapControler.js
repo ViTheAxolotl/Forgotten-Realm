@@ -98,6 +98,14 @@ function increaseValue()
         maxHp.value = `${mHp + 1}`;
     }
 
+    else if(this.name == "title")
+    {
+        let title = document.getElementById("title");
+        let status = document.getElementById("status");
+
+        title.innerHTML += ` ${status.style},`;
+    }
+
     for(let prop of currentCharacter)
     {
         if(!(prop.classList.includes("update")))
@@ -126,6 +134,14 @@ function decreaseValue()
         {
             maxHp.value = `${mHp - 1}`;
         }
+    }
+
+    else if(this.name == "title")
+    {
+        let title = document.getElementById("title");
+        let status = document.getElementById("status");
+
+        title.innerHTML = title.innerHTML.replace(` ${status.innerHTML},`, "");
     }
 
     for(let prop of currentCharacter)
