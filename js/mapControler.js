@@ -35,6 +35,7 @@ function init()
     }
 
     document.addEventListener("keydown", (ev) => {key = ev; handleArrow()});
+    document.addEventListener("keydown", (ev) => {key = ev; handleTyping()});
     setMainVaribles();
 }
 
@@ -228,6 +229,15 @@ function updateHp()
     {
         hpImg.src = "images/map/hpBar/hpBar6.png";
     }  
+}
+
+function handleTyping()
+{
+    let status = document.getElementById("status");
+    if(status.hasFocas())
+    {
+        status.value += String.fromCharCode(key.keyCode);
+    }
 }
 
 function handleArrow()
