@@ -324,7 +324,7 @@ async function updateToken(token)
         x = xPos[pos.indexOf(x)];
         y = yPos[pos.indexOf(y)];
 
-        const docRef = await setDoc(doc(db, "CurrentMap", token.id), 
+        const docRef = await setDoc(doc(db, "CurrentMap", token.id.slice(0, token.id.indexOf("-"))), 
         {
             border : borderColor,
             currentHp : document.getElementById("current").value,
