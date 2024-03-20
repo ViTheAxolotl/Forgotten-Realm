@@ -104,7 +104,7 @@ function increaseValue()
         let title = document.getElementById("title");
         let status = document.getElementById("status");
 
-        title.innerHTML += ` ${status.value.indexOf(0).toUpperCase() + status.value.slice(1)},`;
+        title.innerHTML += ` ${status.value.charAt(0).toUpperCase() + status.value.slice(1)},`;
     }
 
     for(let prop of currentCharacter)
@@ -142,7 +142,7 @@ function decreaseValue()
         let title = document.getElementById("title");
         let status = document.getElementById("status");
 
-        title.innerHTML = title.innerHTML.replace(` ${status.value.indexOf(0).toUpperCase() + status.value.slice(1)},`, "");
+        title.innerHTML = title.innerHTML.replace(` ${status.value.charAt(0).toUpperCase() + status.value.slice(1)},`, "");
     }
 
     for(let prop of currentCharacter)
