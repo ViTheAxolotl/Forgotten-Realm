@@ -16,7 +16,7 @@ let arrows = [];
 let currentHp;
 let maxHp;
 let buttons;
-let div = document.getElementById("gridMap");
+let div = document.getElementById("grid");
 
 function init()
 {
