@@ -16,7 +16,6 @@ let arrows = [];
 let currentHp;
 let maxHp;
 let buttons;
-let statusHasFocas = false;
 
 function init()
 {
@@ -35,10 +34,7 @@ function init()
         arrow.onclick = handleArrow;
     }
 
-    document.addEventListener("keydown", (ev) => {key = ev; handleArrow()});
-    document.addEventListener("keydown", (ev) => {key = ev; handleTyping()});
-    document.getElementById("status").onfocus = function(){statusHasFocas = true};
-    document.getElementById("status").onfocusout = function(){statusHasFocas = false};
+    //document.addEventListener("keydown", (ev) => {key = ev; handleArrow()});
     setMainVaribles();
 }
 
@@ -232,15 +228,6 @@ function updateHp()
     {
         hpImg.src = "images/map/hpBar/hpBar6.png";
     }  
-}
-
-function handleTyping()
-{
-    let status = document.getElementById("status");
-    if(statusHasFocas)
-    {
-        status.value += String.fromCharCode(key.keyCode);
-    }
 }
 
 function handleArrow()
