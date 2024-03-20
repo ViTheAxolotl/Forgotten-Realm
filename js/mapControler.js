@@ -16,6 +16,7 @@ let arrows = [];
 let currentHp;
 let maxHp;
 let buttons;
+let div = document.getElementById("gridMap");
 
 function init()
 {
@@ -34,7 +35,7 @@ function init()
         arrow.onclick = handleArrow;
     }
 
-    //document.addEventListener("keydown", (ev) => {key = ev; handleArrow()});
+    div.addEventListener("keydown", (ev) => {key = ev; handleArrow()});
     setMainVaribles();
 }
 
