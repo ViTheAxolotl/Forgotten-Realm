@@ -399,7 +399,7 @@ async function updateMap()
         }
     }
 
-    const docRef = await setDoc(doc(db, "CurrentMap", n), 
+    const docRef = await setDoc(doc(db, "CurrentMap", n.slice(0, n.indexOf("-"))), 
     {
         border : b,
         currentHp : c,
@@ -598,7 +598,7 @@ async function addToken()
     let x = document.getElementById("xPos").value;
     let y = document.getElementById("yPos").value;
 
-    const docRef = await setDoc(doc(db, "CurrentMap", n), 
+    const docRef = await setDoc(doc(db, "CurrentMap", n.slice(0, n.indexOf("-"))), 
     {
         border : b,
         currentHp : c,

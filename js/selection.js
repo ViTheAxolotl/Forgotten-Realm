@@ -252,7 +252,7 @@ async function createChar(curCharacter, curBorder)
         }
     }
 
-    const docRef = await setDoc(doc(db, "CurrentMap", curCharacter), char);
+    const docRef = await setDoc(doc(db, "CurrentMap", curCharacter.slice(0, curCharacter.indexOf("-"))), char);
 }
 
 init();

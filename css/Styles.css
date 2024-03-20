@@ -406,6 +406,7 @@ table, .itemSearch, #itemImg
     background-color: rgb(70, 70, 70);
     color: white;
     width: 10%;
+    touch-action: manipulation;
 }
 
 .numberInput 
