@@ -103,7 +103,7 @@ function increaseValue()
         let title = document.getElementById("title");
         let status = document.getElementById("status");
 
-        title.innerHTML += ` ${status.style},`;
+        title.innerHTML += ` ${status.value.indexOf(0).toUpperCase() + status.value.slice(1)},`;
     }
 
     for(let prop of currentCharacter)
@@ -141,7 +141,7 @@ function decreaseValue()
         let title = document.getElementById("title");
         let status = document.getElementById("status");
 
-        title.innerHTML = title.innerHTML.replace(` ${status.innerHTML},`, "");
+        title.innerHTML = title.innerHTML.replace(` ${status.value.indexOf(0).toUpperCase() + status.value.slice(1)},`, "");
     }
 
     for(let prop of currentCharacter)
