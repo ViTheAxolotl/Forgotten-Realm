@@ -178,7 +178,7 @@ function addCharacter(character, update)
 
         if(htmlInfo[0] == character["name"])
         {
-            if(currentHp.value == "" && maxHp.value == "" && title == "")
+            if(currentHp.value == "" && maxHp.value == "" && title.value == "")
             {
                 currentHp.value = character["currentHp"];
                 maxHp.value = character["maxHp"];
