@@ -169,6 +169,7 @@ function addCharacter(character, update)
         char[1].id = character["border"];
         char[1].classList = `tokens ${character["name"]} border_`;
         char[1].onclick = handleCharClick;
+        char[1].onmousedown = handleViewTokens;
         char[2].src = getHpImg(character);
         char[2].id = "hp";
         char[2].classList = `tokens ${character["name"]} hp`;
