@@ -425,7 +425,7 @@ table, .itemSearch, #itemImg
 {
     display: none; 
     background-color: grey; 
-    opacity: .7; 
+    opacity: .9; 
     position: absolute; 
     top: 0px; 
     left: 0px;
@@ -446,6 +446,8 @@ table, .itemSearch, #itemImg
     position: absolute;
     top: 60%;
     left: 30%;
+    color: white;
+    background-color: black;
 }
 
 #hideCover
