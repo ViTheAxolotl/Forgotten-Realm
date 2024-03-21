@@ -232,8 +232,7 @@ function handleGoButton()
         let curBorder = currentSelected[1].id;
         let curCharacter = currentSelected[0].id;
         createChar(curCharacter, curBorder);
-        if(div.children.length > 1)
-    {
+        
         let loop = true;
         while(loop)
         {
@@ -241,7 +240,7 @@ function handleGoButton()
             {
                 if(div.children.length > 0)
                 {
-                        div.removeChild(div.children[1]);
+                    div.removeChild(div.children[1]);
                 }
 
                 else
