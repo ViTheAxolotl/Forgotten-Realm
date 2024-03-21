@@ -50,6 +50,7 @@ function setMainVaribles()
     htmlInfo = htmlInfo[1];
     htmlInfo = htmlInfo.split("_");
     html[htmlInfo[0]] = {"border" : htmlInfo[1], "name" : htmlInfo[0], title : ""};
+    document.getElementById("hideCover").onclick = hideCover;
 
     if(rect.width < 999)
     {

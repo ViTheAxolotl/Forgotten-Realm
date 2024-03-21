@@ -49,7 +49,6 @@ function setMainVaribles()
     currentCharacter = document.getElementsByClassName(htmlInfo[0]);
     let letterRemover = htmlInfo[0].indexOf("-");
     playerName.innerHTML = htmlInfo[0].charAt(0).toUpperCase() + htmlInfo[0].slice(1, letterRemover);
-    document.getElementById("hideCover").onclick = hideCover;
 
     if(rect.width < 999)
     {
@@ -80,11 +79,6 @@ function setMainVaribles()
         {
             button.onclick = decreaseValue;
         }
-    }
-
-    for(let border of currentBorders)
-    {
-        border.onmousedown = handleViewTokens;
     }
 }
 
