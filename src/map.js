@@ -302,11 +302,11 @@ function hideCover()
 
     for(let elm of viewDiv.children)
     {
-        elm.classList = `invisible ${elm.classList.toString()}`;
+        elm.classList = `invisible ${elm.classList[0]}`;
         elm.style.zIndex = "0";
     }
 
-    viewDiv.classList = `invisible ${viewDiv.classList.toString()}`;
+    viewDiv.classList = `invisible ${viewDiv.classList[0]}`;
     viewDiv.style.zIndex = "0";
 }
 
