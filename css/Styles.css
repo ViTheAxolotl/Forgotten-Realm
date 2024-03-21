@@ -453,6 +453,7 @@ table, .itemSearch, #itemImg
     background-color: grey;
     color: white;
     width: 20%;
+    position: absolute;
     top: 0px;
     right: 100%;
 }

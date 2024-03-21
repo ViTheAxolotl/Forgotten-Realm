@@ -298,8 +298,10 @@ function hideCover()
 
     for(let elm of viewDiv.children)
     {
-        elm.classList = `invisible ${elm.classList[0]}`;
+        elm.classList = `invisible ${elm.classList.toString()}`;
     }
+
+    viewDiv.classList = `invisible ${viewDiv.classList.toString()}`;
 }
 
 function placeTokens(x, y, prop)
