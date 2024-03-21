@@ -266,12 +266,16 @@ function handleViewTokens()
     let currentToken = document.getElementsByClassName(this.classList[1]);
     let viewDiv = document.getElementById("cover");
     let i = 0;
+    let y = 1;
     let title;
 
     viewDiv.style.display = "inline";
+    viewDiv.style = "z-index: 2000;";
     for(let elm of viewDiv.children)
     {
         elm.classList = elm.classList[1];
+        elm.style = `z-index: 200${y}`;
+        y++;
 
         if(elm.src != undefined)
         {
@@ -299,9 +303,11 @@ function hideCover()
     for(let elm of viewDiv.children)
     {
         elm.classList = `invisible ${elm.classList.toString()}`;
+        elm.style = "z-index: 0;";
     }
 
     viewDiv.classList = `invisible ${viewDiv.classList.toString()}`;
+    vimDiv.style = "z-index: 0;";
 }
 
 function placeTokens(x, y, prop)
