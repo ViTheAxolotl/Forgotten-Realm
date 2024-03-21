@@ -260,6 +260,45 @@ function handleCharClick()
     }
 }
 
+function handleViewTokens()
+{
+    let currentToken = document.getElementsByClassName(this.classList[1]);
+    let viewDiv = document.getElementById("cover");
+    let i = 0;
+    let title;
+
+    viewDiv.style.display = "inline";
+    for(let elm of viewDiv.children)
+    {
+        elm.classList = elm.classList[1];
+
+        if(i != 0 || i != 4)
+        {
+            elm.src = currentToken[i].src;
+            elm.title = currentToken[i].title;
+            if(elm.title.includes(":"))
+            {
+                title = elm.title;
+            }
+        }
+
+        else if(i == 4)
+        {
+            elm.innerHTML = title;
+        }
+    }
+}
+
+function hideCover()
+{
+    let viewDiv = document.getElementById("cover");
+
+    for(let elm of viewDiv.children)
+    {
+        elm.classList = `invisible ${elm.classList[0]}`;
+    }
+}
+
 function placeTokens(x, y, prop)
 {
     prop.style.left = x + "px";
