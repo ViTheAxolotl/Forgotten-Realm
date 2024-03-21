@@ -493,6 +493,13 @@ table, .itemSearch, #itemImg
         width: 5%;
         height: 5%;
     }
+
+    .veiwTokens
+    {
+        top: 20%;
+        left: 34%;
+        width: 24%;
+    }
   }
 
 @media (max-width: 1199px) {
@@ -664,5 +671,12 @@ table, .itemSearch, #itemImg
     .numberInput 
     {
         width: 30%;
+    }
+
+    .veiwTokens
+    {
+        top: 40%;
+        left: 40%;
+        width: 45%;
     }
   }
