@@ -171,6 +171,7 @@ function addCharacter(character, update)
         char[1].classList = `tokens ${character["name"]} border_`;
         char[1].onclick = handleCharClick;
         char[1].onmousedown = handleViewTokens;
+        char[1].onmouseup = handleHideTokens;
         char[2].src = getHpImg(character);
         char[2].id = "hp";
         char[2].classList = `tokens ${character["name"]} hp`;
@@ -273,7 +274,7 @@ function handleViewTokens()
     {
         elm.classList = elm.classList[1];
 
-        if(i != 0 && i != 4)
+        if(i != 3)
         {
             elm.src = currentToken[i].src;
             elm.title = currentToken[i].title;
@@ -283,14 +284,14 @@ function handleViewTokens()
             }
         }
 
-        else if(i == 4)
+        else if(i == 3)
         {
             elm.innerHTML = title;
         }
     }
 }
 
-function hideCover()
+function handleHideTokens()
 {
     let viewDiv = document.getElementById("cover");
 
