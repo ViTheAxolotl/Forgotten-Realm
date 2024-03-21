@@ -171,7 +171,6 @@ function addCharacter(character, update)
         char[1].classList = `tokens ${character["name"]} border_`;
         char[1].onclick = handleCharClick;
         char[1].onmousedown = handleViewTokens;
-        char[1].onmouseup = handleHideTokens;
         char[2].src = getHpImg(character);
         char[2].id = "hp";
         char[2].classList = `tokens ${character["name"]} hp`;
@@ -269,12 +268,12 @@ function handleViewTokens()
     let i = 0;
     let title;
 
-    viewDiv.style.display = "block";
+    viewDiv.style.display = "inline";
     for(let elm of viewDiv.children)
     {
         elm.classList = elm.classList[1];
 
-        if(i != 3)
+        if(i != 0 && i != 4)
         {
             elm.src = currentToken[i].src;
             elm.title = currentToken[i].title;
@@ -284,7 +283,7 @@ function handleViewTokens()
             }
         }
 
-        else if(i == 3)
+        else if(i == 4)
         {
             elm.innerHTML = title;
         }
