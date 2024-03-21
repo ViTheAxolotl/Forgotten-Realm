@@ -307,7 +307,7 @@ function hideCover()
     }
 
     viewDiv.classList = `invisible ${viewDiv.classList.toString()}`;
-    vimDiv.style.zIndex = "0";
+    viewDiv.style.zIndex = "0";
 }
 
 function placeTokens(x, y, prop)
