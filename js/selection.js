@@ -232,7 +232,7 @@ function handleGoButton()
         let curBorder = currentSelected[1].id;
         let curCharacter = currentSelected[0].id;
         createChar(curCharacter, curBorder);
-        
+
         let loop = true;
         while(loop)
         {
@@ -257,7 +257,7 @@ function handleGoButton()
             }
         }
 
-        let loading = document.createElement("h1");
+        let loading = document.createElement("h3");
         loading.innerHTML = "Loading...";
         div.appendChild(loading);
         setInterval(() => {window.location.href= `map.html?${curCharacter}_${curBorder}_x`;}, 2000);
