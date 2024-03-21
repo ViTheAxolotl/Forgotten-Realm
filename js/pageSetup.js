@@ -50,6 +50,7 @@ function navBarSetup()
                 '</li>' +
                 '<li class="nav-item"><a class="nav-link active" aria-current="page" href="' + mainLocation + 'mapAndTowns.html">Maps</a></li>' +
                 '<li class="nav-item"><a class="nav-link active" aria-current="page" href="' + mainLocation + 'questAndNotes.html">Quests & Personal Notes</a></li>' + 
+                '<li class="nav-item"><a class="nav-link active" aria-current="page" href="' + mainLocation + 'selection.html">Map Board</a></li>' +
                 '<li class="nav-item"><a class="nav-link active" aria-current="page" href="' + mainLocation + 'recap.html">Sessions Recap</a></li>' + 
                 '<li class="nav-item"><a class="nav-link active" aria-current="page" href="' + mainLocation + 'itemIndex.html">Magic Item Index</a></li>' +    
             '</ul>' +
