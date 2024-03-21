@@ -273,7 +273,7 @@ function handleViewTokens()
     {
         elm.classList = elm.classList[1];
 
-        if(elm.src.includes("d"))
+        if(elm.src != undefined)
         {
             elm.src = currentToken[i].src;
             elm.title = currentToken[i].title;
