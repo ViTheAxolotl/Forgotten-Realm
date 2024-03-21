@@ -36,7 +36,7 @@ async function init()
     bord.innerHTML = "Select Boarder";
     bord.classList = "blo";
     bord.style.margin = "5px";
-    go.innerHTML = "Go! (It may take a few seconds to load)";
+    go.innerHTML = "Go!";
     go.classList = "blo";
     go.style.margin = "5px";
     hp.innerHTML = "Current & Max Hp";
@@ -232,6 +232,35 @@ function handleGoButton()
         let curBorder = currentSelected[1].id;
         let curCharacter = currentSelected[0].id;
         createChar(curCharacter, curBorder);
+        if(div.children.length > 1)
+    {
+        let loop = true;
+        while(loop)
+        {
+            try 
+            {
+                if(div.children.length > 0)
+                {
+                        div.removeChild(div.children[1]);
+                }
+
+                else
+                {
+                    loop = false;
+                    break;
+                }
+            } 
+            
+            catch (error) 
+            {
+                loop = false;
+                break;
+            }
+        }
+
+        let loading = document.createElement("h1");
+        loading.innerHTML = "Loading...";
+        div.appendChild(loading);
         setInterval(() => {window.location.href= `map.html?${curCharacter}_${curBorder}_x`;}, 2000);
     }
 }
