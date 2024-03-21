@@ -266,15 +266,15 @@ function handleViewTokens()
     let currentToken = document.getElementsByClassName(this.classList[1]);
     let viewDiv = document.getElementById("cover");
     let i = 0;
-    let y = 1;
+    let y = 2;
     let title;
 
     viewDiv.style.display = "inline";
-    viewDiv.style = "z-index: 2000;";
+    viewDiv.style = "z-index: 1011;";
     for(let elm of viewDiv.children)
     {
         elm.classList = elm.classList[1];
-        elm.style = `z-index: 200${y}`;
+        elm.style = `z-index: 101${y}`;
         y++;
 
         if(elm.src != undefined)
