@@ -445,7 +445,8 @@ table, .itemSearch, #itemImg
 #hideCover
 {
     background-color: grey;
-    opacity: .7;
+    color: white;
+    width: 20%;
     top: 0px;
     right: 100%;
 }
