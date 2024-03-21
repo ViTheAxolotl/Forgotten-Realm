@@ -270,11 +270,11 @@ function handleViewTokens()
     let title;
 
     viewDiv.style.display = "inline";
-    viewDiv.style = "z-index: 1011;";
+    viewDiv.style.zIndex = "1011";
     for(let elm of viewDiv.children)
     {
         elm.classList = elm.classList[1];
-        elm.style = `z-index: 101${y}`;
+        elm.style.zIndex = `101${y}`;
         y++;
 
         if(elm.src != undefined)
@@ -303,11 +303,11 @@ function hideCover()
     for(let elm of viewDiv.children)
     {
         elm.classList = `invisible ${elm.classList.toString()}`;
-        elm.style = "z-index: 0;";
+        elm.style.zIndex = "0";
     }
 
     viewDiv.classList = `invisible ${viewDiv.classList.toString()}`;
-    vimDiv.style = "z-index: 0;";
+    vimDiv.style.zIndex = "0";
 }
 
 function placeTokens(x, y, prop)
