@@ -263,35 +263,38 @@ function handleCharClick()
 
 function handleViewTokens()
 {
-    let currentToken = document.getElementsByClassName(this.classList[1]);
-    let viewDiv = document.getElementById("cover");
-    let i = 0;
-    let y = 2;
-    let title;
-
-    viewDiv.style.display = "inline";
-    viewDiv.style.zIndex = "1011";
-    for(let elm of viewDiv.children)
+    if(htmlInfo[2] != "vi")
     {
-        elm.classList = elm.classList[1];
-        elm.style.zIndex = `101${y}`;
-        y++;
+        let currentToken = document.getElementsByClassName(this.classList[1]);
+        let viewDiv = document.getElementById("cover");
+        let i = 0;
+        let y = 2;
+        let title;
 
-        if(elm.src != undefined)
+        viewDiv.style.display = "inline";
+        viewDiv.style.zIndex = "1011";
+        for(let elm of viewDiv.children)
         {
-            elm.src = currentToken[i].src;
-            elm.title = currentToken[i].title;
-            if(elm.title.includes(":"))
+            elm.classList = elm.classList[1];
+            elm.style.zIndex = `101${y}`;
+            y++;
+
+            if(elm.src != undefined)
             {
-                title = elm.title;
+                elm.src = currentToken[i].src;
+                elm.title = currentToken[i].title;
+                if(elm.title.includes(":"))
+                {
+                    title = elm.title;
+                }
+                
+                i++;
             }
-            
-            i++;
-        }
 
-        else if(elm.id == "viewTitle")
-        {
-            elm.innerHTML = title;
+            else if(elm.id == "viewTitle")
+            {
+                elm.innerHTML = title;
+            }
         }
     }
 }
