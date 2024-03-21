@@ -425,7 +425,7 @@ table, .itemSearch, #itemImg
 {
     background-color: grey; 
     opacity: .9; 
-    position: absolute; 
+    position: fixed; 
     top: 0px; 
     left: 0px;
     width: 100%;
