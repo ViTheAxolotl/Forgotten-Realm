@@ -421,6 +421,33 @@ table, .itemSearch, #itemImg
     margin: 5px;
 }
 
+#cover
+{
+    display: none; 
+    background-color: grey; 
+    opacity: .5; 
+    position: absolute; 
+    top: 0px; 
+    left: 0px;
+}
+
+.viewTokens
+{
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    width: 30%;
+    height: 30%;
+}
+
+#hideCover
+{
+    background-color: grey;
+    opacity: .5;
+    top: 0px;
+    right: 100%;
+}
+
 @media (max-width: 1399px) {
     .col-md-6
     {

@@ -17,6 +17,7 @@ let currentHp;
 let maxHp;
 let buttons;
 let div = document.getElementById("grid");
+let currentBorders = document.getElementsByClassName("border_");
 
 function init()
 {
@@ -48,6 +49,7 @@ function setMainVaribles()
     currentCharacter = document.getElementsByClassName(htmlInfo[0]);
     let letterRemover = htmlInfo[0].indexOf("-");
     playerName.innerHTML = htmlInfo[0].charAt(0).toUpperCase() + htmlInfo[0].slice(1, letterRemover);
+    document.getElementById("hideCover").onclick = hideCover;
 
     if(rect.width < 999)
     {
@@ -79,6 +81,8 @@ function setMainVaribles()
             button.onclick = decreaseValue;
         }
     }
+
+    currentBorders.onmousedown = handleViewTokens;
 }
 
 function increaseValue()
@@ -151,6 +155,46 @@ function decreaseValue()
         {
             prop.classList += " update";
         }
+    }
+}
+
+
+function handleViewTokens()
+{
+    let currentToken = document.getElementsByClassName(this.classList[1]);
+    let viewDiv = document.getElementById("cover");
+    let i = 0;
+    let title;
+
+    viewDiv.style.display = "inline";
+    for(let elm of viewDiv.children)
+    {
+        elm.classList = elm.classList[1];
+
+        if(i != 0 || i != 4)
+        {
+            elm.src = currentToken[i].src;
+            elm.title = currentToken[i].title;
+            if(elm.title.includes(":"))
+            {
+                title = elm.title;
+            }
+        }
+
+        else if(i == 4)
+        {
+            elm.innerHTML = title;
+        }
+    }
+}
+
+function hideCover()
+{
+    let viewDiv = document.getElementById("cover");
+
+    for(let elm of viewDiv.children)
+    {
+        elm.classList = `invisible ${elm.classList[0]}`;
     }
 }
 

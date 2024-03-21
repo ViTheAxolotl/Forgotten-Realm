@@ -259,7 +259,6 @@ function handleCharClick()
     }
 }
 
-
 function placeTokens(x, y, prop)
 {
     prop.style.left = x + "px";
