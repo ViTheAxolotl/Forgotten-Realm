@@ -82,7 +82,10 @@ function setMainVaribles()
         }
     }
 
-    currentBorders.onmousedown = handleViewTokens;
+    for(let border of currentBorders)
+    {
+        border.onmousedown = handleViewTokens;
+    }
 }
 
 function increaseValue()
