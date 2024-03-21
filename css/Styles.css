@@ -442,6 +442,12 @@ table, .itemSearch, #itemImg
     height: 30%;
 }
 
+.viewTitle
+{
+    top: 60%;
+    left: 30%;
+}
+
 #hideCover
 {
     background-color: grey;

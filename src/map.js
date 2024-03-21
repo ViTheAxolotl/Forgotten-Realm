@@ -273,7 +273,7 @@ function handleViewTokens()
     {
         elm.classList = elm.classList[1];
 
-        if(i != 0 && i != 4)
+        if(elm.src == "d")
         {
             elm.src = currentToken[i].src;
             elm.title = currentToken[i].title;
@@ -281,9 +281,11 @@ function handleViewTokens()
             {
                 title = elm.title;
             }
+            
+            i++;
         }
 
-        else if(i == 4)
+        else if(elm.id == "viewTitle")
         {
             elm.innerHTML = title;
         }
