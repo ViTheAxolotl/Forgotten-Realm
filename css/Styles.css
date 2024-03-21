@@ -423,7 +423,6 @@ table, .itemSearch, #itemImg
 
 #cover
 {
-    display: none; 
     background-color: grey; 
     opacity: .9; 
     position: absolute; 

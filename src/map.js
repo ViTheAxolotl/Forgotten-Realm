@@ -271,7 +271,7 @@ function handleViewTokens()
         let y = 2;
         let title;
 
-        viewDiv.style.display = "inline";
+        viewDiv.classList = "";
         viewDiv.style.zIndex = "1011";
         for(let elm of viewDiv.children)
         {
@@ -309,7 +309,7 @@ function hideCover()
         elm.style.zIndex = "0";
     }
 
-    viewDiv.classList = `invisible ${viewDiv.classList[0]}`;
+    viewDiv.classList = `invisible`;
     viewDiv.style.zIndex = "0";
 }
 
