@@ -268,12 +268,12 @@ function handleViewTokens()
     let i = 0;
     let title;
 
-    viewDiv.style.display = "inline";
+    viewDiv.style.display = "block";
     for(let elm of viewDiv.children)
     {
         elm.classList = elm.classList[1];
 
-        if(i != 0 || i != 4)
+        if(i != 0 && i != 4)
         {
             elm.src = currentToken[i].src;
             elm.title = currentToken[i].title;
