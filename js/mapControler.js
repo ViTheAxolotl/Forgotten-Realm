@@ -66,8 +66,6 @@ function setMainVaribles()
         movement = distance - 6;
     }
 
-    bounds = [distance + bumper, (distance + bumper) + distance * 10];
-
     for(let button of buttons)
     {
         if(button.innerHTML == "+")
@@ -238,13 +236,40 @@ function handleArrow()
     let arr = "", ke = 0;
     currentPos = [parseInt(currentCharacter[0].style.left.replace("px", "")), parseInt(currentCharacter[0].style.top.replace("px", ""))];
 
+    for(let token of currentCharacter)
+    {
+        let title = token.title;
+        if(title != undefined)
+        {
+            if(title.includes("arge"))
+            {
+                bounds = [distance + bumper, (distance + bumper) + distance * 9];
+            }
+
+            else if(title.includes("uge"))
+            {
+                bounds = [distance + bumper, (distance + bumper) + distance * 8];
+            }
+
+            else if (title.includes("argantuan"))
+            {
+                bounds = [distance + bumper, (distance + bumper) + distance * 7];
+            }
+
+            else
+            {
+                bounds = [distance + bumper, (distance + bumper) + distance * 10];
+            }
+        }
+    }
+
     if(key != undefined)
     {
         key.preventDefault();
         ke = key.keyCode;
     }
 
-    if(this != undefined)
+    else (this != undefined)
     {
         arr = this.id;
     }
