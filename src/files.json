@@ -2,6 +2,7 @@
     "mapName" : 
     {
         "grassland" : "images/map/grassland.jpg",
+        "smallBar" : "images/map/smallBar.jpg",
         "grid" : "images/map/grid.png"
     }, 
 

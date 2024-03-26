@@ -245,7 +245,7 @@ function handleArrow()
         {
             if(title.includes("Large"))
             {
-                bounds = [distance + bumper, (distance + bumper) + distance * 10];
+                bounds = [distance + bumper, (distance + bumper) + distance * 9];
                 break;
             }
 
