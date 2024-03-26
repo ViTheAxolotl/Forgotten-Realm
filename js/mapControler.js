@@ -66,6 +66,8 @@ function setMainVaribles()
         movement = distance - 6;
     }
 
+    bounds = [distance + bumper, (distance + bumper) + distance * 10];
+
     for(let button of buttons)
     {
         if(button.innerHTML == "+")
@@ -244,16 +246,19 @@ function handleArrow()
             if(title.includes("arge"))
             {
                 bounds = [distance + bumper, (distance + bumper) + distance * 9];
+                break;
             }
 
             else if(title.includes("uge"))
             {
                 bounds = [distance + bumper, (distance + bumper) + distance * 8];
+                break;
             }
 
             else if (title.includes("argantuan"))
             {
                 bounds = [distance + bumper, (distance + bumper) + distance * 7];
+                break;
             }
 
             else
