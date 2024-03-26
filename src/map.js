@@ -226,7 +226,7 @@ function addCharacter(character, update)
             
             if(update)
             {
-                char[i].classList += " update";
+                char[i].classList.add("update");
             }
 
             div.appendChild(char[i]);
@@ -394,7 +394,7 @@ async function updateToken(token)
                 borderColor = token.id;
             }
 
-            token.classList = `${token.classList[0]} ${token.classList[1]} ${token.classList[2]}`;
+            token.classList.remove("update");
         }
 
         x = parseInt(token.style.left.replace("px", ""));
