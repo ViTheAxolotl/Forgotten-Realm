@@ -131,12 +131,7 @@ function setUpCharacters(currentName)
 }
 
 function openWindow()
-{
-    if(this.id == "map.html?invisible-_invisible_vi")
-    {
-        createChar("invisible-", "invisible");
-    }
-    
+{    
     setInterval(() => {window.open(this.id, '_blank');}, 2000);
 }
 
