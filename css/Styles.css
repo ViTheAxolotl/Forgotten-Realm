@@ -496,20 +496,20 @@ table, .itemSearch, #itemImg
 
     #gridMap .Large
     {
-        width: 12%;
-        height: 12%;
+        width: 11%;
+        height: 11%;
     }
 
     #gridMap .Huge
     {
-        width: 18%;
-        height: 18%;
+        width: 16.5%;
+        height: 16.5%;
     }
 
     #gridMap .Gargantuan
     {
-        width: 24%;
-        height: 24%;
+        width: 22%;
+        height: 22%;
     }
 
     .veiwTokens
