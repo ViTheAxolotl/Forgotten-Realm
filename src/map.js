@@ -405,7 +405,7 @@ async function updateToken(token)
         t = t.innerHTML.slice(t.innerHTML.indexOf(" "));
         let charName = token.id;
         
-        if(t.includes("sky-dragon"))
+        if(charName == "sky-" && t.includes("sky-dragon"))
         {
             charName = "sky-dragon";
             setInterval(() => {window.location.href= `map.html?sky-dragon_${borderColor}_x`;}, 3000);
