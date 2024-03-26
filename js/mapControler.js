@@ -251,13 +251,13 @@ function handleArrow()
 
             else if(title.includes("Huge"))
             {
-                bounds = [distance + bumper, (distance + bumper) + distance * 9.6];
+                bounds = [distance + bumper, (distance + bumper) + distance * 7.8];
                 break;
             }
 
             else if (title.includes("Gargantuan"))
             {
-                bounds = [distance + bumper, (distance + bumper) + distance * 8.44];
+                bounds = [distance + bumper, (distance + bumper) + distance * 7.04];
                 break;
             }
 
