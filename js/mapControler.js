@@ -245,19 +245,19 @@ function handleArrow()
         {
             if(title.includes("Large"))
             {
-                bounds = [distance + bumper, (distance + bumper) + distance * 9];
+                bounds = [distance + bumper, (distance + bumper) + distance * 10];
                 break;
             }
 
             else if(title.includes("Huge"))
             {
-                bounds = [distance + bumper, (distance + bumper) + distance * 8];
+                bounds = [distance + bumper, (distance + bumper) + distance * 9];
                 break;
             }
 
             else if (title.includes("Gargantuan"))
             {
-                bounds = [distance + bumper, (distance + bumper) + distance * 7];
+                bounds = [distance + bumper, (distance + bumper) + distance * 8];
                 break;
             }
 
