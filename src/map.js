@@ -190,6 +190,7 @@ function addCharacter(character, update)
 
         if(character.title != "")
         {
+            let title = character.title;
             if(title.includes("Large"))
             {
                 for(let image of char)
