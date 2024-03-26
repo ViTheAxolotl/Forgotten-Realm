@@ -405,13 +405,13 @@ async function updateToken(token)
         t = t.innerHTML.slice(t.innerHTML.indexOf(" "));
         let charName = token.id;
         
-        if(charName == "sky-" && t.includes("sky-dragon"))
+        if(charName == "sky-" && t.includes("Sky-dragon"))
         {
             charName = "sky-dragon";
             setInterval(() => {window.location.href= `map.html?sky-dragon_${borderColor}_x`;}, 3000);
         }
 
-        else if(charName == "sky-dragon" && !(t.includes("sky-dragon")))
+        else if(charName == "sky-dragon" && !(t.includes("Sky-dragon")))
         {
             charName = "sky-";
             setInterval(() => {window.location.href= `map.html?sky-_${borderColor}_x`;}, 3000);
