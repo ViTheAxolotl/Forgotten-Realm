@@ -494,6 +494,24 @@ table, .itemSearch, #itemImg
         height: 5%;
     }
 
+    #gridMap .Large
+    {
+        width: 10%;
+        height: 10%;
+    }
+
+    #gridMap .Huge
+    {
+        width: 15%;
+        height: 15%;
+    }
+
+    #gridMap .Gargantuan
+    {
+        width: 20%;
+        height: 20%;
+    }
+
     .veiwTokens
     {
         top: 20%;

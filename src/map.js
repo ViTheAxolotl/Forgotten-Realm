@@ -190,6 +190,30 @@ function addCharacter(character, update)
 
         if(character.title != "")
         {
+            if(title.includes("Large"))
+            {
+                for(let image of char)
+                {
+                    image.classList += " Large";
+                }
+            }
+
+            else if(title.includes("Huge"))
+            {
+                for(let image of char)
+                {
+                    image.classList += " Huge";
+                }
+            }
+
+            else if (title.includes("Gargantuan"))
+            {
+                for(let image of char)
+                {
+                    image.classList += " Gargantuan";
+                }
+            }
+
             char[0].title = `${character["title"]}`;
             x = pos[xPos.indexOf(character["xPos"])];
             y = pos[yPos.indexOf(character["yPos"])];

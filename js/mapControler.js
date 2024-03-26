@@ -243,19 +243,19 @@ function handleArrow()
         let title = token.title;
         if(title != undefined)
         {
-            if(title.includes("arge"))
+            if(title.includes("Large"))
             {
                 bounds = [distance + bumper, (distance + bumper) + distance * 9];
                 break;
             }
 
-            else if(title.includes("uge"))
+            else if(title.includes("Huge"))
             {
                 bounds = [distance + bumper, (distance + bumper) + distance * 8];
                 break;
             }
 
-            else if (title.includes("argantuan"))
+            else if (title.includes("Gargantuan"))
             {
                 bounds = [distance + bumper, (distance + bumper) + distance * 7];
                 break;
