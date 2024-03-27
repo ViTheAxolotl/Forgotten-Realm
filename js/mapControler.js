@@ -1,6 +1,7 @@
 "use strict";
 
 const gridMap = document.querySelector("#gridMap");
+let map = document.getElementById("grid");
 const rect = gridMap.getBoundingClientRect();
 let mapSize;
 let bumper;
@@ -36,7 +37,7 @@ function init()
         arrow.onclick = handleArrow;
     }
 
-    document.getElementById("grid").addEventListener("keydown", (ev) => {key = ev; handleArrow(); return true;});
+    map.addEventListener("keydown", (ev) => {key = ev; handleArrow(); return true;});
     setMainVaribles();
 }
 
