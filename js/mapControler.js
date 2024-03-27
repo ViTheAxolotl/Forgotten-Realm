@@ -36,7 +36,7 @@ function init()
         arrow.onclick = handleArrow;
     }
 
-    div.addEventListener("onkeydown", (ev) => {key = ev; handleArrow()});
+    document.addEventListener("onkeydown", (ev) => {key = ev; handleArrow()});
     setMainVaribles();
 }
 
