@@ -36,7 +36,7 @@ function init()
         arrow.onclick = handleArrow;
     }
 
-    document.addEventListener("keydown", (ev) => {key = ev; handleArrow()});
+    document.addEventListener("keydown", (ev) => {key = ev; handleArrow(); return ev;});
     setMainVaribles();
 }
 
@@ -311,8 +311,6 @@ function handleArrow()
             moveChar(currentPos[0] + movement, currentPos[1]);
         } 
     }
-
-    return this;
 }
 
 init();
