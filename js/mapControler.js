@@ -37,7 +37,8 @@ function init()
         arrow.onclick = handleArrow;
     }
 
-    map.addEventListener("keydown", (ev) => {key = ev; handleArrow(); return true;});
+    map.onkeyup = function(e) {key = e; handleArrow(); return true;};
+    //map.addEventListener("keydown", (ev) => {key = ev; handleArrow(); return true;});
     setMainVaribles();
 }
 
