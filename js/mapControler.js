@@ -30,6 +30,7 @@ function init()
     currentHp.onchange = updateHp;
     maxHp = document.getElementById("max");
     maxHp.onchange = addUpdate;
+    document.onkeydown = handleArrow;
 
     for(let arrow of arrows)
     {
@@ -272,9 +273,10 @@ function handleArrow()
     {
         key.preventDefault();
         ke = key.keyCode;
+
     }
 
-    else (this != undefined)
+    else if (this != undefined)
     {
         arr = this.id;
     }
@@ -310,6 +312,8 @@ function handleArrow()
             moveChar(currentPos[0] + movement, currentPos[1]);
         } 
     }
+
+    return this;
 }
 
 init();
