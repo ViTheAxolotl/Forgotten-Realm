@@ -132,8 +132,7 @@ function setUpCharacters(currentName)
 
 function openWindow()
 {    
-    setInterval(() => {window.open(this.id, '_blank');}, 2000);
-    location.reload();
+    setInterval(() => {window.open(this.id, '_blank'); location.reload();}, 2000);   
 }
 
 function addCharacters()
