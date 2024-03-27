@@ -30,14 +30,13 @@ function init()
     currentHp.onchange = updateHp;
     maxHp = document.getElementById("max");
     maxHp.onchange = addUpdate;
-    document.onkeydown = handleArrow;
 
     for(let arrow of arrows)
     {
         arrow.onclick = handleArrow;
     }
 
-    //div.addEventListener("onkeydown", (ev) => {key = ev; handleArrow()}); Worry about this later
+    div.addEventListener("onkeydown", (ev) => {key = ev; handleArrow()});
     setMainVaribles();
 }
 
