@@ -36,7 +36,7 @@ function init()
         arrow.onclick = handleArrow;
     }
 
-    document.addEventListener("keydown", (ev) => {key = ev; handleArrow(); return true;});
+    document.getElementById("grid").addEventListener("keydown", (ev) => {key = ev; handleArrow(); return true;});
     setMainVaribles();
 }
 
