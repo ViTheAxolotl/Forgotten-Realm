@@ -37,8 +37,8 @@ function init()
         arrow.onclick = handleArrow;
     }
 
-    map.onkeyup = function(e) {key = e; handleArrow(); return true;};
-    //map.addEventListener("keydown", (ev) => {key = ev; handleArrow(); return true;});
+    //map.onkeyup = function(e) {key = e; handleArrow(); return true;};
+    map.addEventListener("keydown", (ev) => {key = ev; let keyValues = [37, 38, 39, 40]; if(keyValues.includes(ev.keyCode)) {handleArrow();}});
     setMainVaribles();
 }
 
