@@ -13,6 +13,7 @@ let htmlInfo = window.location.href;
 let currentCharacter;
 let playerName = document.getElementById("name");
 let key;
+let keyControl;
 let arrows = [];
 let currentHp;
 let maxHp;
@@ -37,7 +38,7 @@ function init()
         arrow.onclick = handleArrow;
     }
 
-    document.addEventListener("keydown", (ev) => {key = ev.key.slice(ev.key.indexOf("w") + 1).toLowerCase(); console.log(ev.ctrlKey); let keyValues = ["left", "right", "down", "up"]; if(keyValues.includes(key) && ev.ctrlKey) {handleArrow();}});
+    document.addEventListener("keydown", (ev) => {key = ev.key.slice(ev.key.indexOf("w") + 1).toLowerCase(); keyControl = ev; let keyValues = ["left", "right", "down", "up"]; if(keyValues.includes(key) && ev.ctrlKey) {handleArrow();}});
     setMainVaribles();
 }
 
@@ -271,7 +272,7 @@ function handleArrow()
 
     if(key != undefined)
     {
-        key.preventDefault();
+        keyControl.preventDefault();
         dirrection = key;
 
     }
