@@ -46,7 +46,7 @@ async function init()
     enter.onclick = handleEnterButton;
     go.onclick = handleGoButton;
 
-    const q = query(collection(db, "CurrentMap"));
+    const q = query(collection(db, "currentMap"));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => 
     {
@@ -275,7 +275,7 @@ async function createChar(curCharacter, curBorder)
         }
     }
 
-    const docRef = await setDoc(doc(db, "CurrentMap", curCharacter.slice(0, curCharacter.indexOf("-"))), char);
+    const docRef = await setDoc(doc(db, "currentMap", curCharacter.slice(0, curCharacter.indexOf("-"))), char);
 }
 
 init();

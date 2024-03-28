@@ -82,7 +82,7 @@ async function readTokens()
 {
     wholeData = {};
     names = new Set();
-    const q = query(collection(db, "CurrentMap"));
+    const q = query(collection(db, "currentMap"));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => 
     {
@@ -160,7 +160,7 @@ async function addTokens()
         let t = document.getElementById("title");
         t = t.innerHTML.slice(t.innerHTML.indexOf(" "));
 
-        const docRef = await setDoc(doc(db, "CurrentMap", htmlChar["name"].slice(0, htmlChar["name"].indexOf("-"))), 
+        const docRef = await setDoc(doc(db, "currentMap", htmlChar["name"].slice(0, htmlChar["name"].indexOf("-"))), 
         {
             border : htmlChar["border"],
             currentHp : document.getElementById("current").value,
@@ -437,7 +437,7 @@ async function updateToken(token)
             setInterval(() => {window.location.href= `map.html?sky-_${borderColor}_x`;}, 3000);
         }
 
-        const docRef = await setDoc(doc(db, "CurrentMap", token.id.slice(0, token.id.indexOf("-"))), 
+        const docRef = await setDoc(doc(db, "currentMap", token.id.slice(0, token.id.indexOf("-"))), 
         {
             border : borderColor,
             currentHp : document.getElementById("current").value,

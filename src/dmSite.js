@@ -99,7 +99,7 @@ function makeToken(key)
 async function readTokens()
 {
     wholeData = {};
-    const q = query(collection(db, "CurrentMap"));
+    const q = query(collection(db, "currentMap"));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => 
     {
@@ -113,7 +113,7 @@ async function handleRemove()
     hideButtons();
     
     wholeData = {};
-    const q = query(collection(db, "CurrentMap"));
+    const q = query(collection(db, "currentMap"));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => 
     {
@@ -169,7 +169,7 @@ async function deleteToken()
         {
             try
             { 
-                await deleteDoc(doc(db, "CurrentMap", key.slice(0, key.indexOf("-"))));
+                await deleteDoc(doc(db, "currentMap", key.slice(0, key.indexOf("-"))));
             }
             
             catch (e) 
@@ -399,7 +399,7 @@ async function updateMap()
         }
     }
 
-    const docRef = await setDoc(doc(db, "CurrentMap", n.slice(0, n.indexOf("-"))), 
+    const docRef = await setDoc(doc(db, "currentMap", n.slice(0, n.indexOf("-"))), 
     {
         border : b,
         currentHp : c,
@@ -435,7 +435,7 @@ async function handleSave()
 
     for(let cName of collectionNames)
     {
-        if(cName != "CurrentMap")
+        if(cName != "currentMap")
         {
             let option = document.createElement("option");
             option.value = cName;
@@ -518,7 +518,7 @@ async function handleLoad()
     let selectNames = document.createElement("select");
     for(let cName of collectionNames)
     {
-        if(cName != "CurrentMap")
+        if(cName != "currentMap")
         {
             let option = document.createElement("option");
             option.value = cName;
@@ -542,7 +542,7 @@ async function loadMap()
     let selectNames = document.getElementById("selectNames");
     let cName = "";
     cName = selectNames[selectNames.selectedIndex].value;
-    emptyCollection("CurrentMap");
+    emptyCollection("currentMap");
     wholeData = {};
 
     const q = query(collection(db, cName));
@@ -555,7 +555,7 @@ async function loadMap()
 
     for(let key of Object.keys(wholeData))
     {
-        const docRef = await setDoc(doc(db, "CurrentMap", key.slice(0, key.indexOf("-"))), wholeData[key]);
+        const docRef = await setDoc(doc(db, "currentMap", key.slice(0, key.indexOf("-"))), wholeData[key]);
     }
 
     handleDone();
@@ -598,7 +598,7 @@ async function addToken()
     let x = document.getElementById("xPos").value;
     let y = document.getElementById("yPos").value;
 
-    const docRef = await setDoc(doc(db, "CurrentMap", n.slice(0, n.indexOf("-"))), 
+    const docRef = await setDoc(doc(db, "currentMap", n.slice(0, n.indexOf("-"))), 
     {
         border : b,
         currentHp : c,
