@@ -38,7 +38,7 @@ function init()
     }
 
     //map.onkeyup = function(e) {key = e; handleArrow(); return true;};
-    map.addEventListener("keydown", (ev) => {key = ev; let keyValues = [37, 38, 39, 40]; if(keyValues.includes(ev.keyCode)) {handleArrow();}});
+    document.addEventListener("keydown", (ev) => {key = ev; let keyValues = [37, 38, 39, 40]; if(keyValues.includes(ev.keyCode)) {handleArrow();}});
     setMainVaribles();
 }
 
