@@ -555,7 +555,7 @@ async function loadMap()
 
     for(let key of Object.keys(wholeData))
     {
-        const docRef = await setDoc(doc(db, "currentMap", key.slice(0, key.indexOf("-"))), wholeData[key]);
+        const docRef = await setDoc(doc(db, "currentMap", key), wholeData[key]);
     }
 
     handleDone();
