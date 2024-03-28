@@ -446,8 +446,8 @@ async function updateToken(token)
             token.classList.remove("update");
         }
 
-        x = parseInt(token.style.left.replace("px", ""));
-        y = parseInt(token.style.top.replace("px", ""));
+        x = parseInt(char.style.left.replace("px", ""));
+        y = parseInt(char.style.top.replace("px", ""));
         x = xPos[pos.indexOf(x)];
         y = yPos[pos.indexOf(y)];
 
@@ -457,7 +457,7 @@ async function updateToken(token)
                 if(t.includes("Sky-dragon"))
                 {
                     char.id = "sky-dragon";
-                    setInterval(() => {window.location.href= `map.html?${token.id}_${borderColor}_x`;}, 2000);
+                    setInterval(() => {window.location.href= `map.html?${char.id}_${borderColor}_x`;}, 2000);
                 }
                 break;
             
@@ -465,7 +465,7 @@ async function updateToken(token)
                 if(!(t.includes("Sky-dragon")))
                 {
                     char.id = "sky-";
-                    setInterval(() => {window.location.href= `map.html?${token.id}_${borderColor}_x`;}, 2000);
+                    setInterval(() => {window.location.href= `map.html?${char.id}_${borderColor}_x`;}, 2000);
                 }
                 break;
         }
