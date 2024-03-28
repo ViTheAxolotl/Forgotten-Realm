@@ -439,6 +439,16 @@ async function updateToken(token)
             {
                 borderColor = token.id;
             }
+            
+            if(charName == "sky-" && t.includes("Sky-dragon"))
+            {
+                token.id = "sky-dragon";
+            }
+    
+            else if(charName == "sky-dragon" && !(t.includes("Sky-dragon")))
+            {
+                token.id = "sky-";
+            }
 
             token.classList.remove("update");
         }
@@ -450,18 +460,6 @@ async function updateToken(token)
         let t = document.getElementById("title");
         t = t.innerHTML.slice(t.innerHTML.indexOf(" "));
         let charName = token.id;
-        
-        if(charName == "sky-" && t.includes("Sky-dragon"))
-        {
-            charName = "sky-dragon";
-            setInterval(() => {window.location.href= `map.html?sky-dragon_${borderColor}_x`;}, 3000);
-        }
-
-        else if(charName == "sky-dragon" && !(t.includes("Sky-dragon")))
-        {
-            charName = "sky-";
-            setInterval(() => {window.location.href= `map.html?sky-_${borderColor}_x`;}, 3000);
-        }
 
         const docRef = await setDoc(doc(db, "currentMap", token.id.slice(0, token.id.indexOf("-"))), 
         {
