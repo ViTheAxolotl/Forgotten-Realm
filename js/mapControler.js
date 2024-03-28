@@ -37,7 +37,7 @@ function init()
         arrow.onclick = handleArrow;
     }
 
-    document.addEventListener("keydown", (ev) => {key = ev.code.slice("w").toLowerCase(); let keyValues = ["left", "right", "down", "up"]; if(keyValues.includes(key) /**&& ev.ctrlKey*/) {handleArrow();}});
+    document.addEventListener("keydown", (ev) => {key = ev.key.slice("w").toLowerCase(); let keyValues = ["left", "right", "down", "up"]; if(keyValues.includes(key) /**&& ev.ctrlKey*/) {handleArrow();}});
     setMainVaribles();
 }
 
