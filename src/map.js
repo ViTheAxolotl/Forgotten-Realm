@@ -440,14 +440,21 @@ async function updateToken(token)
                 borderColor = token.id;
             }
             
-            if(charName == "sky-" && t.includes("Sky-dragon"))
+            switch(token.id)
             {
-                token.id = "sky-dragon";
-            }
-    
-            else if(charName == "sky-dragon" && !(t.includes("Sky-dragon")))
-            {
-                token.id = "sky-";
+                case "sky-":
+                    if(t.includes("Sky-dragon"))
+                    {
+                        token.id = "sky-dragon";
+                    }
+                    break;
+                
+                case "sky-dragon":
+                    if(!(t.includes("Sky-dragon")))
+                    {
+                        token.id = "sky-";
+                    }
+                    break;
             }
 
             token.classList.remove("update");
