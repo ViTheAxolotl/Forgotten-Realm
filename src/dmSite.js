@@ -563,7 +563,7 @@ async function loadMap()
 
 function handleDone()
 {
-    location.reload();
+    setInterval(() => {location.reload();}, 2000);
 }
 
 function hideButtons()
