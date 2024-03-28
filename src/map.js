@@ -49,7 +49,7 @@ function setMainVaribles()
     htmlInfo = htmlInfo.split("?");
     htmlInfo = htmlInfo[1];
     htmlInfo = htmlInfo.split("_");
-    html[htmlInfo[0]] = {"border" : htmlInfo[1], "name" : htmlInfo[0], title : ""};
+    html[htmlInfo[0]] = {"border" : htmlInfo[1], "name" : htmlInfo[0], title : " "};
     document.getElementById("hideCover").onclick = hideCover;
 
     if(rect.width < 999)
@@ -98,7 +98,7 @@ async function readTokens()
     addTokens();
 }
 
-function addTokens()
+async function addTokens()
 {
     if(div.children.length > 1)
     {
@@ -151,7 +151,25 @@ function addTokens()
 
     if(!(names.has(htmlInfo[0])))
     {
-        addCharacter(html[htmlInfo[0]], false);
+        let htmlChar = html[htmlInfo[0]];
+        let token = getElementById(htmlChar["name"]);
+        x = parseInt(token.style.left.replace("px", ""));
+        y = parseInt(token.style.top.replace("px", ""));
+        x = xPos[pos.indexOf(x)];
+        y = yPos[pos.indexOf(y)];
+        
+        const docRef = await setDoc(doc(db, "CurrentMap", htmlChar["name"].slice(0, htmlChar["name"].indexOf("-"))), 
+        {
+            border : htmlChar["border"],
+            currentHp : document.getElementById("current").value,
+            maxHp : document.getElementById("max").value,
+            map : "",
+            name : htmlChar["name"],
+            title : htmlChar[title],
+            xPos : x,
+            yPos : y
+        });
+
         names.add(htmlInfo[0]);
     }
 }
