@@ -152,7 +152,7 @@ async function addTokens()
     if(!(names.has(htmlInfo[0])))
     {
         let htmlChar = html[htmlInfo[0]];
-        let token = getElementById(htmlChar["name"]);
+        let token = document.getElementById(htmlChar["name"]);
         let x = parseInt(token.style.left.replace("px", ""));
         let y = parseInt(token.style.top.replace("px", ""));
         x = xPos[pos.indexOf(x)];
