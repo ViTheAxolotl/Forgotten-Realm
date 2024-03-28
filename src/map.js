@@ -153,11 +153,13 @@ async function addTokens()
     {
         let htmlChar = html[htmlInfo[0]];
         let token = getElementById(htmlChar["name"]);
-        x = parseInt(token.style.left.replace("px", ""));
-        y = parseInt(token.style.top.replace("px", ""));
+        let x = parseInt(token.style.left.replace("px", ""));
+        let y = parseInt(token.style.top.replace("px", ""));
         x = xPos[pos.indexOf(x)];
         y = yPos[pos.indexOf(y)];
-        
+        let t = document.getElementById("title");
+        t = t.innerHTML.slice(t.innerHTML.indexOf(" "));
+
         const docRef = await setDoc(doc(db, "CurrentMap", htmlChar["name"].slice(0, htmlChar["name"].indexOf("-"))), 
         {
             border : htmlChar["border"],
@@ -165,7 +167,7 @@ async function addTokens()
             maxHp : document.getElementById("max").value,
             map : "",
             name : htmlChar["name"],
-            title : htmlChar[title],
+            title : t,
             xPos : x,
             yPos : y
         });
