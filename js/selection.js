@@ -261,19 +261,7 @@ function handleGoButton()
 
 async function createChar(curCharacter, curBorder)
 {
-    let char = {border : curBorder, currentHp : "10", maxHp : "10", map : "", name : curCharacter, title : " ", xPos : "1", yPos : "A"};
-    
-    for(let key of Object.keys(wholeData))
-    {
-        if(wholeData[key].name == char.name)
-        {
-            char.maxHp = document.getElementById("Max Hp").value;
-            char.currentHp = document.getElementById("Current Hp").value;
-            char.title = wholeData[key].title;
-            char.xPos = wholeData[key].xPos;
-            char.yPos = wholeData[key].yPos;
-        }
-    }
+    let char = {border : curBorder, currentHp : `${document.getElementById("Current Hp").value}`, maxHp : `${document.getElementById("Max Hp").value}`, map : "", name : curCharacter, title : " ", xPos : "1", yPos : "A"};
 
     const docRef = await setDoc(doc(db, "currentMap", curCharacter.slice(0, curCharacter.indexOf("-"))), char);
 }
