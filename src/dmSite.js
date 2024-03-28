@@ -169,7 +169,7 @@ async function deleteToken()
         {
             try
             { 
-                await deleteDoc(doc(db, "CurrentMap", key));
+                await deleteDoc(doc(db, "CurrentMap", key.slice(0, key.indexOf("-"))));
             }
             
             catch (e) 
@@ -475,10 +475,10 @@ async function handleUploadeSave()
 
     for(let key of Object.keys(wholeData))
     {
-        const docRef = await setDoc(doc(db, cName, key), wholeData[key]);
+        const docRef = await setDoc(doc(db, cName, key.slice(0, key.indexOf("-"))), wholeData[key]);
     }
 
-    await setDoc(doc(db, cName, Object.keys(wholeData)[0]), wholeData[Object.keys(wholeData)[0]]);
+    await setDoc(doc(db, cName, Object.keys(wholeData)[0].slice(0, Object.keys(wholeData)[0].indexOf("-"))), wholeData[Object.keys(wholeData)[0]]);
 
     const docRef = await setDoc(doc(db, "list", cName), 
     {
@@ -497,7 +497,7 @@ async function emptyCollection(cName)
 
     for(let docum of colToRemove)
     {
-        await deleteDoc(doc(db, cName, docum));
+        await deleteDoc(doc(db, cName, docum.slice(0, docum.indexOf("-"))));
     }
 }
 
@@ -555,7 +555,7 @@ async function loadMap()
 
     for(let key of Object.keys(wholeData))
     {
-        const docRef = await setDoc(doc(db, "CurrentMap", key), wholeData[key]);
+        const docRef = await setDoc(doc(db, "CurrentMap", key.slice(0, key.indexOf("-"))), wholeData[key]);
     }
 
     handleDone();
