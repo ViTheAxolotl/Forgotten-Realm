@@ -169,7 +169,7 @@ async function deleteToken()
         {
             try
             { 
-                await deleteDoc(doc(db, "currentMap", key.slice(0, key.indexOf("-"))));
+                await deleteDoc(doc(db, "currentMap", key));
             }
             
             catch (e) 
