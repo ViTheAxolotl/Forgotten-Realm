@@ -37,8 +37,7 @@ function init()
         arrow.onclick = handleArrow;
     }
 
-    //map.onkeyup = function(e) {key = e; handleArrow(); return true;};
-    document.addEventListener("keydown", (ev) => {key = ev; let keyValues = [37, 38, 39, 40]; if(keyValues.includes(ev.keyCode)) {handleArrow();}});
+    document.addEventListener("keydown", (ev) => {key = ev.code.slice("w").toLowerCase(); let keyValues = ["left", "right", "down", "up"]; if(keyValues.includes(key) && ev.ctrlKey) {handleArrow();}});
     setMainVaribles();
 }
 
@@ -237,7 +236,7 @@ function updateHp()
 
 function handleArrow()
 {
-    let arr = "", ke = 0;
+    let dirrection = "";
     currentPos = [parseInt(currentCharacter[0].style.left.replace("px", "")), parseInt(currentCharacter[0].style.top.replace("px", ""))];
 
     for(let token of currentCharacter)
@@ -273,16 +272,16 @@ function handleArrow()
     if(key != undefined)
     {
         key.preventDefault();
-        ke = key.keyCode;
+        dirrection = key;
 
     }
 
     else if (this != undefined)
     {
-        arr = this.id;
+        dirrection = this.id;
     }
 
-    if(arr == "up" || ke == 38)
+    if(dirrection == "up")
     {
         if(bounds[0] < currentPos[1])
         {
@@ -290,7 +289,7 @@ function handleArrow()
         }   
     }
 
-    else if (arr == "left" || ke == 37)
+    else if (dirrection == "left")
     {
         if(bounds[0] < currentPos[0])
         {
@@ -298,7 +297,7 @@ function handleArrow()
         }
     }
 
-    else if (arr == "down" || ke == 40)
+    else if (dirrection == "down")
     {
         if(bounds[1] > currentPos[1])
         {
@@ -306,7 +305,7 @@ function handleArrow()
         }       
     }
 
-    else if (arr == "right" || ke == 39)
+    else if (dirrection == "right")
     {
         if(bounds[1] > currentPos[0])
         {
