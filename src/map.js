@@ -430,7 +430,10 @@ async function updateToken(token)
     {
         let x;
         let y;
+        let t = document.getElementById("title");
+        t = t.innerHTML.slice(t.innerHTML.indexOf(" "));
         const currentTokens = document.getElementsByClassName(htmlInfo[0]);
+        let char = document.getElementById(htmlInfo[0]);
         let borderColor;
 
         for(let token of currentTokens)
@@ -438,23 +441,6 @@ async function updateToken(token)
             if(!names.has(token.id) && token.classList.contains("border_"))
             {
                 borderColor = token.id;
-            }
-            
-            switch(token.id)
-            {
-                case "sky-":
-                    if(t.includes("Sky-dragon"))
-                    {
-                        token.id = "sky-dragon";
-                    }
-                    break;
-                
-                case "sky-dragon":
-                    if(!(t.includes("Sky-dragon")))
-                    {
-                        token.id = "sky-";
-                    }
-                    break;
             }
 
             token.classList.remove("update");
@@ -464,17 +450,33 @@ async function updateToken(token)
         y = parseInt(token.style.top.replace("px", ""));
         x = xPos[pos.indexOf(x)];
         y = yPos[pos.indexOf(y)];
-        let t = document.getElementById("title");
-        t = t.innerHTML.slice(t.innerHTML.indexOf(" "));
-        let charName = token.id;
 
-        const docRef = await setDoc(doc(db, "currentMap", token.id.slice(0, token.id.indexOf("-"))), 
+        switch(char.id)
+        {
+            case "sky-":
+                if(t.includes("Sky-dragon"))
+                {
+                    char.id = "sky-dragon";
+                    setInterval(() => {window.location.href= `map.html?${token.id}_${borderColor}_x`;}, 2000);
+                }
+                break;
+            
+            case "sky-dragon":
+                if(!(t.includes("Sky-dragon")))
+                {
+                    char.id = "sky-";
+                    setInterval(() => {window.location.href= `map.html?${token.id}_${borderColor}_x`;}, 2000);
+                }
+                break;
+        }
+
+        const docRef = await setDoc(doc(db, "currentMap", char.id.slice(0, char.id.indexOf("-"))), 
         {
             border : borderColor,
             currentHp : document.getElementById("current").value,
             maxHp : document.getElementById("max").value,
             map : "",
-            name : charName,
+            name : char.id,
             title : t,
             xPos : x,
             yPos : y
