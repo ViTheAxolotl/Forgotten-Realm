@@ -277,7 +277,7 @@ function handleArrow()
 
     }
 
-    else if (this != undefined)
+    if (this != undefined)
     {
         dirrection = this.id;
     }
