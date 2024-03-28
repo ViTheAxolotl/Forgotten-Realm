@@ -475,7 +475,7 @@ async function handleUploadeSave()
 
     for(let key of Object.keys(wholeData))
     {
-        const docRef = await setDoc(doc(db, cName, key.slice(0, key.indexOf("-"))), wholeData[key]);
+        const docRef = await setDoc(doc(db, cName, key), wholeData[key]);
     }
 
     await setDoc(doc(db, cName, Object.keys(wholeData)[0]), wholeData[Object.keys(wholeData)[0]]);
