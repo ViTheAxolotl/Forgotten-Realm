@@ -100,6 +100,32 @@ async function readTokens()
 
 async function addTokens()
 {
+    if(!(names.has(htmlInfo[0])))
+    {
+        let htmlChar = html[htmlInfo[0]];
+        let token = document.getElementById(htmlChar["name"]);
+        let x = parseInt(token.style.left.replace("px", ""));
+        let y = parseInt(token.style.top.replace("px", ""));
+        x = xPos[pos.indexOf(x)];
+        y = yPos[pos.indexOf(y)];
+        let t = document.getElementById("title");
+        t = t.innerHTML.slice(t.innerHTML.indexOf(" "));
+
+        const docRef = await setDoc(doc(db, "currentMap", htmlChar["name"].slice(0, htmlChar["name"].indexOf("-"))), 
+        {
+            border : htmlChar["border"],
+            currentHp : document.getElementById("current").value,
+            maxHp : document.getElementById("max").value,
+            map : "",
+            name : htmlChar["name"],
+            title : t,
+            xPos : x,
+            yPos : y
+        });
+
+        names.add(htmlInfo[0]);
+    }
+
     if(div.children.length > 1)
     {
         let loop = true;
