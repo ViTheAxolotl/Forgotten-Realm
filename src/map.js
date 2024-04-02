@@ -265,7 +265,7 @@ function addCharacter(character, update)
             {
                 for(let image of char)
                 {
-                    image.style.transform = "rotate(90deg);";
+                    image.style += "transform: rotate(90deg);";
                 }
             }
 
@@ -273,7 +273,7 @@ function addCharacter(character, update)
             {
                 for(let image of char)
                 {
-                    image.style.transform = "rotate(180deg);";
+                    image.style += "transform: rotate(180deg);";
                 }
             }
 
@@ -281,7 +281,7 @@ function addCharacter(character, update)
             {
                 for(let image of char)
                 {
-                    image.style.transform = "rotate(270deg);";
+                    image.style += "transform: rotate(270deg);";
                 }
             }
 
