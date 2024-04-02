@@ -21,7 +21,11 @@
         "bandit-" : "images/map/tokens/bandit-.png",
         "bandita-" : "images/map/tokens/bandita-.png",
         "sky-" : "images/map/tokens/sky-.png",
-        "sky-dragon" : "images/map/tokens/sky-dragon.png"
+        "sky-dragon" : "images/map/tokens/sky-dragon.png",
+        "wolf-" : "images/map/tokens/wolf-.png",
+        "wolfa-" : "images/map/tokens/wolfa-.png",
+        "wolfb-" : "images/map/tokens/wolfb-.png",
+        "wolfc-" : "images/map/tokens/wolfc-.png"
     },
 
     "borders" : 
