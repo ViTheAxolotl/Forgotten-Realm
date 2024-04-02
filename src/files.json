@@ -29,7 +29,8 @@
         "wolfc-" : "images/map/tokens/wolfc-.png",
         "carage-" : "images/map/tokens/carage-.png",
         "mimic-" : "images/map/tokens/mimic-.png",
-        "tarzothStatue-" : "images/map/tokens/tarzothStatue-.png"
+        "tarzothStatue-" : "images/map/tokens/tarzothStatue-.png",
+        "door" : "images/map/tokens/door-.png"
     },
 
     "borders" : 
