@@ -285,6 +285,14 @@ function addCharacter(character, update)
                 }
             }
 
+            if(title.includes("hidden"))
+            {
+                for(let image of char)
+                {
+                    image.classList += " invisible";
+                }
+            }
+
             char[0].title = `${character["title"]}`;
             x = pos[xPos.indexOf(character["xPos"])];
             y = pos[yPos.indexOf(character["yPos"])];
