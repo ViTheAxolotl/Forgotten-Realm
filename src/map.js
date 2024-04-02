@@ -253,11 +253,35 @@ function addCharacter(character, update)
                 }
             }
 
-            else if (title.includes("Gargantuan"))
+            else if(title.includes("Gargantuan"))
             {
                 for(let image of char)
                 {
                     image.classList += " Gargantuan";
+                }
+            }
+
+            if(title.includes("90"))
+            {
+                for(let image of char)
+                {
+                    image.style.transform = "rotate(90deg);";
+                }
+            }
+
+            else if(title.includes("180"))
+            {
+                for(let image of char)
+                {
+                    image.style.transform = "rotate(180deg);";
+                }
+            }
+
+            else if(title.includes("270"))
+            {
+                for(let image of char)
+                {
+                    image.style.transform = "rotate(270deg);";
                 }
             }
 
