@@ -26,7 +26,8 @@
         "wolfa-" : "images/map/tokens/wolfa-.png",
         "wolfb-" : "images/map/tokens/wolfb-.png",
         "wolfc-" : "images/map/tokens/wolfc-.png",
-        "carage-" : "images/map/tokens/carage-.png"
+        "carage-" : "images/map/tokens/carage-.png",
+        "mimic-" : "images/map/tokens/mimic-.png"
     },
 
     "borders" : 
