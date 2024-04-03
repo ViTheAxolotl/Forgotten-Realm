@@ -4,7 +4,8 @@
         "grassland" : "images/map/grassland.jpg",
         "smallBar" : "images/map/smallBar.jpg",
         "grid" : "images/map/grid.png",
-        "dungeonLago" : "dungeonLago"
+        "dungeonLago" : "images/map/dungeonLago.jpg",
+        "spikeMap" : "images/map/spikeMap.png"
     }, 
 
     "tokens" : 
@@ -30,7 +31,11 @@
         "carage-" : "images/map/tokens/carage-.png",
         "mimic-" : "images/map/tokens/mimic-.png",
         "tarzothStatue-" : "images/map/tokens/tarzothStatue-.png",
-        "door" : "images/map/tokens/door-.png"
+        "door-" : "images/map/tokens/door-.png",
+        "bench-" : "images/map/tokens/bench-.png",
+        "haiStatue-" : "images/map/tokens/haiStatue-.png",
+        "platform-" : "images/map/tokens/platform-.png",
+        "stoneGolum-" : "images/map/tokens/stoneGolum-.png"
     },
 
     "borders" : 
