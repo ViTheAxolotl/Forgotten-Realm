@@ -305,13 +305,14 @@ function updateTokenPic()
 function updateHpPic()
 {
     let maxHp = document.getElementById("maxHp").value;
+    let currentHp = this.value;
 
     if(parseInt(this.value) > parseInt(maxHp))
     {
         this.value = maxHp;
     }
 
-    let fraction = parseInt(this.value) / parseInt(maxHp);
+    let fraction = parseInt(currentHp) / parseInt(maxHp);
 
     if(maxHp == "0" && currentHp == "0")
     {
