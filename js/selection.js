@@ -170,7 +170,7 @@ function addBorders()
 function addHp()
 {
     div.appendChild(hp);
-    let names = ["Current Hp", "Max Hp"];
+    let names = ["Max Hp", "Current Hp"];
     let labels = [document.createElement("h6"), document.createElement("h6")];
     let numbers = [document.createElement("input"), document.createElement("input")];
 
