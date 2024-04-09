@@ -46,7 +46,8 @@
         "platforme-" : "images/map/tokens/platform-.png",
         "platformf-" : "images/map/tokens/platform-.png",
         "platformg-" : "images/map/tokens/platform-.png",
-        "stoneGolum-" : "images/map/tokens/stoneGolum-.png"
+        "stoneGolum-" : "images/map/tokens/stoneGolum-.png",
+        "spike-" : "images/map/tokens/spike-.png"
     },
 
     "borders" : 

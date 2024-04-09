@@ -297,6 +297,26 @@ function addCharacter(character, update)
                 }
             }
 
+            if(title.includes("dup x"))
+            {
+                
+            }
+
+            else if(title.includes("dup y"))
+            {
+                
+            }
+
+            if(title.includes("exp x"))
+            {
+                
+            }
+
+            else if(title.includes("exp y"))
+            {
+                
+            }
+
             char[0].title = `${character["title"]}`;
             x = pos[xPos.indexOf(character["xPos"])];
             y = pos[yPos.indexOf(character["yPos"])];
