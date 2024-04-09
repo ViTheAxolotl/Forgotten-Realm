@@ -285,7 +285,7 @@ function addCharacter(character, update)
                 }
             }
 
-            if(title.includes("hidden"))
+            if(title.includes("Hidden"))
             {
                 for(let image of char)
                 {
