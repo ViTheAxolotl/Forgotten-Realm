@@ -289,7 +289,7 @@ function addCharacter(character, update)
             {
                 for(let image of char)
                 {
-                    image.classList += " invisible";
+                    image.src = "images/map/tokens/invisible-.png";
                 }
             }
 
