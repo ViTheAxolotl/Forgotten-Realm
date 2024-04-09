@@ -39,7 +39,13 @@
         "doorc-" : "images/map/tokens/doorc-.png",
         "bench-" : "images/map/tokens/bench-.png",
         "haiStatue-" : "images/map/tokens/haiStatue-.png",
-        "platform-" : "images/map/tokens/platform-.png",
+        "platforma-" : "images/map/tokens/platform-.png",
+        "platformb-" : "images/map/tokens/platform-.png",
+        "platformc-" : "images/map/tokens/platform-.png",
+        "platformd-" : "images/map/tokens/platform-.png",
+        "platforme-" : "images/map/tokens/platform-.png",
+        "platformf-" : "images/map/tokens/platform-.png",
+        "platformg-" : "images/map/tokens/platform-.png",
         "stoneGolum-" : "images/map/tokens/stoneGolum-.png"
     },
 
