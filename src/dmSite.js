@@ -307,16 +307,16 @@ function handleChangeCurrent()
     let maxHp = document.getElementById("maxHp").value;
     let currentHp = this.value;
 
+    if(parseInt(currentHp) > parseInt(maxHp))
+    {
+        this.value = maxHp;
+    }
+    
     this.parentNode.childNodes[2].src = updateHpPic(maxHp, currentHp);
 }
 
 function updateHpPic(maxHp, currentHp)
 {
-    if(parseInt(this.value) > parseInt(maxHp))
-    {
-        this.value = maxHp;
-    }
-
     let fraction = parseInt(currentHp) / parseInt(maxHp);
 
     if(maxHp == "0" && currentHp == "0")
