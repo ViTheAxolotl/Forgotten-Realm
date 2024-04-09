@@ -85,7 +85,7 @@ function makeToken(key)
     token[2].src = `images/map/tokens/${key.border}Border.png`;
     token[2].id = key.border;
     token[2].classList = `tokens ${key.name} border_`;
-    token[3].src = `images/map/hpBar/hpBar1.png`;
+    token[3].src = updateHpPic(key.maxHp, key.currentHp);
     token[3].id = "hp";
     token[3].classList = `tokens ${key.name} hp`;
     token[2].onclick = handleDeleteOrEdit;
@@ -267,7 +267,7 @@ function handleEdit()
             txtFeilds[i].type = "number";
             txtFeilds[i].min = "0";
             txtFeilds[i].step = "1";
-            txtFeilds[i].onchange = updateHpPic;
+            txtFeilds[i].onchange = handleChangeCurrent;
         }
 
         else
@@ -302,11 +302,16 @@ function updateTokenPic()
     this.parentNode.childNodes[0].src = imgs["tokens"][this[this.selectedIndex].value];
 }
 
-function updateHpPic()
+function handleChangeCurrent()
 {
     let maxHp = document.getElementById("maxHp").value;
     let currentHp = this.value;
 
+    this.parentNode.childNodes[2].src = updateHpPic(maxHp, currentHp);
+}
+
+function updateHpPic(maxHp, currentHp)
+{
     if(parseInt(this.value) > parseInt(maxHp))
     {
         this.value = maxHp;
@@ -321,32 +326,32 @@ function updateHpPic()
 
     else if(fraction == 1)
     {
-        this.parentNode.childNodes[2].src = "images/map/hpBar/hpBar1.png";
+        return "images/map/hpBar/hpBar1.png";
     }
 
     else if(fraction >= .8)
     {
-        this.parentNode.childNodes[2].src = "images/map/hpBar/hpBar2.png";
+        return "images/map/hpBar/hpBar2.png";
     }
 
     else if(fraction >= .6)
     {
-        this.parentNode.childNodes[2].src = "images/map/hpBar/hpBar3.png";
+        return "images/map/hpBar/hpBar3.png";
     }
 
     else if(fraction >= .4)
     {
-        this.parentNode.childNodes[2].src = "images/map/hpBar/hpBar4.png";
+        return "images/map/hpBar/hpBar4.png";
     }
 
     else if(fraction >= .2)
     {
-        this.parentNode.childNodes[2].src = "images/map/hpBar/hpBar5.png";
+        return "images/map/hpBar/hpBar5.png";
     }
 
     else if(fraction == 0)
     {
-        this.parentNode.childNodes[2].src = "images/map/hpBar/hpBar6.png";
+        return "images/map/hpBar/hpBar6.png";
     }  
 }
 
