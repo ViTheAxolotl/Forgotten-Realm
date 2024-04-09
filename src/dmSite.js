@@ -313,6 +313,11 @@ function updateHpPic()
 
     let fraction = parseInt(this.value) / parseInt(maxHp);
 
+    if(maxHp == "0" && currentHp == "0")
+    {
+        return "images/map/hpBar/invisible.png";
+    }
+
     if(fraction == 1)
     {
         this.parentNode.childNodes[2].src = "images/map/hpBar/hpBar1.png";
