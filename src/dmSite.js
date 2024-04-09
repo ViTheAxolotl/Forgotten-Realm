@@ -318,7 +318,7 @@ function updateHpPic()
         return "images/map/hpBar/invisible.png";
     }
 
-    if(fraction == 1)
+    else if(fraction == 1)
     {
         this.parentNode.childNodes[2].src = "images/map/hpBar/hpBar1.png";
     }
