@@ -123,7 +123,7 @@ async function handleRemove()
 
     for(let key of Object.keys(wholeData))
     {
-        if(key != "invisible-")
+        if(key != "invisible")
         {
             makeToken(wholeData[key]);
         }
