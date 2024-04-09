@@ -184,7 +184,7 @@ async function deleteToken()
  
 function handleEdit()
 {
-    let names = ["border", "name", "currentHp", "maxHp", "title", "xPos", "yPos"];
+    let names = ["border", "name", "maxHp", "currentHp", "title", "xPos", "yPos"];
     let txtFeilds = [];
     let buttons = [document.createElement("button"), document.createElement("button")];
     let buttonsName = ["edit", "back"];
@@ -260,7 +260,7 @@ function handleEdit()
             }
         }
 
-        else if(i == 2)
+        else if(i == 3)
         {
             txtFeilds[i] = document.createElement("input");
             txtFeilds[i].name = names[i];
@@ -282,9 +282,9 @@ function handleEdit()
         editDiv.appendChild(txtFeilds[i]);
     }
 
-    txtFeilds[2].value = curCharacter.currentHp;
-    txtFeilds[3].value = curCharacter.maxHp;
     txtFeilds[1].value = curCharacter.name;
+    txtFeilds[2].value = curCharacter.maxHp;
+    txtFeilds[3].value = curCharacter.currentHp;
     txtFeilds[4].value = curCharacter.title;
     txtFeilds[5].value = curCharacter.xPos;
     txtFeilds[6].value = curCharacter.yPos;
@@ -311,7 +311,7 @@ function handleChangeCurrent()
     {
         this.value = maxHp;
     }
-    
+
     this.parentNode.childNodes[2].src = updateHpPic(maxHp, currentHp);
 }
 
