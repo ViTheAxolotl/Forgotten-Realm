@@ -268,6 +268,14 @@ function addCharacter(character, update)
                 }
             }
 
+            if(title.includes("Top"))
+            {
+                for(let image of char)
+                {
+                    image.style.zIndex = `${parseInt(image.style.zIndex) + 300}`;
+                }
+            }
+
             if(title.includes("90"))
             {
                 for(let image of char)
