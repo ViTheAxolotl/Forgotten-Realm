@@ -370,12 +370,12 @@ function addCharacter(character, update)
                 }
             }
 
-            if(title.includes("Exp x"))
+            if(title.includes("Exp x")) //Do this later
             {
                 
             }
 
-            else if(title.includes("Exp y"))
+            else if(title.includes("Exp y")) //Do this later
             {
                 
             }
