@@ -311,14 +311,10 @@ function addCharacter(character, update)
                     {
                         stuffs[v].src = image.src;
                         stuffs[v].classList = "tokens";
+                        stuffs[v].style.top = `${x}`;
+                        stuffs[v].style.left = `${pos[i]}`;
+                        div.appendChild(stuffs[v]);
                         v++;
-                    }
-
-                    for(let stuff of stuffs)
-                    {
-                        stuff.style.top = `${x}`;
-                        stuff.style.left = `${pos[i]}`;
-                        div.appendChild(stuff);
                     }
                 }
             }
