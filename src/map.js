@@ -311,7 +311,7 @@ function addCharacter(character, update)
                         stuffs[d].classList.add("tokens");
                         stuffs[d].src = char[d].src;
                         stuffs[d].classList.add(character["name"]);
-                        placeTokens(x, pos[i], stuffs[d]);
+                        placeTokens(pos[i], x, stuffs[d]);
 
                         switch(d)
                         {
