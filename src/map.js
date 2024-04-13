@@ -308,6 +308,7 @@ function addCharacter(character, update)
 
                     for(let d = 0; d < 3; d++)
                     {
+                        stuffs[d].classList.add("tokens");
                         switch(d)
                         {
                             case 0:
@@ -326,9 +327,8 @@ function addCharacter(character, update)
                         }
 
                         stuffs[d].src = char[d].src;
-                        stuffs[d].classList.add("tokens");
                         stuffs[d].classList.add(character["name"]);
-                        stuffs[d].style.top += "topp";
+                        stuffs[d].style.top += x;
                         stuffs[d].style.left += pos[i];
                         div.appendChild(stuffs[d]);
                     }
