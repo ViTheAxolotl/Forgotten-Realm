@@ -305,15 +305,32 @@ function addCharacter(character, update)
                 for(let i = 0; i < 13; i++)
                 {
                     let stuffs = [document.createElement("img"), document.createElement("img"), document.createElement("img")];
-                    let v = 0;
 
-                    for(let image of char)
+                    for(let d = 0; d < 3; d++)
                     {
-                        stuffs[v].src = image.src;
-                        stuffs[v].classList = "tokens";
-                        stuffs[v].style += `top: ${x}; left: ${pos[i]}`;
-                        div.appendChild(stuffs[v]);
-                        v++;
+                        switch(d)
+                        {
+                            case 0:
+                            {
+                                stuffs[d].classList.add("char");
+                                break;
+                            }
+
+                            case 1:
+                                stuffs[d].classList.add("border_");
+                                break;
+
+                            case 2:
+                                stuffs[d].classList.add("hp");
+                                break;
+                        }
+
+                        stuffs[d].src = char[d].src;
+                        stuffs[d].classList.add("tokens");
+                        stuffs[d].classList.add(character["name"]);
+                        stuffs[d].style.top += x;
+                        stuffs[d].style.left += pos[i];
+                        div.appendChild(stuffs[d]);
                     }
                 }
             }
