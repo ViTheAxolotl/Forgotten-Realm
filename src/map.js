@@ -311,8 +311,8 @@ function addCharacter(character, update)
                     {
                         stuffs[v].src = image.src;
                         stuffs[v].classList = "tokens";
-                        stuffs[v].style.top = `${x}`;
-                        stuffs[v].style.left = `${pos[i]}`;
+                        stuffs[v].style.top += x;
+                        stuffs[v].style.left += pos[i];
                         div.appendChild(stuffs[v]);
                         v++;
                     }
