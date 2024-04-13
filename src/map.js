@@ -316,8 +316,8 @@ function addCharacter(character, update)
 
                     for(let stuff of stuffs)
                     {
-                        stuff.style.top = x;
-                        stuff.style.left = pos[i];
+                        stuff.style.top = `${x}`;
+                        stuff.style.left = `${pos[i]}`;
                         div.appendChild(stuff);
                     }
                 }
