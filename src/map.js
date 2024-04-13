@@ -297,7 +297,7 @@ function addCharacter(character, update)
                 }
             }
 
-            if(title.includes("dup x"))
+            if(title.includes("Dup x"))
             {
                 for(let i = 0; i < 13; i++)
                 {
@@ -320,17 +320,17 @@ function addCharacter(character, update)
                 }
             }
 
-            else if(title.includes("dup y"))
+            else if(title.includes("Dup y"))
             {
                 
             }
 
-            if(title.includes("exp x"))
+            if(title.includes("Exp x"))
             {
                 
             }
 
-            else if(title.includes("exp y"))
+            else if(title.includes("Exp y"))
             {
                 
             }
