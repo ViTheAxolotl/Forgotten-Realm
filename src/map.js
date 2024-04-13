@@ -328,7 +328,7 @@ function addCharacter(character, update)
                         stuffs[d].src = char[d].src;
                         stuffs[d].classList.add("tokens");
                         stuffs[d].classList.add(character["name"]);
-                        stuffs[d].style.top += x;
+                        stuffs[d].style.top += "topp";
                         stuffs[d].style.left += pos[i];
                         div.appendChild(stuffs[d]);
                     }
