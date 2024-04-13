@@ -337,7 +337,37 @@ function addCharacter(character, update)
 
             else if(title.includes("Dup y"))
             {
-                
+                for(let i = 0; i < 13; i++)
+                {
+                    let stuffs = [document.createElement("img"), document.createElement("img"), document.createElement("img")];
+
+                    for(let d = 0; d < 3; d++)
+                    {
+                        stuffs[d].classList.add("tokens");
+                        stuffs[d].src = char[d].src;
+                        stuffs[d].classList.add(character["name"]);
+                        placeTokens(x, pos[i], stuffs[d]);
+
+                        switch(d)
+                        {
+                            case 0:
+                            {
+                                stuffs[d].classList.add("char");
+                                break;
+                            }
+
+                            case 1:
+                                stuffs[d].classList.add("border_");
+                                break;
+
+                            case 2:
+                                stuffs[d].classList.add("hp");
+                                break;
+                        }
+
+                        div.appendChild(stuffs[d]);
+                    }
+                }
             }
 
             if(title.includes("Exp x"))
