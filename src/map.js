@@ -272,7 +272,15 @@ function addCharacter(character, update)
             {
                 for(let image of char)
                 {
-                    image.style.zIndex = `${parseInt(image.style.zIndex) + 300}`;
+                    if(image.style.zIndex == "")
+                    {
+                        image.style.zIndex = 400;
+                    }
+
+                    else
+                    {
+                        image.style.zIndex = `${parseInt(image.style.zIndex) + 300}`;
+                    }
                 }
             }
 
