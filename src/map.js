@@ -299,7 +299,25 @@ function addCharacter(character, update)
 
             if(title.includes("dup x"))
             {
-                
+                for(let i = 0; i < 13; i++)
+                {
+                    let stuffs = [document.createElement("img"), document.createElement("img"), document.createElement("img")];
+                    let v = 0;
+
+                    for(let image of char)
+                    {
+                        stuffs[v].src = image.src;
+                        stuffs[v].classList = "tokens";
+                        v++;
+                    }
+
+                    for(let stuff of stuffs)
+                    {
+                        stuff.style.top = char[0].style.top;
+                        stuff.style.left = pos[i];
+                        div.appendChild(stuff);
+                    }
+                }
             }
 
             else if(title.includes("dup y"))
