@@ -241,6 +241,9 @@ function addCharacter(character, update)
         if(character.title != "")
         {
             let title = character.title;
+            x = pos[xPos.indexOf(character["xPos"])];
+            y = pos[yPos.indexOf(character["yPos"])];
+
             if(title.includes("Large"))
             {
                 for(let image of char)
@@ -313,7 +316,7 @@ function addCharacter(character, update)
 
                     for(let stuff of stuffs)
                     {
-                        stuff.style.top = char[0].style.top;
+                        stuff.style.top = x;
                         stuff.style.left = pos[i];
                         div.appendChild(stuff);
                     }
@@ -336,8 +339,6 @@ function addCharacter(character, update)
             }
 
             char[0].title = `${character["title"]}`;
-            x = pos[xPos.indexOf(character["xPos"])];
-            y = pos[yPos.indexOf(character["yPos"])];
         }
 
         for(let i = 0; i < 3; i++)
