@@ -25,7 +25,7 @@ let bord = document.createElement("h3");
 let hp = document.createElement("h3");
 let go = document.createElement("button");
 let people = [];
-let numToLet = {0 : "", 1 : "a"};
+let numToLet = {0 : "", 1 : "a", 2 : "b"};
 let wholeData = {};
 
 async function init()
@@ -100,7 +100,7 @@ function setUpCharacters(currentName)
             break;
 
         case "leonier":
-            for(let i = 0; i < 2; i++)
+            for(let i = 0; i < 3; i++)
             {
                 people.push(currentName + '-' + numToLet[i]);
             }
