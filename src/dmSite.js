@@ -21,39 +21,51 @@ let editDiv;
 let imgs;
 let collectionNames = [];
 let curCharacter;
+let htmlInfo = window.location.href;
 
 function init()
 {
-    fetch('https://vitheaxolotl.github.io/Forgotten-Realm/src/files.json').then(res => res.json()).then((json) => imgs = json);
-    for(let button of document.getElementsByTagName("button"))
+    htmlInfo = htmlInfo.split("?");
+    htmlInfo = htmlInfo[1];
+    
+    if(htmlInfo == "Axo1ot1")
     {
-        switch(button.id)
+        fetch('https://vitheaxolotl.github.io/Forgotten-Realm/src/files.json').then(res => res.json()).then((json) => imgs = json);
+        for(let button of document.getElementsByTagName("button"))
         {
-            case "add":
-                fiveButtons.push(button);
-                button.onclick = handleAdd;
-                break;
+            switch(button.id)
+            {
+                case "add":
+                    fiveButtons.push(button);
+                    button.onclick = handleAdd;
+                    break;
 
-            case "remove":
-                fiveButtons.push(button);
-                button.onclick = handleRemove;
-                break;
+                case "remove":
+                    fiveButtons.push(button);
+                    button.onclick = handleRemove;
+                    break;
 
-            case "changeMap":
-                fiveButtons.push(button);
-                button.onclick = handleChangeMap;
-                break;
+                case "changeMap":
+                    fiveButtons.push(button);
+                    button.onclick = handleChangeMap;
+                    break;
 
-            case "save":
-                fiveButtons.push(button);
-                button.onclick = handleSave;
-                break;
+                case "save":
+                    fiveButtons.push(button);
+                    button.onclick = handleSave;
+                    break;
 
-            case "load":
-                fiveButtons.push(button);
-                button.onclick = handleLoad;
-                break;
+                case "load":
+                    fiveButtons.push(button);
+                    button.onclick = handleLoad;
+                    break;
+            }
         }
+    }
+
+    else
+    {
+        alert("Wrong Credentails!!!")
     }
 }
 

@@ -86,7 +86,7 @@ function setUpCharacters(currentName)
             let dmLink = document.createElement("a");
             dmLink.innerHTML = "DM Link";
             dmLink.onclick = openWindow;
-            dmLink.id = "dmSite.html";
+            dmLink.id = "dmSite.html?Axo1ot1";
             mapLink.classList = "blo";
             div.appendChild(dmLink);
             div.appendChild(mapLink);
