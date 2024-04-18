@@ -290,7 +290,7 @@ function addCharacter(character, update)
                 {
                     if(image.style.zIndex == "")
                     {
-                        image.style.zIndex = 10;
+                        image.style.zIndex = 20;
                     }
 
                     else
