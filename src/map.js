@@ -284,6 +284,22 @@ function addCharacter(character, update)
                 }
             }
 
+            else if(title.includes("Bottom"))
+            {
+                for(let image of char)
+                {
+                    if(image.style.zIndex == "")
+                    {
+                        image.style.zIndex = 10;
+                    }
+
+                    else
+                    {
+                        image.style.zIndex = `${parseInt(image.style.zIndex) - 50}`;
+                    }
+                }
+            }
+
             if(title.includes("90"))
             {
                 for(let image of char)
