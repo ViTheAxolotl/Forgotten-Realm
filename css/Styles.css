@@ -390,6 +390,11 @@ table, .itemSearch, #itemImg
     display: block;
 }
 
+.tokens
+{
+    z-index: 800;
+}
+
 .border_
 {
     z-index: 1000;
