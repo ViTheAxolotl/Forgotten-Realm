@@ -40,7 +40,7 @@ function init()
     setMainVaribles();
     readTokens();
     
-    setInterval(timer, 2000);
+    setInterval(timer, 1000);
 }
 
 function setMainVaribles()

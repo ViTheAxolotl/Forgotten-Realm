@@ -49,7 +49,9 @@
         "platformg-" : "images/map/tokens/platformg-.png",
         "stoneGolum-" : "images/map/tokens/stoneGolum-.png",
         "spike-" : "images/map/tokens/spike-.png",
-        "trap-" : "images/map/tokens/spike-.png"
+        "trap-" : "images/map/tokens/spike-.png",
+        "genericA-" : "images/map/tokens/genericA-.png",
+        "genericE-" : "images/map/tokens/genericE-.png"
     },
 
     "borders" : 
