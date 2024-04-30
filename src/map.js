@@ -463,7 +463,7 @@ function addCharacter(character, update)
             {
                 for(let image of char)
                 {
-                    image.style.right = pos[12] + px;
+                    image.style.right = pos[12] + "px";
                 }
             }
 
