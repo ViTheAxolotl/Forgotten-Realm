@@ -370,11 +370,8 @@ function addCharacter(character, update)
             }
 
             if(title.includes("Exp x")) 
-            {
-                let top = y.replace("px", "");
-                let left = x.replace("px", "");
-                
-                let width = (pos[13] - left) + "px";
+            {                
+                let width = (pos[13] - x) + "px";
                 
                 for(let image of char)
                 {
