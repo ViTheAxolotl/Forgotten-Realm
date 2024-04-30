@@ -376,7 +376,14 @@ function addCharacter(character, update)
 
                 if(expNum[5] != ",")
                 {
-                    size = (pos[expNum[5]] - x) + "px";
+                    size = pos[expNum[5]] - x;
+                    
+                    if(size < 0)
+                    {
+                        size = size * -1;
+                    }
+
+                    size = size + "px";
                 }
 
                 else
