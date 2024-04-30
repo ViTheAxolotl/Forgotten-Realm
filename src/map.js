@@ -34,6 +34,7 @@ let imgs;
 let currentHp;
 let maxHp;
 let titleTxt;
+let offSet;
 
 function init()
 {
@@ -334,72 +335,12 @@ function addCharacter(character, update)
 
             if(title.includes("Dup x"))
             {
-                for(let i = 0; i < 13; i++)
-                {
-                    let stuffs = [document.createElement("img"), document.createElement("img"), document.createElement("img")];
-
-                    for(let d = 0; d < 3; d++)
-                    {
-                        stuffs[d].classList.add("tokens");
-                        stuffs[d].src = char[d].src;
-                        stuffs[d].classList.add(character["name"]);
-                        placeTokens(pos[i], y, stuffs[d]);
-
-                        switch(d)
-                        {
-                            case 0:
-                            {
-                                stuffs[d].classList.add("char");
-                                break;
-                            }
-
-                            case 1:
-                                stuffs[d].classList.add("border_");
-                                break;
-
-                            case 2:
-                                stuffs[d].classList.add("hp");
-                                break;
-                        }
-
-                        div.appendChild(stuffs[d]);
-                    }
-                }
+                dup("x", 12, char, character, [x, y]);
             }
 
             else if(title.includes("Dup y"))
             {
-                for(let i = 0; i < 13; i++)
-                {
-                    let stuffs = [document.createElement("img"), document.createElement("img"), document.createElement("img")];
-
-                    for(let d = 0; d < 3; d++)
-                    {
-                        stuffs[d].classList.add("tokens");
-                        stuffs[d].src = char[d].src;
-                        stuffs[d].classList.add(character["name"]);
-                        placeTokens(x, pos[i], stuffs[d]);
-
-                        switch(d)
-                        {
-                            case 0:
-                            {
-                                stuffs[d].classList.add("char");
-                                break;
-                            }
-
-                            case 1:
-                                stuffs[d].classList.add("border_");
-                                break;
-
-                            case 2:
-                                stuffs[d].classList.add("hp");
-                                break;
-                        }
-
-                        div.appendChild(stuffs[d]);
-                    }
-                }
+                dup("y", 12, char, character, [x, y]);
             }
 
             if(title.includes("Exp x")) //Do this later
@@ -428,6 +369,54 @@ function addCharacter(character, update)
         }
     }
 }
+
+function dup(xOrY, num, char, character, locations)
+{
+    if(xOrY == "x"){offSet = locations[0];}
+    else{offSet = locations[1];}
+
+    switch(num)
+    {
+        case 12:
+            for(let i = 0; i < 12; i++){setupDup(char, character, xOrY, locations)}
+            break;
+    }
+}
+
+function setupDup(char, character, xOrY, locations)
+{
+    let stuffs = [document.createElement("img"), document.createElement("img"), document.createElement("img")];
+
+    for(let d = 0; d < 3; d++)
+    {
+        stuffs[d].classList.add("tokens");
+        stuffs[d].src = char[d].src;
+        stuffs[d].classList.add(character["name"]);
+        if(xOrY == "x"){placeTokens(pos[offSet], locations[1], stuffs[d]);}
+        else{placeTokens(locations[0], pos[offSet], stuffs[d]);}
+        offSet++;
+
+        switch(d)
+        {
+            case 0:
+            {
+                stuffs[d].classList.add("char");
+                break;
+            }
+
+            case 1:
+                stuffs[d].classList.add("border_");
+                break;
+
+            case 2:
+                stuffs[d].classList.add("hp");
+                break;
+        }
+
+        div.appendChild(stuffs[d]);
+    }
+}
+
 
 function getHpImg(character)
 {

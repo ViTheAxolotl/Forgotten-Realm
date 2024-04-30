@@ -54,6 +54,7 @@ let charStories =
     "Fargate" : "Fargate is the owner of the Tiger's Pub. He left the village, needing to get out and find himself. He opened his bar in Lago, and quickly made friends with the locals. He was like an uncle to Leonier, being there for events and making food and baked goods for him and the village.",
     "Grain" : "Grain is the 8th in line at Slarus' Coast, he is a petty theif.",
     "Howard" : "Howard is the mad scientist of Castle Havenport, he uses what he finds to help anyone he can. His great-great-grandpa was one of the people King Alm brought from Main to help his kingdom grow and advance. Howard's family has been loyal to the king ever since, but when he vanished, Howard found other employment. Working for Castle Havenport.",
+    "Jallion" : "Jallion is the royal map maker of Havenpont. He travels all around and gathers diffrent satistics to base his maps off of. From the most danagerous places to poverty, he has a map showing where and intesity. Resently Prince Grado and some other nearby kingdoms asked him to make a map of high density of MagicVoid. Grado hopes this could be used to find safer routes and what drives their migrations.",
     "Slavve" : "King Slavve is the figurehead of Havenport, however, all he does is sign the papers he is told to. His son, Grado, handles everything in the kingdom. Slavve isn't the man he used to be, he used to be the active king who would go on quests and adventures to benefit his kingdom. That all changed when his husband of 35 years died in battle, the king took it hard. Now he barely leaves his bed, the only time he leaves is to eat. This is because the staff refuses to let him stay in his bed all day. They will not serve food to him in his bed with him only wearing underwear."
 };
 
@@ -72,8 +73,9 @@ let charImg =
     "Mal" : "images/npcs/barkeepMal.PNG",
     "Skinin" : "images/npcs/skinin.png",
     "Cliven" : "images/npcs/mayorCliven.PNG",
-    "Fargate" : "tigersPubFargate.PNG",
-    "Grain" : "princeGrain.PNG",
+    "Fargate" : "images/npcs/tigersPubFargate.PNG",
+    "Grain" : "images/npcs/princeGrain.PNG",
     "Howard" : "images/npcs/madHoward.PNG",
+    "Jallion" : "images/npcs/Jallion.PNG",
     "Slavve" : "images/npcs/kingSlavve.PNG"
 }
