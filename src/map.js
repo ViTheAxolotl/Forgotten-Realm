@@ -371,7 +371,7 @@ function addCharacter(character, update)
 
             if(title.includes("Exp x")) 
             {                
-                let width = (pos[13] - x) + "px";
+                let width = (pos[12] - x) + "px";
                 
                 for(let image of char)
                 {
