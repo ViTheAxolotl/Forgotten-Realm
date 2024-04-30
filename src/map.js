@@ -337,27 +337,126 @@ function addCharacter(character, update)
             {
                 if(title.includes("x1"))
                 {
+                    dup("x", 1, char, character, [x, y]);
+                }
 
+                else if(title.includes("x2"))
+                {
+                    dup("x", 2, char, character, [x, y]);
+                }
+
+                else if(title.includes("x3"))
+                {
+                    dup("x", 3, char, character, [x, y]);
+                }
+
+                else if(title.includes("x4"))
+                {
+                    dup("x", 4, char, character, [x, y]);
+                }
+
+                else if(title.includes("x5"))
+                {
+                    dup("x", 5, char, character, [x, y]);
+                }
+
+                else if(title.includes("x6"))
+                {
+                    dup("x", 6, char, character, [x, y]);
+                }
+
+                else if(title.includes("x7"))
+                {
+                    dup("x", 7, char, character, [x, y]);
+                }
+
+                else if(title.includes("x8"))
+                {
+                    dup("x", 8, char, character, [x, y]);
+                }
+
+                else if(title.includes("x9"))
+                {
+                    dup("x", 9, char, character, [x, y]);
+                }
+
+                else if(title.includes("x10"))
+                {
+                    dup("x", 10, char, character, [x, y]);
+                }
+
+                else if(title.includes("x11"))
+                {
+                    dup("x", 11, char, character, [x, y]);
                 }
 
                 else
                 {
                     dup("x", 12, char, character, [x, y]);
-                }
-                
+                }  
             }
 
             else if(title.includes("Dup y"))
             {
                 if(title.includes("y1"))
                 {
-
+                    dup("y", 1, char, character, [x, y]);
                 }
-                
+
+                else if(title.includes("y2"))
+                {
+                    dup("y", 2, char, character, [x, y]);
+                }
+
+                else if(title.includes("y3"))
+                {
+                    dup("y", 3, char, character, [x, y]);
+                }
+
+                else if(title.includes("y4"))
+                {
+                    dup("y", 4, char, character, [x, y]);
+                }
+
+                else if(title.includes("y5"))
+                {
+                    dup("y", 5, char, character, [x, y]);
+                }
+
+                else if(title.includes("y6"))
+                {
+                    dup("y", 6, char, character, [x, y]);
+                }
+
+                else if(title.includes("y7"))
+                {
+                    dup("y", 7, char, character, [x, y]);
+                }
+
+                else if(title.includes("y8"))
+                {
+                    dup("y", 8, char, character, [x, y]);
+                }
+
+                else if(title.includes("y9"))
+                {
+                    dup("y", 9, char, character, [x, y]);
+                }
+
+                else if(title.includes("y10"))
+                {
+                    dup("y", 10, char, character, [x, y]);
+                }
+
+                else if(title.includes("y11"))
+                {
+                    dup("y", 11, char, character, [x, y]);
+                }
+
                 else
                 {
                     dup("y", 12, char, character, [x, y]);
-                }
+                }  
             }
 
             if(title.includes("Exp x")) //Do this later
@@ -392,12 +491,7 @@ function dup(xOrY, num, char, character, locations)
     if(xOrY == "x"){offSet = xPos.indexOf(character["xPos"]);}
     else{offSet = yPos.indexOf(character["yPos"]);}
 
-    switch(num)
-    {
-        case 12:
-            for(let i = 0; i < 12; i++){setupDup(char, character, xOrY, locations)}
-            break;
-    }
+    for(let i = 0; i < num; i++){setupDup(char, character, xOrY, locations)}
 }
 
 function setupDup(char, character, xOrY, locations)
