@@ -335,135 +335,50 @@ function addCharacter(character, update)
 
             if(title.includes("Dup x"))
             {
-                if(title.includes("x1"))
-                {
-                    dup("x", 1, char, character, [x, y]);
-                }
+                let num;
+                let dup = title.slice(0, title.indexOf("Dup x"));
 
-                else if(title.includes("x2"))
+                if(dup[5] != ",")
                 {
-                    dup("x", 2, char, character, [x, y]);
-                }
-
-                else if(title.includes("x3"))
-                {
-                    dup("x", 3, char, character, [x, y]);
-                }
-
-                else if(title.includes("x4"))
-                {
-                    dup("x", 4, char, character, [x, y]);
-                }
-
-                else if(title.includes("x5"))
-                {
-                    dup("x", 5, char, character, [x, y]);
-                }
-
-                else if(title.includes("x6"))
-                {
-                    dup("x", 6, char, character, [x, y]);
-                }
-
-                else if(title.includes("x7"))
-                {
-                    dup("x", 7, char, character, [x, y]);
-                }
-
-                else if(title.includes("x8"))
-                {
-                    dup("x", 8, char, character, [x, y]);
-                }
-
-                else if(title.includes("x9"))
-                {
-                    dup("x", 9, char, character, [x, y]);
-                }
-
-                else if(title.includes("x10"))
-                {
-                    dup("x", 10, char, character, [x, y]);
-                }
-
-                else if(title.includes("x11"))
-                {
-                    dup("x", 11, char, character, [x, y]);
+                    num = parseInt(dup[5]);
                 }
 
                 else
                 {
-                    dup("x", 12, char, character, [x, y]);
-                }  
+                    num = 12
+                }
+                
+                dup("x", num, char, character, [x, y]);
             }
 
             if(title.includes("Dup y"))
             {
-                if(title.includes("y1"))
-                {
-                    dup("y", 1, char, character, [x, y]);
-                }
+                let num;
+                let dup = title.slice(0, title.indexOf("Dup y"));
 
-                else if(title.includes("y2"))
+                if(dup[5] != ",")
                 {
-                    dup("y", 2, char, character, [x, y]);
-                }
-
-                else if(title.includes("y3"))
-                {
-                    dup("y", 3, char, character, [x, y]);
-                }
-
-                else if(title.includes("y4"))
-                {
-                    dup("y", 4, char, character, [x, y]);
-                }
-
-                else if(title.includes("y5"))
-                {
-                    dup("y", 5, char, character, [x, y]);
-                }
-
-                else if(title.includes("y6"))
-                {
-                    dup("y", 6, char, character, [x, y]);
-                }
-
-                else if(title.includes("y7"))
-                {
-                    dup("y", 7, char, character, [x, y]);
-                }
-
-                else if(title.includes("y8"))
-                {
-                    dup("y", 8, char, character, [x, y]);
-                }
-
-                else if(title.includes("y9"))
-                {
-                    dup("y", 9, char, character, [x, y]);
-                }
-
-                else if(title.includes("y10"))
-                {
-                    dup("y", 10, char, character, [x, y]);
-                }
-
-                else if(title.includes("y11"))
-                {
-                    dup("y", 11, char, character, [x, y]);
+                    num = parseInt(dup[5]);
                 }
 
                 else
                 {
-                    dup("y", 12, char, character, [x, y]);
-                }  
+                    num = 12
+                }
+                
+                dup("y", num, char, character, [x, y]);
             }
 
             if(title.includes("Exp x")) 
             {
+                let top = y.replace("px", "");
+                let left = x.replace("px", "");
+                
+                let width = (pos[13] - left) + "px";
+                
                 for(let image of char)
                 {
-                    image.style.right = pos[12] + "px";
+                    image.style.width = width;
                 }
             }
 
