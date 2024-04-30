@@ -403,13 +403,14 @@ function dup(xOrY, num, char, character, locations)
 function setupDup(char, character, xOrY, locations)
 {
     let stuffs = [document.createElement("img"), document.createElement("img"), document.createElement("img")];
+    offSet++;
 
     for(let d = 0; d < 3; d++)
     {
         stuffs[d].classList.add("tokens");
         stuffs[d].src = char[d].src;
         stuffs[d].classList.add(character["name"]);
-        offSet++;
+        
         if(xOrY == "x"){placeTokens(pos[offSet], locations[1], stuffs[d]);}
         else{placeTokens(locations[0], pos[offSet], stuffs[d]);}
         
