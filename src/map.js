@@ -371,7 +371,18 @@ function addCharacter(character, update)
 
             if(title.includes("Exp x")) 
             {                
-                let size = (pos[12]) + "px";
+                let size;
+                let expNum = title.slice(title.indexOf("Exp x"));
+
+                if(expNum[5] != ",")
+                {
+                    size = (pos[expNum] - x) + "px";
+                }
+
+                else
+                {
+                    size = (pos[12] - x) + "px";
+                }
                 
                 for(let image of char)
                 {
@@ -381,11 +392,22 @@ function addCharacter(character, update)
 
             if(title.includes("Exp y")) 
             {
-                let size = (pos[12]) + "px";
+                let size;
+                let expNum = title.slice(title.indexOf("Exp y"));
+
+                if(expNum[5] != ",")
+                {
+                    size = (pos[expNum] - y) + "px";
+                }
+
+                else
+                {
+                    size = (pos[12] - y) + "px";
+                }
                 
                 for(let image of char)
                 {
-                    image.style.height = size;
+                    image.style.width = size;
                 }
             }
 
