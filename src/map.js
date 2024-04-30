@@ -396,7 +396,7 @@ function addCharacter(character, update)
                 }  
             }
 
-            else if(title.includes("Dup y"))
+            if(title.includes("Dup y"))
             {
                 if(title.includes("y1"))
                 {
@@ -459,9 +459,12 @@ function addCharacter(character, update)
                 }  
             }
 
-            if(title.includes("Exp x")) //Do this later
+            if(title.includes("Exp x")) 
             {
-                
+                for(let image of char)
+                {
+                    image.style.right = pos[12];
+                }
             }
 
             else if(title.includes("Exp y")) //Do this later
