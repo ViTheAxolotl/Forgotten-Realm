@@ -371,17 +371,22 @@ function addCharacter(character, update)
 
             if(title.includes("Exp x")) 
             {                
-                let width = (pos[12] - x) + "px";
+                let size = (pos[12] - x) + "px";
                 
                 for(let image of char)
                 {
-                    image.style.width = width;
+                    image.style.width = size;
                 }
             }
 
-            else if(title.includes("Exp y")) //Do this later
+            if(title.includes("Exp y")) 
             {
+                let size = (pos[12] - y) + "px";
                 
+                for(let image of char)
+                {
+                    image.style.height = size;
+                }
             }
 
             char[0].title = `${character["title"]}`;
