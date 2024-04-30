@@ -335,12 +335,29 @@ function addCharacter(character, update)
 
             if(title.includes("Dup x"))
             {
-                dup("x", 12, char, character, [x, y]);
+                if(title.includes("x1"))
+                {
+
+                }
+
+                else
+                {
+                    dup("x", 12, char, character, [x, y]);
+                }
+                
             }
 
             else if(title.includes("Dup y"))
             {
-                dup("y", 12, char, character, [x, y]);
+                if(title.includes("y1"))
+                {
+
+                }
+                
+                else
+                {
+                    dup("y", 12, char, character, [x, y]);
+                }
             }
 
             if(title.includes("Exp x")) //Do this later
@@ -372,8 +389,8 @@ function addCharacter(character, update)
 
 function dup(xOrY, num, char, character, locations)
 {
-    if(xOrY == "x"){offSet = locations[0];}
-    else{offSet = locations[1];}
+    if(xOrY == "x"){offSet = xPos.indexOf(character["xPos"]);}
+    else{offSet = yPos.indexOf(character["yPos"]);}
 
     switch(num)
     {
@@ -392,10 +409,10 @@ function setupDup(char, character, xOrY, locations)
         stuffs[d].classList.add("tokens");
         stuffs[d].src = char[d].src;
         stuffs[d].classList.add(character["name"]);
+        offSet++;
         if(xOrY == "x"){placeTokens(pos[offSet], locations[1], stuffs[d]);}
         else{placeTokens(locations[0], pos[offSet], stuffs[d]);}
-        offSet++;
-
+        
         switch(d)
         {
             case 0:
