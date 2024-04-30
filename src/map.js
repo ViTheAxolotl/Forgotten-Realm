@@ -336,11 +336,11 @@ function addCharacter(character, update)
             if(title.includes("Dup x"))
             {
                 let num;
-                let dup = title.slice(0, title.indexOf("Dup x"));
+                let dupNum = title.slice(0, title.indexOf("Dup x"));
 
                 if(dup[5] != ",")
                 {
-                    num = parseInt(dup[5]);
+                    dupNum = parseInt(dup[5]);
                 }
 
                 else
@@ -354,9 +354,9 @@ function addCharacter(character, update)
             if(title.includes("Dup y"))
             {
                 let num;
-                let dup = title.slice(0, title.indexOf("Dup y"));
+                let dupNum = title.slice(0, title.indexOf("Dup y"));
 
-                if(dup[5] != ",")
+                if(dupNum[5] != ",")
                 {
                     num = parseInt(dup[5]);
                 }
