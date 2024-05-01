@@ -499,7 +499,7 @@ table, .itemSearch, #itemImg
         height: 5%;
     }
 
-    #gridMap .Large
+    /*#gridMap .Large
     {
         width: 11%;
         height: 11%;
@@ -515,7 +515,7 @@ table, .itemSearch, #itemImg
     {
         width: 22%;
         height: 22%;
-    }
+    }*/
 
     .veiwTokens
     {

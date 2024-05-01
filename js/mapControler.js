@@ -18,6 +18,7 @@ let arrows = [];
 let currentHp;
 let maxHp;
 let buttons;
+let pos;
 let div = document.getElementById("grid");
 let currentBorders = document.getElementsByClassName("border_");
 
@@ -68,7 +69,8 @@ function setMainVaribles()
         movement = distance - 6;
     }
 
-    bounds = [distance + bumper, (distance + bumper) + distance * 10];
+    pos = [disAndBum, disAndBum + movement, disAndBum + (movement * 2), disAndBum + (movement * 3), disAndBum + (movement * 4), disAndBum + (movement * 5), disAndBum + (movement * 6), disAndBum + (movement * 7), disAndBum + (movement * 8), disAndBum + (movement * 9), disAndBum + (movement * 10), disAndBum + (movement * 11), disAndBum + (movement * 12)];
+    bounds = [distance + bumper, pos[12]];
 
     for(let button of buttons)
     {
@@ -247,25 +249,25 @@ function handleArrow()
         {
             if(title.includes("Large"))
             {
-                bounds = [distance + bumper, (distance + bumper) + distance * 9];
+                bounds = [bounds[0], pos[11]];
                 break;
             }
 
             else if(title.includes("Huge"))
             {
-                bounds = [distance + bumper, (distance + bumper) + distance * 7.8];
+                bounds = [bounds[0], pos[10]];
                 break;
             }
 
             else if (title.includes("Gargantuan"))
             {
-                bounds = [distance + bumper, (distance + bumper) + distance * 7.04];
+                bounds = [bounds[0], pos[9]];
                 break;
             }
 
             else
             {
-                bounds = [distance + bumper, (distance + bumper) + distance * 10];
+                bounds = [bounds[0], pos[12]];
             }
         }
     }

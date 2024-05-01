@@ -247,26 +247,32 @@ function addCharacter(character, update)
 
             if(title.includes("Large"))
             {
-                for(let image of char)
+                setupExp(1, char, "x");
+                setupExp(1, char, "y");
+                /*for(let image of char)
                 {
                     image.classList += " Large";
-                }
+                }*/
             }
 
             else if(title.includes("Huge"))
             {
-                for(let image of char)
+                setupExp(2, char, "x");
+                setupExp(2, char, "y");
+                /*for(let image of char)
                 {
                     image.classList += " Huge";
-                }
+                }*/
             }
 
             else if(title.includes("Gargantuan"))
             {
-                for(let image of char)
+                setupExp(3, char, "x");
+                setupExp(3, char, "y");
+                /*for(let image of char)
                 {
                     image.classList += " Gargantuan";
-                }
+                }*/
             }
 
             if(title.includes("Top"))
@@ -372,20 +378,24 @@ function addCharacter(character, update)
 
 function exp(xOrY, title, char)
 {
-    let size;
     let expNum;
     if(xOrY == "x"){expNum = title.slice(title.indexOf("Exp x"));}
     else{expNum = title.slice(title.indexOf("Exp y"));}
 
     if(expNum[5] != ",")
     {
-        size = (pos[expNum[5]] - pos[0]) + "px";
+        setupExp(expNum[5], char, xOrY);
     }
 
     else
     {
-        size = (pos[12] - pos[0]) + "px";
+        setupExp(12, char, xOrY);
     }
+}
+
+function setupExp(num, char, xOrY)
+{
+    let size = (pos[num] - pos[0]) + "px";
 
     if(xOrY == "x")
     {
