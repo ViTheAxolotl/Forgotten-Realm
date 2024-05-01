@@ -380,8 +380,6 @@ function exp(xOrY, title, char)
     if(expNum[5] != ",")
     {
         size = (pos[expNum[5]] - pos[0]) + "px";
-
-        size = size + "px";
     }
 
     else
