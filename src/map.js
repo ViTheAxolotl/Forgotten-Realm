@@ -247,8 +247,8 @@ function addCharacter(character, update)
 
             if(title.includes("Large"))
             {
-                setupExp(1, char, "x");
-                setupExp(1, char, "y");
+                setupExp(2, char, "x");
+                setupExp(2, char, "y");
                 /*for(let image of char)
                 {
                     image.classList += " Large";
@@ -257,8 +257,8 @@ function addCharacter(character, update)
 
             else if(title.includes("Huge"))
             {
-                setupExp(2, char, "x");
-                setupExp(2, char, "y");
+                setupExp(3, char, "x");
+                setupExp(3, char, "y");
                 /*for(let image of char)
                 {
                     image.classList += " Huge";
@@ -267,8 +267,8 @@ function addCharacter(character, update)
 
             else if(title.includes("Gargantuan"))
             {
-                setupExp(3, char, "x");
-                setupExp(3, char, "y");
+                setupExp(4, char, "x");
+                setupExp(4, char, "y");
                 /*for(let image of char)
                 {
                     image.classList += " Gargantuan";
