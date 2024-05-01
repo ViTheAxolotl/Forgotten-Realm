@@ -335,87 +335,22 @@ function addCharacter(character, update)
 
             if(title.includes("Dup x"))
             {
-                let num;
-                let dupNum = title.slice(title.indexOf("Dup x"));
-
-                if(dupNum[5] != ",")
-                {
-                    num = parseInt(dupNum[5]);
-                }
-
-                else
-                {
-                    num = 12
-                }
-                
-                dup("x", num, char, character, [x, y]);
+                dup("x", char, character, [x, y], title);
             }
 
             if(title.includes("Dup y"))
             {
-                let num;
-                let dupNum = title.slice(title.indexOf("Dup y"));
-
-                if(dupNum[5] != ",")
-                {
-                    num = parseInt(dupNum[5]);
-                }
-
-                else
-                {
-                    num = 12
-                }
-                
-                dup("y", num, char, character, [x, y]);
+                dup("y", char, character, [x, y], title);
             }
 
             if(title.includes("Exp x")) 
-            {                
-                let size;
-                let expNum = title.slice(title.indexOf("Exp x"));
-
-                if(expNum[5] != ",")
-                {
-                    size = pos[expNum[5]] - pos[0];
-
-                    size = size + "px";
-                }
-
-                else
-                {
-                    size = (pos[12] - x) + "px";
-                }
-                
-                /*if(size > pos[pos.length - 1])
-                {
-                    size = pos[]
-                }*/
-
-                for(let image of char)
-                {
-                    image.style.width = size;
-                }
+            {   
+                exp("x", title, char);             
             }
 
             if(title.includes("Exp y")) 
             {
-                let size;
-                let expNum = title.slice(title.indexOf("Exp y"));
-
-                if(expNum[5] != ",")
-                {
-                    size = (pos[expNum[5]] - y) + "px";
-                }
-
-                else
-                {
-                    size = (pos[12] - y) + "px";
-                }
-                
-                for(let image of char)
-                {
-                    image.style.width = size;
-                }
+                exp("y", title, char);
             }
 
             char[0].title = `${character["title"]}`;
@@ -435,8 +370,59 @@ function addCharacter(character, update)
     }
 }
 
-function dup(xOrY, num, char, character, locations)
+function exp(xOrY, title, char)
 {
+    let size;
+    let expNum;
+    if(xOrY == "x"){expNum = title.slice(title.indexOf("Exp x"));}
+    else{expNum = title.slice(title.indexOf("Exp y"));}
+
+    if(expNum[5] != ",")
+    {
+        size = (pos[expNum[5]] - pos[0]) + "px";
+
+        size = size + "px";
+    }
+
+    else
+    {
+        size = (pos[12] - pos[0]) + "px";
+    }
+
+    if(xOrY == "x")
+    {
+        for(let image of char)
+        {
+            image.style.width = size;
+        }
+    }
+    
+    else
+    {
+        for(let image of char)
+        {
+            image.style.height = size;
+        }
+    }
+}
+
+function dup(xOrY, char, character, locations, title)
+{
+    let num;
+    let dupNum;
+    if(xOrY == "x"){dupNum = title.slice(title.indexOf("Dup x"));}
+    else{dupNum = title.slice(title.indexOf("Dup y"));}
+
+    if(dupNum[5] != ",")
+    {
+        num = parseInt(dupNum[5]);
+    }
+
+    else
+    {
+        num = 12
+    }
+
     if(xOrY == "x"){offSet = xPos.indexOf(character["xPos"]);}
     else{offSet = yPos.indexOf(character["yPos"]);}
 
