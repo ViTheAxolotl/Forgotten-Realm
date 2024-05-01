@@ -376,12 +376,7 @@ function addCharacter(character, update)
 
                 if(expNum[5] != ",")
                 {
-                    size = pos[expNum[5]] - x;
-                    
-                    /*if(size < 0)
-                    {
-                        size = size * -1;
-                    }*/
+                    size = pos[expNum[5]] - pos[0];
 
                     size = size + "px";
                 }
@@ -391,6 +386,11 @@ function addCharacter(character, update)
                     size = (pos[12] - x) + "px";
                 }
                 
+                /*if(size > pos[pos.length - 1])
+                {
+                    size = pos[]
+                }*/
+
                 for(let image of char)
                 {
                     image.style.width = size;
