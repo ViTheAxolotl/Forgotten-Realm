@@ -51,7 +51,8 @@
         "spike-" : "images/map/tokens/spike-.png",
         "trap-" : "images/map/tokens/spike-.png",
         "genericA-" : "images/map/tokens/genericA-.png",
-        "genericE-" : "images/map/tokens/genericE-.png"
+        "genericE-" : "images/map/tokens/genericE-.png",
+        "shadow-" : "images/map/tokens/shadow-.png"
     },
 
     "borders" : 
