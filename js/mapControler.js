@@ -250,25 +250,25 @@ function handleArrow()
         {
             if(title.includes("Large"))
             {
-                bounds = [bounds[0], pos[11]];
+                bounds = [pos[0], pos[11]];
                 break;
             }
 
             else if(title.includes("Huge"))
             {
-                bounds = [bounds[0], pos[10]];
+                bounds = [pos[0], pos[10]];
                 break;
             }
 
             else if (title.includes("Gargantuan"))
             {
-                bounds = [bounds[0], pos[9]];
+                bounds = [pos[0], pos[9]];
                 break;
             }
 
             else
             {
-                bounds = [bounds[0], pos[12]];
+                bounds = [pos[0], pos[12]];
             }
         }
     }
