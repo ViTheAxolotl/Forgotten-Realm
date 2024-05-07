@@ -400,8 +400,9 @@ function handleQuick()
 {
     hideButtons();
     let curDate = new Date().toLocaleTimeString();
+    let d = curDate;
     let date = document.createElement("h3");
-    date.innerHTML = `Current Hps at time of ${curDate}`;
+    date.innerHTML = `Current Hps at time of ${d}`;
     div.appendChild(date);
 
     for(let key of Object.keys(wholeData))
