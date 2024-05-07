@@ -432,17 +432,18 @@ function handleQuick()
 async function quickUpdate()
 {
     let newHp = document.getElementById('newHp');
+    let id = this.id.slice(0, this.id.indexOf("-"));
 
-    const docRef = await setDoc(doc(db, "currentMap", this.id.slice(0, this.id.indexOf("-"))), 
+    const docRef = await setDoc(doc(db, "currentMap", id), 
     {
-        border : wholeData[this.id].border,
+        border : wholeData[id].border,
         currentHp : newHp,
-        maxHp : wholeData[this.id].maxHp,
+        maxHp : wholeData[id].maxHp,
         map : "",
-        name : wholeData[this.id].name,
-        title : wholeData[this.id].title,
-        xPos : wholeData[this.id].xPos,
-        yPos : wholeData[this.id].yPos
+        name : wholeData[id].name,
+        title : wholeData[id].title,
+        xPos : wholeData[id].xPos,
+        yPos : wholeData[id].yPos
     });
 
     handleDone();
