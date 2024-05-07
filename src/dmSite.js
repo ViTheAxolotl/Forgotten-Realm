@@ -45,6 +45,11 @@ function init()
                     button.onclick = handleRemove;
                     break;
 
+                case "quick":
+                    fiveButtons.push(button);
+                    button.onclick = handleQuick;
+                    break;
+
                 case "changeMap":
                     fiveButtons.push(button);
                     button.onclick = handleChangeMap;
@@ -123,15 +128,7 @@ async function readTokens()
 async function handleRemove()
 {
     hideButtons();
-    
-    wholeData = {};
-    const q = query(collection(db, "currentMap"));
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => 
-    {
-        // doc.data() is never undefined for query doc snapshots
-        wholeData[doc.id] = doc.data();
-    });
+    readTokens();
 
     for(let key of Object.keys(wholeData))
     {
@@ -376,6 +373,66 @@ function resetDelete()
     div.classList = "bg-UP-purple color-UP-black col-md-12 col-sm-12";
     aboveDiv.insertBefore(div, aboveDiv.childNodes[2]);
     handleRemove();
+}
+
+async function handleQuick()
+{
+    hideButtons();
+    readTokens();
+
+    for(let key of Object.keys(wholeData))
+    {
+        if(key != "invisible")
+        {
+            makeToken(wholeData[key]);
+            let currentDiv = document.getElementById(`${wholeData[key].name}-div`);
+            let names = ["xPos", "yPos", "currentHp", "maxHp"];
+            let feilds = [document.createElement("h6"), document.createElement("h6"), document.createElement("input"), document.createElement("h6")]
+            
+            feilds[0].innerHTML = wholeData[key].xPos;
+            feilds[1].innerHTML = wholeData[key].yPos;
+            feilds[2].value = wholeData[key].currentHp;
+            feilds[2].id = "newHp";
+            feilds[3].innerHTML = wholeData[key].maxHp;
+
+            for(let i = 0; i < 4; i++)
+            {
+                let label = document.createElement("h6");
+                label.innerHTML = `${names[i]}:`;
+                label.style.display = "inline";
+                label.classList = "color-UP-yellow";
+
+                currentDiv.appendChild(label);
+                currentDiv.appendChild(feilds[i]);
+            }
+
+            let upload = document.createElement("button");
+            upload.id = wholeData[key].name;
+            upload.onclick = quickUpdate;
+            upload.style.margin = "5px 2.5px 5px 42%";
+        }
+    }
+
+    addDone();
+}
+
+async function quickUpdate()
+{
+    let newHp = document.getElementById('newHp');
+
+    const docRef = await setDoc(doc(db, "currentMap", this.id.slice(0, this.id.indexOf("-"))), 
+    {
+        border : wholeData[this.id].border,
+        currentHp : newHp,
+        maxHp : wholeData[this.id].maxHp,
+        map : "",
+        name : wholeData[this.id].name,
+        title : wholeData[this.id].title,
+        xPos : wholeData[this.id].xPos,
+        yPos : wholeData[this.id].yPos
+    });
+
+    handleDone();
 }
 
 function handleChangeMap()
