@@ -382,7 +382,7 @@ function handleQuick()
 
     for(let key of Object.keys(wholeData))
     {
-        if(key != "invisible")
+        if(key != "invisible" && wholeData[key].border != "invisible")
         {
             makeToken(wholeData[key]);
             let currentDiv = document.getElementById(`${wholeData[key].name}-div`);
