@@ -222,11 +222,14 @@ function handleEdit()
     buttons[1].style.margin = "5px 5px 5px 2.5px";
     buttons[1].id = "reset";
 
-    for(let key of Object.keys(wholeData))
+    if(this != undefined)
     {
-        if(wholeData[key].name == this.classList[1])
+        for(let key of Object.keys(wholeData))
         {
-            curCharacter = wholeData[key];
+            if(wholeData[key].name == this.classList[1])
+            {
+                curCharacter = wholeData[key];
+            }
         }
     }
 
