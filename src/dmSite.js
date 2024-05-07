@@ -66,6 +66,8 @@ function init()
                     break;
             }
         }
+
+        readTokens();
     }
 
     else
@@ -128,7 +130,6 @@ async function readTokens()
 function handleRemove()
 {
     hideButtons();
-    readTokens();
 
     for(let key of Object.keys(wholeData))
     {
@@ -378,7 +379,6 @@ function resetDelete()
 function handleQuick()
 {
     hideButtons();
-    readTokens();
 
     for(let key of Object.keys(wholeData))
     {
@@ -438,7 +438,6 @@ async function quickUpdate()
 function handleChangeMap()
 {
     hideButtons();
-    readTokens();
 
     let select = document.createElement("select");
     select.classList = "center blo";
