@@ -371,7 +371,7 @@ function updateHpPic(maxHp, currentHp)
 function resetDelete()
 {
     readTokens();
-    setInterval(() => {
+    setTimeout(() => {
         let aboveDiv = div.parentElement;
         div.remove();
         div = document.createElement("div");
@@ -385,7 +385,7 @@ function resetDelete()
 function resetQuick()
 {
     readTokens();
-    setInterval(() => {
+    setTimeout(() => {
         let aboveDiv = div.parentElement;
         div.remove();
         div = document.createElement("div");
