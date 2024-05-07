@@ -419,7 +419,9 @@ function handleQuick()
             let upload = document.createElement("button");
             upload.id = wholeData[key].name;
             upload.onclick = quickUpdate;
-            upload.style.margin = "5px 2.5px 5px 42%";
+            upload.style.margin = "5px";
+            upload.style.width = "6%";
+            upload.innerHTML = "Upload";
             currentDiv.appendChild(upload);
         }
     }
