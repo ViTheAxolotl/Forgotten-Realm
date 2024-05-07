@@ -382,6 +382,20 @@ function resetDelete()
     
 }
 
+function resetQuick()
+{
+    readTokens();
+    setInterval(() => {
+        let aboveDiv = div.parentElement;
+        div.remove();
+        div = document.createElement("div");
+        div.id = "story";
+        div.classList = "bg-UP-purple color-UP-black col-md-12 col-sm-12";
+        aboveDiv.insertBefore(div, aboveDiv.childNodes[2]);
+        handleQuick();}, 1500);
+    
+}
+
 function handleQuick()
 {
     hideButtons();
@@ -448,7 +462,7 @@ async function quickUpdate()
         yPos : wholeData[id].yPos
     });
 
-    handleDone();
+    resetQuick();
 }
 
 function handleChangeMap()
