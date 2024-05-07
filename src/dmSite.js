@@ -357,7 +357,7 @@ function updateHpPic(maxHp, currentHp)
         return "images/map/hpBar/hpBar4.png";
     }
 
-    else if(fraction >= .2)
+    else if(fraction > 0)
     {
         return "images/map/hpBar/hpBar5.png";
     }
@@ -370,13 +370,13 @@ function updateHpPic(maxHp, currentHp)
 
 function resetDelete()
 {
+    readTokens();
     let aboveDiv = div.parentElement;
     div.remove();
     div = document.createElement("div");
     div.id = "story";
     div.classList = "bg-UP-purple color-UP-black col-md-12 col-sm-12";
     aboveDiv.insertBefore(div, aboveDiv.childNodes[2]);
-    readTokens();
     handleRemove();
 }
 
