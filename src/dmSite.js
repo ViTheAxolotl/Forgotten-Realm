@@ -393,6 +393,7 @@ function handleQuick()
             feilds[1].innerHTML = wholeData[key].yPos;
             feilds[2].value = wholeData[key].currentHp;
             feilds[2].id = "newHp";
+            feilds[2].style.width = "3%";
             feilds[3].innerHTML = wholeData[key].maxHp;
 
             for(let i = 0; i < 4; i++)
@@ -401,6 +402,11 @@ function handleQuick()
                 label.innerHTML = `${names[i]}:`;
                 label.style.display = "inline";
                 label.classList = "color-UP-yellow";
+
+                if(i == 0){label.style.margin = `5px 5px 5px 79px`;}
+                else{label.style.margin = `5px`;}
+
+                feilds[i].style.display = "inline";
 
                 currentDiv.appendChild(label);
                 currentDiv.appendChild(feilds[i]);
