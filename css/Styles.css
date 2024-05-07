@@ -464,6 +464,13 @@ table, .itemSearch, #itemImg
     left: 80%;
 }
 
+.gridButton
+{
+    display: inline;
+    width: 25%;
+    height: 25%;
+}
+
 @media (max-width: 1399px) {
     .col-md-6
     {
