@@ -437,7 +437,7 @@ async function quickUpdate()
     const docRef = await setDoc(doc(db, "currentMap", id), 
     {
         border : wholeData[id].border,
-        currentHp : newHp,
+        currentHp : newHp.value,
         maxHp : wholeData[id].maxHp,
         map : "",
         name : wholeData[id].name,
