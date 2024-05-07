@@ -13,7 +13,19 @@ const firebaseApp = initializeApp
     measurementId: "G-Q2W494NRDT"
 });
 
+const toFirebaseApp = initializeApp
+({
+    apiKey: "AIzaSyAfgrY2zV_ysEGvNLPAd5Rj616NqSyA3og",
+    authDomain: "forgottenrealmto.firebaseapp.com",
+    projectId: "forgottenrealmto",
+    storageBucket: "forgottenrealmto.appspot.com",
+    messagingSenderId: "222985667175",
+    appId: "1:222985667175:web:2fabd6362b97aba3f88ac2",
+    measurementId: "G-RLKWDFM6N4"
+});
+
 const db = getFirestore(firebaseApp);
+const toDb = getFirestore(toFirebaseApp);
 let fiveButtons = [];
 let wholeData = {};
 let div = document.getElementById("story");
@@ -48,6 +60,11 @@ function init()
                 case "quick":
                     fiveButtons.push(button);
                     button.onclick = handleQuick;
+                    break;
+
+                case "turn":
+                    fiveButtons.push(button);
+                    button.onclick = handleTurn;
                     break;
 
                 case "changeMap":
@@ -400,9 +417,8 @@ function handleQuick()
 {
     hideButtons();
     let curDate = new Date().toLocaleTimeString();
-    let d = curDate;
     let date = document.createElement("h3");
-    date.innerHTML = `Current Hps at time of ${d}`;
+    date.innerHTML = `Current Hps at time of ${curDate}`;
     div.appendChild(date);
 
     for(let key of Object.keys(wholeData))
@@ -432,7 +448,6 @@ function handleQuick()
                 else{label.style.margin = `5px`;}
 
                 feilds[i].style.display = "inline";
-
                 currentDiv.appendChild(label);
                 currentDiv.appendChild(feilds[i]);
             }
@@ -468,6 +483,69 @@ async function quickUpdate()
     });
 
     resetQuick();
+}
+
+function handleTurn()
+{
+    for(let key of Object.keys(wholeData))
+    {
+        if(key != "invisible" && wholeData[key].border != "invisible")
+        {
+            makeToken(wholeData[key]);
+            let currentDiv = document.getElementById(`${wholeData[key].name}-div`);
+            
+            let names = ["Order", "Selected"];
+            let feilds = [document.createElement("input"), document.createElement("input")];
+            feilds[1].value = "false";
+
+            for(let i = 0; i < 2; i++)
+            {
+                let label = document.createElement("h6");
+                label.innerHTML = `${names[i]}:`;
+                label.style.display = "inline";
+                label.classList = "color-UP-yellow";
+
+
+                if(i == 0){label.style.margin = `5px 5px 5px 79px`;}
+                else{label.style.margin = `5px`;}
+
+                feilds[i].style.display = "inline";
+                feilds[i].id = `${names[i]}_${wholeData[key].name}`;
+                currentDiv.appendChild(label);
+                currentDiv.appendChild(feilds[i]);                
+            }
+        }
+    }
+
+    let upload = document.createElement("button");
+    upload.onclick = uploadTO;
+    upload.style.margin = "5px";
+    upload.innerHTML = "Upload";
+    currentDiv.appendChild(upload);
+
+    addDone();
+}
+
+async function uploadTO()
+{
+    emptyTOCollection();
+
+    for(let key of Object.keys(wholeData))
+    {
+        if(key != "invisible" && wholeData[key].border != "invisible")
+        {
+            const docRef = await setDoc(doc(toDb, "currentTO", key), 
+            {
+                position: document.getElementById(`Order_${key.name}`).value,
+                selected: document.getElementById(`Selected_${key.name}`).value,
+            });
+        }
+    }
+
+    let curDate = new Date().toLocaleTimeString();
+    let date = document.createElement("h3");
+    date.innerHTML = `Current Turn Order at time of ${curDate}`;
+    div.appendChild(date);
 }
 
 function handleChangeMap()
@@ -606,6 +684,19 @@ async function emptyCollection(cName)
 {
     let colToRemove = [];
     const q = query(collection(db, cName));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {colToRemove.push(doc.data().name);});
+
+    for(let docum of colToRemove)
+    {
+        await deleteDoc(doc(db, cName, docum.slice(0, docum.indexOf("-"))));
+    }
+}
+
+async function emptyTOCollection()
+{
+    let colToRemove = [];
+    const q = query(collection(toDb, currentTO));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {colToRemove.push(doc.data().name);});
 
