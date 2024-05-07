@@ -487,6 +487,8 @@ async function quickUpdate()
 
 function handleTurn()
 {
+    hideButtons();
+    
     for(let key of Object.keys(wholeData))
     {
         if(key != "invisible" && wholeData[key].border != "invisible")
