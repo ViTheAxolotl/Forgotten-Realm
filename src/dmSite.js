@@ -371,13 +371,15 @@ function updateHpPic(maxHp, currentHp)
 function resetDelete()
 {
     readTokens();
-    let aboveDiv = div.parentElement;
-    div.remove();
-    div = document.createElement("div");
-    div.id = "story";
-    div.classList = "bg-UP-purple color-UP-black col-md-12 col-sm-12";
-    aboveDiv.insertBefore(div, aboveDiv.childNodes[2]);
-    handleRemove();
+    setInterval(() => {
+        let aboveDiv = div.parentElement;
+        div.remove();
+        div = document.createElement("div");
+        div.id = "story";
+        div.classList = "bg-UP-purple color-UP-black col-md-12 col-sm-12";
+        aboveDiv.insertBefore(div, aboveDiv.childNodes[2]);
+        handleRemove();}, 1500);
+    
 }
 
 function handleQuick()
