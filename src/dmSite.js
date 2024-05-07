@@ -399,9 +399,9 @@ function resetQuick()
 function handleQuick()
 {
     hideButtons();
-    let curDate = new Date();
+    let curDate = new Date().toLocaleTimeString();
     let date = document.createElement("h3");
-    date.innerHTML = `Current Hps at time of ${curDate.toLocaleTimeString()}`;
+    date.innerHTML = `Current Hps at time of ${curDate}`;
     div.appendChild(date);
 
     for(let key of Object.keys(wholeData))
