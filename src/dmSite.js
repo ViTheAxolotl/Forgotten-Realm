@@ -420,6 +420,7 @@ function handleQuick()
             upload.id = wholeData[key].name;
             upload.onclick = quickUpdate;
             upload.style.margin = "5px 2.5px 5px 42%";
+            currentDiv.appendChild(upload);
         }
     }
 
