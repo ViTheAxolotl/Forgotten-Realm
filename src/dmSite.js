@@ -125,7 +125,7 @@ async function readTokens()
     });
 }
 
-async function handleRemove()
+function handleRemove()
 {
     hideButtons();
     readTokens();
@@ -375,7 +375,7 @@ function resetDelete()
     handleRemove();
 }
 
-async function handleQuick()
+function handleQuick()
 {
     hideButtons();
     readTokens();
