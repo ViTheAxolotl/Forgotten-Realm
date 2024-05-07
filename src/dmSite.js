@@ -402,6 +402,7 @@ function handleQuick()
     let curDate = new Date();
     let date = document.createElement("h3");
     date.innerHTML = `Current Hps at time of ${curDate.getTime()}`;
+    div.appendChild(date);
 
     for(let key of Object.keys(wholeData))
     {

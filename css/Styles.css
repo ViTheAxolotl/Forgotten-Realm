@@ -468,7 +468,6 @@ table, .itemSearch, #itemImg
 {
     display: inline;
     width: 25%;
-    height: 25%;
 }
 
 @media (max-width: 1399px) {
