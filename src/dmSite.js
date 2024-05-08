@@ -513,7 +513,7 @@ function handleTurn()
     upload.innerHTML = "Upload";
     upload.id = "UploadTO";
     upload.onclick = function(){uploadTO(wholeData)};
-    currentDiv.appendChild(upload);
+    div.appendChild(upload);
 
     addDone();
 }
