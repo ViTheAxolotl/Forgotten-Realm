@@ -1,7 +1,8 @@
 "use strict";
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
 import { getFirestore, setDoc, getDocs, deleteDoc, doc, collection, query } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js';
-import { uploadTO } from dmSiteTO.js;
+import { uploadTO } from 'https://www.vitheaxolotl.github.io/Forgotten-Realm/src/dmSiteTO.js';
+
 const firebaseApp = initializeApp
 ({
     apiKey: "AIzaSyArcsmJkXSeuIHMysYtIzRdjIDlKNQA25Y",
