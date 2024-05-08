@@ -526,7 +526,6 @@ async function uploadTO(wholeData)
     {
         if(key != "invisible" && wholeData[key].border != "invisible")
         {
-            let info = getElementById(`Selected_${wholeData[key].name}`);
             const docRef = await setDoc(doc(db, "currentTO", key), 
             {
                 position: document.getElementById(`Order_${key.name}`).value,
