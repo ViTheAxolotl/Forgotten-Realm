@@ -1,7 +1,7 @@
 "use strict";
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
 import { getFirestore, setDoc, getDocs, deleteDoc, doc, collection, query } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js';
- 
+import { uploadTO } from dmSiteTO.js;
 const firebaseApp = initializeApp
 ({
     apiKey: "AIzaSyArcsmJkXSeuIHMysYtIzRdjIDlKNQA25Y",
@@ -13,19 +13,7 @@ const firebaseApp = initializeApp
     measurementId: "G-Q2W494NRDT"
 });
 
-const toFirebaseApp = initializeApp
-({
-    apiKey: "AIzaSyAfgrY2zV_ysEGvNLPAd5Rj616NqSyA3og",
-    authDomain: "forgottenrealmto.firebaseapp.com",
-    projectId: "forgottenrealmto",
-    storageBucket: "forgottenrealmto.appspot.com",
-    messagingSenderId: "222985667175",
-    appId: "1:222985667175:web:2fabd6362b97aba3f88ac2",
-    measurementId: "G-RLKWDFM6N4"
-});
-
 const db = getFirestore(firebaseApp);
-const toDb = getFirestore(toFirebaseApp);
 let fiveButtons = [];
 let wholeData = {};
 let div = document.getElementById("story");
@@ -488,7 +476,7 @@ async function quickUpdate()
 function handleTurn()
 {
     hideButtons();
-    
+
     for(let key of Object.keys(wholeData))
     {
         if(key != "invisible" && wholeData[key].border != "invisible")
@@ -499,6 +487,7 @@ function handleTurn()
             let names = ["Order", "Selected"];
             let feilds = [document.createElement("input"), document.createElement("input")];
             feilds[1].value = "false";
+            feilds[1].title = `${wholeData[key].name}_${wholeData[key].border}`;
 
             for(let i = 0; i < 2; i++)
             {
@@ -520,34 +509,13 @@ function handleTurn()
     }
 
     let upload = document.createElement("button");
-    upload.onclick = uploadTO;
     upload.style.margin = "5px";
     upload.innerHTML = "Upload";
+    upload.id = "UploadTO";
+    upload.onclick = function(){uploadTO(wholeData)};
     currentDiv.appendChild(upload);
 
     addDone();
-}
-
-async function uploadTO()
-{
-    emptyTOCollection();
-
-    for(let key of Object.keys(wholeData))
-    {
-        if(key != "invisible" && wholeData[key].border != "invisible")
-        {
-            const docRef = await setDoc(doc(toDb, "currentTO", key), 
-            {
-                position: document.getElementById(`Order_${key.name}`).value,
-                selected: document.getElementById(`Selected_${key.name}`).value,
-            });
-        }
-    }
-
-    let curDate = new Date().toLocaleTimeString();
-    let date = document.createElement("h3");
-    date.innerHTML = `Current Turn Order at time of ${curDate}`;
-    div.appendChild(date);
 }
 
 function handleChangeMap()
@@ -686,19 +654,6 @@ async function emptyCollection(cName)
 {
     let colToRemove = [];
     const q = query(collection(db, cName));
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {colToRemove.push(doc.data().name);});
-
-    for(let docum of colToRemove)
-    {
-        await deleteDoc(doc(db, cName, docum.slice(0, docum.indexOf("-"))));
-    }
-}
-
-async function emptyTOCollection()
-{
-    let colToRemove = [];
-    const q = query(collection(toDb, currentTO));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {colToRemove.push(doc.data().name);});
 
