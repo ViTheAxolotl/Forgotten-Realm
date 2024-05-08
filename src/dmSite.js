@@ -1,7 +1,6 @@
 "use strict";
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
 import { getFirestore, setDoc, getDocs, deleteDoc, doc, collection, query } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js';
-import { uploadTO } from 'https://vitheaxolotl.github.io/Forgotten-Realm/src/dmSiteTO.js';
 
 const firebaseApp = initializeApp
 ({
@@ -519,6 +518,29 @@ function handleTurn()
     addDone();
 }
 
+async function uploadTO(wholeData)
+{
+    emptyTOCollection();
+
+    for(let key of Object.keys(wholeData))
+    {
+        if(key != "invisible" && wholeData[key].border != "invisible")
+        {
+            let info = getElementById(`Selected_${wholeData[key].name}`);
+            const docRef = await setDoc(doc(db, "currentTO", key), 
+            {
+                position: document.getElementById(`Order_${key.name}`).value,
+                selected: document.getElementById(`Selected_${key.name}`).value
+            });
+        }
+    }
+
+    let curDate = new Date().toLocaleTimeString();
+    let date = document.createElement("h3");
+    date.innerHTML = `Current Turn Order at time of ${curDate}`;
+    div.appendChild(date);
+}
+
 function handleChangeMap()
 {
     hideButtons();
@@ -655,6 +677,19 @@ async function emptyCollection(cName)
 {
     let colToRemove = [];
     const q = query(collection(db, cName));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {colToRemove.push(doc.data().name);});
+
+    for(let docum of colToRemove)
+    {
+        await deleteDoc(doc(db, cName, docum.slice(0, docum.indexOf("-"))));
+    }
+}
+
+async function emptyTOCollection()
+{
+    let colToRemove = [];
+    const q = query(collection(db, "currentTO"));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {colToRemove.push(doc.data().name);});
 
