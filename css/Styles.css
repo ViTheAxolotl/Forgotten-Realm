@@ -362,7 +362,7 @@ table, .itemSearch, #itemImg
     bottom: 0;
 }
 
-#story .tokens
+#story .tokens, #turnOrder .tokens
 {
     position: absolute;
     top: 0;
@@ -507,24 +507,6 @@ table, .itemSearch, #itemImg
         width: 5%;
         height: 5%;
     }
-
-    /*#gridMap .Large
-    {
-        width: 11%;
-        height: 11%;
-    }
-
-    #gridMap .Huge
-    {
-        width: 16.5%;
-        height: 16.5%;
-    }
-
-    #gridMap .Gargantuan
-    {
-        width: 22%;
-        height: 22%;
-    }*/
 
     .veiwTokens
     {

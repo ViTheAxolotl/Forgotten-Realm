@@ -243,6 +243,7 @@ function makeToken(key, turn, charPos)
     token[3].classList = `tokens ${key.name}_ hp`;
     let turnNumber = document.createElement("h3");
     turnNumber.innerHTML = `${charPos}`;
+    turnNumber.style.display = "inline";
 
     token[0].appendChild(token[1]);
     token[0].appendChild(token[2]);
@@ -255,7 +256,8 @@ function turnOrderTimer()
 {
     readTurnOrder();
     setTimeout(() => 
-        {if(wholeData != {} || wholeData != undefined)
+        {
+            if(wholeData["invisible"] != undefined)
             {
                 removeTurnOrder(); 
                 setTurnOrder();
