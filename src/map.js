@@ -241,13 +241,13 @@ function makeToken(key, turn, charPos)
     token[3].src = getHpImg(key);
     token[3].id = `${key.name}_hp`;
     token[3].classList = `tokens ${key.name}_ hp`;
-    let turn = document.createElement("h3");
+    let turnNumber = document.createElement("h3");
     turn.innerHTML = `${charPos}`;
 
     token[0].appendChild(token[1]);
     token[0].appendChild(token[2]);
     token[0].appendChild(token[3]);
-    token[0].appendChild(turn);
+    token[0].appendChild(turnNumber);
     divTO.appendChild(token[0]); 
 }
 
