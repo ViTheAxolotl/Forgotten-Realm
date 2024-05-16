@@ -46,7 +46,7 @@ function init()
     turnOrderTimer();
 
     setInterval(timer, 1000);
-    setInterval(turnOrderTimer, 20000);
+    setInterval(turnOrderTimer, 20500);
 }
 
 function setMainVaribles()
@@ -254,7 +254,13 @@ function makeToken(key, turn, charPos)
 function turnOrderTimer()
 {
     readTurnOrder();
-    setTimeout(() => {removeTurnOrder(); setTurnOrder();}, 2000);
+    setTimeout(() => 
+        {if(wholeData != {} || wholeData != undefined)
+            {
+                removeTurnOrder(); 
+                setTurnOrder();
+            }
+        }, 2000);
 }
 
 function removeTurnOrder()
