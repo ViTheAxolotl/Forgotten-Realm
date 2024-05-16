@@ -222,11 +222,11 @@ async function readTurnOrder()
     });
 }
 
-function makeToken(key, turn, pos)
+function makeToken(key, turn, charPos)
 {
     let token = [document.createElement("div"), document.createElement("img"), document.createElement("img"), document.createElement("img")];
     token[0].id = `${key.name}-div`;
-    token[0].classList = `bg-UP-grey objectBorder ${pos}-pos`;
+    token[0].classList = `bg-UP-grey objectBorder ${charPos}-pos`;
     token[0].style.margin = "5px";
     token[0].style.position = "relative";
     token[0].style.minHeight = "82px";
@@ -264,7 +264,7 @@ function turnOrderTimer()
 
 function setTurnOrder()
 {
-    for(let i = 0; i < Object.keys(wholeTO).length; i++)
+    for(let i = 1; i <= Object.keys(wholeTO).length; i++)
     {
         for(let key of Object.keys(wholeTO))
         {
