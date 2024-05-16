@@ -238,7 +238,7 @@ function makeToken(key, turn, charPos)
     token[2].src = `images/map/tokens/${key.border}Border.png`;
     token[2].id = `${key.name}_${key.border}`;
     token[2].classList = `tokens ${key.name}_ border_`;
-    token[3].src = updateHpPic(key.maxHp, key.currentHp);
+    token[3].src = getHpImg(key);
     token[3].id = `${key.name}_hp`;
     token[3].classList = `tokens ${key.name}_ hp`;
 
