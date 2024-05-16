@@ -262,7 +262,8 @@ function turnOrderTimer()
     else if(tOStage == 2)
     {
         let loop = true;
-
+    }
+    
     while(loop)
     {
         if(divTO.children.length > 0)
