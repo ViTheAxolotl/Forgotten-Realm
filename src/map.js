@@ -242,7 +242,7 @@ function makeToken(key, turn, charPos)
     token[3].id = `${key.name}_hp`;
     token[3].classList = `tokens ${key.name}_ hp`;
     let turnNumber = document.createElement("h3");
-    turn.innerHTML = `${charPos}`;
+    turnNumber.innerHTML = `${charPos}`;
 
     token[0].appendChild(token[1]);
     token[0].appendChild(token[2]);
