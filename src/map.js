@@ -256,43 +256,47 @@ function turnOrderTimer()
     if(tOStage == 1)
     {
         readTurnOrder();
+        removeTurnOrder();
         setTimeout(() => {setTurnOrder()}, 2000);
     }
     
     else if(tOStage == 2)
     {
-        let loop = true;
+        tOStage = 1;
+    }
+}
+
+function removeTurnOrder()
+{
+    let loop = true;
     
-        while(loop)
+    while(loop)
+    {
+        if(divTO.children.length > 0)
         {
-            if(divTO.children.length > 0)
+            if(!(divTO.children[1].classList.contains("update")))
             {
-                if(!(divTO.children[1].classList.contains("update")))
+                divTO.removeChild(divTO.children[1]);
+            } 
+
+            else
+            {
+                if(!(divTO.lastChild.classList.contains("update")))
                 {
-                    divTO.removeChild(divTO.children[1]);
-                } 
+                    divTO.removeChild(divTO.lastChild);
+                }
 
                 else
                 {
-                    if(!(divTO.lastChild.classList.contains("update")))
-                    {
-                        divTO.removeChild(divTO.lastChild);
-                    }
-
-                    else
-                    {
-                        loop = false;
-                        break;
-                    }
+                    loop = false;
+                    break;
                 }
             }
-            
-            else
-            {
-                loop = false;
-            }
-
-            tOStage = 1;
+        }
+        
+        else
+        {
+            loop = false;
         }
     }
 }
