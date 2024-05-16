@@ -253,18 +253,7 @@ function turnOrderTimer()
     if(tOStage == 1)
     {
         readTurnOrder();
-
-        for(let i = 0; i < wholeTO.length; i++)
-        {
-            for(let key of Object.keys(wholeTO))
-            {
-                if(i == wholeTO[key].position)
-                {
-                    makeToken(wholeData[wholeTO[key].charName], wholeTO[key].selected, wholeTO.position);
-                    break;
-                }
-            }
-        }
+        setTimeout(setTurnOrder(), 2000);
         
         tOStage = 2;
     }
@@ -272,6 +261,21 @@ function turnOrderTimer()
     else if(tOStage == 2)
     {
         tOStage = 1;
+    }
+}
+
+function setTurnOrder()
+{
+    for(let i = 0; i < wholeTO.length; i++)
+    {
+        for(let key of Object.keys(wholeTO))
+        {
+            if(i == wholeTO[key].position)
+            {
+                makeToken(wholeData[wholeTO[key].charName], wholeTO[key].selected, wholeTO.position);
+                break;
+            }
+        }
     }
 }
 
