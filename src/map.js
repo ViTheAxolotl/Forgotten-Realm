@@ -253,9 +253,7 @@ function turnOrderTimer()
     if(tOStage == 1)
     {
         readTurnOrder();
-        setTimeout(setTurnOrder(), 2000);
-        
-        tOStage = 2;
+        setTimeout(() => {setTurnOrder()}, 2000);
     }
     
     else if(tOStage == 2)
@@ -277,6 +275,8 @@ function setTurnOrder()
             }
         }
     }
+   
+    tOStage = 2;
 }
 
 function addCharacter(character, update)
