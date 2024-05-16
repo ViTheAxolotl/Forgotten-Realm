@@ -31,7 +31,6 @@ let yPos;
 let xPos;
 let tokens = [];
 let stage = 1;
-let tOStage = 1;
 let imgs;
 let currentHp;
 let maxHp;
@@ -46,7 +45,7 @@ function init()
     readTokens();
     
     setInterval(timer, 1000);
-    setInterval(turnOrderTimer, 10000);
+    setInterval(turnOrderTimer, 20000);
 }
 
 function setMainVaribles()
@@ -253,17 +252,9 @@ function makeToken(key, turn, charPos)
 
 function turnOrderTimer()
 {
-    if(tOStage == 1)
-    {
-        readTurnOrder();
-        removeTurnOrder();
-        setTimeout(() => {setTurnOrder()}, 2000);
-    }
-    
-    else if(tOStage == 2)
-    {
-        tOStage = 1;
-    }
+    readTurnOrder();
+    removeTurnOrder();
+    setTurnOrder();
 }
 
 function removeTurnOrder()
@@ -314,8 +305,6 @@ function setTurnOrder()
             }
         }
     }
-   
-    tOStage = 2;
 }
 
 function addCharacter(character, update)
