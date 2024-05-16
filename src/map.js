@@ -265,9 +265,9 @@ function removeTurnOrder()
     {
         if(divTO.children.length > 0)
         {
-            if(!(divTO.children[1].classList.contains("update")))
+            if(!(divTO.children[0].classList.contains("update")))
             {
-                divTO.removeChild(divTO.children[1]);
+                divTO.removeChild(divTO.children[0]);
             } 
 
             else
@@ -300,7 +300,7 @@ function setTurnOrder()
         {
             if(i == wholeTO[key].position)
             {
-                makeToken(wholeData[wholeTO[key].charName], wholeTO[key].selected, wholeTO.position);
+                makeToken(wholeData[wholeTO[key].charName], wholeTO[key].selected, wholeTO[key].position);
                 break;
             }
         }
