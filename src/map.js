@@ -43,6 +43,7 @@ function init()
 {
     setMainVaribles();
     readTokens();
+    turnOrderTimer();
     
     setInterval(timer, 1000);
     setInterval(turnOrderTimer, 20000);
