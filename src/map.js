@@ -264,7 +264,7 @@ function turnOrderTimer()
 
 function setTurnOrder()
 {
-    for(let i = 0; i < wholeTO.length; i++)
+    for(let i = 0; i < Object.keys(wholeTO).length; i++)
     {
         for(let key of Object.keys(wholeTO))
         {
