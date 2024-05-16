@@ -502,10 +502,16 @@ table, .itemSearch, #itemImg
         margin: 10%;
     }
 
-    #gridMap .tokens, #turnOrder .tokens
+    #gridMap .tokens
     {
         width: 5%;
         height: 5%;
+    }
+
+    .tODiv
+    {
+        width: 10%;
+        height: 10%;
     }
 
     .veiwTokens
