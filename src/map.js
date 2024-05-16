@@ -1,4 +1,5 @@
 "use strict";
+import { update } from 'firebase/database';
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
 import { getFirestore, setDoc, getDocs, deleteDoc, doc, collection, query, where } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js';
 
@@ -30,11 +31,14 @@ let yPos;
 let xPos;
 let tokens = [];
 let stage = 1;
+let tOStage = 1;
 let imgs;
 let currentHp;
 let maxHp;
 let titleTxt;
 let offSet;
+let divTO;
+let wholeTO;
 
 function init()
 {
@@ -42,6 +46,7 @@ function init()
     readTokens();
     
     setInterval(timer, 1000);
+    setInterval(turnOrderTimer, 10000);
 }
 
 function setMainVaribles()
@@ -74,9 +79,11 @@ function setMainVaribles()
     yPos = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"];
     xPos = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"];
 
+    wholeTO = {};
     currentHp = document.getElementById("current");
     maxHp = document.getElementById("max");
     titleTxt = document.getElementById("title");
+    divTO = document.getElementById("turnOrder");
 }
 
 async function readTokens()
@@ -203,6 +210,71 @@ async function addTokens()
     }
 }
 
+async function readTurnOrder()
+{
+    wholeTO = {};
+    const q = query(collection(db, "currentTO"));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => 
+    {
+        // doc.data() is never undefined for query doc snapshots
+        wholeTO[doc.id] = doc.data();
+    });
+}
+
+function makeToken(key, turn, pos)
+{
+    let token = [document.createElement("div"), document.createElement("img"), document.createElement("img"), document.createElement("img")];
+    token[0].id = `${key.name}-div`;
+    token[0].classList = `bg-UP-grey objectBorder ${pos}-pos`;
+    token[0].style.margin = "5px";
+    token[0].style.position = "relative";
+    token[0].style.minHeight = "82px";
+    token[0].style.minWidth = "82px";
+    if(turn == true){token[0].classList.add("selected");}
+    token[1].src = `images/map/tokens/${key.name}.png`;
+    token[1].id = `${key.name}_`;
+    token[1].classList = `tokens ${key.name}_ char`;
+    token[2].src = `images/map/tokens/${key.border}Border.png`;
+    token[2].id = `${key.name}_${key.border}`;
+    token[2].classList = `tokens ${key.name}_ border_`;
+    token[3].src = updateHpPic(key.maxHp, key.currentHp);
+    token[3].id = `${key.name}_hp`;
+    token[3].classList = `tokens ${key.name}_ hp`;
+
+    token[0].appendChild(token[1]);
+    token[0].appendChild(token[2]);
+    token[0].appendChild(token[3])
+    divTO.appendChild(token[0]); 
+}
+
+function turnOrderTimer()
+{
+    if(tOStage == 1)
+    {
+        readTurnOrder();
+
+        for(let i = 0; i < wholeTO.length; i++)
+        {
+            for(let key of Object.keys(wholeTO))
+            {
+                if(i == wholeTO[key].position)
+                {
+                    makeToken(wholeData[wholeTO[key].charName], wholeTO[key].selected, wholeTO.position);
+                    break;
+                }
+            }
+        }
+        
+        tOStage = 2;
+    }
+    
+    else if(tOStage == 2)
+    {
+        tOStage = 1;
+    }
+}
+
 function addCharacter(character, update)
 {
     if(document.getElementById(character["name"]) == null)
@@ -249,30 +321,18 @@ function addCharacter(character, update)
             {
                 setupExp(2, char, "x");
                 setupExp(2, char, "y");
-                /*for(let image of char)
-                {
-                    image.classList += " Large";
-                }*/
             }
 
             else if(title.includes("Huge"))
             {
                 setupExp(3, char, "x");
                 setupExp(3, char, "y");
-                /*for(let image of char)
-                {
-                    image.classList += " Huge";
-                }*/
             }
 
             else if(title.includes("Gargantuan"))
             {
                 setupExp(4, char, "x");
                 setupExp(4, char, "y");
-                /*for(let image of char)
-                {
-                    image.classList += " Gargantuan";
-                }*/
             }
 
             if(title.includes("Top"))

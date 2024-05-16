@@ -528,6 +528,7 @@ async function uploadTO(wholeData)
         {
             const docRef = await setDoc(doc(db, "currentTO", key), 
             {
+                charName : key,
                 position: document.getElementById(`Order_${wholeData[key].name}`).value,
                 selected: document.getElementById(`Selected_${wholeData[key].name}`).value
             });

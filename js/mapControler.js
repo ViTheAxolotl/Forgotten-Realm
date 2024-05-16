@@ -160,7 +160,6 @@ function decreaseValue()
     }
 }
 
-
 function moveChar(xPos, yPos)
 {
     for(let prop of currentCharacter)
