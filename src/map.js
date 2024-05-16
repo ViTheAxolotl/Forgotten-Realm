@@ -241,10 +241,13 @@ function makeToken(key, turn, charPos)
     token[3].src = getHpImg(key);
     token[3].id = `${key.name}_hp`;
     token[3].classList = `tokens ${key.name}_ hp`;
+    let turn = document.createElement("h3");
+    turn.innerHTML = `${charPos}`;
 
     token[0].appendChild(token[1]);
     token[0].appendChild(token[2]);
-    token[0].appendChild(token[3])
+    token[0].appendChild(token[3]);
+    token[0].appendChild(turn);
     divTO.appendChild(token[0]); 
 }
 
@@ -258,6 +261,37 @@ function turnOrderTimer()
     
     else if(tOStage == 2)
     {
+        let loop = true;
+
+    while(loop)
+    {
+        if(divTO.children.length > 0)
+        {
+            if(!(divTO.children[1].classList.contains("update")))
+            {
+                divTO.removeChild(divTO.children[1]);
+            } 
+
+            else
+            {
+                if(!(divTO.lastChild.classList.contains("update")))
+                {
+                    divTO.removeChild(divTO.lastChild);
+                }
+
+                else
+                {
+                    loop = false;
+                    break;
+                }
+            }
+        }
+        
+        else
+        {
+            loop = false;
+        }
+
         tOStage = 1;
     }
 }
