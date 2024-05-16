@@ -262,38 +262,38 @@ function turnOrderTimer()
     else if(tOStage == 2)
     {
         let loop = true;
-    }
     
-    while(loop)
-    {
-        if(divTO.children.length > 0)
+        while(loop)
         {
-            if(!(divTO.children[1].classList.contains("update")))
+            if(divTO.children.length > 0)
             {
-                divTO.removeChild(divTO.children[1]);
-            } 
-
-            else
-            {
-                if(!(divTO.lastChild.classList.contains("update")))
+                if(!(divTO.children[1].classList.contains("update")))
                 {
-                    divTO.removeChild(divTO.lastChild);
-                }
+                    divTO.removeChild(divTO.children[1]);
+                } 
 
                 else
                 {
-                    loop = false;
-                    break;
+                    if(!(divTO.lastChild.classList.contains("update")))
+                    {
+                        divTO.removeChild(divTO.lastChild);
+                    }
+
+                    else
+                    {
+                        loop = false;
+                        break;
+                    }
                 }
             }
-        }
-        
-        else
-        {
-            loop = false;
-        }
+            
+            else
+            {
+                loop = false;
+            }
 
-        tOStage = 1;
+            tOStage = 1;
+        }
     }
 }
 
