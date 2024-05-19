@@ -572,7 +572,7 @@ function handleTurn()
     
         let buttons = [document.createElement("button"), document.createElement("button")];
         let names = ["Add", "Upload"];
-        buttons[0].onclick = function () {addTORow(document.getElementById("newRow").value)};
+        buttons[0].onclick = function () {let txtFeild = document.getElementById("newRow"); addTORow(txtFeild.value); txtFeild.value = "";};
         buttons[1].onclick = uploadTO;
 
         for(let i = 0; i < 2; i++)
@@ -590,7 +590,7 @@ function handleTurn()
                 rowName.placeholder = "Name of New Row";
                 rowName.style.display = "inline";
                 buttons[i].style.display = "inline";
-                buttons[i].style.width = "60%";
+                buttons[i].style.width = "80%";
                 div.appendChild(rowName);
             }
         }

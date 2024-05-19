@@ -38,6 +38,7 @@ let titleTxt;
 let offSet;
 let divTO;
 let wholeTO;
+let currentTurn;
 
 function init()
 {
@@ -231,7 +232,7 @@ function makeToken(key, turn, charPos)
     token[0].style.position = "relative";
     token[0].style.minHeight = "82px";
     token[0].style.minWidth = "82px";
-    if(turn == "true"){token[0].classList.add("selected");}
+    if(turn == "true"){token[0].classList.add("selected"); currentTurn = charPos;}
     token[1].src = `images/map/tokens/${key.name}.png`;
     token[1].id = `${key.name}_`;
     token[1].classList = `tokens ${key.name}_ char`;
