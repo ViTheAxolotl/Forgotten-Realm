@@ -225,7 +225,27 @@ async function readTurnOrder()
 
 function makeToken(key, turn, charPos)
 {
-    let token = [document.createElement("div"), document.createElement("img"), document.createElement("img"), document.createElement("img")];
+    let row = [document.createElement("div"), document.createElement("h3"), document.createElement("h3")];
+    let names = ["div", "Position", "Name"];
+
+    for(let i = 0; i < 3; i++)
+    {
+        row[i].id = `${key}-${names[i]}`;
+        row[i].style.margin = "5px";
+
+        if(i != 0)
+        {
+            row[0].appendChild(row[i]); 
+            row[i].style.display = "inline";
+        }
+    }
+
+    if(turn == "true"){row[0].classList.add("selected"); currentTurn = charPos;}
+
+    row[1].innerHTML = charPos;
+    row[2].innerHTML = key;
+    divTO.appendChild(row[0]);
+    /**let token = [document.createElement("div"), document.createElement("img"), document.createElement("img"), document.createElement("img")];
     token[0].id = `${key.name}-div`;
     token[0].classList = `bg-UP-grey objectBorder tODiv`;
     token[0].style.margin = "5px";
@@ -250,7 +270,7 @@ function makeToken(key, turn, charPos)
     token[0].appendChild(token[2]);
     token[0].appendChild(token[3]);
     token[0].appendChild(turnNumber);
-    divTO.appendChild(token[0]); 
+    divTO.appendChild(token[0]); */
 }
 
 function turnOrderTimer()
@@ -274,24 +294,7 @@ function removeTurnOrder()
     {
         if(divTO.children.length > 0)
         {
-            if(!(divTO.children[0].classList.contains("update")))
-            {
-                divTO.removeChild(divTO.children[0]);
-            } 
-
-            else
-            {
-                if(!(divTO.lastChild.classList.contains("update")))
-                {
-                    divTO.removeChild(divTO.lastChild);
-                }
-
-                else
-                {
-                    loop = false;
-                    break;
-                }
-            }
+            divTO.removeChild(divTO.children[0]);
         }
         
         else
@@ -309,7 +312,7 @@ function setTurnOrder()
         {
             if(i == wholeTO[key].position)
             {
-                makeToken(wholeData[wholeTO[key].charName], wholeTO[key].selected, wholeTO[key].position);
+                makeToken(wholeTO[key].charName, wholeTO[key].selected, wholeTO[key].position);
                 break;
             }
         }
