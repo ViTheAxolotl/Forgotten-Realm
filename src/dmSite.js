@@ -22,6 +22,7 @@ let imgs;
 let collectionNames = [];
 let curCharacter;
 let htmlInfo = window.location.href;
+let wholeTO = {};
 
 function init()
 {
@@ -473,66 +474,82 @@ async function quickUpdate()
     resetQuick();
 }
 
+async function readTurnOrder()
+{
+    wholeTO = {};
+    const q = query(collection(db, "currentTO"));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => 
+    {
+        // doc.data() is never undefined for query doc snapshots
+        wholeTO[doc.id] = doc.data();
+    });
+}
+
+function makeTORow(key)
+{
+    let TORow = [document.createElement("div"), ["Name", "Order", "Selected"], [document.createElement("input"), document.createElement("input"), document.createElement("input")]];
+    TORow[0].id = `${key.charName}-div`;
+    TORow[0].classList = "bg-UP-grey objectBorder";
+    TORow[0].style.margin = "5px";
+    TORow[0].style.position = "relative";
+    TORow[0].style.minHeight = "82px";
+    TORow[0].style.minWidth = "82px";
+
+    for(let i = 0; i < 3; i++)
+    {
+        let label = document.createElement("h6");
+        label.innerHTML = `${TORow[1][i]}:`;
+        label.style.display = "inline";
+        label.classList = "color-UP-yellow";
+        label.style.margin = `5px`;
+
+        TORow[2][i].style.display = "inline";
+        TORow[2][i].id = `${TORow[1][i]}_${key.charName}`;
+        TORow[0].appendChild(label);
+        TORow[0].appendChild(TORow[2][i]);                
+    }
+
+    div.appendChild(TORow[0]);
+}
+
 function handleTurn()
 {
     hideButtons();
+    readTurnOrder();
 
-    for(let key of Object.keys(wholeData))
+    for(let key of Object.keys(wholeTO))
     {
-        if(key != "invisible" && wholeData[key].border != "invisible")
-        {
-            makeToken(wholeData[key]);
-            let currentDiv = document.getElementById(`${wholeData[key].name}-div`);
-            
-            let names = ["Order", "Selected"];
-            let feilds = [document.createElement("input"), document.createElement("input")];
-            feilds[1].value = "false";
-            feilds[1].title = `${wholeData[key].name}_${wholeData[key].border}`;
-
-            for(let i = 0; i < 2; i++)
-            {
-                let label = document.createElement("h6");
-                label.innerHTML = `${names[i]}:`;
-                label.style.display = "inline";
-                label.classList = "color-UP-yellow";
-
-
-                if(i == 0){label.style.margin = `5px 5px 5px 79px`;}
-                else{label.style.margin = `5px`;}
-
-                feilds[i].style.display = "inline";
-                feilds[i].id = `${names[i]}_${wholeData[key].name}`;
-                currentDiv.appendChild(label);
-                currentDiv.appendChild(feilds[i]);                
-            }
-        }
+        makeTORow(wholeTO[key]);
+        let feilds = [document.getElementById(`Name_${wholeTO[key].charName}`), document.getElementById(`Order_${wholeTO[key].charName}`), document.getElementById(`Selected_${wholeTO[key].charName}`)]
+        
+        feilds[0].value = wholeTO[key].charName;
+        feilds[1].value = wholeTO[key].position;
+        feilds[2].value = wholeTO[key].selected;
     }
 
     let upload = document.createElement("button");
     upload.style.margin = "5px";
     upload.innerHTML = "Upload";
     upload.id = "UploadTO";
-    upload.onclick = function(){uploadTO(wholeData)};
+    upload.onclick = uploadTO;
     div.appendChild(upload);
 
     addDone();
 }
 
-async function uploadTO(wholeData)
+async function uploadTO()
 {
     emptyTOCollection();
 
-    for(let key of Object.keys(wholeData))
+    for(let key of Object.keys(wholeTO))
     {
-        if(key != "invisible" && wholeData[key].border != "invisible")
+        const docRef = await setDoc(doc(db, "currentTO", key), 
         {
-            const docRef = await setDoc(doc(db, "currentTO", key), 
-            {
-                charName : key,
-                position: document.getElementById(`Order_${wholeData[key].name}`).value,
-                selected: document.getElementById(`Selected_${wholeData[key].name}`).value
-            });
-        }
+            charName : document.getElementById(`Name_${wholeTO[key].charName}`).value,
+            position : document.getElementById(`Order_${wholeTO[key].charName}`).value,
+            selected : document.getElementById(`Selected_${wholeTO[key].charName}`).value
+        });
     }
 
     let curDate = new Date().toLocaleTimeString();
