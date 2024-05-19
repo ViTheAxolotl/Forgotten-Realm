@@ -514,15 +514,26 @@ function makeTORow(key)
     TORow[2][3].classList = "gridButton";
     TORow[2][3].onclick = removeFromTO;
     TORow[2][3].id = `${key.charName}_Remove`;
+    TORow[2][3].style.margin = "5px";
     TORow[0].appendChild(TORow[2][3]);
     div.appendChild(TORow[0]);
 }
 
+function DeleteKeys(myObj, array) 
+{
+    for (let index = 0; index < array.length; index++) 
+    {
+        delete myObj[array[index]];
+    }
+
+    return myObj;
+}
+
 function removeFromTO()
 {
-    if(wholeTO.has(this.id))
+    if(Object.keys(wholeTO).includes(this.id))
     {
-        wholeTO.delete(this.id);
+        wholeTO = DeleteKeys(wholeTO, [this.id]);
     }
 
     document.getElementById(`${this.id}-div`).remove();
