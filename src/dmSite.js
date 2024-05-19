@@ -547,7 +547,7 @@ function addTORow(rowName)
     wholeTO[rowName] = newRow;
     makeTORow(newRow);
 
-    let feilds = [document.getElementById(`Name_${rowName.charName}`), document.getElementById(`Order_${rowName.charName}`), document.getElementById(`Selected_${rowName.charName}`)]
+    let feilds = [document.getElementById(`Name_${rowName}`), document.getElementById(`Order_${rowName}`), document.getElementById(`Selected_${rowName}`)];
             
     feilds[0].value = newRow.charName;
     feilds[1].value = newRow.position;
