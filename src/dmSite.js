@@ -532,7 +532,7 @@ function DeleteKeys(myObj, array)
 function removeFromTO()
 {
     let nodeName = this.id.replace("_Remove", "");
-    
+
     if(Object.keys(wholeTO).includes(nodeName))
     {
         wholeTO = DeleteKeys(wholeTO, [nodeName]);
@@ -742,7 +742,7 @@ async function emptyTOCollection()
 
     for(let docum of colToRemove)
     {
-        await deleteDoc(doc(db, cName, docum.slice(0, docum.indexOf("-"))));
+        await deleteDoc(doc(db, "currentTO", docum.slice(0, docum.indexOf("-"))));
     }
 }
 
