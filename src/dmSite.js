@@ -504,7 +504,7 @@ function makeTORow(key)
         label.classList = "color-UP-yellow";
         label.style.margin = `5px`;
 
-        if(i == 0){TORow[2][i].classList = "color-UP-yellow";}
+        if(i == 0){TORow[2][i].classList = "color-UP-purple";}
         TORow[2][i].style.display = "inline";
         TORow[2][i].id = `${TORow[1][i]}_${key.charName}`;
         TORow[0].appendChild(label);
