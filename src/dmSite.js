@@ -488,9 +488,9 @@ async function readTurnOrder()
 
 function makeTORow(key)
 {
-    let TORow = [document.createElement("div"), ["Name", "Order", "Selected"], [document.createElement("input"), document.createElement("input"), document.createElement("input")]];
+    let TORow = [document.createElement("div"), ["Name", "Order", "Selected"], [document.createElement("input"), document.createElement("input"), document.createElement("input"), document.createElement("button")]];
     TORow[0].id = `${key.charName}-div`;
-    TORow[0].classList = "bg-UP-grey objectBorder";
+    TORow[0].classList = "bg-UP-grey objectBorder center";
     TORow[0].style.margin = "5px";
     TORow[0].style.position = "relative";
     TORow[0].style.minHeight = "82px";
@@ -510,7 +510,21 @@ function makeTORow(key)
         TORow[0].appendChild(TORow[2][i]);                
     }
 
+    TORow[2][3].innerHTML = "Remove";
+    TORow[2][3].classList = "gridButton";
+    TORow[2][3].onclick = removeFromTO;
+    TORow[2][3].id = `${key.charName}_Remove`;
     div.appendChild(TORow[0]);
+}
+
+function removeFromTO()
+{
+    if(wholeTO.has(this.id))
+    {
+        wholeTO.delete(this.id);
+    }
+
+    document.getElementById(`${this.id}-div`).remove();
 }
 
 function handleTurn()
