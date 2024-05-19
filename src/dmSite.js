@@ -572,7 +572,7 @@ function handleTurn()
     
         let buttons = [document.createElement("button"), document.createElement("button")];
         let names = ["Add", "Upload"];
-        buttons[0].onclick = function () {addTORow()};
+        buttons[0].onclick = function () {addTORow(document.getElementById("newRow").value)};
         buttons[1].onclick = uploadTO;
 
         for(let i = 0; i < 2; i++)
@@ -586,6 +586,7 @@ function handleTurn()
             {
                 let rowName = document.createElement("input");
 
+                rowName.id = "newRow";
                 rowName.placeholder = "Name of New Row";
                 rowName.style.display = "inline";
                 buttons[i].style.display = "inline";
