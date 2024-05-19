@@ -516,7 +516,7 @@ function makeTORow(key)
     TORow[2][3].id = `${key.charName}_Remove`;
     TORow[2][3].style.margin = "5px";
     TORow[0].appendChild(TORow[2][3]);
-    div.appendChild(TORow[0]);
+    div.insertBefore(TORow[0], div.firstChild);
 }
 
 function DeleteKeys(myObj, array) 
