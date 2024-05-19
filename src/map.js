@@ -242,8 +242,8 @@ function makeToken(key, turn, charPos)
 
     if(turn == "true"){row[0].classList.add("selected"); currentTurn = charPos;}
 
-    row[1].innerHTML = `${charPos} |`;
-    row[2].innerHTML = key;
+    row[1].innerHTML = `${charPos}`;
+    row[2].innerHTML = `| ${key}`;
     divTO.appendChild(row[0]);
     /**let token = [document.createElement("div"), document.createElement("img"), document.createElement("img"), document.createElement("img")];
     token[0].id = `${key.name}-div`;
