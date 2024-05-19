@@ -573,19 +573,24 @@ async function uploadTO()
     emptyTOCollection();
 
     for(let key of Object.keys(wholeTO))
-    {
-        const docRef = await setDoc(doc(db, "currentTO", key), 
-        {
-            charName : document.getElementById(`Name_${wholeTO[key].charName}`).value,
-            position : document.getElementById(`Order_${wholeTO[key].charName}`).value,
-            selected : document.getElementById(`Selected_${wholeTO[key].charName}`).value
-        });
+    {   
+        setTimeout(() => {uploadRowTO(key)}, 250);
     }
 
     let curDate = new Date().toLocaleTimeString();
     let date = document.createElement("h3");
     date.innerHTML = `Current Turn Order at time of ${curDate}`;
     div.appendChild(date);
+}
+
+async function uploadRowTO(key)
+{
+    const docRef = await setDoc(doc(db, "currentTO", key), 
+    {
+        charName : document.getElementById(`Name_${wholeTO[key].charName}`).value,
+        position : document.getElementById(`Order_${wholeTO[key].charName}`).value,
+        selected : document.getElementById(`Selected_${wholeTO[key].charName}`).value
+    });
 }
 
 function handleChangeMap()
