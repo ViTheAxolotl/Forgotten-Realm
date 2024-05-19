@@ -488,7 +488,7 @@ async function readTurnOrder()
 
 function makeTORow(key)
 {
-    let TORow = [document.createElement("div"), ["Name", "Order", "Selected"], [document.createElement("input"), document.createElement("input"), document.createElement("input"), document.createElement("button")]];
+    let TORow = [document.createElement("div"), ["Name", "Order", "Selected"], [document.createElement("h6"), document.createElement("input"), document.createElement("input"), document.createElement("button")]];
     TORow[0].id = `${key.charName}-div`;
     TORow[0].classList = "bg-UP-grey objectBorder center";
     TORow[0].style.margin = "5px";
@@ -504,6 +504,7 @@ function makeTORow(key)
         label.classList = "color-UP-yellow";
         label.style.margin = `5px`;
 
+        if(i == 0){TORow[2][i].classList = "color-UP-yellow";}
         TORow[2][i].style.display = "inline";
         TORow[2][i].id = `${TORow[1][i]}_${key.charName}`;
         TORow[0].appendChild(label);
@@ -549,7 +550,7 @@ function addTORow(rowName)
 
     let feilds = [document.getElementById(`Name_${rowName}`), document.getElementById(`Order_${rowName}`), document.getElementById(`Selected_${rowName}`)];
             
-    feilds[0].value = newRow.charName;
+    feilds[0].innerHTML = newRow.charName;
     feilds[1].value = newRow.position;
     feilds[2].value = newRow.selected;
 }
@@ -565,7 +566,7 @@ function handleTurn()
             makeTORow(wholeTO[key]);
             let feilds = [document.getElementById(`Name_${wholeTO[key].charName}`), document.getElementById(`Order_${wholeTO[key].charName}`), document.getElementById(`Selected_${wholeTO[key].charName}`)]
             
-            feilds[0].value = wholeTO[key].charName;
+            feilds[0].innerHTML = wholeTO[key].charName;
             feilds[1].value = wholeTO[key].position;
             feilds[2].value = wholeTO[key].selected;
         }
