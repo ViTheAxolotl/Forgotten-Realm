@@ -541,6 +541,19 @@ function removeFromTO()
     document.getElementById(`${nodeName}-div`).remove();
 }
 
+function addTORow(rowName)
+{
+    let newRow = {charName : rowName, position : 0, selected : false};
+    wholeTO[rowName] = newRow;
+    makeTORow(newRow);
+
+    let feilds = [document.getElementById(`Name_${rowName.charName}`), document.getElementById(`Order_${rowName.charName}`), document.getElementById(`Selected_${rowName.charName}`)]
+            
+    feilds[0].value = wholeTO[key].charName;
+    feilds[1].value = wholeTO[key].position;
+    feilds[2].value = wholeTO[key].selected;
+}
+
 function handleTurn()
 {
     hideButtons();
@@ -557,12 +570,28 @@ function handleTurn()
             feilds[2].value = wholeTO[key].selected;
         }
     
-        let upload = document.createElement("button");
-        upload.style.margin = "5px";
-        upload.innerHTML = "Upload";
-        upload.id = "UploadTO";
-        upload.onclick = uploadTO;
-        div.appendChild(upload);
+        let buttons = [document.createElement("button"), document.createElement("button")];
+        let names = ["Add", "Upload"];
+        buttons[0].onclick = function () {addTORow()};
+        buttons[1].onclick = uploadTO;
+
+        for(let i = 0; i > 2; i++)
+        {
+            buttons[i].style.margin = "5px";
+            buttons[i].innerHTML = names[i];
+            buttons[i].id = `${names[i]}TO`;
+            div.appendChild(buttons[i]); 
+            
+            if(i == 0)
+            {
+                let rowName = document.createElement("input");
+
+                rowName.placeholder = "Name of New Row";
+                rowName.style.display = "inline";
+                buttons[i].style.display = "inline";
+                div.appendChild(rowName);
+            }
+        }
     
         addDone();
     }, 1500);
