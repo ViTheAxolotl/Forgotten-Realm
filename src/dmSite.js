@@ -531,12 +531,14 @@ function DeleteKeys(myObj, array)
 
 function removeFromTO()
 {
-    if(Object.keys(wholeTO).includes(this.id))
+    let nodeName = this.id.replace("_Remove", "");
+    
+    if(Object.keys(wholeTO).includes(nodeName))
     {
-        wholeTO = DeleteKeys(wholeTO, [this.id]);
+        wholeTO = DeleteKeys(wholeTO, [nodeName]);
     }
 
-    document.getElementById(`${this.id}-div`).remove();
+    document.getElementById(`${nodeName}-div`).remove();
 }
 
 function handleTurn()
