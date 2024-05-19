@@ -549,9 +549,9 @@ function addTORow(rowName)
 
     let feilds = [document.getElementById(`Name_${rowName.charName}`), document.getElementById(`Order_${rowName.charName}`), document.getElementById(`Selected_${rowName.charName}`)]
             
-    feilds[0].value = wholeTO[key].charName;
-    feilds[1].value = wholeTO[key].position;
-    feilds[2].value = wholeTO[key].selected;
+    feilds[0].value = newRow.charName;
+    feilds[1].value = newRow.position;
+    feilds[2].value = newRow.selected;
 }
 
 function handleTurn()
@@ -590,6 +590,7 @@ function handleTurn()
                 rowName.placeholder = "Name of New Row";
                 rowName.style.display = "inline";
                 buttons[i].style.display = "inline";
+                buttons[i].style.width = "60%";
                 div.appendChild(rowName);
             }
         }
