@@ -619,7 +619,7 @@ async function uploadRowTO(key)
 {
     const docRef = await setDoc(doc(db, "currentTO", key), 
     {
-        charName : document.getElementById(`Name_${wholeTO[key].charName}`).value,
+        charName : document.getElementById(`Name_${wholeTO[key].charName}`).innerHTML,
         position : document.getElementById(`Order_${wholeTO[key].charName}`).value,
         selected : document.getElementById(`Selected_${wholeTO[key].charName}`).value
     });
