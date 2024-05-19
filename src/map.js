@@ -225,7 +225,7 @@ async function readTurnOrder()
 
 function makeToken(key, turn, charPos)
 {
-    let row = [document.createElement("div"), document.createElement("h3"), document.createElement("h3")];
+    let row = [document.createElement("div"), document.createElement("h6"), document.createElement("h6")];
     let names = ["div", "Position", "Name"];
 
     for(let i = 0; i < 3; i++)
