@@ -742,7 +742,7 @@ async function emptyTOCollection()
 
     for(let docum of colToRemove)
     {
-        await deleteDoc(doc(db, "currentTO", docum.slice(0, docum.indexOf("-"))));
+        await deleteDoc(doc(db, "currentTO", docum));
     }
 }
 
