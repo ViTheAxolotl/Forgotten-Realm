@@ -514,6 +514,7 @@ function makeTORow(key)
     TORow[2][3].classList = "gridButton";
     TORow[2][3].onclick = removeFromTO;
     TORow[2][3].id = `${key.charName}_Remove`;
+    TORow[0].appendChild(TORow[2][3]);
     div.appendChild(TORow[0]);
 }
 
