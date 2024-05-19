@@ -575,7 +575,7 @@ function handleTurn()
         buttons[0].onclick = function () {addTORow()};
         buttons[1].onclick = uploadTO;
 
-        for(let i = 0; i > 2; i++)
+        for(let i = 0; i < 2; i++)
         {
             buttons[i].style.margin = "5px";
             buttons[i].innerHTML = names[i];
