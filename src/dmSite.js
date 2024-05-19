@@ -517,25 +517,27 @@ function handleTurn()
 {
     hideButtons();
     readTurnOrder();
-
-    for(let key of Object.keys(wholeTO))
+    setTimeout(() => 
     {
-        makeTORow(wholeTO[key]);
-        let feilds = [document.getElementById(`Name_${wholeTO[key].charName}`), document.getElementById(`Order_${wholeTO[key].charName}`), document.getElementById(`Selected_${wholeTO[key].charName}`)]
-        
-        feilds[0].value = wholeTO[key].charName;
-        feilds[1].value = wholeTO[key].position;
-        feilds[2].value = wholeTO[key].selected;
-    }
-
-    let upload = document.createElement("button");
-    upload.style.margin = "5px";
-    upload.innerHTML = "Upload";
-    upload.id = "UploadTO";
-    upload.onclick = uploadTO;
-    div.appendChild(upload);
-
-    addDone();
+        for(let key of Object.keys(wholeTO))
+        {
+            makeTORow(wholeTO[key]);
+            let feilds = [document.getElementById(`Name_${wholeTO[key].charName}`), document.getElementById(`Order_${wholeTO[key].charName}`), document.getElementById(`Selected_${wholeTO[key].charName}`)]
+            
+            feilds[0].value = wholeTO[key].charName;
+            feilds[1].value = wholeTO[key].position;
+            feilds[2].value = wholeTO[key].selected;
+        }
+    
+        let upload = document.createElement("button");
+        upload.style.margin = "5px";
+        upload.innerHTML = "Upload";
+        upload.id = "UploadTO";
+        upload.onclick = uploadTO;
+        div.appendChild(upload);
+    
+        addDone();
+    }, 1500);
 }
 
 async function uploadTO()
