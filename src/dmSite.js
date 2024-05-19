@@ -738,7 +738,7 @@ async function emptyTOCollection()
     let colToRemove = [];
     const q = query(collection(db, "currentTO"));
     const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {colToRemove.push(doc.data().name);});
+    querySnapshot.forEach((doc) => {colToRemove.push(doc.data().id);});
 
     for(let docum of colToRemove)
     {
