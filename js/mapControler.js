@@ -258,6 +258,9 @@ function handleChangeInTurn(dirrection)
             }
         }
 
+        document.getElementById(`${curSelected}-div`).classList.remove("selected");
+        document.getElementById(`${newSelected}-div`).classList.add("selected");
+
         changeTOValue(wholeTO[curSelected], "unset");
         changeTOValue(wholeTO[newSelected], "set");
     }, 1500);
