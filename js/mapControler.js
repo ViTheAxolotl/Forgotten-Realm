@@ -245,13 +245,13 @@ function handleChangeInTurn(dirrection)
 
         for(let key of Object.keys(wholeTO))
         {
-            if(dirrection == "up" && wholeTO[key].position == `${parseInt(curSelected.position) + 1}`)
+            if(dirrection == "up" && wholeTO[key].position == `${parseInt(wholeTO[curSelected].position) + 1}`)
             {
                 newSelected = key;
                 break;
             }
 
-            else if(dirrection == "down" && wholeTO[key].position == `${parseInt(curSelected.position) - 1}`)
+            else if(dirrection == "down" && wholeTO[key].position == `${parseInt(wholeTO[curSelected].position) - 1}`)
             {
                 newSelected = key;
                 break;
