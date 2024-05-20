@@ -237,6 +237,7 @@ function makeToken(key, turn, charPos)
         {
             row[0].appendChild(row[i]); 
             row[i].style.display = "inline";
+            row[i].classList.add("color-UP-yellow");
         }
     }
 
