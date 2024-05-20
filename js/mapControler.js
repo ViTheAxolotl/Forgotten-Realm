@@ -3,7 +3,18 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
 import { getFirestore, setDoc, getDocs, deleteDoc, doc, collection, query, where } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js';
 
+const firebaseApp = initializeApp
+({
+    apiKey: "AIzaSyArcsmJkXSeuIHMysYtIzRdjIDlKNQA25Y",
+    authDomain: "forgottenrealmsmap.firebaseapp.com",
+    projectId: "forgottenrealmsmap",
+    storageBucket: "forgottenrealmsmap.appspot.com",
+    messagingSenderId: "697902154695",
+    appId: "1:697902154695:web:ffa5c47817f3097c89cfe2",
+    measurementId: "G-Q2W494NRDT"
+});
 
+const db = getFirestore(firebaseApp);
 const gridMap = document.querySelector("#gridMap");
 let map = document.getElementById("grid");
 const rect = gridMap.getBoundingClientRect();
