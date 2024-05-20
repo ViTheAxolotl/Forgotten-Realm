@@ -246,32 +246,6 @@ function makeToken(key, turn, charPos)
     row[1].innerHTML = `${charPos}`;
     row[2].innerHTML = `| ${key}`;
     divTO.appendChild(row[0]);
-    /**let token = [document.createElement("div"), document.createElement("img"), document.createElement("img"), document.createElement("img")];
-    token[0].id = `${key.name}-div`;
-    token[0].classList = `bg-UP-grey objectBorder tODiv`;
-    token[0].style.margin = "5px";
-    token[0].style.position = "relative";
-    token[0].style.minHeight = "82px";
-    token[0].style.minWidth = "82px";
-    if(turn == "true"){token[0].classList.add("selected"); currentTurn = charPos;}
-    token[1].src = `images/map/tokens/${key.name}.png`;
-    token[1].id = `${key.name}_`;
-    token[1].classList = `tokens ${key.name}_ char`;
-    token[2].src = `images/map/tokens/${key.border}Border.png`;
-    token[2].id = `${key.name}_${key.border}`;
-    token[2].classList = `tokens ${key.name}_ border_`;
-    token[3].src = getHpImg(key);
-    token[3].id = `${key.name}_hp`;
-    token[3].classList = `tokens ${key.name}_ hp`;
-    let turnNumber = document.createElement("h3");
-    turnNumber.innerHTML = `${charPos}`;
-    turnNumber.style.display = "inline";
-
-    token[0].appendChild(token[1]);
-    token[0].appendChild(token[2]);
-    token[0].appendChild(token[3]);
-    token[0].appendChild(turnNumber);
-    divTO.appendChild(token[0]); */
 }
 
 function turnOrderTimer()

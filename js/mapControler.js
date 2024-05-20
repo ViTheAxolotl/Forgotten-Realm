@@ -21,6 +21,7 @@ let buttons;
 let pos;
 let div = document.getElementById("grid");
 let currentBorders = document.getElementsByClassName("border_");
+let wholeTO = {};
 
 function init()
 {
@@ -52,6 +53,16 @@ function setMainVaribles()
     currentCharacter = document.getElementsByClassName(htmlInfo[0]);
     let letterRemover = htmlInfo[0].indexOf("-");
     playerName.innerHTML = htmlInfo[0].charAt(0).toUpperCase() + htmlInfo[0].slice(1, letterRemover);
+
+    let hiddenVi = document.getElementsByClassName("isVi");
+
+    if(htmlInfo[2] != "vi")
+    {
+        for(let elem of hiddenVi)
+        {
+            elem.style.display = "none";
+        }
+    }
 
     if(rect.width < 999)
     {
@@ -87,6 +98,18 @@ function setMainVaribles()
     }
 }
 
+async function readTurnOrder()
+{
+    wholeTO = {};
+    const q = query(collection(db, "currentTO"));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => 
+    {
+        // doc.data() is never undefined for query doc snapshots
+        wholeTO[doc.id] = doc.data();
+    });
+}
+
 function increaseValue()
 {
     let cHp = parseInt(currentHp.value);
@@ -111,6 +134,12 @@ function increaseValue()
         let status = document.getElementById("status");
 
         title.innerHTML += ` ${status.value.charAt(0).toUpperCase() + status.value.slice(1)},`;
+    }
+
+    else if(this.name == "turn")
+    {
+        handleChangeInTurn("up");
+        return;
     }
 
     for(let prop of currentCharacter)
@@ -151,6 +180,12 @@ function decreaseValue()
         title.innerHTML = title.innerHTML.replace(` ${status.value.charAt(0).toUpperCase() + status.value.slice(1)},`, "");
     }
 
+    else if(this.name == "turn")
+    {
+        handleChangeInTurn("down");
+        return;
+    }
+
     for(let prop of currentCharacter)
     {
         if(!(prop.classList.contains("update")))
@@ -158,6 +193,58 @@ function decreaseValue()
             prop.classList += " update";
         }
     }
+}
+
+async function changeTOValue(data, set)
+{
+    let sel = "false";
+    
+    if(set == "set")
+    {
+        sel = "true";
+    }
+
+    const docRef = await setDoc(doc(db, "currentTO", data.charName), 
+    {
+        charName : data.charName,
+        position : data.position,
+        selected : sel
+    });
+}
+
+function handleChangeInTurn(dirrection)
+{
+    readTurnOrder();
+
+    let curSelected;
+    let newSelected;
+
+    for(let key of Object.keys(wholeTO))
+    {
+        if(wholeTO[key].selected == "true")
+        {
+            curSelected = key;
+            break;
+        }
+    }
+
+    for(let key of Object.keys(wholeTO))
+    {
+        if(dirrection == "up" && wholeTO[key].position == `${parseInt(curSelected.position) + 1}`)
+        {
+            newSelected = key;
+            break;
+        }
+
+        else if(dirrection == "down" && wholeTO[key].position == `${parseInt(curSelected.position) - 1}`)
+        {
+            newSelected = key;
+            break;
+        }
+    }
+
+    changeTOValue(wholeTO[curSelected], "unset");
+    changeTOValue(wholeTO[newSelected], "set");
 }
 
 function moveChar(xPos, yPos)
