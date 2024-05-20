@@ -233,6 +233,7 @@ function handleChangeInTurn(dirrection)
     setTimeout(() => {
         let curSelected;
         let newSelected;
+        let newPosition;
 
         for(let key of Object.keys(wholeTO))
         {
@@ -243,19 +244,22 @@ function handleChangeInTurn(dirrection)
             }
         }
 
+        if(dirrection == "up")
+        {
+            if(wholeTO[curSelected].position == Object.keys(wholeTO).length){newPosition = "1";}
+            else{newPosition = `${parseInt(wholeTO[curSelected].position) + 1}`}
+        }
+            
+        else if(dirrection == "down")
+        {
+            if(wholeTO[key].position == "1"){newPosition = `${Object.keys(wholeTO).length}`;}
+            else{newPosition = `${parseInt(wholeTO[curSelected].position) - 1}`}
+        }
+
         for(let key of Object.keys(wholeTO))
         {
-            if(dirrection == "up" && wholeTO[key].position == `${parseInt(wholeTO[curSelected].position) + 1}`)
-            {
-                newSelected = key;
-                break;
-            }
-
-            else if(dirrection == "down" && wholeTO[key].position == `${parseInt(wholeTO[curSelected].position) - 1}`)
-            {
-                newSelected = key;
-                break;
-            }
+            if(dirrection == "up" && wholeTO[key].position == newPosition){newSelected = key; break;}
+            else if(dirrection == "down" && wholeTO[key].position == newPosition){newSelected = key; break;}
         }
 
         document.getElementById(`${curSelected}-div`).classList.remove("selected");
