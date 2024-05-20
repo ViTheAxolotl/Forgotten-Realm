@@ -252,7 +252,7 @@ function handleChangeInTurn(dirrection)
             
         else if(dirrection == "down")
         {
-            if(wholeTO[key].position == "1"){newPosition = `${Object.keys(wholeTO).length}`;}
+            if(wholeTO[curSelected].position == "1"){newPosition = `${Object.keys(wholeTO).length}`;}
             else{newPosition = `${parseInt(wholeTO[curSelected].position) - 1}`}
         }
 
