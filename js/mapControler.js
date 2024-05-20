@@ -230,36 +230,37 @@ async function changeTOValue(data, set)
 function handleChangeInTurn(dirrection)
 {
     readTurnOrder();
+    setTimeout(() => {
+        let curSelected;
+        let newSelected;
 
-    let curSelected;
-    let newSelected;
-
-    for(let key of Object.keys(wholeTO))
-    {
-        if(wholeTO[key].selected == "true")
+        for(let key of Object.keys(wholeTO))
         {
-            curSelected = key;
-            break;
-        }
-    }
-
-    for(let key of Object.keys(wholeTO))
-    {
-        if(dirrection == "up" && wholeTO[key].position == `${parseInt(curSelected.position) + 1}`)
-        {
-            newSelected = key;
-            break;
+            if(wholeTO[key].selected == "true")
+            {
+                curSelected = key;
+                break;
+            }
         }
 
-        else if(dirrection == "down" && wholeTO[key].position == `${parseInt(curSelected.position) - 1}`)
+        for(let key of Object.keys(wholeTO))
         {
-            newSelected = key;
-            break;
-        }
-    }
+            if(dirrection == "up" && wholeTO[key].position == `${parseInt(curSelected.position) + 1}`)
+            {
+                newSelected = key;
+                break;
+            }
 
-    changeTOValue(wholeTO[curSelected], "unset");
-    changeTOValue(wholeTO[newSelected], "set");
+            else if(dirrection == "down" && wholeTO[key].position == `${parseInt(curSelected.position) - 1}`)
+            {
+                newSelected = key;
+                break;
+            }
+        }
+
+        changeTOValue(wholeTO[curSelected], "unset");
+        changeTOValue(wholeTO[newSelected], "set");
+    }, 1500);
 }
 
 function moveChar(xPos, yPos)
