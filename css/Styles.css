@@ -472,6 +472,12 @@ table, .itemSearch, #itemImg
     margin-right: auto;
 }
 
+.turn
+{
+    border: 4px black solid;
+    margin: 5px;
+}
+
 @media (max-width: 1399px) {
     .col-md-6
     {
@@ -518,6 +524,11 @@ table, .itemSearch, #itemImg
         top: 20%;
         left: 34%;
         width: 24%;
+    }
+
+    .turn
+    {
+        width: 20%;
     }
   }
 
@@ -697,5 +708,10 @@ table, .itemSearch, #itemImg
         top: 30%;
         left: 22%;
         width: 55%;
+    }
+
+    .turn
+    {
+        width: 35%;
     }
   }
