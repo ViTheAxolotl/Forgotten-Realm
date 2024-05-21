@@ -472,10 +472,15 @@ table, .itemSearch, #itemImg
     margin-right: auto;
 }
 
-.turn
+#turn
 {
     border: 4px black solid;
     margin: 5px;
+}
+
+#status
+{
+    width: 50%
 }
 
 @media (max-width: 1399px) {
@@ -526,9 +531,14 @@ table, .itemSearch, #itemImg
         width: 24%;
     }
 
-    .turn
+    #turn
     {
         width: 20%;
+    }
+
+    #status
+    {
+        width: 50%
     }
   }
 
@@ -710,8 +720,13 @@ table, .itemSearch, #itemImg
         width: 55%;
     }
 
-    .turn
+    #turn
     {
         width: 35%;
+    }
+
+    #status
+    {
+        width: 60%
     }
   }
