@@ -884,7 +884,6 @@ async function addToken()
     let y = document.getElementById("yPos").value;
 
     set(ref(database, `currentMap/${n.slice(0, n.indexOf("-"))}`),
-    //database.ref(`currentMap/${n.slice(0, n.indexOf("-"))}`).set(
     {
         border : b,
         currentHp : c,
@@ -894,7 +893,6 @@ async function addToken()
         title : t,
         xPos : x,
         yPos : y,
-        image : n
     });
 
     /*const docRef = await setDoc(doc(db, "currentMap", n.slice(0, n.indexOf("-"))), 
