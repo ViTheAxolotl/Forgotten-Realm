@@ -1,6 +1,8 @@
 "use strict";
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
+import {  } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
 import { getFirestore, setDoc, getDocs, deleteDoc, doc, collection, query } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js';
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
 
 const firebaseApp = initializeApp
 ({
@@ -14,6 +16,8 @@ const firebaseApp = initializeApp
 });
 
 const db = getFirestore(firebaseApp);
+var database = firebaseApp.database();
+
 let fiveButtons = [];
 let wholeData = {};
 let div = document.getElementById("story");
@@ -879,7 +883,20 @@ async function addToken()
     let x = document.getElementById("xPos").value;
     let y = document.getElementById("yPos").value;
 
-    const docRef = await setDoc(doc(db, "currentMap", n.slice(0, n.indexOf("-"))), 
+    database.ref(`currentMap/${n.slice(0, n.indexOf("-"))}`).set(
+    {
+        border : b,
+        currentHp : c,
+        maxHp : mH,
+        map : "",
+        name : n,
+        title : t,
+        xPos : x,
+        yPos : y,
+        image : n
+    });
+
+    /*const docRef = await setDoc(doc(db, "currentMap", n.slice(0, n.indexOf("-"))), 
     {
         border : b,
         currentHp : c,
@@ -889,7 +906,7 @@ async function addToken()
         title : t,
         xPos : x,
         yPos : y
-    });
+    });*/
 
     resetDelete();
 }
