@@ -16,7 +16,7 @@ const firebaseApp = initializeApp
 });
 
 const db = getFirestore(firebaseApp);
-var database = firebaseApp.database();
+var database = firebase.database();
 
 let fiveButtons = [];
 let wholeData = {};
