@@ -1,5 +1,6 @@
 "use strict";
-
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
+import { getDatabase, ref, set } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
 import { getFirestore, setDoc, getDocs, deleteDoc, doc, collection, query } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js';
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
 
@@ -15,7 +16,7 @@ const firebaseApp = initializeApp
 });
 
 const db = getFirestore(firebaseApp);
-var database = firebase.database();
+var database = getDatabase();
 
 let fiveButtons = [];
 let wholeData = {};
@@ -882,7 +883,8 @@ async function addToken()
     let x = document.getElementById("xPos").value;
     let y = document.getElementById("yPos").value;
 
-    database.ref(`currentMap/${n.slice(0, n.indexOf("-"))}`).set(
+    set(ref(database, `currentMap/${n.slice(0, n.indexOf("-"))}`),
+    //database.ref(`currentMap/${n.slice(0, n.indexOf("-"))}`).set(
     {
         border : b,
         currentHp : c,
