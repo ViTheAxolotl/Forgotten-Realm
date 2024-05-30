@@ -1,6 +1,5 @@
 "use strict";
-import 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
-import 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
+
 import { getFirestore, setDoc, getDocs, deleteDoc, doc, collection, query } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js';
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
 
