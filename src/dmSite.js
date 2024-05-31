@@ -701,7 +701,7 @@ function listSelect()
                 selectNames.appendChild(option); 
             }  
         }
-    }, 0);
+    }, 10);
 
     selectNames.classList = "center blo";
     selectNames.id = "selectNames";
@@ -807,7 +807,7 @@ function loadMap()
 
 function handleDone()
 {
-    setInterval(() => {location.reload();}, 2000);
+    setInterval(() => {location.reload();}, 1000);
 }
 
 function hideButtons()
