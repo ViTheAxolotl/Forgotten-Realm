@@ -19,6 +19,7 @@ onValue(currentMapRef, (snapshot) =>
 {
     const data = snapshot.val();
     wholeDB = data;
+    addTokens();
 });
 
 const currentTORef = ref(database, 'currentTO/');
@@ -26,12 +27,8 @@ onValue(currentTORef, (snapshot) =>
 {
     const data = snapshot.val();
     wholeTO = data;
-
-    if(wholeDB["invisible"] != undefined)
-    {
-        removeTurnOrder(); 
-        setTurnOrder();
-    }
+    removeTurnOrder(); 
+    setTurnOrder();
 });
 
 let wholeDB = {};
@@ -48,7 +45,6 @@ let pos;
 let yPos;
 let xPos;
 let tokens = [];
-let stage = 2;
 let imgs;
 let currentHp;
 let maxHp;
@@ -61,8 +57,6 @@ let currentTurn;
 function init()
 {
     setMainVaribles();
-
-    setTimeout(() => {setTurnOrder();}, 450);
     setInterval(timer, 500);
 }
 
@@ -104,30 +98,6 @@ function setMainVaribles()
 
 function addTokens()
 {
-    if(!(Object.keys(wholeDB).includes(htmlInfo[0].slice(0, htmlInfo[0].indexOf("-")))))
-    {
-        let htmlChar = html[htmlInfo[0]];
-        let token = document.getElementById(htmlChar["name"]);
-        let x = parseInt(token.style.left.replace("px", ""));
-        let y = parseInt(token.style.top.replace("px", ""));
-        x = xPos[pos.indexOf(x)];
-        y = yPos[pos.indexOf(y)];
-        let t = document.getElementById("title");
-        t = t.innerHTML.slice(t.innerHTML.indexOf(" "));
-
-        set(ref(database, `currentMap/${htmlChar["name"].slice(0, htmlChar["name"].indexOf("-"))}`),
-        {
-            border : htmlChar["border"],
-            currentHp : document.getElementById("current").value,
-            maxHp : document.getElementById("max").value,
-            map : "",
-            name : htmlChar["name"],
-            title : t,
-            xPos : x,
-            yPos : y
-        });
-    }
-
     if(div.children.length > 1)
     {
         let loop = true;
@@ -630,17 +600,7 @@ function placeTokens(x, y, prop)
 
 function timer()
 {
-    if(stage == 1)
-    {
-        checkUpdates();
-        stage = 2;
-    }
-
-    else if(stage == 2)
-    {
-        addTokens();
-        stage = 1;
-    }
+    checkUpdates();
 }
 
 function checkUpdates()
