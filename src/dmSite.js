@@ -796,12 +796,15 @@ function loadMap()
         wholeDB = data;
     });
 
-    for(let key of Object.keys(wholeDB))
-    {
-        set(ref(database, `currentMap/${key}`), wholeDB[key]);
-    }
+    setTimeout(() => 
+    {  
+        for(let key of Object.keys(wholeDB))
+        {
+            set(ref(database, `currentMap/${key}`), wholeDB[key]);
+        }
 
-    handleDone();
+        handleDone();
+    }, 500);
 }
 
 function handleDone()
