@@ -13,6 +13,7 @@ const firebaseApp = initializeApp
     measurementId: "G-Q2W494NRDT"
 });
 
+let database = getDatabase();
 let enter = document.getElementById("enter");
 let charName = document.getElementById("name");
 let currentName;
