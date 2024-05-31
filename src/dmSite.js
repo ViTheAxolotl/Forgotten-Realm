@@ -701,7 +701,7 @@ function listSelect()
                 selectNames.appendChild(option); 
             }  
         }
-    }, 500);
+    }, 0);
 
     selectNames.classList = "center blo";
     selectNames.id = "selectNames";
