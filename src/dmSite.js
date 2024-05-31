@@ -179,7 +179,7 @@ function handleDeleteOrEdit()
     currentDiv.appendChild(deleteB);
 }
 
-async function deleteToken()
+function deleteToken()
 {
     for(let key of Object.keys(wholeDB))
     {
@@ -454,7 +454,7 @@ function handleQuick()
     addDone();
 }
 
-async function quickUpdate()
+function quickUpdate()
 {
     let newHp = document.getElementById('newHp');
     let id = this.id.slice(0, this.id.indexOf("-"));
@@ -590,7 +590,7 @@ function handleTurn()
     }, 1500);
 }
 
-async function uploadTO()
+function uploadTO()
 {
     temp = wholeTO;
     emptyTOCollection();
@@ -606,7 +606,7 @@ async function uploadTO()
     div.appendChild(date);
 }
 
-async function uploadRowTO(key)
+function uploadRowTO(key)
 {
     set(ref(database, `currentTO/${key}`),
     {
@@ -640,7 +640,7 @@ function handleChangeMap()
     addDone();
 }
 
-async function updateMap()
+function updateMap()
 {
     let b, c, mH, m, n, t, x, y;
     
@@ -674,11 +674,9 @@ async function updateMap()
     handleDone();
 }
 
-async function handleSave()
+function listSelect()
 {
-    hideButtons();
-
-    collectionNames = [];
+    let collectionNames = [];
     const tempRef = ref(database, `lists/`);
     onValue(tempRef, (snapshot) => 
     {
@@ -688,11 +686,8 @@ async function handleSave()
             collectionNames.push(point);
         }
     });
-    
+
     let selectNames = document.createElement("select");
-    let saveName = document.createElement("input");
-    let label = document.createElement("h6");
-    let button = document.createElement("button");
 
     setTimeout(() => 
     {
@@ -710,6 +705,19 @@ async function handleSave()
 
     selectNames.classList = "center blo";
     selectNames.id = "selectNames";
+
+    div.appendChild(selectNames);
+}
+
+function handleSave()
+{
+    hideButtons();
+    listSelect();
+
+    let saveName = document.createElement("input");
+    let label = document.createElement("h6");
+    let button = document.createElement("button");
+    
     label.innerHTML = `Save Name:`;
     label.style.display = "inline";
     label.classList = "color-UP-yellow";
@@ -718,14 +726,14 @@ async function handleSave()
     saveName.style.margin = "5px";
     button.innerHTML = "Save";
     button.onclick = handleUploadeSave;
-    div.appendChild(selectNames);
+    
     div.appendChild(label);
     div.appendChild(saveName);
     div.appendChild(button);
     addDone();
 }
 
-async function handleUploadeSave()
+function handleUploadeSave()
 {
     let saveName = document.getElementById("saveName");
     let selectNames = document.getElementById("selectNames");
@@ -751,56 +759,31 @@ async function handleUploadeSave()
     handleDone();
 }
 
-async function emptyCollection(cName)
+function emptyCollection(cName)
 {
     set(ref(database, `${cName}/`), null);
 }
 
-async function emptyTOCollection()
+function emptyTOCollection()
 {
     set(ref(database, `currentTO/`), null);
 }
 
-async function handleLoad()
+function handleLoad()
 {
     hideButtons();
+    listSelect();
 
-    collectionNames = [];
     let goButton = document.createElement("button");
- 
-    const tempRef = ref(database, `lists/`);
-    onValue(tempRef, (snapshot) => 
-    {
-        const data = snapshot.val();
-        for(let point of Object.keys(data))
-        {
-            collectionNames.push(point);
-        }
-    });
-    
-    let selectNames = document.createElement("select");
-    for(let cName of collectionNames)
-    {
-        if(cName != "currentMap")
-        {
-            let option = document.createElement("option");
-            option.value = cName;
-            option.text = cName;
-            selectNames.appendChild(option); 
-        }  
-    }
 
-    selectNames.classList = "center blo";
-    selectNames.id = "selectNames";
     goButton.style.margin = "5px";
     goButton.innerHTML = "Load";
     goButton.onclick = loadMap;
-    div.appendChild(selectNames);
     div.appendChild(goButton);
     addDone();
 }
 
-async function loadMap()
+function loadMap()
 {
     let selectNames = document.getElementById("selectNames");
     let cName = "";
@@ -849,7 +832,7 @@ function addDone()
     div.appendChild(doneButton);
 }
 
-async function addToken()
+function addToken()
 {
     let b = document.getElementById("border").value;
     let c = document.getElementById("currentHp").value;
