@@ -26,7 +26,7 @@ let go = document.createElement("button");
 let people = [];
 let numToLet = {0 : "", 1 : "a", 2 : "b"};
 
-async function init()
+function init()
 {
     char.innerHTML = "Select Character";
     char.classList = "blo";
@@ -245,11 +245,11 @@ function handleGoButton()
         let loading = document.createElement("h3");
         loading.innerHTML = "Loading...";
         div.appendChild(loading);
-        setInterval(() => {window.location.href= `map.html?${curCharacter}_${curBorder}_x`;}, 2000);
+        //setInterval(() => {window.location.href= `map.html?${curCharacter}_${curBorder}_x`;}, 2000);
     }
 }
 
-async function createChar(curCharacter, curBorder)
+function createChar(curCharacter, curBorder)
 {
     let char = {border : curBorder, currentHp : `${document.getElementById("Current Hp").value}`, maxHp : `${document.getElementById("Max Hp").value}`, map : "", name : curCharacter, title : " ", xPos : "1", yPos : "A"};
 
