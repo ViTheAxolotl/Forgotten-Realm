@@ -62,7 +62,7 @@ function init()
 {
     setMainVaribles();
 
-    //setTimeout(() => {addTokens(); setTurnOrder();}, 1000);
+    setTimeout(() => {addTokens(); setTurnOrder();}, 450);
     setInterval(timer, 500);
 }
 
@@ -177,7 +177,7 @@ function addTokens()
         addCharacter(wholeDB[key], false);
     }
 
-    if(!(Object.keys(wholeDB).includes(htmlInfo[0].replace("-", ""))))
+    if(!(Object.keys(wholeDB).includes(htmlInfo[0].slice(0, htmlInfo[0].indexOf("-"))))
     {
         let htmlChar = html[htmlInfo[0]];
         let token = document.getElementById(htmlChar["name"]);
