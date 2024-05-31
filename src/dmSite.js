@@ -37,6 +37,7 @@ let curCharacter;
 let htmlInfo = window.location.href;
 let wholeTO = {};
 let temp;
+let mode;
 
 function init()
 {
@@ -98,6 +99,7 @@ function handleAdd()
 {
     hideButtons();
 
+    mode = "add";
     curCharacter = {border: "invisible", currentHp: "20", map: "", maxHp: "20", name: "invisible-", title: " ", xPos: "5", yPos: "D"};
     makeToken(curCharacter);
     editDiv = document.getElementById("invisible--div");
@@ -842,8 +844,19 @@ function addToken()
     let t = document.getElementById("title").value;
     let x = document.getElementById("xPos").value;
     let y = document.getElementById("yPos").value;
+    let id = n.slice(0, n.indexOf("-"));
+    
+    if(Object.keys(wholeDB).includes(id) && mode == "add")
+    {
+        id = id + "1";
 
-    set(ref(database, `currentMap/${n.slice(0, n.indexOf("-"))}`),
+        while(Object.keys(wholeDB).includes(id))
+        {
+            id = id.slice(0, length - 1) + (parseInt(id.charAt(length - 1)) + 1);
+        }
+    }
+
+    set(ref(database, `currentMap/${id}`),
     {
         border : b,
         currentHp : c,
