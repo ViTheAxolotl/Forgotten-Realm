@@ -159,7 +159,7 @@ function handleRemove()
     {
         if(key != "invisible")
         {
-            makeToken(wholeData[key]);
+            makeToken(wholeDB[key]);
         }
     }
 
