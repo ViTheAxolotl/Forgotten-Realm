@@ -679,7 +679,7 @@ async function handleSave()
     hideButtons();
 
     collectionNames = [];
-    const tempRef = ref(database, `list/`);
+    const tempRef = ref(database, `lists/`);
     onValue(tempRef, (snapshot) => 
     {
         const data = snapshot.val();
@@ -771,7 +771,7 @@ async function handleLoad()
     collectionNames = [];
     let goButton = document.createElement("button");
  
-    const tempRef = ref(database, `list/`);
+    const tempRef = ref(database, `lists/`);
     onValue(tempRef, (snapshot) => 
     {
         const data = snapshot.val();
