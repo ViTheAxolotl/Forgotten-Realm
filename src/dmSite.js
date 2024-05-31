@@ -22,10 +22,10 @@ const currentMapRef = ref(database, 'currentMap/');
 onValue(currentMapRef, (snapshot) => 
 {
     const data = snapshot.val();
-    wholeDB = data;
 
     if(showMap)
     {
+        wholeDB = data;
         alert("sucessful changed");
         showMap = false;
     }
