@@ -15,10 +15,7 @@ const firebaseApp = initializeApp
     measurementId: "G-Q2W494NRDT"
 });
 
-const db = getFirestore(firebaseApp);
 let database = getDatabase();
-let showMap = false;
-
 const currentMapRef = ref(database, 'currentMap/');
 onValue(currentMapRef, (snapshot) => 
 {
@@ -190,7 +187,7 @@ async function deleteToken()
         {
             try
             { 
-                await deleteDoc(doc(db, "currentMap", key));
+                set(ref(database, `currentMap/${key}`), null);
             }
             
             catch (e) 
