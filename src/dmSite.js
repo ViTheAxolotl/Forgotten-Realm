@@ -36,7 +36,7 @@ const currentTORef = ref(database, 'currentTO/');
 onValue(currentTORef, (snapshot) => 
 {
     const data = snapshot.val();
-    wholeTODB = data;
+    wholeTO = data;
 });
 
 let fiveButtons = [];
@@ -49,7 +49,6 @@ let collectionNames = [];
 let curCharacter;
 let htmlInfo = window.location.href;
 let wholeTO = {};
-let wholeTODB = {};
 
 function init()
 {
@@ -501,18 +500,6 @@ async function quickUpdate()
     resetQuick();
 }
 
-async function readTurnOrder()
-{
-    wholeTO = {};
-    const q = query(collection(db, "currentTO"));
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => 
-    {
-        // doc.data() is never undefined for query doc snapshots
-        wholeTO[doc.id] = doc.data();
-    });
-}
-
 function makeTORow(key)
 {
     let TORow = [document.createElement("div"), ["Name", "Order", "Selected"], [document.createElement("h6"), document.createElement("input"), document.createElement("input"), document.createElement("button")]];
@@ -649,12 +636,6 @@ async function uploadRowTO(key)
         position : document.getElementById(`Order_${wholeTO[key].charName}`).value,
         selected : document.getElementById(`Selected_${wholeTO[key].charName}`).value
     });
-    /*const docRef = await setDoc(doc(db, "currentTO", key), 
-    {
-        charName : document.getElementById(`Name_${wholeTO[key].charName}`).innerHTML,
-        position : document.getElementById(`Order_${wholeTO[key].charName}`).value,
-        selected : document.getElementById(`Selected_${wholeTO[key].charName}`).value
-    });*/
 }
 
 function handleChangeMap()
@@ -804,7 +785,8 @@ async function emptyCollection(cName)
 
 async function emptyTOCollection()
 {
-    let colToRemove = [];
+    set(ref(database, `currentTO/`), null);
+    /*let colToRemove = [];
     const q = query(collection(db, "currentTO"));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {colToRemove.push(doc.data().charName);});
@@ -812,7 +794,7 @@ async function emptyTOCollection()
     for(let docum of colToRemove)
     {
         await deleteDoc(doc(db, "currentTO", docum));
-    }
+    }*/
 }
 
 async function handleLoad()
