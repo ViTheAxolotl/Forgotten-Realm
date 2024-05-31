@@ -24,12 +24,6 @@ onValue(currentMapRef, (snapshot) =>
 {
     const data = snapshot.val();
     wholeDB = data;
-
-    if(showMap)
-    {
-        alert("sucessful changed");
-        showMap = false;
-    }
 });
 
 const currentTORef = ref(database, 'currentTO/');
@@ -40,7 +34,6 @@ onValue(currentTORef, (snapshot) =>
 });
 
 let fiveButtons = [];
-let wholeData = {};
 let wholeDB = {};
 let div = document.getElementById("story");
 let editDiv;
@@ -99,8 +92,6 @@ function init()
                     break;
             }
         }
-
-        readTokens();
     }
 
     else
@@ -148,18 +139,6 @@ function makeToken(key)
     div.appendChild(token[0]); 
 }
 
-async function readTokens()
-{
-    wholeData = {};
-    const q = query(collection(db, "currentMap"));
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => 
-    {
-        // doc.data() is never undefined for query doc snapshots
-        wholeData[doc.id] = doc.data();
-    });
-}
-
 function handleRemove()
 {
     hideButtons();
@@ -184,7 +163,6 @@ function handleDeleteOrEdit()
 
     if(currentEOrD.length > 0)
     {
-        
         for(let i = 0; i < 2; i++)
         {
             currentEOrD[0].parentElement.removeChild(currentEOrD[0]);
@@ -206,9 +184,9 @@ function handleDeleteOrEdit()
 
 async function deleteToken()
 {
-    for(let key of Object.keys(wholeData))
+    for(let key of Object.keys(wholeDB))
     {
-        if(wholeData[key].name == this.classList[1])
+        if(wholeDB[key].name == this.classList[1])
         {
             try
             { 
@@ -257,11 +235,11 @@ function handleEdit()
 
     if(this != undefined)
     {
-        for(let key of Object.keys(wholeData))
+        for(let key of Object.keys(wholeDB))
         {
-            if(wholeData[key].name == this.classList[1])
+            if(wholeDB[key].name == this.classList[1])
             {
-                curCharacter = wholeData[key];
+                curCharacter = wholeDB[key];
             }
         }
     }
@@ -403,7 +381,6 @@ function updateHpPic(maxHp, currentHp)
 
 function resetDelete()
 {
-    readTokens();
     setTimeout(() => {
         let aboveDiv = div.parentElement;
         div.remove();
@@ -417,7 +394,6 @@ function resetDelete()
 
 function resetQuick()
 {
-    readTokens();
     setTimeout(() => {
         let aboveDiv = div.parentElement;
         div.remove();
@@ -437,21 +413,21 @@ function handleQuick()
     date.innerHTML = `Current Hps at time of ${curDate}`;
     div.appendChild(date);
 
-    for(let key of Object.keys(wholeData))
+    for(let key of Object.keys(wholeDB))
     {
-        if(key != "invisible" && wholeData[key].border != "invisible")
+        if(key != "invisible" && wholeDB[key].border != "invisible")
         {
-            makeToken(wholeData[key]);
-            let currentDiv = document.getElementById(`${wholeData[key].name}-div`);
+            makeToken(wholeDB[key]);
+            let currentDiv = document.getElementById(`${wholeDB[key].name}-div`);
             let names = ["xPos", "yPos", "currentHp", "maxHp"];
             let feilds = [document.createElement("h6"), document.createElement("h6"), document.createElement("input"), document.createElement("h6")]
             
-            feilds[0].innerHTML = wholeData[key].xPos;
-            feilds[1].innerHTML = wholeData[key].yPos;
-            feilds[2].value = wholeData[key].currentHp;
+            feilds[0].innerHTML = wholeDB[key].xPos;
+            feilds[1].innerHTML = wholeDB[key].yPos;
+            feilds[2].value = wholeDB[key].currentHp;
             feilds[2].id = "newHp";
             feilds[2].style.width = "3%";
-            feilds[3].innerHTML = wholeData[key].maxHp;
+            feilds[3].innerHTML = wholeDB[key].maxHp;
 
             for(let i = 0; i < 4; i++)
             {
@@ -469,7 +445,7 @@ function handleQuick()
             }
 
             let upload = document.createElement("button");
-            upload.id = wholeData[key].name;
+            upload.id = wholeDB[key].name;
             upload.onclick = quickUpdate;
             upload.style.margin = "5px";
             upload.style.width = "6%";
@@ -486,16 +462,16 @@ async function quickUpdate()
     let newHp = document.getElementById('newHp');
     let id = this.id.slice(0, this.id.indexOf("-"));
 
-    const docRef = await setDoc(doc(db, "currentMap", id), 
+    set(ref(database, `currentMap/${id}`),
     {
-        border : wholeData[id].border,
+        border : wholeDB[id].border,
         currentHp : newHp.value,
-        maxHp : wholeData[id].maxHp,
+        maxHp : wholeDB[id].maxHp,
         map : "",
-        name : wholeData[id].name,
-        title : wholeData[id].title,
-        xPos : wholeData[id].xPos,
-        yPos : wholeData[id].yPos
+        name : wholeDB[id].name,
+        title : wholeDB[id].title,
+        xPos : wholeDB[id].xPos,
+        yPos : wholeDB[id].yPos
     });
 
     resetQuick();
@@ -671,22 +647,22 @@ async function updateMap()
 {
     let b, c, mH, m, n, t, x, y;
     
-    for(let key of Object.keys(wholeData))
+    for(let key of Object.keys(wholeDB))
     {
-        if(wholeData[key].name == "invisible-")
+        if(wholeDB[key].name == "invisible-")
         {
-            b = wholeData[key].border;
-            c = wholeData[key].currentHp;
-            mH = wholeData[key].maxHp;
+            b = wholeDB[key].border;
+            c = wholeDB[key].currentHp;
+            mH = wholeDB[key].maxHp;
             m = this.parentNode.childNodes[6][this.parentNode.childNodes[6].selectedIndex].value;
-            n = wholeData[key].name;
-            t = wholeData[key].title;
-            x = wholeData[key].xPos;
-            y = wholeData[key].yPos;
+            n = wholeDB[key].name;
+            t = wholeDB[key].title;
+            x = wholeDB[key].xPos;
+            y = wholeDB[key].yPos;
         }
     }
 
-    const docRef = await setDoc(doc(db, "currentMap", n.slice(0, n.indexOf("-"))), 
+    set(ref(database, `currentMap/${n.slice(0, n.indexOf("-"))}`),
     {
         border : b,
         currentHp : c,
@@ -704,16 +680,23 @@ async function updateMap()
 async function handleSave()
 {
     hideButtons();
-    readTokens();
 
     collectionNames = [];
-    const q = query(collection(db, "list"));
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => 
+    const tempRef = ref(database, `list/`);
+    onValue(tempRef, (snapshot) => 
     {
-        // doc.data() is never undefined for query doc snapshots
-        collectionNames.push(doc.data().name);
+        const data = snapshot.val();
+        data.forEach((doc) => 
+        {
+            // doc.data() is never undefined for query doc snapshots
+            collectionNames.push(doc.data().name);
+        });
     });
+
+    if(collectionNames == null || collectionNames[0] == null)
+    {
+        set(ref(database, `lists/currentMap`), {name : "currentMap"});
+    }
     
     let selectNames = document.createElement("select");
     let saveName = document.createElement("input");
@@ -760,46 +743,28 @@ async function handleUploadeSave()
         emptyCollection(cName);
     }
 
-    for(let key of Object.keys(wholeData))
+    for(let key of Object.keys(wholeDB))
     {
-        const docRef = await setDoc(doc(db, cName, key), wholeData[key]);
+        set(ref(database, `${cName}/${key}`), wholeDB[key]);
     }
 
-    await setDoc(doc(db, cName, Object.keys(wholeData)[0]), wholeData[Object.keys(wholeData)[0]]);
+    set(ref(database, `${cName}/${Object.keys(wholeDB)[0]}`), wholeDB[Object.keys(wholeDB)[0]]);
 
-    const docRef = await setDoc(doc(db, "list", cName), 
-    {
-        name : cName
-    });
+    wholeDB[Object.keys(wholeDB)[0]]
+
+    set(ref(database, `lists/${cName}`), {name : `${cName}`});
 
     handleDone();
 }
 
 async function emptyCollection(cName)
 {
-    let colToRemove = [];
-    const q = query(collection(db, cName));
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {colToRemove.push(doc.data().name);});
-
-    for(let docum of colToRemove)
-    {
-        await deleteDoc(doc(db, cName, docum.slice(0, docum.indexOf("-"))));
-    }
+    set(ref(database, `${cName}/`), null);
 }
 
 async function emptyTOCollection()
 {
     set(ref(database, `currentTO/`), null);
-    /*let colToRemove = [];
-    const q = query(collection(db, "currentTO"));
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {colToRemove.push(doc.data().charName);});
-
-    for(let docum of colToRemove)
-    {
-        await deleteDoc(doc(db, "currentTO", docum));
-    }*/
 }
 
 async function handleLoad()
@@ -808,12 +773,16 @@ async function handleLoad()
 
     collectionNames = [];
     let goButton = document.createElement("button");
-    const q = query(collection(db, "list"));
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => 
+ 
+    const tempRef = ref(database, `list/`);
+    onValue(tempRef, (snapshot) => 
     {
-        // doc.data() is never undefined for query doc snapshots
-        collectionNames.push(doc.data().name);
+        const data = snapshot.val();
+        data.forEach((doc) => 
+        {
+            // doc.data() is never undefined for query doc snapshots
+            collectionNames.push(doc.data().name);
+        });
     });
     
     let selectNames = document.createElement("select");
@@ -844,19 +813,17 @@ async function loadMap()
     let cName = "";
     cName = selectNames[selectNames.selectedIndex].value;
     emptyCollection("currentMap");
-    wholeData = {};
 
-    const q = query(collection(db, cName));
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => 
+    const tempRef = ref(database, `${cName}/`);
+    onValue(tempRef, (snapshot) => 
     {
-        // doc.data() is never undefined for query doc snapshots
-        wholeData[doc.id] = doc.data();
+        const data = snapshot.val();
+        wholeDB = data;
     });
 
-    for(let key of Object.keys(wholeData))
+    for(let key of Object.keys(wholeDB))
     {
-        const docRef = await setDoc(doc(db, "currentMap", key), wholeData[key]);
+        set(ref(database, `currentMap/${key}`), wholeDB[key]);
     }
 
     handleDone();
@@ -912,18 +879,6 @@ async function addToken()
         xPos : x,
         yPos : y,
     });
-
-    /*const docRef = await setDoc(doc(db, "currentMap", n.slice(0, n.indexOf("-"))), 
-    {
-        border : b,
-        currentHp : c,
-        maxHp : mH,
-        map : "",
-        name : n,
-        title : t,
-        xPos : x,
-        yPos : y
-    });*/
 
     resetDelete();
 }
