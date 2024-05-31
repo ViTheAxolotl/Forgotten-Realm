@@ -648,7 +648,7 @@ function updateMap()
             b = wholeDB[key].border;
             c = wholeDB[key].currentHp;
             mH = wholeDB[key].maxHp;
-            m = this.parentNode.childNodes[6][this.parentNode.childNodes[6].selectedIndex].value;
+            m = this.parentNode.childNodes[8][this.parentNode.childNodes[8].selectedIndex].value;
             n = wholeDB[key].name;
             t = wholeDB[key].title;
             x = wholeDB[key].xPos;
