@@ -685,7 +685,7 @@ async function handleSave()
         const data = snapshot.val();
         for(let point of Object.keys(data))
         {
-            collectionNames.push(point.name);
+            collectionNames.push(point);
         }
     });
 
@@ -776,7 +776,7 @@ async function handleLoad()
         const data = snapshot.val();
         for(let point of Object.keys(data))
         {
-            collectionNames.push(point.name);
+            collectionNames.push(point);
         }
     });
     
