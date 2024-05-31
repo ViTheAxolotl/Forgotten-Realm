@@ -683,11 +683,10 @@ async function handleSave()
     onValue(tempRef, (snapshot) => 
     {
         const data = snapshot.val();
-        data.forEach((doc) => 
+        for(let point of Object.keys(data))
         {
-            // doc.data() is never undefined for query doc snapshots
-            collectionNames.push(doc.data().name);
-        });
+            collectionNames.push(point.name);
+        }
     });
 
     if(collectionNames == null || collectionNames[0] == null)
@@ -775,11 +774,10 @@ async function handleLoad()
     onValue(tempRef, (snapshot) => 
     {
         const data = snapshot.val();
-        data.forEach((doc) => 
+        for(let point of Object.keys(data))
         {
-            // doc.data() is never undefined for query doc snapshots
-            collectionNames.push(doc.data().name);
-        });
+            collectionNames.push(point.name);
+        }
     });
     
     let selectNames = document.createElement("select");
