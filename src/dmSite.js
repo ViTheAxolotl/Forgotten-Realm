@@ -18,6 +18,7 @@ const firebaseApp = initializeApp
 const db = getFirestore(firebaseApp);
 let database = getDatabase();
 let showMap = false;
+
 const currentMapRef = ref(database, 'currentMap/');
 onValue(currentMapRef, (snapshot) => 
 {
@@ -31,6 +32,13 @@ onValue(currentMapRef, (snapshot) =>
     }
 });
 
+const currentTORef = ref(database, 'currentTO/');
+onValue(currentTORef, (snapshot) => 
+{
+    const data = snapshot.val();
+    wholeTODB = data;
+});
+
 let fiveButtons = [];
 let wholeData = {};
 let wholeDB = {};
@@ -41,6 +49,7 @@ let collectionNames = [];
 let curCharacter;
 let htmlInfo = window.location.href;
 let wholeTO = {};
+let wholeTODB = {};
 
 function init()
 {
@@ -634,12 +643,18 @@ async function uploadTO()
 
 async function uploadRowTO(key)
 {
-    const docRef = await setDoc(doc(db, "currentTO", key), 
+    set(ref(database, `currentTO/${key}`),
     {
         charName : document.getElementById(`Name_${wholeTO[key].charName}`).innerHTML,
         position : document.getElementById(`Order_${wholeTO[key].charName}`).value,
         selected : document.getElementById(`Selected_${wholeTO[key].charName}`).value
     });
+    /*const docRef = await setDoc(doc(db, "currentTO", key), 
+    {
+        charName : document.getElementById(`Name_${wholeTO[key].charName}`).innerHTML,
+        position : document.getElementById(`Order_${wholeTO[key].charName}`).value,
+        selected : document.getElementById(`Selected_${wholeTO[key].charName}`).value
+    });*/
 }
 
 function handleChangeMap()
