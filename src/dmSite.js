@@ -61,6 +61,11 @@ function init()
                     button.onclick = handleRemove;
                     break;
 
+                case "pre":
+                    fiveButtons.push(button);
+                    button.onclick = handlePreset;
+                    break;
+
                 case "quick":
                     fiveButtons.push(button);
                     button.onclick = handleQuick;
