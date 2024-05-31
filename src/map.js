@@ -272,6 +272,11 @@ function addCharacter(character, update)
             x = pos[xPos.indexOf(character["xPos"])];
             y = pos[yPos.indexOf(character["yPos"])];
 
+            if(char[0].id == "invisible-")
+            {
+                document.getElementById("grid").src = imgs["mapName"][character.map];
+            }
+
             if(title.includes("Large"))
             {
                 setupExp(2, char, "x");
