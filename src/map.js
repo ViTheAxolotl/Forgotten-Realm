@@ -649,7 +649,7 @@ function checkUpdates()
 
     for(let name of Object.keys(wholeDB))
     {
-        let token = document.getElementById(name);
+        let token = document.getElementById(name + "-");
         if(token != null)
         {
             if(token.classList.contains("update"))
