@@ -35,7 +35,6 @@ let wholeDB = {};
 let div = document.getElementById("story");
 let editDiv;
 let imgs;
-let collectionNames = [];
 let curCharacter;
 let htmlInfo = window.location.href;
 let wholeTO = {};
@@ -68,7 +67,7 @@ function init()
                     button.onclick = handleQuick;
                     break;
 
-                case "turn":
+                case "turnO":
                     fiveButtons.push(button);
                     button.onclick = handleTurn;
                     break;
@@ -701,7 +700,7 @@ function listSelect()
                 selectNames.appendChild(option); 
             }  
         }
-    }, 100);
+    }, 200);
 
     selectNames.classList = "center blo";
     selectNames.id = "selectNames";
