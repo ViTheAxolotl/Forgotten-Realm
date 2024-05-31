@@ -841,8 +841,6 @@ function addToken()
     let x = document.getElementById("xPos").value;
     let y = document.getElementById("yPos").value;
 
-    showMap = true;
-
     set(ref(database, `currentMap/${n.slice(0, n.indexOf("-"))}`),
     {
         border : b,
