@@ -694,16 +694,19 @@ async function handleSave()
     let label = document.createElement("h6");
     let button = document.createElement("button");
 
-    for(let cName of collectionNames)
+    setTimeout(() => 
     {
-        if(cName != "currentMap")
+        for(let cName of collectionNames)
         {
-            let option = document.createElement("option");
-            option.value = cName;
-            option.text = cName;
-            selectNames.appendChild(option); 
-        }  
-    }
+            if(cName != "currentMap")
+            {
+                let option = document.createElement("option");
+                option.value = cName;
+                option.text = cName;
+                selectNames.appendChild(option); 
+            }  
+        }
+    }, 500);
 
     selectNames.classList = "center blo";
     selectNames.id = "selectNames";
