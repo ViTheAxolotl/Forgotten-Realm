@@ -854,6 +854,8 @@ function addToken()
         {
             id = id.slice(0, length - 1) + (parseInt(id.charAt(length - 1)) + 1);
         }
+
+        mode = "none";
     }
 
     set(ref(database, `currentMap/${id}`),
