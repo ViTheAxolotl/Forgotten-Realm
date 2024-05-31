@@ -62,7 +62,7 @@ function init()
 {
     setMainVaribles();
 
-    setTimeout(() => {addTokens(); setTurnOrder();}, 1000);
+    //setTimeout(() => {addTokens(); setTurnOrder();}, 1000);
     setInterval(timer, 500);
 }
 
