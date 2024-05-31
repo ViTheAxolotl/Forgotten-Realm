@@ -49,6 +49,7 @@ let collectionNames = [];
 let curCharacter;
 let htmlInfo = window.location.href;
 let wholeTO = {};
+let temp;
 
 function init()
 {
@@ -614,9 +615,10 @@ function handleTurn()
 
 async function uploadTO()
 {
+    temp = wholeTO;
     emptyTOCollection();
 
-    for(let key of Object.keys(wholeTO))
+    for(let key of Object.keys(temp))
     {   
         setTimeout(() => {uploadRowTO(key)}, 250);
     }
@@ -631,9 +633,9 @@ async function uploadRowTO(key)
 {
     set(ref(database, `currentTO/${key}`),
     {
-        charName : document.getElementById(`Name_${wholeTO[key].charName}`).innerHTML,
-        position : document.getElementById(`Order_${wholeTO[key].charName}`).value,
-        selected : document.getElementById(`Selected_${wholeTO[key].charName}`).value
+        charName : document.getElementById(`Name_${temp[key].charName}`).innerHTML,
+        position : document.getElementById(`Order_${temp[key].charName}`).value,
+        selected : document.getElementById(`Selected_${temp[key].charName}`).value
     });
 }
 
