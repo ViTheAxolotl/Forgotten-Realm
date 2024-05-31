@@ -1,7 +1,6 @@
 "use strict";
-
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
-import { getFirestore, setDoc, getDocs, deleteDoc, doc, collection, query, where } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js';
+import { getDatabase, ref, set, onValue } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
 
 const firebaseApp = initializeApp
 ({
@@ -14,8 +13,28 @@ const firebaseApp = initializeApp
     measurementId: "G-Q2W494NRDT"
 });
 
-const db = getFirestore(firebaseApp);
-let wholeData = {};
+let database = getDatabase();
+const currentMapRef = ref(database, 'currentMap/');
+onValue(currentMapRef, (snapshot) => 
+{
+    const data = snapshot.val();
+    wholeDB = data;
+});
+
+const currentTORef = ref(database, 'currentTO/');
+onValue(currentTORef, (snapshot) => 
+{
+    const data = snapshot.val();
+    wholeTO = data;
+
+    if(wholeDB["invisible"] != undefined)
+    {
+        removeTurnOrder(); 
+        setTurnOrder();
+    }
+});
+
+let wholeDB = {};
 let div = document.getElementById("gridMap");
 let htmlInfo = window.location.href;
 let html = {};
@@ -43,11 +62,9 @@ let currentTurn;
 function init()
 {
     setMainVaribles();
-    readTokens();
-    turnOrderTimer();
+    addTokens();
 
-    setInterval(timer, 1000);
-    setInterval(turnOrderTimer, 20500);
+    setInterval(timer, 500);
 }
 
 function setMainVaribles()
@@ -80,34 +97,13 @@ function setMainVaribles()
     yPos = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"];
     xPos = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"];
 
-    wholeTO = {};
     currentHp = document.getElementById("current");
     maxHp = document.getElementById("max");
     titleTxt = document.getElementById("title");
     divTO = document.getElementById("turnOrder");
 }
 
-async function readTokens()
-{
-    wholeData = {};
-    names = new Set();
-    const q = query(collection(db, "currentMap"));
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => 
-    {
-        // doc.data() is never undefined for query doc snapshots
-        wholeData[doc.id] = doc.data();
-        names.add(doc.data().name);
-        if(doc.data().name == "invisible-")
-        {
-            document.getElementById("grid").src = imgs["mapName"][doc.data().map];
-        }
-    });
-
-    addTokens();
-}
-
-async function addTokens()
+function addTokens()
 {
     if(!(names.has(htmlInfo[0])))
     {
@@ -120,7 +116,7 @@ async function addTokens()
         let t = document.getElementById("title");
         t = t.innerHTML.slice(t.innerHTML.indexOf(" "));
 
-        const docRef = await setDoc(doc(db, "currentMap", htmlChar["name"].slice(0, htmlChar["name"].indexOf("-"))), 
+        set(ref(database, `currentMap/${htmlChar["name"].slice(0, htmlChar["name"].indexOf("-"))}`),
         {
             border : htmlChar["border"],
             currentHp : document.getElementById("current").value,
@@ -179,9 +175,9 @@ async function addTokens()
         }
     }
 
-    for(let key of Object.keys(wholeData))
+    for(let key of Object.keys(wholeDB))
     {
-        addCharacter(wholeData[key], false);
+        addCharacter(wholeDB[key], false);
     }
 
     if(!(names.has(htmlInfo[0])))
@@ -195,7 +191,7 @@ async function addTokens()
         let t = document.getElementById("title");
         t = t.innerHTML.slice(t.innerHTML.indexOf(" "));
 
-        const docRef = await setDoc(doc(db, "currentMap", htmlChar["name"].slice(0, htmlChar["name"].indexOf("-"))), 
+        set(ref(database, `currentMap/${htmlChar["name"].slice(0, htmlChar["name"].indexOf("-"))}`),
         {
             border : htmlChar["border"],
             currentHp : document.getElementById("current").value,
@@ -209,18 +205,6 @@ async function addTokens()
 
         names.add(htmlInfo[0]);
     }
-}
-
-async function readTurnOrder()
-{
-    wholeTO = {};
-    const q = query(collection(db, "currentTO"));
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => 
-    {
-        // doc.data() is never undefined for query doc snapshots
-        wholeTO[doc.id] = doc.data();
-    });
 }
 
 function makeToken(key, turn, charPos)
@@ -246,19 +230,6 @@ function makeToken(key, turn, charPos)
     row[1].innerHTML = `${charPos}`;
     row[2].innerHTML = `| ${key}`;
     divTO.appendChild(row[0]);
-}
-
-function turnOrderTimer()
-{
-    readTurnOrder();
-    setTimeout(() => 
-        {
-            if(wholeData["invisible"] != undefined)
-            {
-                removeTurnOrder(); 
-                setTurnOrder();
-            }
-        }, 2000);
 }
 
 function removeTurnOrder()
@@ -672,7 +643,7 @@ function timer()
 
     else if(stage == 2)
     {
-        readTokens();
+        addTokens();
         stage = 1;
     }
 }
@@ -696,7 +667,7 @@ function checkUpdates()
     }
 }
 
-async function updateToken(token)
+function updateToken(token)
 {
     try 
     {
@@ -742,7 +713,7 @@ async function updateToken(token)
                 break;
         }
 
-        const docRef = await setDoc(doc(db, "currentMap", char.id.slice(0, char.id.indexOf("-"))), 
+        set(ref(database, `currentMap/${char.id.slice(0, char.id.indexOf("-"))}`),
         {
             border : borderColor,
             currentHp : document.getElementById("current").value,

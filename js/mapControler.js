@@ -1,7 +1,6 @@
 "use strict";
-
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
-import { getFirestore, setDoc, getDocs, deleteDoc, doc, collection, query, where } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js';
+import { getDatabase, ref, set, onValue } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
 
 const firebaseApp = initializeApp
 ({
@@ -14,9 +13,15 @@ const firebaseApp = initializeApp
     measurementId: "G-Q2W494NRDT"
 });
 
-const db = getFirestore(firebaseApp);
+let database = getDatabase();
+const currentTORef = ref(database, 'currentTO/');
+onValue(currentTORef, (snapshot) => 
+{
+    const data = snapshot.val();
+    wholeTO = data;
+});
+
 const gridMap = document.querySelector("#gridMap");
-let map = document.getElementById("grid");
 const rect = gridMap.getBoundingClientRect();
 let mapSize;
 let bumper;
@@ -113,18 +118,6 @@ function setMainVaribles()
     }
 }
 
-async function readTurnOrder()
-{
-    wholeTO = {};
-    const q = query(collection(db, "currentTO"));
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => 
-    {
-        // doc.data() is never undefined for query doc snapshots
-        wholeTO[doc.id] = doc.data();
-    });
-}
-
 function increaseValue()
 {
     let cHp = parseInt(currentHp.value);
@@ -210,7 +203,7 @@ function decreaseValue()
     }
 }
 
-async function changeTOValue(data, set)
+function changeTOValue(data, set)
 {
     let sel = "false";
     
@@ -219,7 +212,7 @@ async function changeTOValue(data, set)
         sel = "true";
     }
 
-    const docRef = await setDoc(doc(db, "currentTO", data.charName), 
+    set(ref(database, `currentTO/${data.charName}`),
     {
         charName : data.charName,
         position : data.position,
@@ -229,45 +222,42 @@ async function changeTOValue(data, set)
 
 function handleChangeInTurn(dirrection)
 {
-    readTurnOrder();
-    setTimeout(() => {
-        let curSelected;
-        let newSelected;
-        let newPosition;
+    let curSelected;
+    let newSelected;
+    let newPosition;
 
-        for(let key of Object.keys(wholeTO))
+    for(let key of Object.keys(wholeTO))
+    {
+        if(wholeTO[key].selected == "true")
         {
-            if(wholeTO[key].selected == "true")
-            {
-                curSelected = key;
-                break;
-            }
+            curSelected = key;
+            break;
         }
+    }
 
-        if(dirrection == "up")
-        {
-            if(wholeTO[curSelected].position == Object.keys(wholeTO).length){newPosition = "1";}
-            else{newPosition = `${parseInt(wholeTO[curSelected].position) + 1}`}
-        }
-            
-        else if(dirrection == "down")
-        {
-            if(wholeTO[curSelected].position == "1"){newPosition = `${Object.keys(wholeTO).length}`;}
-            else{newPosition = `${parseInt(wholeTO[curSelected].position) - 1}`}
-        }
+    if(dirrection == "up")
+    {
+        if(wholeTO[curSelected].position == Object.keys(wholeTO).length){newPosition = "1";}
+        else{newPosition = `${parseInt(wholeTO[curSelected].position) + 1}`}
+    }
+        
+    else if(dirrection == "down")
+    {
+        if(wholeTO[curSelected].position == "1"){newPosition = `${Object.keys(wholeTO).length}`;}
+        else{newPosition = `${parseInt(wholeTO[curSelected].position) - 1}`}
+    }
 
-        for(let key of Object.keys(wholeTO))
-        {
-            if(dirrection == "up" && wholeTO[key].position == newPosition){newSelected = key; break;}
-            else if(dirrection == "down" && wholeTO[key].position == newPosition){newSelected = key; break;}
-        }
+    for(let key of Object.keys(wholeTO))
+    {
+        if(dirrection == "up" && wholeTO[key].position == newPosition){newSelected = key; break;}
+        else if(dirrection == "down" && wholeTO[key].position == newPosition){newSelected = key; break;}
+    }
 
-        document.getElementById(`${curSelected}-div`).classList.remove("selected");
-        document.getElementById(`${newSelected}-div`).classList.add("selected");
+    document.getElementById(`${curSelected}-div`).classList.remove("selected");
+    document.getElementById(`${newSelected}-div`).classList.add("selected");
 
-        changeTOValue(wholeTO[curSelected], "unset");
-        changeTOValue(wholeTO[newSelected], "set");
-    }, 1500);
+    changeTOValue(wholeTO[curSelected], "unset");
+    changeTOValue(wholeTO[newSelected], "set");
 }
 
 function moveChar(xPos, yPos)

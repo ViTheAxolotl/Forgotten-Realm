@@ -1,6 +1,6 @@
 "use strict";
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
-import { getFirestore, setDoc, getDocs, deleteDoc, doc, collection, query, where } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js';
+import { getDatabase, ref, set, onValue } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
 
 const firebaseApp = initializeApp
 ({
@@ -13,7 +13,6 @@ const firebaseApp = initializeApp
     measurementId: "G-Q2W494NRDT"
 });
 
-const db = getFirestore(firebaseApp);
 let enter = document.getElementById("enter");
 let charName = document.getElementById("name");
 let currentName;
@@ -26,7 +25,6 @@ let hp = document.createElement("h3");
 let go = document.createElement("button");
 let people = [];
 let numToLet = {0 : "", 1 : "a", 2 : "b"};
-let wholeData = {};
 
 async function init()
 {
@@ -45,14 +43,6 @@ async function init()
 
     enter.onclick = handleEnterButton;
     go.onclick = handleGoButton;
-
-    const q = query(collection(db, "currentMap"));
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => 
-    {
-        // doc.data() is never undefined for query doc snapshots
-        wholeData[doc.id] = doc.data();
-    });
 }
 
 function handleEnterButton()
@@ -263,7 +253,7 @@ async function createChar(curCharacter, curBorder)
 {
     let char = {border : curBorder, currentHp : `${document.getElementById("Current Hp").value}`, maxHp : `${document.getElementById("Max Hp").value}`, map : "", name : curCharacter, title : " ", xPos : "1", yPos : "A"};
 
-    const docRef = await setDoc(doc(db, "currentMap", curCharacter.slice(0, curCharacter.indexOf("-"))), char);
+    set(ref(database, `currentMap/${curCharacter.slice(0, curCharacter.indexOf("-"))}`), char);
 }
 
 init();
