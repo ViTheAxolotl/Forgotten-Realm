@@ -571,7 +571,6 @@ function addTORow(rowName)
 function handleTurn()
 {
     hideButtons();
-    readTurnOrder();
     setTimeout(() => 
     {
         for(let key of Object.keys(wholeTO))
