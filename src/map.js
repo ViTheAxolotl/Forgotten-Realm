@@ -647,7 +647,7 @@ function checkUpdates()
 {
     tokens = [];
 
-    for(let name of wholeDB)
+    for(let name of Object.keys(wholeDB))
     {
         let token = document.getElementById(name);
         if(token != null)
