@@ -574,14 +574,17 @@ function handleTurn()
     hideButtons();
     setTimeout(() => 
     {
-        for(let key of Object.keys(wholeTO))
+        if(wholeTO != null)
         {
-            makeTORow(wholeTO[key]);
-            let feilds = [document.getElementById(`Name_${wholeTO[key].charName}`), document.getElementById(`Order_${wholeTO[key].charName}`), document.getElementById(`Selected_${wholeTO[key].charName}`)]
-            
-            feilds[0].innerHTML = wholeTO[key].charName;
-            feilds[1].value = wholeTO[key].position;
-            feilds[2].value = wholeTO[key].selected;
+            for(let key of Object.keys(wholeTO))
+            {
+                makeTORow(wholeTO[key]);
+                let feilds = [document.getElementById(`Name_${wholeTO[key].charName}`), document.getElementById(`Order_${wholeTO[key].charName}`), document.getElementById(`Selected_${wholeTO[key].charName}`)]
+                
+                feilds[0].innerHTML = wholeTO[key].charName;
+                feilds[1].value = wholeTO[key].position;
+                feilds[2].value = wholeTO[key].selected;
+            }
         }
     
         let buttons = [document.createElement("button"), document.createElement("button")];
