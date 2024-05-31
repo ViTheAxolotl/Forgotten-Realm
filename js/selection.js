@@ -246,7 +246,7 @@ function handleGoButton()
         let loading = document.createElement("h3");
         loading.innerHTML = "Loading...";
         div.appendChild(loading);
-        //setInterval(() => {window.location.href= `map.html?${curCharacter}_${curBorder}_x`;}, 2000);
+        setInterval(() => {window.location.href= `map.html?${curCharacter}_${curBorder}_x`;}, 2000);
     }
 }
 
