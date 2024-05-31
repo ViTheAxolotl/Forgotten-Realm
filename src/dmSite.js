@@ -22,6 +22,7 @@ const currentMapRef = ref(database, 'currentMap/');
 onValue(currentMapRef, (snapshot) => 
 {
     const data = snapshot.val();
+    wholeDB = data;
 
     if(showMap)
     {
@@ -32,6 +33,7 @@ onValue(currentMapRef, (snapshot) =>
 
 let fiveButtons = [];
 let wholeData = {};
+let wholeDB = {};
 let div = document.getElementById("story");
 let editDiv;
 let imgs;
@@ -153,7 +155,7 @@ function handleRemove()
 {
     hideButtons();
 
-    for(let key of Object.keys(wholeData))
+    for(let key of Object.keys(wholeDB))
     {
         if(key != "invisible")
         {
