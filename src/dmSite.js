@@ -798,9 +798,10 @@ function loadMap()
 
     setTimeout(() => 
     {  
-        for(let key of Object.keys(wholeDB))
+        temp = wholeDB;
+        for(let key of Object.keys(temp))
         {
-            set(ref(database, `currentMap/${key}`), wholeDB[key]);
+            set(ref(database, `currentMap/${key}`), temp[key]);
         }
 
         handleDone();
