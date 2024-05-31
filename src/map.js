@@ -62,7 +62,7 @@ function init()
 {
     setMainVaribles();
 
-    setTimeout(() => {addTokens()}, 500);
+    setTimeout(() => {addTokens()}, 450);
     setInterval(timer, 500);
 }
 
