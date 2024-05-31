@@ -558,6 +558,7 @@ function removeFromTO()
 
 function addTORow(rowName)
 {
+    if(wholeTO == null){wholeTO = {};}
     let newRow = {charName : rowName, position : 0, selected : false};
     wholeTO[rowName] = newRow;
     makeTORow(newRow);
