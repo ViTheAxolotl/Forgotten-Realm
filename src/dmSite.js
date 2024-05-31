@@ -688,11 +688,6 @@ async function handleSave()
             collectionNames.push(point);
         }
     });
-
-    if(collectionNames == null || collectionNames[0] == null)
-    {
-        set(ref(database, `lists/currentMap`), {name : "currentMap"});
-    }
     
     let selectNames = document.createElement("select");
     let saveName = document.createElement("input");
