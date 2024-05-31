@@ -44,7 +44,6 @@ let mapSize;
 let bumper;
 let distance;
 let movement;
-let names = new Set();
 let pos; 
 let yPos;
 let xPos;
@@ -105,7 +104,7 @@ function setMainVaribles()
 
 function addTokens()
 {
-    if(!(names.has(htmlInfo[0])))
+    if(!(wholeDB.has(htmlInfo[0])))
     {
         let htmlChar = html[htmlInfo[0]];
         let token = document.getElementById(htmlChar["name"]);
@@ -127,8 +126,6 @@ function addTokens()
             xPos : x,
             yPos : y
         });
-
-        names.add(htmlInfo[0]);
     }
 
     if(div.children.length > 1)
@@ -180,7 +177,7 @@ function addTokens()
         addCharacter(wholeDB[key], false);
     }
 
-    if(!(names.has(htmlInfo[0])))
+    if(!(wholeDB.has(htmlInfo[0])))
     {
         let htmlChar = html[htmlInfo[0]];
         let token = document.getElementById(htmlChar["name"]);
@@ -202,8 +199,6 @@ function addTokens()
             xPos : x,
             yPos : y
         });
-
-        names.add(htmlInfo[0]);
     }
 }
 
@@ -652,7 +647,7 @@ function checkUpdates()
 {
     tokens = [];
 
-    for(let name of names)
+    for(let name of wholeDB)
     {
         let token = document.getElementById(name);
         if(token != null)
@@ -681,7 +676,7 @@ function updateToken(token)
 
         for(let token of currentTokens)
         {
-            if(!names.has(token.id) && token.classList.contains("border_"))
+            if(!wholeDB.has(token.id) && token.classList.contains("border_"))
             {
                 borderColor = token.id;
             }
