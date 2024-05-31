@@ -48,7 +48,7 @@ let pos;
 let yPos;
 let xPos;
 let tokens = [];
-let stage = 1;
+let stage = 2;
 let imgs;
 let currentHp;
 let maxHp;
@@ -62,7 +62,7 @@ function init()
 {
     setMainVaribles();
 
-    setTimeout(() => {addTokens(); setTurnOrder();}, 450);
+    setTimeout(() => {setTurnOrder();}, 450);
     setInterval(timer, 500);
 }
 
