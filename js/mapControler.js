@@ -203,11 +203,11 @@ function decreaseValue()
     }
 }
 
-function changeTOValue(data, set)
+function changeTOValue(data, sit)
 {
     let sel = "false";
     
-    if(set == "set")
+    if(sit == "set")
     {
         sel = "true";
     }
