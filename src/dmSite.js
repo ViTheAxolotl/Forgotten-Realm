@@ -25,7 +25,7 @@ onValue(currentMapRef, (snapshot) =>
 
     if(showMap)
     {
-        alert("" + data);
+        alert(data.toString());
         showMap == false;
     }
 });
