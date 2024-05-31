@@ -61,8 +61,8 @@ let currentTurn;
 function init()
 {
     setMainVaribles();
-    addTokens();
 
+    setTimeout(() => {addTokens()}, 500);
     setInterval(timer, 500);
 }
 
@@ -104,7 +104,7 @@ function setMainVaribles()
 
 function addTokens()
 {
-    if(!(wholeDB.has(htmlInfo[0])))
+    if(!(Object.keys(wholeDB).includes(htmlInfo[0])))
     {
         let htmlChar = html[htmlInfo[0]];
         let token = document.getElementById(htmlChar["name"]);
@@ -177,7 +177,7 @@ function addTokens()
         addCharacter(wholeDB[key], false);
     }
 
-    if(!(wholeDB.has(htmlInfo[0])))
+    if(!(Object.keys(wholeDB).includes(htmlInfo[0])))
     {
         let htmlChar = html[htmlInfo[0]];
         let token = document.getElementById(htmlChar["name"]);
@@ -676,7 +676,7 @@ function updateToken(token)
 
         for(let token of currentTokens)
         {
-            if(!wholeDB.has(token.id) && token.classList.contains("border_"))
+            if(!Object.keys(wholeDB).includes(token.id) && token.classList.contains("border_"))
             {
                 borderColor = token.id;
             }
