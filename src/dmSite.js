@@ -1,6 +1,7 @@
 "use strict";
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
 import { getDatabase, ref, set, onValue } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
+import { isEqual } from 'https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js';
 
 const firebaseApp = initializeApp
 ({
@@ -28,14 +29,22 @@ onValue(currentTORef, (snapshot) =>
     wholeTO = data;
 });
 
+const presetRef = ref(database, 'preset/');
+onValue(presetRef, (snapshot) => 
+{
+    const data = snapshot.val();
+    wholePre = data;
+});
+
 let fiveButtons = [];
 let wholeDB = {};
+let wholeTO = {};
+let wholePre = {};
 let div = document.getElementById("story");
 let editDiv;
 let imgs;
 let curCharacter;
 let htmlInfo = window.location.href;
-let wholeTO = {};
 let temp;
 let mode;
 
@@ -236,12 +245,30 @@ function handleEdit()
 
     if(this != undefined)
     {
-        for(let key of Object.keys(wholeDB))
+        if(mode != "preset")
         {
-            if(wholeDB[key].name == this.classList[1])
+            for(let key of Object.keys(wholeDB))
             {
-                curCharacter = wholeDB[key];
+                if(wholeDB[key].name == this.classList[1])
+                {
+                    curCharacter = wholeDB[key];
+                }
             }
+        }
+
+        else
+        {
+            for(let key of Object.keys(wholePre))
+            {
+                if(wholePre[key].name == this.classList[1])
+                {
+                    curCharacter = wholePre[key];
+                }
+            }
+
+            buttons[0].classList.add(curCharacter.name); //Test if Pre works!!
+            buttons[0].onclick = function () {let id = this.classList[0].slice(0, this.classList[0].length - 1); set(ref(database, `currentMap/${id}`), wholePre[id]);};
+            buttons[1].onclick = resetPreset;
         }
     }
 
@@ -380,35 +407,35 @@ function updateHpPic(maxHp, currentHp)
     }  
 }
 
+function resetState()
+{
+    let aboveDiv = div.parentElement;
+    div.remove();
+    div = document.createElement("div");
+    div.id = "story";
+    div.classList = "bg-UP-purple color-UP-black col-md-12 col-sm-12";
+    aboveDiv.insertBefore(div, aboveDiv.childNodes[2]);
+}
+
 function resetDelete()
 {
-    setTimeout(() => {
-        let aboveDiv = div.parentElement;
-        div.remove();
-        div = document.createElement("div");
-        div.id = "story";
-        div.classList = "bg-UP-purple color-UP-black col-md-12 col-sm-12";
-        aboveDiv.insertBefore(div, aboveDiv.childNodes[2]);
-        handleRemove();}, 1500);
-    
+    setTimeout(() => {resetState(); handleRemove();}, 1500);
 }
 
 function resetQuick()
 {
-    setTimeout(() => {
-        let aboveDiv = div.parentElement;
-        div.remove();
-        div = document.createElement("div");
-        div.id = "story";
-        div.classList = "bg-UP-purple color-UP-black col-md-12 col-sm-12";
-        aboveDiv.insertBefore(div, aboveDiv.childNodes[2]);
-        handleQuick();}, 1500);
-    
+    setTimeout(() => {resetState(); handleQuick();}, 1500);
+}
+
+function resetPreset()
+{
+    setTimeout(() => {resetState(); handlePreset();}, 1500);
 }
 
 function handleQuick()
 {
     hideButtons();
+
     let curDate = new Date().toLocaleTimeString();
     let date = document.createElement("h3");
     date.innerHTML = `Current Hps at time of ${curDate}`;
@@ -476,6 +503,66 @@ function quickUpdate()
     });
 
     resetQuick();
+}
+
+function handlePreset()
+{
+    hideButtons();
+    for(token of Object.keys(wholePre))
+    {
+        makeToken(wholePre[token]);
+        let currentDiv = document.getElementById(`${wholeDB[key].name}-div`);
+        let names = ["Edit", "Delete"];
+        let feilds = [document.createElement("button"), document.createElement("button")];
+
+        for(let i = 0; i < 2; i++)
+        {
+            let label = document.createElement("h6");
+            label.innerHTML = `${names[i]}:`;
+            label.style.display = "inline";
+            label.classList = "color-UP-yellow";
+
+            if(i == 0){label.style.margin = `5px 5px 5px 79px`;}
+            else{label.style.margin = `5px`;}
+
+            feilds[i].style.display = "inline";
+            feilds[i].id = wholePre[key].name.slice(0, wholePre[key].length - 1);
+            feilds[i].style.margin = "5px";
+            feilds[i].style.width = "6%";
+            feilds[i].innerHTML = names[i];
+            currentDiv.appendChild(label);
+            currentDiv.appendChild(feilds[i]);
+        }
+
+        feilds[0].onclick = function () {addPreset(wholePre[this.id]);};
+        feilds[1].onclick = deletePreset;
+    }
+    
+    let addButton = document.createElement("button");
+    addButton.innerHTML = "Create New";
+    addButton.style.margin = "5px";
+    addButton.onclick = function () {addPreset({border : "", currentHp : "", maxHp : "", map : "", name : "", title : "", xPos : "", yPos : ""});};
+    div.appendChild(addButton);
+
+    addDone();
+}
+
+function deletePreset()
+{
+    set(ref(database, `preset/${this.id}`), null);
+    resetPreset();
+}
+
+function addPreset(token)
+{
+    resetState();
+    makeToken(token);
+    editDiv = document.getElementById("invisible--div");
+    this.classList = `sfsfs ${token.name}`;
+    mode = "preset";
+    handleEdit();
+
+
 }
 
 function makeTORow(key)
