@@ -564,7 +564,7 @@ function addPreset()
 {
     let token;
     
-    if(this.id == undefined)
+    if(this == undefined)
     {
         token = {border : "invisible", currentHp : "20", maxHp : "20", map : "", name : "invisible-", title : " ", xPos : "1", yPos : "A"};
     }
