@@ -268,7 +268,7 @@ function handleEdit()
                 {
                     curCharacter = wholePre[key];
                 }
-            }
+            } 
 
             buttons[0].classList.add(curCharacter.name); //Test if Pre works!!
             buttons[0].onclick = function () {let id = this.classList[0].slice(0, this.classList[0].length - 1); set(ref(database, `currentMap/${id}`), wholePre[id]);};
