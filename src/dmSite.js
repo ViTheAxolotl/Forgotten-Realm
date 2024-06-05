@@ -570,6 +570,18 @@ function addPreset()
     mode = "preset";
     handleEdit();
     mode = "";
+    let editBtn = document.getElementById("edit");
+    editBtn.onclick = updatePreset;
+    editBtn.innerHTML = "Add/Edit";
+    document.getElementById("reset").onclick = handleDone;
+    addDone();
+}
+
+function updatePreset()
+{
+    mode = "prefix";
+    addToken();
+    mode = undefined;
 }
 
 function makeTORow(key)
@@ -974,7 +986,13 @@ function addToken()
         mode = "none";
     }
 
-    set(ref(database, `currentMap/${id}`),
+    let table = `currentMap/${id}`;
+    if(mode == "preset")
+    {
+        table = `preset/${id}`
+    }
+
+    set(ref(database, table),
     {
         border : b,
         currentHp : c,
