@@ -582,6 +582,7 @@ function updatePreset()
     mode = "preset";
     addToken();
     mode = undefined;
+    resetPreset();
 }
 
 function makeTORow(key)
