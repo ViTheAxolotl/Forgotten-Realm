@@ -562,12 +562,13 @@ function deletePreset()
 
 function addPreset()
 {
-    let token = wholePre[this.id];
+    let token;
     
     if(this.id == undefined)
     {
         token = {border : "invisible", currentHp : "20", maxHp : "20", map : "", name : "invisible-", title : " ", xPos : "1", yPos : "A"};
     }
+    else{token = wholePre[this.id]}
 
     resetState();
     makeToken(token);
