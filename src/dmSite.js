@@ -560,8 +560,8 @@ function deletePreset()
 function addPreset()
 {
     let token = wholePre[this.id];
-    resetState();
     editDiv = document.getElementById(`${token.name}-div`);
+    resetState();
     this.classList = `sfsfs ${token.name}`;
     mode = "preset";
     handleEdit();
