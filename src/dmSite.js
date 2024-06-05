@@ -251,7 +251,7 @@ function handleEdit()
 
     if(temp != undefined)
     {
-        if(mode == "add")
+        if(mode == undefined)
         {
             for(let key of Object.keys(wholeDB))
             {
