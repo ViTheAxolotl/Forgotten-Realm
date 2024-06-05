@@ -340,6 +340,7 @@ function handleEdit()
         editDiv.appendChild(txtFeilds[i]);
     }
 
+    txtFeilds[0].value = curCharacter.border;
     txtFeilds[1].value = curCharacter.name;
     txtFeilds[2].value = curCharacter.maxHp;
     txtFeilds[3].value = curCharacter.currentHp;
