@@ -543,7 +543,7 @@ function handlePreset()
 
         feilds[0].onclick = addPreset;
         feilds[1].onclick = deletePreset;
-        feilds[1].onclick = addToMap;
+        feilds[2].onclick = addToMap;
     }
     
     let addButton = document.createElement("button");
