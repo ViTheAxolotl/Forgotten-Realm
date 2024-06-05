@@ -259,23 +259,23 @@ function handleEdit()
                 }
             }
         }
-
-        else if(mode == "preset")
-        {
-            for(let key of Object.keys(wholePre))
-            {
-                if(wholePre[key].name == this.classList[1])
-                {
-                    curCharacter = wholePre[key];
-                }
-            } 
-
-            buttons[0].classList.add(curCharacter.name); //Test if Pre works!!
-            buttons[0].onclick = function () {let id = this.classList[0].slice(0, this.classList[0].length - 1); set(ref(database, `currentMap/${id}`), wholePre[id]);};
-            buttons[1].onclick = resetPreset;
-        }
     }
 
+    else if(mode == "preset")
+    {
+        for(let key of Object.keys(wholePre))
+        {
+            if(wholePre[key].name == this.classList[1])
+            {
+                curCharacter = wholePre[key];
+            }
+        } 
+
+        buttons[0].classList.add(curCharacter.name); //Test if Pre works!!
+        buttons[0].onclick = function () {let id = this.classList[0].slice(0, this.classList[0].length - 1); set(ref(database, `currentMap/${id}`), wholePre[id]);};
+        buttons[1].onclick = resetPreset;
+    }
+    
     for(let i = 0; i < 7; i++)
     {
         let label = document.createElement("h6");
@@ -565,6 +565,7 @@ function addPreset()
     this.classList = `sfsfs ${token.name}`;
     mode = "preset";
     handleEdit();
+    mode = "";
 }
 
 function makeTORow(key)
