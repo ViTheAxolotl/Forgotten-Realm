@@ -532,13 +532,13 @@ function handlePreset()
             feilds[i].style.display = "inline";
             feilds[i].id = wholePre[token].name.slice(0, wholePre[token].length - 1);
             feilds[i].style.margin = "5px";
-            feilds[i].style.width = "6%";
+            feilds[i].style.width = "9%";
             feilds[i].innerHTML = names[i];
             currentDiv.appendChild(label);
             currentDiv.appendChild(feilds[i]);
         }
 
-        feilds[0].onclick = function () {addPreset(wholePre[this.id]);};
+        feilds[0].onclick = addPreset;
         feilds[1].onclick = deletePreset;
     }
     
@@ -557,12 +557,12 @@ function deletePreset()
     resetPreset();
 }
 
-function addPreset(token)
+function addPreset()
 {
     resetState();
-    makeToken(token);
+    makeToken(wholePre[this.id]);
     editDiv = document.getElementById("invisible--div");
-    this.classList = `sfsfs ${token.name}`;
+    this.classList = `sfsfs ${wholePre[this.id].name}`;
     mode = "preset";
     handleEdit();
 
