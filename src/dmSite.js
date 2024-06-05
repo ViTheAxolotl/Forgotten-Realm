@@ -512,7 +512,7 @@ function quickUpdate()
 function handlePreset()
 {
     hideButtons();
-    for(token of Object.keys(wholePre))
+    for(let token of Object.keys(wholePre))
     {
         makeToken(wholePre[token]);
         let currentDiv = document.getElementById(`${wholeDB[key].name}-div`);
