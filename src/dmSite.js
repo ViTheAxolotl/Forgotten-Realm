@@ -563,9 +563,9 @@ function deletePreset()
 function addPreset()
 {
     let token = wholePre[this.id];
-    editDiv = document.getElementById(`${token.name}-div`);
     resetState();
     makeToken(token);
+    editDiv = document.getElementById(`${token.name}-div`);
     temp = token.name;
     mode = "preset";
     handleEdit();
