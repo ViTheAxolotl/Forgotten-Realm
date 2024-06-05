@@ -530,7 +530,7 @@ function handlePreset()
             else{label.style.margin = `5px`;}
 
             feilds[i].style.display = "inline";
-            feilds[i].id = wholePre[token].name.slice(0, wholePre[token].length - 1);
+            feilds[i].id = wholePre[token].name.slice(0, wholePre[token].name.length - 1);
             feilds[i].style.margin = "5px";
             feilds[i].style.width = "9%";
             feilds[i].innerHTML = names[i];
