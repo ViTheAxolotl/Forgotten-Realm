@@ -548,7 +548,7 @@ function handlePreset()
     let addButton = document.createElement("button");
     addButton.innerHTML = "Create New";
     addButton.style.margin = "5px";
-    addButton.onclick = function () {addPreset({border : "", currentHp : "", maxHp : "", map : "", name : "", title : "", xPos : "", yPos : ""});};
+    addButton.onclick = function () {addPreset();};
     div.appendChild(addButton);
 
     addDone();
@@ -563,6 +563,12 @@ function deletePreset()
 function addPreset()
 {
     let token = wholePre[this.id];
+    
+    if(this.id == undefined)
+    {
+        token = {border : "invisible", currentHp : "20", maxHp : "20", map : "", name : "invisible-", title : " ", xPos : "1", yPos : "A"};
+    }
+
     resetState();
     makeToken(token);
     editDiv = document.getElementById(`${token.name}-div`);
@@ -573,7 +579,7 @@ function addPreset()
     let editBtn = document.getElementById("edit");
     editBtn.onclick = updatePreset;
     editBtn.innerHTML = "Add/Edit";
-    document.getElementById("reset").onclick = handleDone;
+    document.getElementById("reset").onclick = resetPreset;
     addDone();
 }
 
