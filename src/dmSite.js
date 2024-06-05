@@ -519,10 +519,10 @@ function handlePreset()
     {
         makeToken(wholePre[token]);
         let currentDiv = document.getElementById(`${wholePre[token].name}-div`);
-        let names = ["Edit", "Delete"];
-        let feilds = [document.createElement("button"), document.createElement("button")];
+        let names = ["Edit", "Delete", "Upload"];
+        let feilds = [document.createElement("button"), document.createElement("button"), document.createElement("button")];
 
-        for(let i = 0; i < 2; i++)
+        for(let i = 0; i < 3; i++)
         {
             let label = document.createElement("h6");
             label.innerHTML = `${names[i]}:`;
@@ -543,6 +543,7 @@ function handlePreset()
 
         feilds[0].onclick = addPreset;
         feilds[1].onclick = deletePreset;
+        feilds[1].onclick = addToMap;
     }
     
     let addButton = document.createElement("button");
@@ -591,6 +592,11 @@ function updatePreset()
     addToken();
     mode = undefined;
     resetPreset();
+}
+
+function addToMap()
+{
+    set(ref(database, `currentMap/${this.id}`), wholePre[this.id]);
 }
 
 function makeTORow(key)
