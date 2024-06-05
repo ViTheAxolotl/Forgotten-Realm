@@ -515,7 +515,7 @@ function handlePreset()
     for(let token of Object.keys(wholePre))
     {
         makeToken(wholePre[token]);
-        let currentDiv = document.getElementById(`${wholeDB[key].name}-div`);
+        let currentDiv = document.getElementById(`${wholePre[key].name}-div`);
         let names = ["Edit", "Delete"];
         let feilds = [document.createElement("button"), document.createElement("button")];
 
