@@ -186,6 +186,7 @@ function handleDeleteOrEdit()
     editDiv = currentDiv;
     editB.innerHTML = "edit";
     editB.onclick = handleEdit;
+    temp = this.classList[1];
     editB.classList = `eOrD ${this.classList[1]}`;
     editB.id = "edit";
     editB.style.margin = `5px 5px 5px 79px`;
@@ -247,7 +248,7 @@ function handleEdit()
     buttons[1].style.margin = "5px 5px 5px 2.5px";
     buttons[1].id = "reset";
 
-    if(this != undefined)
+    if(temp != undefined)
     {
         if(mode != "preset")
         {
@@ -259,21 +260,21 @@ function handleEdit()
                 }
             }
         }
-    }
 
-    else if(mode == "preset")
-    {
-        for(let key of Object.keys(wholePre))
+        else if(mode == "preset")
         {
-            if(wholePre[key].name == this.classList[1])
+            for(let key of Object.keys(wholePre))
             {
-                curCharacter = wholePre[key];
-            }
-        } 
+                if(wholePre[key].name == this.classList[1])
+                {
+                    curCharacter = wholePre[key];
+                }
+            } 
 
-        buttons[0].classList.add(curCharacter.name); //Test if Pre works!!
-        buttons[0].onclick = function () {let id = this.classList[0].slice(0, this.classList[0].length - 1); set(ref(database, `currentMap/${id}`), wholePre[id]);};
-        buttons[1].onclick = resetPreset;
+            buttons[0].classList.add(curCharacter.name); //Test if Pre works!!
+            buttons[0].onclick = function () {let id = this.classList[0].slice(0, this.classList[0].length - 1); set(ref(database, `currentMap/${id}`), wholePre[id]);};
+            buttons[1].onclick = resetPreset;
+        }
     }
     
     for(let i = 0; i < 7; i++)
@@ -562,7 +563,7 @@ function addPreset()
     let token = wholePre[this.id];
     editDiv = document.getElementById(`${token.name}-div`);
     resetState();
-    this.classList = `sfsfs ${token.name}`;
+    temp = token.name;
     mode = "preset";
     handleEdit();
     mode = "";
