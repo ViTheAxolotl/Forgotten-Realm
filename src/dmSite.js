@@ -597,7 +597,6 @@ function updatePreset()
 function addToMap()
 {
     set(ref(database, `currentMap/${this.id}`), wholePre[this.id]);
-    alert("Added.");
 }
 
 function makeTORow(key)
