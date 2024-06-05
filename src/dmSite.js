@@ -579,7 +579,7 @@ function addPreset()
 
 function updatePreset()
 {
-    mode = "prefix";
+    mode = "preset";
     addToken();
     mode = undefined;
 }
