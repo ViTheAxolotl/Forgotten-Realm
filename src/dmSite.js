@@ -121,6 +121,7 @@ function handleAdd()
     curCharacter = {border: "invisible", currentHp: "20", map: "", maxHp: "20", name: "invisible-", title: " ", xPos: "5", yPos: "D"};
     makeToken(curCharacter);
     editDiv = document.getElementById("invisible--div");
+    temp = curCharacter.name;
     handleEdit();
 
     let reset = document.getElementById("reset");
@@ -250,11 +251,11 @@ function handleEdit()
 
     if(temp != undefined)
     {
-        if(mode != "preset")
+        if(mode == "add")
         {
             for(let key of Object.keys(wholeDB))
             {
-                if(wholeDB[key].name == this.classList[1])
+                if(wholeDB[key].name == temp)
                 {
                     curCharacter = wholeDB[key];
                 }
@@ -265,7 +266,7 @@ function handleEdit()
         {
             for(let key of Object.keys(wholePre))
             {
-                if(wholePre[key].name == this.classList[1])
+                if(wholePre[key].name == temp)
                 {
                     curCharacter = wholePre[key];
                 }
