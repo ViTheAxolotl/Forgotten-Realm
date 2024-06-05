@@ -98,6 +98,11 @@ function init()
                     fiveButtons.push(button);
                     button.onclick = handleLoad;
                     break;
+                
+                case "generate":
+                    fiveButtons.push(button);
+                    button.onclick = handleGenerate;
+                    break;
             }
         }
     }
@@ -897,6 +902,23 @@ function loadMap()
 
         handleDone();
     }, 500);
+}
+
+function handleGenerate()
+{
+    set(ref(database, `preset/sky`), 
+    {
+        border : "green",
+        currentHp : "32",
+        maxHp : "32",
+        map : "",
+        name : "sky-",
+        title : " ",
+        xPos : "5",
+        yPos : "D"
+    });
+
+    alert("Generated!!");
 }
 
 function handleDone()
