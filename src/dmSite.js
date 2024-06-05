@@ -260,7 +260,7 @@ function handleEdit()
             }
         }
 
-        else
+        else if(mode == "preset")
         {
             for(let key of Object.keys(wholePre))
             {
@@ -565,8 +565,6 @@ function addPreset()
     this.classList = `sfsfs ${token.name}`;
     mode = "preset";
     handleEdit();
-
-
 }
 
 function makeTORow(key)
