@@ -515,7 +515,7 @@ function handlePreset()
     for(let token of Object.keys(wholePre))
     {
         makeToken(wholePre[token]);
-        let currentDiv = document.getElementById(`${wholePre[key].name}-div`);
+        let currentDiv = document.getElementById(`${wholePre[token].name}-div`);
         let names = ["Edit", "Delete"];
         let feilds = [document.createElement("button"), document.createElement("button")];
 
@@ -530,7 +530,7 @@ function handlePreset()
             else{label.style.margin = `5px`;}
 
             feilds[i].style.display = "inline";
-            feilds[i].id = wholePre[key].name.slice(0, wholePre[key].length - 1);
+            feilds[i].id = wholePre[token].name.slice(0, wholePre[token].length - 1);
             feilds[i].style.margin = "5px";
             feilds[i].style.width = "6%";
             feilds[i].innerHTML = names[i];
