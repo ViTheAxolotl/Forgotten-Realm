@@ -559,10 +559,11 @@ function deletePreset()
 
 function addPreset()
 {
+    let token = wholePre[this.id];
     resetState();
-    makeToken(wholePre[this.id]);
+    makeToken(token);
     editDiv = document.getElementById("invisible--div");
-    this.classList = `sfsfs ${wholePre[this.id].name}`;
+    this.classList = `sfsfs ${token.name}`;
     mode = "preset";
     handleEdit();
 
