@@ -561,8 +561,7 @@ function addPreset()
 {
     let token = wholePre[this.id];
     resetState();
-    makeToken(token);
-    editDiv = document.getElementById("invisible--div");
+    editDiv = document.getElementById(`${token.name}-div`);
     this.classList = `sfsfs ${token.name}`;
     mode = "preset";
     handleEdit();
