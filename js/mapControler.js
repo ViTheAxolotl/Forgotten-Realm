@@ -72,8 +72,7 @@ function setMainVaribles()
     htmlInfo = htmlInfo[1];
     htmlInfo = htmlInfo.split("_");
     currentCharacter = document.getElementsByClassName(htmlInfo[0]);
-    let letterRemover = htmlInfo[0].indexOf("-");
-    playerName.innerHTML = htmlInfo[0].charAt(0).toUpperCase() + htmlInfo[0].slice(1, letterRemover);
+    playerName.innerHTML = htmlInfo[0].charAt(0).toUpperCase() + htmlInfo[0].slice(1);
 
     let hiddenVi = document.getElementsByClassName("isVi");
 
