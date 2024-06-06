@@ -642,7 +642,7 @@ function updateToken(token)
 
         if(/\d/.test(char.id))
         {
-            n = char.id.replace(/\d/g, '');
+            n = char.id.replace(/\d/g, '') + '-';
         }
 
         for(let token of currentTokens)
