@@ -460,7 +460,7 @@ function handleQuick()
             feilds[0].innerHTML = wholeDB[key].xPos;
             feilds[1].innerHTML = wholeDB[key].yPos;
             feilds[2].value = wholeDB[key].currentHp;
-            feilds[2].id = "newHp";
+            feilds[2].id = "newHp_" + wholeDB[key].id;
             feilds[2].style.width = "3%";
             feilds[3].innerHTML = wholeDB[key].maxHp;
 
@@ -494,8 +494,8 @@ function handleQuick()
 
 function quickUpdate()
 {
-    let newHp = document.getElementById('newHp');
     let i = this.id;
+    let newHp = document.getElementById('newHp_' + i);
 
     set(ref(database, `currentMap/${i}`),
     {
