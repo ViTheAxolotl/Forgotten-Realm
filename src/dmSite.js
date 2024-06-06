@@ -499,15 +499,15 @@ function quickUpdate()
 
     set(ref(database, `currentMap/${i}`),
     {
-        border : wholeDB[id].border,
+        border : wholeDB[i].border,
         currentHp : newHp.value,
-        maxHp : wholeDB[id].maxHp,
+        maxHp : wholeDB[i].maxHp,
         map : "",
         id : i,
-        name : wholeDB[id].name,
-        title : wholeDB[id].title,
-        xPos : wholeDB[id].xPos,
-        yPos : wholeDB[id].yPos
+        name : wholeDB[i].name,
+        title : wholeDB[i].title,
+        xPos : wholeDB[i].xPos,
+        yPos : wholeDB[i].yPos
     });
 
     resetQuick();
