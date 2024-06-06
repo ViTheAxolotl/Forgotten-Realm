@@ -793,7 +793,7 @@ function updateMap()
             b = wholeDB[key].border;
             c = wholeDB[key].currentHp;
             mH = wholeDB[key].maxHp;
-            m = select.selectedIndex.value;
+            m = select[select.selectedIndex].value;
             n = wholeDB[key].name;
             t = wholeDB[key].title;
             x = wholeDB[key].xPos;
