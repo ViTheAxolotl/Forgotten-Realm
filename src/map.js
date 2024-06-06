@@ -639,7 +639,12 @@ function updateToken(token)
         const currentTokens = document.getElementsByClassName(htmlInfo[0]);
         let char = document.getElementById(htmlInfo[0]);
         let borderColor;
-        let i_d;
+        let n;
+
+        if(/\d/.test(char.id))
+        {
+            n = char.id.replace(/\d/g, '');
+        }
 
         for(let token of currentTokens)
         {
@@ -658,7 +663,7 @@ function updateToken(token)
 
         switch(char.id)
         {
-            case "sky-":
+            case "sky":
                 if(t.includes("Sky-dragon"))
                 {
                     char.id = "sky-dragon";
@@ -675,14 +680,14 @@ function updateToken(token)
                 break;
         }
 
-        set(ref(database, `currentMap/${char.id.slice(0, char.id.indexOf("-"))}`),
+        set(ref(database, `currentMap/${char.id}`),
         {
             border : borderColor,
             currentHp : document.getElementById("current").value,
             maxHp : document.getElementById("max").value,
             map : "",
-            id : char.id.slice(0, char.id.indexOf("-")),
-            name : char.id,
+            id : char.id,
+            name : n,
             title : t,
             xPos : x,
             yPos : y
