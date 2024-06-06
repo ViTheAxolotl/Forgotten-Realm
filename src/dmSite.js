@@ -950,42 +950,7 @@ function loadMap()
 
 function handleGenerate()
 {
-    let wholeDef;
-    let wholeStart;
-    let tempWholeDef;
-    let tempWholeStart;
     
-    const defualtMapRef = ref(database, 'defaultMap/');
-    onValue(defualtMapRef, (snapshot) => 
-    {
-        const data = snapshot.val();
-        wholeDef = data;
-    });
-
-    const startingMapRef = ref(database, 'startingMap/');
-    onValue(startingMapRef, (snapshot) => 
-    {
-        const data = snapshot.val();
-        wholeStart = data;
-    });
-
-    setTimeout(() => 
-    {
-        tempWholeDef = wholeDef;
-        tempWholeStart = wholeStart;
-
-        for(let token of Object.keys(tempWholeDef))
-        {
-            tempWholeDef[token].id = tempWholeDef[token].name.slice(0, tempWholeDef[token].name.length - 1);
-            set(ref(database, `defaultMap/${tempWholeDef[token].id}`), tempWholeDef[token]);
-        }
-
-        for(let token of Object.keys(tempWholeStart))
-        {
-            tempWholeStart[token].id = tempWholeStart[token].name.slice(0, tempWholeStart[token].name.length - 1);
-            set(ref(database, `startingMap/${tempWholeStart[token].id}`), tempWholeStart[token]);
-        }
-    }, 1500);
 }
 
 function handleDone()
