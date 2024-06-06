@@ -608,7 +608,7 @@ function addToMap()
             id = id.slice(0, length - 1) + (parseInt(id.charAt(length - 1)) + 1);
         }
     }
-    
+
     set(ref(database, `currentMap/${id}`), wholePre[id]);
 }
 
@@ -974,26 +974,26 @@ function handleGenerate()
 
     for(let token of Object.keys(tempWholeDB))
     {
-        token.id = token.name.slice(0, token.name.length - 1);
-        set(ref(database, `currentMap/${token.id}`), token);
+        tempWholeDB[token].id = tempWholeDB[token].name.slice(0, tempWholeDB[token].name.length - 1);
+        set(ref(database, `currentMap/${tempWholeDB[token].id}`), tempWholeDB[token]);
     }
 
     for(let token of Object.keys(tempWholePre))
     {
-        token.id = token.name.slice(0, token.name.length - 1);
-        set(ref(database, `preset/${token.id}`), token);
+        tempWholePre[token].id = tempWholePre[token].name.slice(0, tempWholePre[token].name.length - 1);
+        set(ref(database, `preset/${tempWholePre[token].id}`), tempWholePre[token]);
     }
 
     for(let token of Object.keys(tempWholeDef))
     {
-        token.id = token.name.slice(0, token.name.length - 1);
-        set(ref(database, `defaultMap/${token.id}`), token);
+        tempWholeDef[token].id = tempWholeDef[token].name.slice(0, tempWholeDef[token].name.length - 1);
+        set(ref(database, `defaultMap/${tempWholeDef[token].id}`), tempWholeDef[token]);
     }
 
     for(let token of Object.keys(tempWholeStart))
     {
-        token.id = token.name.slice(0, token.name.length - 1);
-        set(ref(database, `startingMap/${token.id}`), token);
+        tempWholeStart[token].id = tempWholeStart[token].name.slice(0, tempWholeStart[token].name.length - 1);
+        set(ref(database, `startingMap/${tempWholeStart[token].id}`), tempWholeStart[token]);
     }
 }
 
