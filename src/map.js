@@ -164,6 +164,7 @@ function addTokens()
             currentHp : document.getElementById("current").value,
             maxHp : document.getElementById("max").value,
             map : "",
+            id : htmlChar["name"].slice(0, htmlChar["name"].indexOf("-")),
             name : htmlChar["name"],
             title : t,
             xPos : x,
@@ -638,6 +639,7 @@ function updateToken(token)
         const currentTokens = document.getElementsByClassName(htmlInfo[0]);
         let char = document.getElementById(htmlInfo[0]);
         let borderColor;
+        let i_d;
 
         for(let token of currentTokens)
         {
@@ -679,6 +681,7 @@ function updateToken(token)
             currentHp : document.getElementById("current").value,
             maxHp : document.getElementById("max").value,
             map : "",
+            id : char.id.slice(0, char.id.indexOf("-")),
             name : char.id,
             title : t,
             xPos : x,

@@ -272,7 +272,7 @@ function handleEdit()
                 }
             } 
 
-            buttons[0].classList.add(curCharacter.name); //Test if Pre works!!
+            buttons[0].classList.add(curCharacter.name);
             buttons[0].onclick = function () {let id = this.classList[0].slice(0, this.classList[0].length - 1); set(ref(database, `currentMap/${id}`), wholePre[id]);};
             buttons[1].onclick = resetPreset;
         }
@@ -495,14 +495,15 @@ function handleQuick()
 function quickUpdate()
 {
     let newHp = document.getElementById('newHp');
-    let id = this.id.slice(0, this.id.indexOf("-"));
+    let i = this.id.slice(0, this.id.indexOf("-"));
 
-    set(ref(database, `currentMap/${id}`),
+    set(ref(database, `currentMap/${i}`),
     {
         border : wholeDB[id].border,
         currentHp : newHp.value,
         maxHp : wholeDB[id].maxHp,
         map : "",
+        id : i,
         name : wholeDB[id].name,
         title : wholeDB[id].title,
         xPos : wholeDB[id].xPos,
@@ -596,7 +597,19 @@ function updatePreset()
 
 function addToMap()
 {
-    set(ref(database, `currentMap/${this.id}`), wholePre[this.id]);
+    let id = wholePre[this.id].id;
+    
+    if(Object.keys(wholeDB).includes(id))
+    {
+        id = id + "1";
+
+        while(Object.keys(wholeDB).includes(id))
+        {
+            id = id.slice(0, length - 1) + (parseInt(id.charAt(length - 1)) + 1);
+        }
+    }
+    
+    set(ref(database, `currentMap/${id}`), wholePre[id]);
 }
 
 function makeTORow(key)
@@ -790,6 +803,7 @@ function updateMap()
         currentHp : c,
         maxHp : mH,
         map : m,
+        id : n.slice(0, n.indexOf("-")),
         name : n,
         title : t,
         xPos : x,
@@ -936,19 +950,51 @@ function loadMap()
 
 function handleGenerate()
 {
-    set(ref(database, `preset/sky`), 
+    let wholeDef;
+    let wholeStart;
+    
+    const defualtMapRef = ref(database, 'defaultMap/');
+    onValue(defualtMapRef, (snapshot) => 
     {
-        border : "green",
-        currentHp : "32",
-        maxHp : "32",
-        map : "",
-        name : "sky-",
-        title : " ",
-        xPos : "5",
-        yPos : "D"
+        const data = snapshot.val();
+        wholeDef = data;
     });
 
-    alert("Generated!!");
+    const startingMapRef = ref(database, 'startingMap/');
+    onValue(startingMapRef, (snapshot) => 
+    {
+        const data = snapshot.val();
+        wholeStart = data;
+    });
+
+    let tempWholeDB = wholeDB;
+    let tempWholePre = wholePre;
+    let tempWholeDef = wholeDef;
+    let tempWholeStart = wholeStart;
+
+    for(let token of Object.keys(tempWholeDB))
+    {
+        token.id = token.name.slice(0, token.name.length - 1);
+        set(ref(database, `currentMap/${token.id}`), token);
+    }
+
+    for(let token of Object.keys(tempWholePre))
+    {
+        token.id = token.name.slice(0, token.name.length - 1);
+        set(ref(database, `preset/${token.id}`), token);
+    }
+
+    for(let token of Object.keys(tempWholeDef))
+    {
+        token.id = token.name.slice(0, token.name.length - 1);
+        set(ref(database, `defaultMap/${token.id}`), token);
+    }
+
+    for(let token of Object.keys(tempWholeStart))
+    {
+        token.id = token.name.slice(0, token.name.length - 1);
+        set(ref(database, `startingMap/${token.id}`), token);
+    }
 }
 
 function handleDone()
@@ -1013,6 +1059,7 @@ function addToken()
         currentHp : c,
         maxHp : mH,
         map : "",
+        id : table.slice(table.indexOf("/") + 1),
         name : n,
         title : t,
         xPos : x,

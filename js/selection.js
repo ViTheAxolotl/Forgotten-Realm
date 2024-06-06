@@ -1,5 +1,5 @@
 "use strict";
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
+import { initializeApp } from 'https://www.gstatic.com/firebase/9.15.0/firebase-app.js';
 import { getDatabase, ref, set, onValue } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
 
 const firebaseApp = initializeApp
@@ -252,7 +252,7 @@ function handleGoButton()
 
 function createChar(curCharacter, curBorder)
 {
-    let char = {border : curBorder, currentHp : `${document.getElementById("Current Hp").value}`, maxHp : `${document.getElementById("Max Hp").value}`, map : "", name : curCharacter, title : " ", xPos : "1", yPos : "A"};
+    let char = {border : curBorder, currentHp : `${document.getElementById("Current Hp").value}`, maxHp : `${document.getElementById("Max Hp").value}`, map : "", id : curCharacter.slice(0, curCharacter.indexOf("-")), name : curCharacter, title : " ", xPos : "1", yPos : "A"};
 
     set(ref(database, `currentMap/${curCharacter.slice(0, curCharacter.indexOf("-"))}`), char);
 }
