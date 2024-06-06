@@ -609,7 +609,7 @@ function addToMap()
         }
     }
 
-    set(ref(database, `currentMap/${id}`), wholePre[id]);
+    set(ref(database, `currentMap/${id}`), wholePre[this.id]);
 }
 
 function makeTORow(key)
