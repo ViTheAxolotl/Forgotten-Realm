@@ -58,6 +58,7 @@ function init()
     for(let arrow of arrows)
     {
         arrow.onclick = handleArrow;
+        arrow.touchstart = handleArrow;
     }
 
     document.addEventListener("keydown", (ev) => {key = ev.key.slice(ev.key.indexOf("w") + 1).toLowerCase(); keyControl = ev; let keyValues = ["left", "right", "down", "up"]; if(keyValues.includes(key) && ev.ctrlKey) {handleArrow();}});
@@ -376,7 +377,6 @@ function handleArrow()
     {
         keyControl.preventDefault();
         dirrection = key;
-
     }
 
     if (this != undefined)
