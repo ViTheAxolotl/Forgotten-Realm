@@ -761,6 +761,8 @@ function handleChangeMap()
 
     let select = document.createElement("select");
     select.classList = "center blo";
+    select.id = "select";
+
     for(let keys of Object.keys(imgs["mapName"]))
     {
         let mapImg = imgs["mapName"][keys];
@@ -782,6 +784,7 @@ function handleChangeMap()
 function updateMap()
 {
     let b, c, mH, m, n, t, x, y;
+    let select = document.getElementById("select");
     
     for(let key of Object.keys(wholeDB))
     {
@@ -790,7 +793,7 @@ function updateMap()
             b = wholeDB[key].border;
             c = wholeDB[key].currentHp;
             mH = wholeDB[key].maxHp;
-            m = this.parentNode.childNodes[8][this.parentNode.childNodes[8].selectedIndex].value;
+            m = select.selectedIndex.value;
             n = wholeDB[key].name;
             t = wholeDB[key].title;
             x = wholeDB[key].xPos;
