@@ -120,7 +120,7 @@ function handleAdd()
     mode = "add";
     curCharacter = {border: "invisible", currentHp: "20", map: "", maxHp: "20", name: "invisible-", title: " ", xPos: "5", yPos: "D"};
     makeToken(curCharacter);
-    editDiv = document.getElementById("invisible--div");
+    editDiv = document.getElementById("invisible-div");
     temp = curCharacter.name;
     handleEdit();
 
@@ -519,7 +519,7 @@ function handlePreset()
     for(let token of Object.keys(wholePre))
     {
         makeToken(wholePre[token]);
-        let currentDiv = document.getElementById(`${wholePre[token].name}-div`);
+        let currentDiv = document.getElementById(`${wholePre[token].id}-div`);
         let names = ["Edit", "Delete", "Upload"];
         let feilds = [document.createElement("button"), document.createElement("button"), document.createElement("button")];
 
@@ -575,7 +575,7 @@ function addPreset()
 
     resetState();
     makeToken(token);
-    editDiv = document.getElementById(`${token.name}-div`);
+    editDiv = document.getElementById(`${token.id}-div`);
     temp = token.name;
     mode = "preset";
     handleEdit();
