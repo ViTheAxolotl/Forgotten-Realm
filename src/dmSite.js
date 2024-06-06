@@ -952,6 +952,8 @@ function handleGenerate()
 {
     let wholeDef;
     let wholeStart;
+    let tempWholeDef;
+    let tempWholeStart;
     
     const defualtMapRef = ref(database, 'defaultMap/');
     onValue(defualtMapRef, (snapshot) => 
@@ -967,34 +969,23 @@ function handleGenerate()
         wholeStart = data;
     });
 
-    let tempWholeDB = wholeDB;
-    let tempWholePre = wholePre;
-    let tempWholeDef = wholeDef;
-    let tempWholeStart = wholeStart;
-
-    for(let token of Object.keys(tempWholeDB))
+    setTimeout(() => 
     {
-        tempWholeDB[token].id = tempWholeDB[token].name.slice(0, tempWholeDB[token].name.length - 1);
-        set(ref(database, `currentMap/${tempWholeDB[token].id}`), tempWholeDB[token]);
-    }
+        tempWholeDef = wholeDef;
+        tempWholeStart = wholeStart;
 
-    for(let token of Object.keys(tempWholePre))
-    {
-        tempWholePre[token].id = tempWholePre[token].name.slice(0, tempWholePre[token].name.length - 1);
-        set(ref(database, `preset/${tempWholePre[token].id}`), tempWholePre[token]);
-    }
+        for(let token of Object.keys(tempWholeDef))
+        {
+            tempWholeDef[token].id = tempWholeDef[token].name.slice(0, tempWholeDef[token].name.length - 1);
+            set(ref(database, `defaultMap/${tempWholeDef[token].id}`), tempWholeDef[token]);
+        }
 
-    for(let token of Object.keys(tempWholeDef))
-    {
-        tempWholeDef[token].id = tempWholeDef[token].name.slice(0, tempWholeDef[token].name.length - 1);
-        set(ref(database, `defaultMap/${tempWholeDef[token].id}`), tempWholeDef[token]);
-    }
-
-    for(let token of Object.keys(tempWholeStart))
-    {
-        tempWholeStart[token].id = tempWholeStart[token].name.slice(0, tempWholeStart[token].name.length - 1);
-        set(ref(database, `startingMap/${tempWholeStart[token].id}`), tempWholeStart[token]);
-    }
+        for(let token of Object.keys(tempWholeStart))
+        {
+            tempWholeStart[token].id = tempWholeStart[token].name.slice(0, tempWholeStart[token].name.length - 1);
+            set(ref(database, `startingMap/${tempWholeStart[token].id}`), tempWholeStart[token]);
+        }
+    }, 1500);
 }
 
 function handleDone()
