@@ -233,7 +233,7 @@ function setTurnOrder()
 
 function addCharacter(character, update)
 {
-    if(document.getElementById(character["name"]) == null)
+    if(document.getElementById(character["id"]) == null)
     {
         let letterRemover = htmlInfo[0].indexOf("-");
         let char = [document.createElement("img"), document.createElement("img"), document.createElement("img")];
