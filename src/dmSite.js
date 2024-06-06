@@ -609,6 +609,7 @@ function addToMap()
         }
     }
 
+    wholePre[this.id].id = id;
     set(ref(database, `currentMap/${id}`), wholePre[this.id]);
 }
 
