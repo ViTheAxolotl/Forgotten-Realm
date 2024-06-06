@@ -57,7 +57,7 @@ let currentTurn;
 function init()
 {
     setMainVaribles();
-    setInterval(timer, 500);
+    setInterval(timer, 100);
 }
 
 function setMainVaribles()
