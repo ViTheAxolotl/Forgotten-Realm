@@ -131,7 +131,7 @@ function handleAdd()
 function makeToken(key)
 {
     let token = [document.createElement("div"), document.createElement("img"), document.createElement("img"), document.createElement("img")];
-    token[0].id = `${key.name}-div`;
+    token[0].id = `${key.id}-div`;
     token[0].classList = "bg-UP-grey objectBorder";
     token[0].style.margin = "5px";
     token[0].style.position = "relative";
@@ -453,7 +453,7 @@ function handleQuick()
         if(key != "invisible" && wholeDB[key].border != "invisible")
         {
             makeToken(wholeDB[key]);
-            let currentDiv = document.getElementById(`${wholeDB[key].id}--div`);
+            let currentDiv = document.getElementById(`${wholeDB[key].id}-div`);
             let names = ["xPos", "yPos", "currentHp", "maxHp"];
             let feilds = [document.createElement("h6"), document.createElement("h6"), document.createElement("input"), document.createElement("h6")]
             
