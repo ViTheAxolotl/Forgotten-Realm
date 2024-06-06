@@ -206,7 +206,7 @@ function deleteToken()
         {
             try
             { 
-                set(ref(database, `currentMap/${key}`), null);
+                set(ref(database, `currentMap/${wholeDB[key].id}`), null);
             }
             
             catch (e) 
