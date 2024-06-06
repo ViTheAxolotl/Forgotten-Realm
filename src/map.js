@@ -238,26 +238,26 @@ function addCharacter(character, update)
         let letterRemover = htmlInfo[0].indexOf("-");
         let char = [document.createElement("img"), document.createElement("img"), document.createElement("img")];
         char[0].src = `images/map/tokens/${character["name"]}.png`;
-        char[0].id = character["name"];
-        char[0].classList = `tokens ${character["name"]} char`;
+        char[0].id = character["id"];
+        char[0].classList = `tokens ${character["id"]} char`;
         char[1].src = `images/map/tokens/${character["border"]}Border.png`;
         char[1].id = character["border"];
-        char[1].classList = `tokens ${character["name"]} border_`;
+        char[1].classList = `tokens ${character["id"]} border_`;
         char[1].onclick = handleCharClick;
         char[1].onmousedown = handleViewTokens;
         char[2].src = getHpImg(character);
         char[2].id = "hp";
-        char[2].classList = `tokens ${character["name"]} hp`;
+        char[2].classList = `tokens ${character["id"]} hp`;
         char[2].title = `${character["currentHp"]} ${character["maxHp"]}`;
         let x = pos[0];
         let y = pos[0];
         
         if(!character["title"].includes("Hidden"))
         {
-            char[1].title = `${character["name"].charAt(0).toUpperCase() + character["name"].slice(1, letterRemover)}:${character["title"]}`;
+            char[1].title = `${character["id"].charAt(0).toUpperCase() + character["id"].slice(1, letterRemover)}:${character["title"]}`;
         }
 
-        if(htmlInfo[0] == character["name"])
+        if(htmlInfo[0] == character["id"])
         {
             if(currentHp.value == "" && maxHp.value == "" && title.innerHTML == "Status: ")
             {
@@ -467,7 +467,7 @@ function setupDup(char, character, xOrY, locations)
     {
         stuffs[d].classList.add("tokens");
         stuffs[d].src = char[d].src;
-        stuffs[d].classList.add(character["name"]);
+        stuffs[d].classList.add(character["id"]);
         
         if(xOrY == "x"){placeTokens(pos[offSet], locations[1], stuffs[d]);}
         else{placeTokens(locations[0], pos[offSet], stuffs[d]);}
