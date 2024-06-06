@@ -235,7 +235,6 @@ function addCharacter(character, update)
 {
     if(document.getElementById(character["id"]) == null)
     {
-        let letterRemover = htmlInfo[0].indexOf("-");
         let char = [document.createElement("img"), document.createElement("img"), document.createElement("img")];
         char[0].src = `images/map/tokens/${character["name"]}.png`;
         char[0].id = character["id"];
@@ -254,7 +253,7 @@ function addCharacter(character, update)
         
         if(!character["title"].includes("Hidden"))
         {
-            char[1].title = `${character["id"].charAt(0).toUpperCase() + character["id"].slice(1, letterRemover)}:${character["title"]}`;
+            char[1].title = `${character["id"].charAt(0).toUpperCase() + character["id"].slice(1)}:${character["title"]}`;
         }
 
         if(htmlInfo[0] == character["id"])
