@@ -638,7 +638,7 @@ function updateToken(token)
         const currentTokens = document.getElementsByClassName(htmlInfo[0]);
         let char = document.getElementById(htmlInfo[0]);
         let borderColor;
-        let n;
+        let n = char.id + '-';
 
         if(/\d/.test(char.id))
         {
