@@ -453,7 +453,7 @@ function handleQuick()
         if(key != "invisible" && wholeDB[key].border != "invisible")
         {
             makeToken(wholeDB[key]);
-            let currentDiv = document.getElementById(`${wholeDB[key].id}-div`);
+            let currentDiv = document.getElementById(`${wholeDB[key].id}--div`);
             let names = ["xPos", "yPos", "currentHp", "maxHp"];
             let feilds = [document.createElement("h6"), document.createElement("h6"), document.createElement("input"), document.createElement("h6")]
             
