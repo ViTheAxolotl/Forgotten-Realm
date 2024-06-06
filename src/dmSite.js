@@ -453,7 +453,7 @@ function handleQuick()
         if(key != "invisible" && wholeDB[key].border != "invisible")
         {
             makeToken(wholeDB[key]);
-            let currentDiv = document.getElementById(`${wholeDB[key].name}-div`);
+            let currentDiv = document.getElementById(`${wholeDB[key].id}-div`);
             let names = ["xPos", "yPos", "currentHp", "maxHp"];
             let feilds = [document.createElement("h6"), document.createElement("h6"), document.createElement("input"), document.createElement("h6")]
             
@@ -480,7 +480,7 @@ function handleQuick()
             }
 
             let upload = document.createElement("button");
-            upload.id = wholeDB[key].name;
+            upload.id = wholeDB[key].id;
             upload.onclick = quickUpdate;
             upload.style.margin = "5px";
             upload.style.width = "6%";
@@ -495,7 +495,7 @@ function handleQuick()
 function quickUpdate()
 {
     let newHp = document.getElementById('newHp');
-    let i = this.id.slice(0, this.id.indexOf("-"));
+    let i = this.id;
 
     set(ref(database, `currentMap/${i}`),
     {
