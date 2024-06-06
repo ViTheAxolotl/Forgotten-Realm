@@ -202,7 +202,7 @@ function deleteToken()
 {
     for(let key of Object.keys(wholeDB))
     {
-        if(key + "-" == this.classList[1])
+        if(key == this.classList[1])
         {
             try
             { 
