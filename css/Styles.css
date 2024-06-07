@@ -329,7 +329,7 @@ table, .itemSearch, #itemImg
     height: 60%;
 }
 
-#arrows #up
+/*#arrows #up
 {
     margin-left: 4.44%;
 }
@@ -348,7 +348,7 @@ table, .itemSearch, #itemImg
 {
     transform: rotate(270deg);
     display: block;
-}
+}*/
 
 #gridMap
 {
