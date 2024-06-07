@@ -483,6 +483,12 @@ table, .itemSearch, #itemImg
     width: 50%
 }
 
+#arrows img, #arrows svg
+{
+    width: 100px;
+    height: 100px;
+}
+
 @media (max-width: 1399px) {
     .col-md-6
     {
