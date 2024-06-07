@@ -147,7 +147,7 @@ function addTokens()
         addCharacter(wholeDB[key], false);
     }
 
-    if(!(Object.keys(wholeDB).includes(htmlInfo[0])))
+    if(!(Object.keys(wholeDB).includes(htmlInfo[0].replace("-", ""))))
     {
         let htmlChar = html[htmlInfo[0]];
         let token = document.getElementById(htmlChar["name"]);
