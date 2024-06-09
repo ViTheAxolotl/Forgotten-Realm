@@ -329,27 +329,6 @@ table, .itemSearch, #itemImg
     height: 60%;
 }
 
-/*#arrows #up
-{
-    margin-left: 4.44%;
-}
-
-#arrows #down
-{
-    transform: rotate(90deg);
-}
-
-#arrows #left
-{
-    transform: rotate(180deg);
-}
-
-#arrows #up
-{
-    transform: rotate(270deg);
-    display: block;
-}*/
-
 #gridMap
 {
     position: relative;
@@ -485,8 +464,9 @@ table, .itemSearch, #itemImg
 
 #arrows img, #arrows svg
 {
-    width: 50%;
-    height: 50%;
+    width: 40%;
+    height: 40%;
+    margin-left: -25%;
 }
 
 @media (max-width: 1399px) {
