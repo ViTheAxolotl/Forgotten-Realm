@@ -42,7 +42,8 @@
         "genericE-" : "images/map/tokens/genericE-.png",
         "shadow-" : "images/map/tokens/shadow-.png",
         "GBot-" : "images/map/tokens/GBot-.png",
-        "fireElemental-" : "images/map/tokens/fireElemental.png"
+        "fireElemental-" : "images/map/tokens/fireElemental-.png",
+        "fireMVBear-" : "images/map/tokens/fireMVBear-.png"
     },
 
     "borders" : 
