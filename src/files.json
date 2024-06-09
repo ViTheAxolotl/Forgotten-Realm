@@ -40,7 +40,8 @@
         "trap-" : "images/map/tokens/spike-.png",
         "genericA-" : "images/map/tokens/genericA-.png",
         "genericE-" : "images/map/tokens/genericE-.png",
-        "shadow-" : "images/map/tokens/shadow-.png"
+        "shadow-" : "images/map/tokens/shadow-.png",
+        "GBot-" : "images/map/tokens/GBot-.png"
     },
 
     "borders" : 
