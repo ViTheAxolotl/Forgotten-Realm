@@ -244,8 +244,12 @@ function handleGoButton()
         }
 
         let loading = document.createElement("h3");
-        loading.innerHTML = "Loading...";
+        let loadingGif = document.createElement("img");
+        loading.innerHTML = "Loading, AxolMap V2 now with less delay...";
+        loadingGif.src = "images/loadingGif.gif";
+        loadingGif.style.minWidth = "10%";
         div.appendChild(loading);
+        div.appendChild(loadingGif);
         setInterval(() => {window.location.href= `map.html?${curCharacter}_${curBorder}_x`;}, 2000);
     }
 }
