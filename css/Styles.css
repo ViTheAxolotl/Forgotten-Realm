@@ -475,7 +475,7 @@ table, .itemSearch, #itemImg
     flex-wrap: wrap;
 }
   
-.flex-container > div 
+.flex-container .flexibox
 {
     min-width: 100px;
     margin: 5px;
