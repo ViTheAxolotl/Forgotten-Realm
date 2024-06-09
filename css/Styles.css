@@ -466,7 +466,7 @@ table, .itemSearch, #itemImg
 {
     width: 40%;
     height: 40%;
-    margin-left: 0.1%;
+    margin-left: -25%;
 }
 
 @media (max-width: 1399px) {
@@ -727,6 +727,6 @@ table, .itemSearch, #itemImg
     {
         width: 70%;
         height: 70%;
-        margin-left: -25%;
+        margin-left: 0.1%;
     }
   }
