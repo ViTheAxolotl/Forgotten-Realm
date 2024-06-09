@@ -43,7 +43,9 @@
         "shadow-" : "images/map/tokens/shadow-.png",
         "GBot-" : "images/map/tokens/GBot-.png",
         "fireElemental-" : "images/map/tokens/fireElemental-.png",
-        "fireMVBear-" : "images/map/tokens/fireMVBear-.png"
+        "fireMVBear-" : "images/map/tokens/fireMVBear-.png",
+        "draina-" : "images/map/tokens/draina-.png",
+        "drainb-" : "images/map/tokens/drainb-.png"
     },
 
     "borders" : 
