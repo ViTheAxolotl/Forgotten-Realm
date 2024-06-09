@@ -526,6 +526,13 @@ table, .itemSearch, #itemImg
     {
         width: 50%
     }
+
+    #arrows img, #arrows svg
+    {
+        width: 40%;
+        height: 40%;
+        margin-left: -25%;
+    }
   }
 
 @media (max-width: 1199px) {
@@ -714,5 +721,12 @@ table, .itemSearch, #itemImg
     #status
     {
         width: 60%
+    }
+
+    #arrows img, #arrows svg
+    {
+        width: 70%;
+        height: 70%;
+        margin-left: -25%;
     }
   }
