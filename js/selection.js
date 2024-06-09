@@ -248,7 +248,7 @@ function handleGoButton()
         loading.innerHTML = "Loading, AxolMap V2 now with less delay...";
         loadingGif.src = "images/loadingGif.gif";
         loadingGif.style.minWidth = "10%";
-        loadingGif.classList = "center";
+        loadingGif.classList = "center"; 
         div.appendChild(loading);
         div.appendChild(loadingGif);
         setInterval(() => {window.location.href= `map.html?${curCharacter}_${curBorder}_x`;}, 2000);
