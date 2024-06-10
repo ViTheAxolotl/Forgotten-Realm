@@ -233,7 +233,7 @@ function setTurnOrder()
 
 function addCharacter(character, update)
 {
-    if(document.getElementById(character["id"]) == null)
+    if(document.getElementsByClassName(character["id"]) == null)
     {
         let char = [document.createElement("img"), document.createElement("img"), document.createElement("img")];
         char[0].src = `images/map/tokens/${character["name"]}.png`;
