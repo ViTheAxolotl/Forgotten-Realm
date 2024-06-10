@@ -644,10 +644,10 @@ function updateToken(token)
         {
             n = char.id.replace(/\d/g, '') + '-';
         }
-
+//!Object.keys(wholeDB).includes(token.id) && 
         for(let token of currentTokens)
         {
-            if(!Object.keys(wholeDB).includes(token.id) && token.classList.contains("border_"))
+            if(token.classList.contains("border_"))
             {
                 borderColor = token.id;
             }
