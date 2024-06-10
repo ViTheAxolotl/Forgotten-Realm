@@ -1012,7 +1012,7 @@ function addToken()
     {
         table = `preset/${id}`
     }
-
+ 
     set(ref(database, table),
     {
         border : b,
