@@ -45,7 +45,9 @@
         "fireElemental-" : "images/map/tokens/fireElemental-.png",
         "fireMVBear-" : "images/map/tokens/fireMVBear-.png",
         "draina-" : "images/map/tokens/draina-.png",
-        "drainb-" : "images/map/tokens/drainb-.png"
+        "drainb-" : "images/map/tokens/drainb-.png",
+        "marvin-" : "images/map/tokens/marvin-.png",
+        "vampireSpawn-" : "images/map/tokens/vampireSpawn-.png"
     },
 
     "borders" : 
