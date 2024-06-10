@@ -8,7 +8,8 @@
         "spikeMap" : "images/map/spikeMap.png",
         "dungeonLagoGrass" : "images/map/dungeonLagoGrass.jpg",
         "carnivalOutside" : "images/map/carnivalOutside.jpg",
-        "stage" : "images/map/stage.jpg"
+        "stage" : "images/map/stage.jpg",
+        "throwingGame" : "images/map/throwingGame.jpg"
     }, 
 
     "tokens" : 
