@@ -6,7 +6,9 @@
         "grid" : "images/map/grid.png",
         "dungeonLago" : "images/map/dungeonLago.jpg",
         "spikeMap" : "images/map/spikeMap.png",
-        "dungeonLagoGrass" : "images/map/dungeonLagoGrass.jpg"
+        "dungeonLagoGrass" : "images/map/dungeonLagoGrass.jpg",
+        "carnivalOutside" : "images/map/carnivalOutside.jpg",
+        "stage" : "images/map/stage.jpg"
     }, 
 
     "tokens" : 
