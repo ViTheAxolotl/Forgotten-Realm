@@ -233,8 +233,8 @@ function setTurnOrder()
 
 function addCharacter(character, update)
 {
-    if(document.getElementsByClassName(character["id"]).length == 0)
-    {
+    //if(document.getElementsByClassName(character["id"]).length == 0)
+    //{
         let char = [document.createElement("img"), document.createElement("img"), document.createElement("img")];
         char[0].src = `images/map/tokens/${character["name"]}.png`;
         char[0].id = character["id"];
@@ -393,7 +393,7 @@ function addCharacter(character, update)
 
             div.appendChild(char[i]);
         }
-    }
+    //}
 }
 
 function exp(xOrY, title, char)
