@@ -118,7 +118,7 @@ function handleAdd()
     hideButtons();
 
     mode = "add";
-    curCharacter = {border: "invisible", currentHp: "20", map: "", maxHp: "20", name: "invisible-", title: " ", xPos: "5", yPos: "D"};
+    curCharacter = {border: "invisible", currentHp: "20", map: "", maxHp: "20", name: "invisible-", id: "invisible", title: " ", xPos: "5", yPos: "D"};
     makeToken(curCharacter);
     editDiv = document.getElementById("invisible-div");
     temp = curCharacter.name;
