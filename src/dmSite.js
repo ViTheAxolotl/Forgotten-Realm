@@ -1001,7 +1001,7 @@ function addToken()
 
         while(Object.keys(wholeDB).includes(id))
         {
-            id = id.slice(0, length - 1) + (parseInt(id.charAt(length - 1)) + 1);
+            id = id.slice(0, id.length - 1) + (parseInt(id.charAt(id.length - 1)) + 1);
         }
 
         mode = "none";
