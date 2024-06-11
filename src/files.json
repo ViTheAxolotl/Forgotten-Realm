@@ -51,7 +51,8 @@
         "drainb-" : "images/map/tokens/drainb-.png",
         "marvin-" : "images/map/tokens/marvin-.png",
         "vampireSpawn-" : "images/map/tokens/vampireSpawn-.png",
-        "firetownFireWallX-" : "images/map/tokens/firetownFireWallX-.png"
+        "firetownFireWallX-" : "images/map/tokens/firetownFireWallX-.png",
+        "wallOfFire-" : "images/map/tokens/wallOfFire-.png"
     },
 
     "borders" : 
