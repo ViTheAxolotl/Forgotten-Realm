@@ -399,6 +399,7 @@ function addCharacter(character, update)
 function exp(xOrY, title, char)
 {
     let expNum;
+
     if(xOrY == "x"){expNum = title.slice(title.indexOf("Exp x"));}
     else{expNum = title.slice(title.indexOf("Exp y"));}
 
@@ -438,8 +439,13 @@ function dup(xOrY, char, character, locations, title)
 {
     let num;
     let dupNum;
+    let rotate = "0";
+
     if(xOrY == "x"){dupNum = title.slice(title.indexOf("Dup x"));}
     else{dupNum = title.slice(title.indexOf("Dup y"));}
+    if(title.includes("90")){rotate = "90";}
+    else if(title.includes("180")){rotate = "180";}
+    else if(title.includes("270")){rotate = "270";}
 
     if(dupNum[5] != ",")
     {
@@ -454,10 +460,10 @@ function dup(xOrY, char, character, locations, title)
     if(xOrY == "x"){offSet = xPos.indexOf(character["xPos"]);}
     else{offSet = yPos.indexOf(character["yPos"]);}
 
-    for(let i = 0; i < num; i++){setupDup(char, character, xOrY, locations)}
+    for(let i = 0; i < num; i++){setupDup(char, character, xOrY, locations, rotate)}
 }
 
-function setupDup(char, character, xOrY, locations)
+function setupDup(char, character, xOrY, locations, rotate)
 {
     let stuffs = [document.createElement("img"), document.createElement("img"), document.createElement("img")];
     offSet++;
@@ -466,6 +472,7 @@ function setupDup(char, character, xOrY, locations)
     {
         stuffs[d].classList.add("tokens");
         stuffs[d].src = char[d].src;
+        stuffs[d].style.transform = `rotate(${rotate}deg)`;
         stuffs[d].classList.add(character["id"]);
         
         if(xOrY == "x"){placeTokens(pos[offSet], locations[1], stuffs[d]);}
