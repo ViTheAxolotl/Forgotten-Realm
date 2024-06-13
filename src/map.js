@@ -405,7 +405,15 @@ function exp(xOrY, title, char)
 
     if(expNum[5] != ",")
     {
-        setupExp(expNum[5], char, xOrY);
+        if(expNum[6] != ",")
+        {
+            setupExp(expNum[5] + expNum[6], char, xOrY);
+        }
+
+        else
+        {
+            setupExp(expNum[5], char, xOrY);
+        }
     }
 
     else
@@ -449,7 +457,15 @@ function dup(xOrY, char, character, locations, title)
 
     if(dupNum[5] != ",")
     {
-        num = parseInt(dupNum[5]);
+        if(dupNum[6] != ",")
+        {
+            num = parseInt(dupNum[5] + dupNum[6]);
+        }
+
+        else
+        {
+            num = parseInt(dupNum[5]);
+        }
     }
 
     else
