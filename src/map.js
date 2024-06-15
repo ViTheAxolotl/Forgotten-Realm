@@ -247,7 +247,6 @@ function addCharacter(character, update)
         char[2].src = getHpImg(character);
         char[2].id = "hp";
         char[2].classList = `tokens ${character["id"]} hp`;
-        char[2].title = `${character["currentHp"]} ${character["maxHp"]}`;
         let x = pos[0];
         let y = pos[0];
         
