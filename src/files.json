@@ -56,7 +56,8 @@
         "wallOfFire-" : "images/map/tokens/wallOfFire-.png",
         "firetownElevator-" : "images/map/tokens/firetownElevator-.png",
         "firetownFireWallY-" : "images/map/tokens/firetownFireWallY-.png",
-        "pedistal-" : "images/map/tokens/pedistal-.png"
+        "pedistal-" : "images/map/tokens/pedistal-.png",
+        "table-" : "images/map/tokens/table-.png"
     },
 
     "borders" : 
