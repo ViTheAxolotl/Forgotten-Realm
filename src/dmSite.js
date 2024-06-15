@@ -255,7 +255,7 @@ function handleEdit()
         {
             for(let key of Object.keys(wholeDB))
             {
-                if(wholeDB[key].name == temp)
+                if(wholeDB[key].name == temp + "-")
                 {
                     curCharacter = wholeDB[key];
                 }
