@@ -488,6 +488,7 @@ function setupDup(char, character, xOrY, locations, rotate)
     {
         stuffs[d].classList.add("tokens");
         stuffs[d].src = char[d].src;
+        stuffs[d].style.zIndex = char[d].style.zIndex;
         stuffs[d].style.transform = `rotate(${rotate}deg)`;
         stuffs[d].classList.add(character["id"]);
         
