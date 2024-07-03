@@ -60,7 +60,8 @@
         "table-" : "images/map/tokens/table-.png",
         "fairyMV-" : "images/map/tokens/fairyMV-.png",
         "satyrMV-" : "images/map/tokens/satyrMV-.png",
-        "yethMV-" : "images/map/tokens/yethMV-.png"
+        "yethMV-" : "images/map/tokens/yethMV-.png",
+        "feyPortal-" : "images/map/tokens/feyPortal-.png"
     },
 
     "borders" : 
