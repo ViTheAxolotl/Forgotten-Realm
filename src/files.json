@@ -62,7 +62,8 @@
         "fairyMV-" : "images/map/tokens/fairyMV-.png",
         "satyrMV-" : "images/map/tokens/satyrMV-.png",
         "yethMV-" : "images/map/tokens/yethMV-.png",
-        "feyPortal-" : "images/map/tokens/feyPortal-.png"
+        "feyPortal-" : "images/map/tokens/feyPortal-.png",
+        "fairy-" : "images/map/tokens/fairy-.png"
     },
 
     "borders" : 

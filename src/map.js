@@ -350,6 +350,22 @@ function addCharacter(character, update)
                 }
             }
 
+            if(title.includes("FlipX"))
+            {
+                for(let image of char)
+                {
+                    image.style.transform += 'scaleX(-1)';
+                } 
+            }
+
+            if(title.includes("FlipY"))
+            {
+                for(let image of char)
+                {
+                    image.style.transform += 'scaleY(-1)';
+                } 
+            }
+
             if(title.includes("Hidden"))
             {
                 for(let image of char)
