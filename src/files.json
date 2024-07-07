@@ -65,7 +65,7 @@
         "feyPortal-" : "images/map/tokens/feyPortal-.png",
         "fairy-" : "images/map/tokens/fairy-.png"
     },
-
+ 
     "borders" : 
     {
         "invisible" : "images/map/tokens/invisibleBorder.png",
