@@ -10,7 +10,8 @@
         "carnivalOutside" : "images/map/carnivalOutside.jpg",
         "stage" : "images/map/stage.jpg",
         "throwingGame" : "images/map/throwingGame.jpg",
-        "woodenFloor" : "images/map/woodenFloor.jpg"
+        "woodenFloor" : "images/map/woodenFloor.jpg",
+        "mutedFeyWilds" : "images/map/mutedFeyWilds.jpg"
     }, 
 
     "tokens" : 
