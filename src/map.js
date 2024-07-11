@@ -582,6 +582,12 @@ function handleCharClick()
         let charToken = document.getElementById(this.classList[1]);
         window.location.href= `map.html?${charToken.id}_${this.id}_vi`;
     }
+
+    else if(titleTxt.value.slice(0, titleTxt.value.indexOf(":")).contains(this.title.slice(0, this.title.indexOf(":"))))
+    {
+        let charToken = document.getElementById(this.classList[1]);
+        window.location.href= `map.html?${charToken.id}_${this.id}_x`;
+    }
 }
 
 function handleViewTokens()

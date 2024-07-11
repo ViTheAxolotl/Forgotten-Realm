@@ -257,9 +257,10 @@ function handleGoButton()
 
 function createChar(curCharacter, curBorder)
 {
-    let char = {border : curBorder, currentHp : `${document.getElementById("Current Hp").value}`, maxHp : `${document.getElementById("Max Hp").value}`, map : "", id : curCharacter.slice(0, curCharacter.indexOf("-")), name : curCharacter, title : " ", xPos : "1", yPos : "A"};
+    let charName = curCharacter.slice(0, curCharacter.indexOf("-"));
+    let char = {border : curBorder, currentHp : `${document.getElementById("Current Hp").value}`, maxHp : `${document.getElementById("Max Hp").value}`, map : "", id : charName, name : curCharacter, title : " " + charName, xPos : "1", yPos : "A"};
 
-    set(ref(database, `currentMap/${curCharacter.slice(0, curCharacter.indexOf("-"))}`), char);
+    set(ref(database, `currentMap/${charName}`), char);
 }
 
 init();
