@@ -585,7 +585,7 @@ function handleCharClick()
         window.location.href= `map.html?${charToken.id}_${this.id}_vi`;
     }
 
-    else if(name[3].contains(compName[1]))
+    else if(name.contains(compName[1]))
     {
         let charToken = document.getElementById(this.classList[1]);
         window.location.href= `map.html?${charToken.id}_${this.id}_x`;
