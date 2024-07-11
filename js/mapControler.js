@@ -71,6 +71,15 @@ function setMainVaribles()
     htmlInfo = htmlInfo.split("?");
     htmlInfo = htmlInfo[1];
     htmlInfo = htmlInfo.split("_");
+    while(div.children.length > 1)
+    {
+        currentCharacter = document.getElementsByClassName(htmlInfo[0]);
+        
+        if(currentCharacter.length() > 0)
+        {
+            break;
+        }
+    }
     currentCharacter = document.getElementsByClassName(htmlInfo[0]);
     playerName.innerHTML = htmlInfo[0].charAt(0).toUpperCase() + htmlInfo[0].slice(1);
 
