@@ -243,7 +243,6 @@ function addCharacter(character, update)
         char[1].id = character["border"];
         char[1].classList = `tokens ${character["id"]} border_`;
         char[1].onclick = handleCharClick;
-        char[1].onmousedown = handleViewTokens;
         char[2].src = getHpImg(character);
         char[2].id = "hp";
         char[2].classList = `tokens ${character["id"]} hp`;
@@ -588,42 +587,44 @@ function handleCharClick()
         let charToken = document.getElementById(this.classList[1]);
         window.location.href= `map.html?${charToken.id}_${this.id}_x`;
     }
+
+    else
+    {
+        handleViewTokens(this)
+    }
 }
 
-function handleViewTokens()
+function handleViewTokens(t)
 {
-    if(htmlInfo[2] != "vi")
+    let currentToken = document.getElementsByClassName(t.classList[1]);
+    let viewDiv = document.getElementById("cover");
+    let i = 0;
+    let y = 2;
+    let title;
+
+    viewDiv.classList = "";
+    viewDiv.style.zIndex = "1011";
+    for(let elm of viewDiv.children)
     {
-        let currentToken = document.getElementsByClassName(this.classList[1]);
-        let viewDiv = document.getElementById("cover");
-        let i = 0;
-        let y = 2;
-        let title;
+        elm.classList = elm.classList[1];
+        elm.style.zIndex = `101${y}`;
+        y++;
 
-        viewDiv.classList = "";
-        viewDiv.style.zIndex = "1011";
-        for(let elm of viewDiv.children)
+        if(elm.src != undefined)
         {
-            elm.classList = elm.classList[1];
-            elm.style.zIndex = `101${y}`;
-            y++;
-
-            if(elm.src != undefined)
+            elm.src = currentToken[i].src;
+            elm.title = currentToken[i].title;
+            if(elm.title.includes(":"))
             {
-                elm.src = currentToken[i].src;
-                elm.title = currentToken[i].title;
-                if(elm.title.includes(":"))
-                {
-                    title = elm.title;
-                }
-                
-                i++;
+                title = elm.title;
             }
+            
+            i++;
+        }
 
-            else if(elm.id == "viewTitle")
-            {
-                elm.innerHTML = title;
-            }
+        else if(elm.id == "viewTitle")
+        {
+            elm.innerHTML = title;
         }
     }
 }
