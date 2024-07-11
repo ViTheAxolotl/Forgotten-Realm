@@ -577,9 +577,8 @@ function getHpImg(character)
 
 function handleCharClick()
 {
-    let name = document.getElementById("name").innerHTML;
-    name = name[0].toLowerCase() + name.slice(1);
-    let compName = this.title.split(" ");
+    let name = titleTxt.innerHTML.split(" ");
+    let compName = this.title.replace("  ", " ").split(" ");
 
     if(htmlInfo[2] == "vi")
     {
@@ -587,7 +586,7 @@ function handleCharClick()
         window.location.href= `map.html?${charToken.id}_${this.id}_vi`;
     }
 
-    else if(compName.includes(name))
+    else if(name.includes(compName[1]))
     {
         let charToken = document.getElementById(this.classList[1]);
         window.location.href= `map.html?${charToken.id}_${this.id}_x`;
