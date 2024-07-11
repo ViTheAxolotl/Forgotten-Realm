@@ -71,7 +71,7 @@ function setMainVaribles()
     htmlInfo = htmlInfo.split("?");
     htmlInfo = htmlInfo[1];
     htmlInfo = htmlInfo.split("_");
-    while(div.children.length > 1)
+    while(div.children.length < 1)
     {
         currentCharacter = document.getElementsByClassName(htmlInfo[0]);
         
