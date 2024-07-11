@@ -71,17 +71,8 @@ function setMainVaribles()
     htmlInfo = htmlInfo.split("?");
     htmlInfo = htmlInfo[1];
     htmlInfo = htmlInfo.split("_");
-    /*while(div.children.length < 1)
-    {
-        currentCharacter = document.getElementsByClassName(htmlInfo[0]);
-        
-        if(currentCharacter.length > 0)
-        {
-            break;
-        }
-    }*/
     playerName.innerHTML = htmlInfo[0].charAt(0).toUpperCase() + htmlInfo[0].slice(1);
-
+    currentCharacter = document.getElementsByClassName(htmlInfo[0]);
     let hiddenVi = document.getElementsByClassName("isVi");
 
     if(htmlInfo[2] != "vi")
@@ -124,14 +115,13 @@ function setMainVaribles()
             button.onclick = decreaseValue;
         }
     }
-
-    currentCharacter = document.getElementsByClassName(htmlInfo[0]);
 }
 
 function increaseValue()
 {
     let cHp = parseInt(currentHp.value);
     let mHp = parseInt(maxHp.value);
+    if(currentCharacter.length == 0){currentCharacter = document.getElementsByClassName(htmlInfo[0]);}
 
     if(this.name == "current")
     {
@@ -173,6 +163,7 @@ function decreaseValue()
 {
     let cHp = parseInt(currentHp.value);
     let mHp = parseInt(maxHp.value);
+    if(currentCharacter.length == 0){currentCharacter = document.getElementsByClassName(htmlInfo[0]);}
 
     if(this.name == "current")
     {
@@ -295,6 +286,7 @@ function updateHp()
 {
     let hpImg;
     let maxHp = maxHp.value;
+    if(currentCharacter.length == 0){currentCharacter = document.getElementsByClassName(htmlInfo[0]);}
 
     for(let prop of currentCharacter)
     {
@@ -350,6 +342,7 @@ function updateHp()
 function handleArrow()
 {
     let dirrection = "";
+    if(currentCharacter.length == 0){currentCharacter = document.getElementsByClassName(htmlInfo[0]);}
     currentPos = [parseInt(currentCharacter[0].style.left.replace("px", "")), parseInt(currentCharacter[0].style.top.replace("px", ""))];
 
     for(let token of currentCharacter)
