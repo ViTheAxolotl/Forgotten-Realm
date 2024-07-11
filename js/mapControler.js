@@ -75,7 +75,7 @@ function setMainVaribles()
     {
         currentCharacter = document.getElementsByClassName(htmlInfo[0]);
         
-        if(currentCharacter.length() > 0)
+        if(currentCharacter.length > 0)
         {
             break;
         }
