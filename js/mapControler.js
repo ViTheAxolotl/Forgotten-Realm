@@ -121,7 +121,6 @@ function increaseValue()
 {
     let cHp = parseInt(currentHp.value);
     let mHp = parseInt(maxHp.value);
-    if(currentCharacter.length == 0){currentCharacter = document.getElementsByClassName(htmlInfo[0]);}
 
     if(this.name == "current")
     {
@@ -163,7 +162,6 @@ function decreaseValue()
 {
     let cHp = parseInt(currentHp.value);
     let mHp = parseInt(maxHp.value);
-    if(currentCharacter.length == 0){currentCharacter = document.getElementsByClassName(htmlInfo[0]);}
 
     if(this.name == "current")
     {
@@ -286,7 +284,6 @@ function updateHp()
 {
     let hpImg;
     let maxHp = maxHp.value;
-    if(currentCharacter.length == 0){currentCharacter = document.getElementsByClassName(htmlInfo[0]);}
 
     for(let prop of currentCharacter)
     {
@@ -342,7 +339,6 @@ function updateHp()
 function handleArrow()
 {
     let dirrection = "";
-    if(currentCharacter.length == 0){currentCharacter = document.getElementsByClassName(htmlInfo[0]);}
     currentPos = [parseInt(currentCharacter[0].style.left.replace("px", "")), parseInt(currentCharacter[0].style.top.replace("px", ""))];
 
     for(let token of currentCharacter)

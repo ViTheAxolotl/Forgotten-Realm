@@ -251,7 +251,8 @@ function handleGoButton()
         div.classList.add("center"); 
         div.appendChild(loading);
         div.appendChild(loadingGif);
-        setInterval(() => {window.location.href= `map.html?${curCharacter}_${curBorder}_x`;}, 2000);
+        let charName = curCharacter.slice(0, curCharacter.indexOf("-"));
+        setInterval(() => {window.location.href= `map.html?${charName}_${curBorder}_x`;}, 2000);
     }
 }
 
