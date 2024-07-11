@@ -53,6 +53,7 @@ let offSet;
 let divTO;
 let wholeTO;
 let currentTurn;
+let players = ["nibbly", "nook", "razor", "leonier"];
 
 function init()
 {
@@ -585,7 +586,7 @@ function handleCharClick()
         window.location.href= `map.html?${charToken.id}_${this.id}_vi`;
     }
 
-    else if(name.includes(compName[1]))
+    else if(name.includes(compName[1]) && players.includes(compName[1]))
     {
         let charToken = document.getElementById(this.classList[1]);
         window.location.href= `map.html?${charToken.id}_${this.id}_x`;
