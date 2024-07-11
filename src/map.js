@@ -578,7 +578,7 @@ function getHpImg(character)
 function handleCharClick()
 {
     let name = document.getElementById("name").innerHTML;
-    name = name[0].toUpperCase + name.slice(1);
+    name = name[0].toLowerCase() + name.slice(1);
     let compName = this.title.split(" ");
 
     if(htmlInfo[2] == "vi")
