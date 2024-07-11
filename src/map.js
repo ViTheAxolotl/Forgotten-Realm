@@ -576,13 +576,15 @@ function getHpImg(character)
 
 function handleCharClick()
 {
+    let name = titleTxt.innerHTML.split(" ");
+    
     if(htmlInfo[2] == "vi")
     {
         let charToken = document.getElementById(this.classList[1]);
         window.location.href= `map.html?${charToken.id}_${this.id}_vi`;
     }
 
-    else if(titleTxt.value.slice(0, titleTxt.value.indexOf(":")).contains(this.title.slice(0, this.title.indexOf(":"))))
+    else if(name[1].contains(this.title.slice(0, this.title.indexOf(":"))))
     {
         let charToken = document.getElementById(this.classList[1]);
         window.location.href= `map.html?${charToken.id}_${this.id}_x`;
