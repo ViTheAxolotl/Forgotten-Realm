@@ -17,7 +17,7 @@ const firebaseApp = initializeApp
 let database = getDatabase();
 const auth = getAuth();
 let log;
-let nav;
+let nav = document.getElementsByTagName("nav");
 
 onAuthStateChanged(auth, (user) => {
     if (user) 
@@ -72,7 +72,6 @@ function navBarSetup()
         imageLocation = "../images/";
     }
 
-    nav = document.getElementsByTagName("nav");
     nav[0].innerHTML = `<div class="container-fluid">
         <a class="navbar-brand" href="${mainLocation}index.html"><img src = "${imageLocation}UP.png" title = "Forgotten Realm" alt = "Forgotten Realm" width = "70" height = "70"/></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
