@@ -48,14 +48,12 @@ onAuthStateChanged(auth, (user) => {
 
         log = `</ul>
             </div>
-            <li class="nav-item dropdown" style="float = right"> 
-                <button class="nav-link dropdown-toggle link-primary bg-UP-grey" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    ${name}
-                </button>
-                <ul class="dropdown-menu bg-dark" aria-labelledby="navbarScrollingDropdown">
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" id = "logoutButton">Logout</a></li>
-                </ul>
-            </li>`;
+            <button class="nav-link dropdown-toggle link-primary bg-UP-grey" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="float = right">
+                ${name}
+            </button>
+            <ul class="dropdown-menu bg-dark" style="float = right" aria-labelledby="navbarScrollingDropdown">
+                <li class="nav-item"><a class="nav-link active" aria-current="page" id = "logoutButton">Logout</a></li>
+            </ul>`;
             isLoggedIn = true;
     } 
     
