@@ -1,6 +1,6 @@
 "use strict"
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
-import { getDatabase} from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
+import { getDatabase, ref, set, onValue } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
 import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
 
 const firebaseApp = initializeApp
@@ -14,7 +14,7 @@ const firebaseApp = initializeApp
     measurementId: "G-Q2W494NRDT"
 });
 
-let db = getDatabase();
+let database = getDatabase();
 const auth = getAuth();
 let wholeNotes = {};
 let player;
@@ -40,7 +40,7 @@ onAuthStateChanged(auth, (user) =>
 onValue(notesRef, (snapshot) => 
 {
     const data = snapshot.val();
-    notesRef = data;
+    wholeNotes = data;
     readNotes(player);
     createAddButton();
     txtFeild.setAttribute("placeholder", " ");
@@ -205,7 +205,7 @@ async function readNotes()
     let display = document.getElementById("notesDisplay");
     display.innerHTML = "";
 
-    for(let key of Object.keys(wholeDB))
+    for(let key of Object.keys(wholeNotes))
     {
         createCard(wholeDB[key]["Title"], wholeDB[key]["Text"]);
     }
