@@ -51,7 +51,7 @@ onAuthStateChanged(auth, (user) => {
             <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="float = right">
                 <button class="link-primary bg-UP-grey">${name}</button
             </a>
-            <ul class="dropdown-menu bg-dark" style="right: 0;" aria-labelledby="navbarScrollingDropdown">
+            <ul class="dropdown-menu bg-dark" style="right: 0; left: auto;" aria-labelledby="navbarScrollingDropdown">
                 <li class="nav-item"><a class="nav-link active" aria-current="page" id = "logoutButton">Logout</a></li>
             </ul>`;
             isLoggedIn = true;
