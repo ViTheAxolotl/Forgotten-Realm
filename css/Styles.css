@@ -85,7 +85,7 @@ body
     margin: 20px 10px 0px 0px;
 }
 
-#story, #map, #towns, #controls, #gridMap
+#story, #map, #towns, #controls, #gridMap, #login
 {
     margin-top: 20px;
 }
@@ -95,7 +95,7 @@ p
     text-indent: 30px;
 }
 
-#info, #hometown, #footer, #header, #story, #list, #display, #map, #towns, #search, #item, #quests, #notes, #controls, #gridMap
+#info, #hometown, #footer, #header, #story, #list, #display, #map, #towns, #search, #item, #quests, #notes, #controls, #gridMap, #login
 {
     border: #555555 4px solid;
     padding: 10px 10px 0px 10px;
@@ -532,6 +532,11 @@ table, .itemSearch, #itemImg
         width: 40%;
         height: 40%;
         margin-left: -25%;
+    }
+
+    #login h5
+    {
+        text-align: left;
     }
   }
 
