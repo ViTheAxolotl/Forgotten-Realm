@@ -1,18 +1,29 @@
-"use strict";
+"use strict"
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
-import { getFirestore, setDoc, getDocs, deleteDoc, doc, collection } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js';
+import { getDatabase} from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
+import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
 
 const firebaseApp = initializeApp
 ({
-    apiKey: "AIzaSyDojcHZEmju8ix9EK8hQcvg3jsqZ4Okub0",
-    authDomain: "unbalancedpowers.firebaseapp.com",
-    projectId: "unbalancedpowers",
-    storageBucket: "unbalancedpowers.appspot.com",
-    messagingSenderId: "88358926340",
-    appId: "1:88358926340:web:a9837d91bcc8f28461dd51",
-    measurementId: "G-FYM8384HMN"
+    apiKey: "AIzaSyArcsmJkXSeuIHMysYtIzRdjIDlKNQA25Y",
+    authDomain: "forgottenrealmsmap.firebaseapp.com",
+    projectId: "forgottenrealmsmap",
+    storageBucket: "forgottenrealmsmap.appspot.com",
+    messagingSenderId: "697902154695",
+    appId: "1:697902154695:web:ffa5c47817f3097c89cfe2",
+    measurementId: "G-Q2W494NRDT"
 });
-const db = getFirestore(firebaseApp);
+
+let db = getDatabase();
+const auth = getAuth();
+
+onAuthStateChanged(auth, (user) => {
+    if(!user) 
+    {
+        alert("You need to login before using this resorce.");
+        window.location.href = "loginPage.html";        
+    }
+});
 
 function init()
 {
