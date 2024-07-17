@@ -56,7 +56,7 @@ function navBarSetup()
                 '<li class="nav-item"><a class="nav-link active" aria-current="page" href="' + mainLocation + 'itemIndex.html">Magic Item Index</a></li>' +    
             '</ul>' +
         '</div>' +
-        '<a class="navbar-brand" style="float = right" href="' + mainLocation + 'loginPage.html?' + url.slice(-1) + '"><button>Login</button></a>',
+        '<a class="navbar-brand" style="float = right" href="' + mainLocation + 'loginPage.html?' + url.slice(-1) + '"><button class="link-primary">Login</button></a>',
     '</div>');
 }
 
