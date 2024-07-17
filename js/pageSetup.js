@@ -40,11 +40,12 @@ onAuthStateChanged(auth, (user) => {
             </div>
             <a class="navbar-brand" style="float = right" href="${mainLocation}loginPage.html? url.slice(-1) + "><button class="link-primary bg-UP-grey">Login</button></a>);`;
     }
+
+    navBarSetup();
 });
 
 function init()
 {
-    navBarSetup();
     discordSetup();
 }
 
