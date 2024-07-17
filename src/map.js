@@ -723,7 +723,7 @@ function updateToken(token)
             case "sky-dragon":
                 if(!(t.includes("Sky-dragon")))
                 {
-                    char.id = "sky-";
+                    char.id = "sky";
                     setInterval(() => {window.location.href= `map.html?${char.id}_${borderColor}_x`;}, 2000);
                 }
                 break;
