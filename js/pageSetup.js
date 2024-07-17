@@ -1,7 +1,7 @@
 "use strict";
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
 import { getDatabase} from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
-import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
+import { getAuth, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
 
 const firebaseApp = initializeApp
 ({
@@ -81,10 +81,12 @@ function navBarSetup()
                             auth.currentUser +
                         '</a>' +
                         '<ul class="dropdown-menu bg-dark" aria-labelledby="navbarScrollingDropdown">' +
-                            '<li class="nav-item"><a class="nav-link active" aria-current="page" href="' + mainLocation + 'creationStory.html">Birth Of The Universe</a></li>' +
+                            '<li class="nav-item"><a class="nav-link active" aria-current="page" id = "logoutButton">Birth Of The Universe</a></li>' +
                         '</ul>' +
                     '</li>' +
                     '</div>');
+
+                document.getElementById("logoutButton").onclick = logout;
             } 
             
             else 
@@ -98,6 +100,17 @@ function navBarSetup()
         }));
     
         document.write('</div>');
+}
+
+function logout()
+{
+    signOut(auth).then(() => 
+    {
+        // Sign-out successful.
+        location.reload();
+    }).catch((error) => {
+        alert(error);
+    });
 }
 
 function discordSetup()
