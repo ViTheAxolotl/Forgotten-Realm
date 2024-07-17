@@ -46,8 +46,8 @@ function login(email, password)
     signInWithEmailAndPassword(auth, email, password).then((userCredential) => 
     {
         // Signed in 
-        const user = userCredential.user;
-        user.split("@");
+        let user = userCredential.user;
+        user = user.email.split("@");
         player = user[0];
         alert(`Welcome ${player}!`);
 
