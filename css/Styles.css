@@ -537,6 +537,12 @@ table, .itemSearch, #itemImg
     #login h5
     {
         text-align: left;
+        display: inline;
+    }
+
+    #login span 
+    {
+        display: block;
     }
   }
 
