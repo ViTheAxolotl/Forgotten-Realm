@@ -32,7 +32,7 @@ function init()
 
 function toTitleCase(word)
 {
-    let finalWord = word[0].toUpperCase + word.slice(1);
+    let finalWord = word[0].toUpperCase() + word.slice(1);
     return finalWord;
 }
 
