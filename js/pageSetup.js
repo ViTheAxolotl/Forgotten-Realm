@@ -19,6 +19,26 @@ const auth = getAuth();
 let log;
 let isLoggedIn = false;
 let nav = document.getElementsByTagName("nav");
+let url = window.location.href.split("/");
+let params = document.body.getElementsByTagName('script');
+let query = params[0].classList;
+let parentFolder = query[0];
+
+let imageLocation;
+let jsaLocation;
+let mainLocation;
+
+if(parentFolder == "noParent")
+{
+    mainLocation = "";
+    imageLocation = "images/";
+}
+
+if(parentFolder == "downOne")
+{
+    mainLocation = "../";
+    imageLocation = "../images/";
+}
 
 onAuthStateChanged(auth, (user) => {
     if (user) 
@@ -57,27 +77,6 @@ function init()
 
 function navBarSetup()
 {
-    let url = window.location.href.split("/");
-    let params = document.body.getElementsByTagName('script');
-    let query = params[0].classList;
-    let parentFolder = query[0];
-
-    let imageLocation;
-    let jsaLocation;
-    let mainLocation;
-
-    if(parentFolder == "noParent")
-    {
-        mainLocation = "";
-        imageLocation = "images/";
-    }
-
-    if(parentFolder == "downOne")
-    {
-        mainLocation = "../";
-        imageLocation = "../images/";
-    }
-
     nav[0].innerHTML = `<div class="container-fluid">
         <a class="navbar-brand" href="${mainLocation}index.html"><img src = "${imageLocation}UP.png" title = "Forgotten Realm" alt = "Forgotten Realm" width = "70" height = "70"/></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
