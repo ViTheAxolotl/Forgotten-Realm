@@ -538,11 +538,13 @@ table, .itemSearch, #itemImg
     {
         text-align: left;
         display: inline;
+        margin: 5%;
     }
 
     #login span 
     {
         display: block;
+        margin: 1% 0px;
     }
   }
 
