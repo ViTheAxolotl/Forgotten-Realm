@@ -24,16 +24,18 @@ onAuthStateChanged(auth, (user) => {
     if (user) 
     {
         let name = auth.currentUser.email.split("@");
-        name = name[0];
-        log = `<li class="nav-item dropdown" style="float = right"> 
+        name = toTitleCase(name[0]);
+
+        log = `</ul>
+            </div>
+            <li class="nav-item dropdown" style="float = right"> 
                 <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     ${name}
                 </a>
                 <ul class="dropdown-menu bg-dark" aria-labelledby="navbarScrollingDropdown">
                     <li class="nav-item"><a class="nav-link active" aria-current="page" id = "logoutButton">Logout</a></li>
                 </ul>
-            </li>
-            </div>`;
+            </li>`;
             isLoggedIn = true;
     } 
     
@@ -135,6 +137,12 @@ function copyrightSetup()
     footer.appendChild(copyright);
 
     copyright.innerHTML = 'Copyright &copy; Vi Snyder '+ new Date().getFullYear() + ''; 
+}
+
+function toTitleCase(word)
+{
+    let finalWord = word[0].toUpperCase() + word.slice(1);
+    return finalWord;
 }
 
 init();
