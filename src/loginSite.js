@@ -48,7 +48,7 @@ function login(email, password)
         // Signed in 
         let user = userCredential.user;
         user = user.email.split("@");
-        player = user[0];
+        player = toTitleCase(user[0]);
         alert(`Welcome ${player}!`);
 
         // Change login into their name, when click give logout button
