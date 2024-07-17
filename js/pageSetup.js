@@ -17,6 +17,7 @@ const firebaseApp = initializeApp
 let database = getDatabase();
 const auth = getAuth();
 let log;
+let nav;
 
 onAuthStateChanged(auth, (user) => {
     if (user) 
@@ -70,9 +71,9 @@ function navBarSetup()
         imageLocation = "../images/";
     }
 
-    document.write(
-    `<div class="container-fluid">
-        <a class="navbar-brand" href="${mainLocation}index.html"><img src = "${imageLocation }UP.png" title = "Forgotten Realm" alt = "Forgotten Realm" width = "70" height = "70"/></a>
+    nav = document.getElementsByTagName("nav");
+    nav.innerHTML = `<div class="container-fluid">
+        <a class="navbar-brand" href="${mainLocation}index.html"><img src = "${imageLocation}UP.png" title = "Forgotten Realm" alt = "Forgotten Realm" width = "70" height = "70"/></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -96,7 +97,7 @@ function navBarSetup()
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="${mainLocation}recap.html">Sessions Recap</a></li> 
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="${mainLocation}itemIndex.html">Magic Item Index</a></li>);    
                 ${log}
-    </div>`);
+    </div>`;
 }
 
 function logout()
@@ -112,16 +113,13 @@ function logout()
 
 function discordSetup()
 {
-    document.write
-    (
-        '<script src="https://cdn.jsdelivr.net/npm/@widgetbot/crate@3" async defer>'+
-            'new Crate('+
-            '{'+
-                'server: "1042157480463040613",'+ 
-                'channel: "1042157480463040616",'+
-            '})'+
-        '</script>' 
-    );
+    nav.innerHTML = nav.innerHTML + `<script src="https://cdn.jsdelivr.net/npm/@widgetbot/crate@3" async defer>'
+        'new Crate('
+        '{'
+            'server: "1042157480463040613",' 
+            'channel: "1042157480463040616",'
+        '})'
+        '</script>`;
 }
 
 function copyrightSetup()
