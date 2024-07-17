@@ -32,7 +32,7 @@ function init()
 
 function toTitleCase(word)
 {
-    return word[0].toUpperCase + word.value.slice(1);
+    return word[0].toUpperCase + word.slice(1);
 }
 
 function handleLoginBtn()
