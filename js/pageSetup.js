@@ -54,9 +54,9 @@ function navBarSetup()
                 '<li class="nav-item"><a class="nav-link active" aria-current="page" href="' + mainLocation + 'selection.html">Map Board</a></li>' +
                 '<li class="nav-item"><a class="nav-link active" aria-current="page" href="' + mainLocation + 'recap.html">Sessions Recap</a></li>' + 
                 '<li class="nav-item"><a class="nav-link active" aria-current="page" href="' + mainLocation + 'itemIndex.html">Magic Item Index</a></li>' +    
-                '<li class="nav-item" style="float: right"><a class="nav-link active" aria-current="page" href="' + mainLocation + 'loginPage.html?' + url.slice(-1) + '">Login</a></li>',
             '</ul>' +
         '</div>' +
+        '<a class="navbar-brand" style="float = right" href="' + mainLocation + 'loginPage.html?' + url.slice(-1) + '">Login</a>',
     '</div>');
 }
 
