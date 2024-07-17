@@ -16,13 +16,34 @@ const firebaseApp = initializeApp
 
 let db = getDatabase();
 const auth = getAuth();
+let wholeNotes = {};
+let player;
+let notesRef;
 
-onAuthStateChanged(auth, (user) => {
+onAuthStateChanged(auth, (user) => 
+{
     if(!user) 
     {
         alert("You need to login before using this resource. Click Ok and be redirected");
         window.location.href = "loginPage.html?questAndNotes.html";        
     }
+
+    else
+    {
+        let user = userCredential.user;
+        user = user.email.split("@");
+        player = toTitleCase(user[0]);
+        notesRef = ref(database, `playerChar/${player}/notes`);
+    }
+});
+
+onValue(notesRef, (snapshot) => 
+{
+    const data = snapshot.val();
+    notesRef = data;
+    readNotes(player);
+    createAddButton();
+    txtFeild.setAttribute("placeholder", " ");
 });
 
 function init()
@@ -32,38 +53,28 @@ function init()
     button.onclick = handleEnter;
 }
 
+function toTitleCase(word)
+{
+    let finalWord = word[0].toUpperCase() + word.slice(1);
+    return finalWord;
+}
+
 function handleEnter()
 {
-    if (hasSearched == false)
+    let enter = document.getElementById("enter");
+    let title = document.getElementById("searchBar");
+    let text = document.getElementById("text");
+
+    if(title.value == null || text.value == null || title.value == "" || text.value == "")
     {
-        let txtFeild = document.getElementById("searchBar");
-        let user = txtFeild.value;
-        user = user[0].toUpperCase() + user.substring(1).toLowerCase();
-        currentUser = user;
-        readNotes(user);
-        txtFeild.value = "";
-        createAddButton();
-        txtFeild.setAttribute("placeholder", " ");
-        hasSearched = true;
+        alert("Please enter both a title and text for your note.");
     }
 
     else
     {
-        let enter = document.getElementById("enter");
-        let title = document.getElementById("searchBar");
-        let text = document.getElementById("text");
-
-        if(title.value == null || text.value == null || title.value == "" || text.value == "")
-        {
-            alert("Please enter both a title and text for your note.");
-        }
-
-        else
-        {
-            addNote(currentUser, title.value, text.value);
-            setCardScreen(enter, title, text);
-        }   
-    }
+        addNote(title.value, text.value);
+        //setCardScreen(enter, title, text);
+    }   
 }
 
 function handleAddButton()
@@ -132,8 +143,8 @@ function setCardScreen(enter, title, text)
     enter.innerHTML = "Enter";
     title.placeholder = " ";
     title.value = " ";
-    readNotes(currentUser);
-    createAddButton();
+    //readNotes(currentUser);
+    //createAddButton();
 }
 
 function createAddButton()
@@ -172,14 +183,14 @@ function createDeleteButton()
     notes.appendChild(addButton);
 }
 
-async function addNote(user, title, text)
+async function addNote(title, text)
 {
     try 
     {
-        const docRef = await setDoc(doc(db, user, title), 
+        set(ref(database, `playerChar/${player}/notes/${title}`),
         {
             Title : title,
-            Text: text,
+            Text: text
         });
     } 
     
@@ -189,24 +200,22 @@ async function addNote(user, title, text)
     }
 }
 
-async function readNotes(user)
+async function readNotes()
 {
     let display = document.getElementById("notesDisplay");
     display.innerHTML = "";
-    const querySnapshot = await getDocs(collection(db, user));
-    querySnapshot.forEach((doc) => 
+
+    for(let key of Object.keys(wholeDB))
     {
-        let title = doc.id;
-        let text = doc.data().Text;
-        createCard(title, text);
-    });
+        createCard(wholeDB[key]["Title"], wholeDB[key]["Text"]);
+    }
 }
 
 async function deleteNote()
 {
     if(currentTitle != undefined)
     {
-        await deleteDoc(doc(db, currentUser, currentTitle));
+        set(ref(database, `playerChar/${player}/notes/${currentTitle}`), null);
     }
 }
 
@@ -232,6 +241,5 @@ function createCard(title, text)
 
 window.onload = init;
 let hasSearched = false;
-let currentUser;
 let currentTitle;
 let currentText;
