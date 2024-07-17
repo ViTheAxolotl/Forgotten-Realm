@@ -56,8 +56,8 @@ function login(email, password)
 
 function handleBackBtn()
 {
-    let url = window.location.href.split("/");
-    window.location.href= url.slice(-1);
+    let url = window.location.href.split("?");
+    window.location.href= url[1];
 }
 
 init();
