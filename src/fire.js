@@ -30,8 +30,7 @@ onAuthStateChanged(auth, (user) =>
 
     else
     {
-        let user = userCredential.user;
-        user = user.email.split("@");
+        let user = auth.currentUser.email.split("@");
         player = toTitleCase(user[0]);
         notesRef = ref(database, `playerChar/${player}/notes`);
     }
