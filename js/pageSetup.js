@@ -23,12 +23,14 @@ let nav = document.getElementsByTagName("nav");
 onAuthStateChanged(auth, (user) => {
     if (user) 
     {
+        let name = auth.currentUser.email.split("@");
+        name = name[0];
         log = `<li class="nav-item dropdown" style="float = right"> 
                 <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    ${auth.currentUser}
+                    ${name}
                 </a>
                 <ul class="dropdown-menu bg-dark" aria-labelledby="navbarScrollingDropdown">
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" id = "logoutButton">Birth Of The Universe</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" id = "logoutButton">Logout</a></li>
                 </ul>
             </li>
             </div>`;
@@ -40,7 +42,7 @@ onAuthStateChanged(auth, (user) => {
         // User is signed out
         log = `</ul>
             </div>
-            <a class="navbar-brand" style="float = right" href="${mainLocation}loginPage.html? url.slice(-1) + "><button class="link-primary bg-UP-grey">Login</button></a>);`;
+            <a class="navbar-brand" style="float = right" href="${mainLocation}loginPage.html?${url.slice(-1)}"><button class="link-primary bg-UP-grey">Login</button></a>);`;
     }
 
     navBarSetup();
