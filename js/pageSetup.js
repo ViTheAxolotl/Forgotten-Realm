@@ -97,8 +97,6 @@ function navBarSetup()
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="${mainLocation}itemIndex.html">Magic Item Index</a></li>);    
                 ${log}
     </div>`);
-
-        document.getElementById("logoutButton").onclick = logout;
 }
 
 function logout()
@@ -142,5 +140,6 @@ document.onreadystatechange = function ()
     if(document.readyState == "complete") 
     {
         copyrightSetup();
+        document.getElementById("logoutButton").onclick = logout;
     }
 }
