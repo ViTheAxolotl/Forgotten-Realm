@@ -1,4 +1,21 @@
 "use strict";
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
+import { getDatabase} from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
+import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
+
+const firebaseApp = initializeApp
+({
+    apiKey: "AIzaSyArcsmJkXSeuIHMysYtIzRdjIDlKNQA25Y",
+    authDomain: "forgottenrealmsmap.firebaseapp.com",
+    projectId: "forgottenrealmsmap",
+    storageBucket: "forgottenrealmsmap.appspot.com",
+    messagingSenderId: "697902154695",
+    appId: "1:697902154695:web:ffa5c47817f3097c89cfe2",
+    measurementId: "G-Q2W494NRDT"
+});
+
+let database = getDatabase();
+const auth = getAuth();
 
 function init()
 {
@@ -54,10 +71,33 @@ function navBarSetup()
                 '<li class="nav-item"><a class="nav-link active" aria-current="page" href="' + mainLocation + 'selection.html">Map Board</a></li>' +
                 '<li class="nav-item"><a class="nav-link active" aria-current="page" href="' + mainLocation + 'recap.html">Sessions Recap</a></li>' + 
                 '<li class="nav-item"><a class="nav-link active" aria-current="page" href="' + mainLocation + 'itemIndex.html">Magic Item Index</a></li>' +    
-            '</ul>' +
-        '</div>' +
-        '<a class="navbar-brand" style="float = right" href="' + mainLocation + 'loginPage.html?' + url.slice(-1) + '"><button class="link-primary bg-UP-grey">Login</button></a>',
-    '</div>');
+            
+        onAuthStateChanged(auth, (user) => {
+            if (user) 
+            {
+                document.write(
+                    '<li class="nav-item dropdown">' + 
+                        '<a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">' +
+                            auth.currentUser +
+                        '</a>' +
+                        '<ul class="dropdown-menu bg-dark" aria-labelledby="navbarScrollingDropdown">' +
+                            '<li class="nav-item"><a class="nav-link active" aria-current="page" href="' + mainLocation + 'creationStory.html">Birth Of The Universe</a></li>' +
+                        '</ul>' +
+                    '</li>' +
+                    '</div>');
+            } 
+            
+            else 
+            {
+                // User is signed out
+                document.write(
+                    '</ul>' +
+                    '</div>'+
+                    '<a class="navbar-brand" style="float = right" href="' + mainLocation + 'loginPage.html?' + url.slice(-1) + '"><button class="link-primary bg-UP-grey">Login</button></a>');
+            }
+        }));
+    
+        document.write('</div>');
 }
 
 function discordSetup()
