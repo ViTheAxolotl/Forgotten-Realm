@@ -23,9 +23,9 @@ let nav = document.getElementsByTagName("nav");
 onAuthStateChanged(auth, (user) => {
     if (user) 
     {
-        log = `<li class="nav-item dropdown"> 
+        log = `<li class="nav-item dropdown" style="float = right"> 
                 <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    auth.currentUser 
+                    ${auth.currentUser}
                 </a>
                 <ul class="dropdown-menu bg-dark" aria-labelledby="navbarScrollingDropdown">
                     <li class="nav-item"><a class="nav-link active" aria-current="page" id = "logoutButton">Birth Of The Universe</a></li>
