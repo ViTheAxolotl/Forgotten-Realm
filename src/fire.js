@@ -20,8 +20,8 @@ const auth = getAuth();
 onAuthStateChanged(auth, (user) => {
     if(!user) 
     {
-        alert("You need to login before using this resorce.");
-        window.location.href = "loginPage.html";        
+        alert("You need to login before using this resource. Click Ok and be redirected");
+        window.location.href = "loginPage.html?questAndNotes.html";        
     }
 });
 
