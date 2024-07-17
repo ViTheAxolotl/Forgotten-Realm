@@ -30,9 +30,14 @@ function init()
     loginBtn.onclick = handleLoginBtn;
 }
 
+function toTitleCase(word)
+{
+    return word[0].toUpperCase + word.value.slice(1);
+}
+
 function handleLoginBtn()
 {
-    login(`${username.value}@ForgottenRealm.com`, password.value);
+    login(`${toTitleCase(username.value)}@ForgottenRealm.com`, toTitleCase(password.value));
 }
 
 function login(email, password)
