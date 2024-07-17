@@ -50,8 +50,8 @@ function login(email, password)
         user = user.email.split("@");
         player = toTitleCase(user[0]);
         alert(`Welcome ${player}!`);
+        handleBackBtn();
 
-        // Change login into their name, when click give logout button
     }).catch((error) => 
     {
         const errorCode = error.code;
