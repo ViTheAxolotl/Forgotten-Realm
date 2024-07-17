@@ -8,13 +8,14 @@ function init()
 
 function navBarSetup()
 {
-    var params = document.body.getElementsByTagName('script');
-    var query = params[0].classList;
-    var parentFolder = query[0];
+    let url = window.location.href.split("/");
+    let params = document.body.getElementsByTagName('script');
+    let query = params[0].classList;
+    let parentFolder = query[0];
 
-    var imageLocation;
-    var jsaLocation;
-    var mainLocation;
+    let imageLocation;
+    let jsaLocation;
+    let mainLocation;
 
     if(parentFolder == "noParent")
     {
@@ -53,6 +54,7 @@ function navBarSetup()
                 '<li class="nav-item"><a class="nav-link active" aria-current="page" href="' + mainLocation + 'selection.html">Map Board</a></li>' +
                 '<li class="nav-item"><a class="nav-link active" aria-current="page" href="' + mainLocation + 'recap.html">Sessions Recap</a></li>' + 
                 '<li class="nav-item"><a class="nav-link active" aria-current="page" href="' + mainLocation + 'itemIndex.html">Magic Item Index</a></li>' +    
+                '<li class="nav-item" style="float-right"><a class="nav-link active" aria-current="page" href="' + mainLocation + 'loginPage.html?' + url[-1] + '">Login</a></li>',
             '</ul>' +
         '</div>' +
     '</div>');
