@@ -954,7 +954,7 @@ function loadMap()
 
 function handleGenerate()
 {
-    set(ref(database, `playerChar/`), {"Okami" : {"charName" : "Leonier"}, "Garrett" : {"charName" : "Nook"}, "Ben" : {"charName" : "Nibbly"}, "Alejandro"  : {"charName" : "Razor"}});
+    set(ref(database, `playerChar/Garrett/Test`), {"Title" : "Test", "Text" : "Text"});
 }
 
 function handleDone()
