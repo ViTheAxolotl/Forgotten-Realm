@@ -213,7 +213,7 @@ async function readNotes()
 
     for(let key of Object.keys(wholeNotes))
     {
-        createCard(wholeNotes[key]["Title"], wholeNotes[key]["Text"]);
+        createCard(key, wholeNotes[key]);
     }
 }
 
