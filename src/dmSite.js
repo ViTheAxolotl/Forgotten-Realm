@@ -954,24 +954,7 @@ function loadMap()
 
 function handleGenerate()
 {
-    let firstRun = true;
-
-    const notesRef = ref(database, 'playerChar/Garrett/notes');
-    onValue(notesRef, (snapshot) => 
-    {
-        const data = snapshot.val();
-
-        if(firstRun)
-        {
-            firstRun = false;
-            let temp = data;
-
-            for(let key of Object.keys(temp))
-            {
-                set(ref(database, `playerChar/Garrett/notes`), {key : temp[key]["Text"]});
-            }
-        }
-    });
+    set(ref(database, `playerChar/Garrett/notes`), {"Havenport" : "Under prince Grado. Grado is an idiot. We worked for him to escort for some diplomatic mission. Had us stop halfway to take a swim in a lake and we got jumped. Jac’U is his guard or some shit.", "Razor" : "High. Powerful Mage-Apparently works with/for the voice talking to Leonir, was an advocate for killing the Mapmaker. When he died Razor also glowed black. Has been less open with information. Prime target for when party fight begins.", "Strange Dreams" : "In a dream I recalled when I was sent to this world…. Someone said “I’m sorry” In dream Nook saw her close friend and many other fey/fairy’s in cages. Their powers being drained by some “machine”. He said to save them, and that she was their only hope. Group dream: Tarzoth and Hai, shadow people. Magic didn’t work in the dream. Tarzoth hates Kasie, wants to kill. Savlin is their kingdom. N and N dream: Firetown Salatude, Elk Many Grove (deletes the plane). King of fairies said that's where the fairies are.", "Kingdom of Salatude" : "Under the rule of succubi, prince is Thallos. Hosted a rave, horny idiot.", "Leonier" : "-Stabbed me at one point, gave a fish scale as an apology-Has made several short jokes and been bossy. Playing pranks to get her back. Catnip *may* have been successful-Has had a voice talking to her in her sleep, it told her to kill the Mapmaker before he got her killed. We did so and a dark aura went around her. -The magicvoid apparently is generated when she sleeps, has been following our path according to the Mapmaker's map.", "Loose Threads" : "Steve the Carriage’s previous owners come from South of Everline Mountains.", "Nibbly" : "Travelling companion", "Skye" : "Random girl we picked up from slavers. She has an orb that turns her into a dragon. Remembers she was once in the Feywilds, don’t trust her.", "Slarus' Coast" : "We killed one of the princes of Slarus coast for being a thief in Lakeview when he Held Person'd Nibbly and the Cat. Did not give his name, red haired twink who had a fondness for puke green shoes."});
 }
 
 function handleDone()
