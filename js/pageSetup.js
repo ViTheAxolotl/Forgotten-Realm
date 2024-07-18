@@ -48,7 +48,7 @@ onAuthStateChanged(auth, (user) => {
 
         log = `</ul>
             </div>
-            <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="float = right">
+            <a class="nav-link" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="float: right; padding-right: 1%;">
                 <button class="link-primary bg-UP-grey">${name}</button
             </a>
             <ul class="dropdown-menu bg-dark" style="right: 0; left: auto;" aria-labelledby="navbarScrollingDropdown">
