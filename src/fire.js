@@ -21,6 +21,7 @@ let player;
 let notesRef;
 let currentTitle;
 let currentText;
+let isFirstRead = true;
 
 onAuthStateChanged(auth, (user) => 
 {
@@ -40,8 +41,12 @@ onAuthStateChanged(auth, (user) =>
         {
             const data = snapshot.val();
             wholeNotes = data;
-            readNotes(player);
-            createAddButton();
+            if(isFirstRead)
+            {
+                readNotes(player);
+                createAddButton();
+                isFirstRead = false;
+            }
         });
     }
 });
