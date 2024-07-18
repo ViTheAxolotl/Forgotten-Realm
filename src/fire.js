@@ -193,7 +193,6 @@ async function addNote(title, text)
     {
         set(ref(database, `playerChar/${player}/notes/${title}`),
         {
-            Title : title,
             Text: text
         });
 
