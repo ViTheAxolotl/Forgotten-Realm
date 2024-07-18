@@ -19,6 +19,8 @@ const auth = getAuth();
 let wholeNotes = {};
 let player;
 let notesRef;
+let currentTitle;
+let currentText;
 
 onAuthStateChanged(auth, (user) => 
 {
@@ -40,7 +42,6 @@ onAuthStateChanged(auth, (user) =>
             wholeNotes = data;
             readNotes(player);
             createAddButton();
-            txtFeild.setAttribute("placeholder", " ");
         });
     }
 });
@@ -205,7 +206,7 @@ async function readNotes()
 
     for(let key of Object.keys(wholeNotes))
     {
-        createCard(wholeDB[key]["Title"], wholeDB[key]["Text"]);
+        createCard(wholeNotes[key]["Title"], wholeNotes[key]["Text"]);
     }
 }
 
@@ -238,6 +239,3 @@ function createCard(title, text)
 }
 
 window.onload = init;
-let hasSearched = false;
-let currentTitle;
-let currentText;
