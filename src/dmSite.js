@@ -52,10 +52,10 @@ let mode;
 
 function init()
 {
-    htmlInfo = htmlInfo.split("?");
-    htmlInfo = htmlInfo[1];
+    let user = auth.currentUser.email.split("@");
+    user = user[0];
     
-    if(htmlInfo == "Axo1ot1")
+    if(user == "vi")
     {
         fetch('https://vitheaxolotl.github.io/Forgotten-Realm/src/files.json').then(res => res.json()).then((json) => imgs = json);
         for(let button of document.getElementsByTagName("button"))
