@@ -954,7 +954,7 @@ function loadMap()
 
 function handleGenerate()
 {
-    set(ref(database, `playerChar/Garrett/Test`), {"Title" : "Test", "Text" : "Text"});
+    set(ref(database, `playerChar/Garrett/notes/Test`), {"Title" : "Test", "Text" : "Text"});
 }
 
 function handleDone()
