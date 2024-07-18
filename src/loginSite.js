@@ -38,7 +38,18 @@ function toTitleCase(word)
 
 function handleLoginBtn()
 {
-    login(`${toTitleCase(username.value)}@ForgottenRealms.com`, toTitleCase(password.value));
+    let user = username.value;
+    let pass = password.value;
+
+    if(pass.length < 6)
+    {
+        for(let i = pass.length; i < 6; i++)
+        {
+            pass = pass + ".";
+        }
+    }
+
+    login(`${toTitleCase(user)}@ForgottenRealms.com`, toTitleCase(pass));
 }
 
 function login(email, password)
