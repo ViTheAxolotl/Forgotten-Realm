@@ -958,7 +958,7 @@ function loadMap()
 function handleGenerate()
 {
     const user = auth.currentUser;
-    const newPassword = "Nook..";
+    const newPassword = "Razor.";
 
     updatePassword(user, newPassword).then(() => {
         // Update successful.
