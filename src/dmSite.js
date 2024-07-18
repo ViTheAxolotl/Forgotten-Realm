@@ -46,14 +46,13 @@ let div = document.getElementById("story");
 let editDiv;
 let imgs;
 let curCharacter;
-let htmlInfo = window.location.href;
 let temp;
 let mode;
 let user;
 
 function init()
 {
-    if(auth.currrentUser == null){alert("Wrong Credentails!!!");}
+    if(auth.currrentUser == undefined){alert("Wrong Credentails!!!");}
     else{user = auth.currentUser.email.split("@"); user = user[0];}
     
     if(user == "vi")
