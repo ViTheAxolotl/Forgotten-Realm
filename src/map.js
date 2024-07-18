@@ -350,9 +350,9 @@ function addCharacter(character, update)
                 }
             }
 
-            if(title.includes("opac"))
+            if(title.includes("Opac"))
             {
-                let opacityStart = title.indexOf("opac") + 4;
+                let opacityStart = title.indexOf("Opac") + 4;
                 let opac = title.slice(opacityStart, opacityStart + 2);
 
                 for(let image of char)
