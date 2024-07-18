@@ -52,69 +52,60 @@ let user;
 
 function init()
 {
-    if(auth.currrentUser == undefined){alert("Wrong Credentails!!!");}
-    else{user = auth.currentUser.email.split("@"); user = user[0];}
+    fetch('https://vitheaxolotl.github.io/Forgotten-Realm/src/files.json').then(res => res.json()).then((json) => imgs = json);
     
-    if(user == "vi")
+    for(let button of document.getElementsByTagName("button"))
     {
-        fetch('https://vitheaxolotl.github.io/Forgotten-Realm/src/files.json').then(res => res.json()).then((json) => imgs = json);
-        for(let button of document.getElementsByTagName("button"))
+        switch(button.id)
         {
-            switch(button.id)
-            {
-                case "add":
-                    fiveButtons.push(button);
-                    button.onclick = handleAdd;
-                    break;
+            case "add":
+                fiveButtons.push(button);
+                button.onclick = handleAdd;
+                break;
 
-                case "remove":
-                    fiveButtons.push(button);
-                    button.onclick = handleRemove;
-                    break;
+            case "remove":
+                fiveButtons.push(button);
+                button.onclick = handleRemove;
+                break;
 
-                case "pre":
-                    fiveButtons.push(button);
-                    button.onclick = handlePreset;
-                    break;
+            case "pre":
+                fiveButtons.push(button);
+                button.onclick = handlePreset;
+                break;
 
-                case "quick":
-                    fiveButtons.push(button);
-                    button.onclick = handleQuick;
-                    break;
+            case "quick":
+                fiveButtons.push(button);
+                button.onclick = handleQuick;
+                break;
 
-                case "turnO":
-                    fiveButtons.push(button);
-                    button.onclick = handleTurn;
-                    break;
+            case "turnO":
+                fiveButtons.push(button);
+                button.onclick = handleTurn;
+                break;
 
-                case "changeMap":
-                    fiveButtons.push(button);
-                    button.onclick = handleChangeMap;
-                    break;
+            case "changeMap":
+                fiveButtons.push(button);
+                button.onclick = handleChangeMap;
+                break;
 
-                case "save":
-                    fiveButtons.push(button);
-                    button.onclick = handleSave;
-                    break;
+            case "save":
+                fiveButtons.push(button);
+                button.onclick = handleSave;
+                break;
 
-                case "load":
-                    fiveButtons.push(button);
-                    button.onclick = handleLoad;
-                    break;
-                
-                case "generate":
-                    fiveButtons.push(button);
-                    button.onclick = handleGenerate;
-                    break;
-            }
+            case "load":
+                fiveButtons.push(button);
+                button.onclick = handleLoad;
+                break;
+            
+            case "generate":
+                fiveButtons.push(button);
+                button.onclick = handleGenerate;
+                break;
         }
     }
-
-    else
-    {
-        alert("Wrong Credentails!!!");
-    }
 }
+
 
 function handleAdd()
 {
@@ -967,6 +958,10 @@ function handleDone()
 
 function hideButtons()
 {
+    if(auth.currrentUser == undefined){alert("Wrong Credentails!!!"); location.reload();}
+    else{user = auth.currentUser.email.split("@"); user = user[0];}
+    if(user != "vi"){alert("Wrong Credentails!!!"); location.reload();}
+
     if(fiveButtons != [])
     {
         for(let button of fiveButtons)
