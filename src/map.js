@@ -357,7 +357,7 @@ function addCharacter(character, update)
 
                 for(let image of char)
                 {
-                    image.style.opacity = opac;
+                    image.style.opacity = `.${opac}`;
                 } 
             }
 
