@@ -1032,4 +1032,4 @@ function addToken()
     resetDelete();
 }
 
-window.onload = init;
+setTimeout(init(), 100);
