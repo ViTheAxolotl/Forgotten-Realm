@@ -350,6 +350,17 @@ function addCharacter(character, update)
                 }
             }
 
+            if(title.includes("opac"))
+            {
+                let opacityStart = title.indexOf("opac") + 4;
+                let opac = title.slice(opacityStart, opacityStart + 2);
+
+                for(let image of char)
+                {
+                    image.style.opacity = opac;
+                } 
+            }
+
             if(title.includes("FlipX"))
             {
                 for(let image of char)
