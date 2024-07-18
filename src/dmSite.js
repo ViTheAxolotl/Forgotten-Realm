@@ -954,14 +954,22 @@ function loadMap()
 
 function handleGenerate()
 {
+    let firstRun = true;
+
     const currentMapRef = ref(database, 'currentMap/');
     onValue(currentMapRef, (snapshot) => 
     {
         const data = snapshot.val();
-        
-        for(let key of Object.keys(data))
+
+        if(firstRun)
         {
-            set(ref(database, `playerChar/Garrett/notes`), {key : data[key]["Text"]});
+            firstRun = false;
+            let temp = data;
+
+            for(let key of Object.keys(temp))
+            {
+                set(ref(database, `playerChar/Garrett/notes`), {key : temp[key]["Text"]});
+            }
         }
     });
 }
