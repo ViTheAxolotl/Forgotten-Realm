@@ -192,7 +192,7 @@ async function addNote(title, text)
             Text: text
         });
 
-        setTimeout(() => {location.reload();}, 100);
+        setTimeout(() => {location.reload();}, 50);
     } 
     
     catch (e) 
@@ -217,7 +217,7 @@ async function deleteNote()
     if(currentTitle != undefined)
     {
         set(ref(database, `playerChar/${player}/notes/${currentTitle}`), null);
-        setTimeout(() => {location.reload();}, 100);
+        setTimeout(() => {location.reload();}, 50);
     }
 }
 
