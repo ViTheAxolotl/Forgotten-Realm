@@ -956,8 +956,8 @@ function handleGenerate()
 {
     let firstRun = true;
 
-    const currentMapRef = ref(database, 'currentMap/');
-    onValue(currentMapRef, (snapshot) => 
+    const notesRef = ref(database, 'playerChar/Garrett/notes');
+    onValue(notesRef, (snapshot) => 
     {
         const data = snapshot.val();
 
