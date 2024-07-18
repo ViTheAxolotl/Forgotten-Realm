@@ -49,13 +49,14 @@ let curCharacter;
 let htmlInfo = window.location.href;
 let temp;
 let mode;
+let user;
 
 function init()
 {
-    let user = auth.currentUser.email.split("@");
-    user = user[0];
+    if(auth.currrentUser == null){alert("Wrong Credentails!!!");}
+    else{user = auth.currentUser.email.split("@"); user = user[0];}
     
-    if(user == "vi" || auth.currentUser == null)
+    if(user == "vi")
     {
         fetch('https://vitheaxolotl.github.io/Forgotten-Realm/src/files.json').then(res => res.json()).then((json) => imgs = json);
         for(let button of document.getElementsByTagName("button"))
@@ -112,7 +113,7 @@ function init()
 
     else
     {
-        alert("Wrong Credentails!!!")
+        alert("Wrong Credentails!!!");
     }
 }
 
