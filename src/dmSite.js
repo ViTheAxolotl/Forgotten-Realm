@@ -55,7 +55,7 @@ function init()
     let user = auth.currentUser.email.split("@");
     user = user[0];
     
-    if(user == "vi")
+    if(user == "vi" || auth.currentUser == null)
     {
         fetch('https://vitheaxolotl.github.io/Forgotten-Realm/src/files.json').then(res => res.json()).then((json) => imgs = json);
         for(let button of document.getElementsByTagName("button"))
