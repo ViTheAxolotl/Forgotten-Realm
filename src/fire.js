@@ -191,10 +191,7 @@ async function addNote(title, text)
 {
     try 
     {
-        set(ref(database, `playerChar/${player}/notes/${title}`),
-        {
-            Text: text
-        });
+        set(ref(database, `playerChar/${player}/notes/${title}`), text);
 
         setTimeout(() => {location.reload();}, 50);
     } 
