@@ -957,17 +957,7 @@ function loadMap()
 
 function handleGenerate()
 {
-    const user = auth.currentUser;
-    const newPassword = "Razor."; 
 
-    updatePassword(user, newPassword).then(() => {
-        // Update successful.
-        alert("has worked");
-      }).catch((error) => {
-        // An error ocurred
-        alert("hasn't worked");
-        // ...
-      });
 }
 
 function handleDone()
