@@ -217,6 +217,7 @@ async function deleteNote()
     if(currentTitle != undefined)
     {
         set(ref(database, `playerChar/${player}/notes/${currentTitle}`), null);
+        setTimeout(() => {location.reload();}, 100);
     }
 }
 
