@@ -958,7 +958,7 @@ function handleDone()
 
 function hideButtons()
 {
-    if(auth.currrentUser == undefined){alert("Wrong Credentails!!!"); location.reload();}
+    if(auth.currentUser == undefined){alert("Wrong Credentails!!!"); location.reload();}
     else{user = auth.currentUser.email.split("@"); user = user[0];}
     if(user != "vi"){alert("Wrong Credentails!!!"); location.reload();}
 
