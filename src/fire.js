@@ -32,17 +32,17 @@ onAuthStateChanged(auth, (user) =>
     {
         let user = auth.currentUser.email.split("@");
         player = toTitleCase(user[0]);
+        
         notesRef = ref(database, `playerChar/${player}/notes`);
+        onValue(notesRef, (snapshot) => 
+        {
+            const data = snapshot.val();
+            wholeNotes = data;
+            readNotes(player);
+            createAddButton();
+            txtFeild.setAttribute("placeholder", " ");
+        });
     }
-});
-
-onValue(notesRef, (snapshot) => 
-{
-    const data = snapshot.val();
-    wholeNotes = data;
-    readNotes(player);
-    createAddButton();
-    txtFeild.setAttribute("placeholder", " ");
 });
 
 function init()
@@ -131,7 +131,6 @@ function setAddScreen()
     title.placeholder = "Write Title Here";
     title.parentNode.appendChild(text);
     title.parentNode.appendChild(addButton);
-    
 }
 
 function setCardScreen(enter, title, text)
