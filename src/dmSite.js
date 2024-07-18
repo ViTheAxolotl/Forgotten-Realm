@@ -1032,4 +1032,4 @@ function addToken()
     resetDelete();
 }
 
-setTimeout(init(), 200);
+setTimeout(init(), 500);
