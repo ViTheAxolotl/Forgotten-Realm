@@ -140,8 +140,8 @@ function setCardScreen(enter, title, text)
     deleteButton.parentNode.removeChild(deleteButton);
     text.parentNode.removeChild(text);
     enter.innerHTML = "Enter";
-    title.placeholder = " ";
-    title.value = " ";
+    title.placeholder = "";
+    title.value = "";
     //readNotes(currentUser);
     //createAddButton();
 }
@@ -191,6 +191,8 @@ async function addNote(title, text)
             Title : title,
             Text: text
         });
+
+        setTimeout(() => {location.reload();}, 100);
     } 
     
     catch (e) 
