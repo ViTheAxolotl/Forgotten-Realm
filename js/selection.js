@@ -29,31 +29,39 @@ let hp = document.createElement("h3");
 let go = document.createElement("button");
 let people = [];
 let numToLet = {0 : "", 1 : "a", 2 : "b"};
+let firstRun = true;
 
 const charRef = ref(database, 'playerChar/');
 onValue(charRef, (snapshot) => 
 {
     const data = snapshot.val();
-    wholeChars = data;
+    if(firstRun)
+    {
+        firstRun = false;
+        wholeChars = data;
+        checkIfLoggedIn();
+    }
 });
 
-onAuthStateChanged(auth, (user) => 
+function checkIfLoggedIn()
 {
-    if(!user) 
+    player = auth.currentUser.email;
+
+    if(player == undefined || player == null) 
     {
         alert("You need to login before using this resource. Click Ok and be redirected");
-        window.location.href = "loginPage.html?questAndNotes.html";        
+        window.location.href = "loginPage.html?selection.html";        
     }
 
     else
     {
-        player = auth.currentUser.email.split("@");
+        player = player.split("@");
         player = toTitleCase(player[0]);
         init();
         charName.value = wholeChars[player]["charName"];
         handleEnterButton();
     }
-});
+}
 
 function init()
 {
