@@ -15,7 +15,7 @@ const firebaseApp = initializeApp
 });
 
 let database = getDatabase();
-const auth = getAuth();
+let auth = getAuth();
 let player;
 let wholeChars = {};
 let enter = document.getElementById("enter");
