@@ -963,7 +963,7 @@ function handleGenerate()
                 {
                     let tokenName = data[player]["charName"].toLowerCase();
                     let token = wholeDB[tokenName];
-                    token["tempHp"] = 0;
+                    token["tempHp"] = "0";
                     set(ref(database, `playerChar/${player}/token`), token);
                 }
             }
