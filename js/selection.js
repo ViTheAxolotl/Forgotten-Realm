@@ -39,28 +39,27 @@ onValue(charRef, (snapshot) =>
     {
         firstRun = false;
         wholeChars = data;
-        checkIfLoggedIn();
+        userLoggedIn();
     }
 });
 
-function checkIfLoggedIn()
+onAuthStateChanged(auth, (user) => 
 {
-    player = auth.currentUser.email;
-
-    if(player == undefined || player == null) 
+    if (!user) 
     {
         alert("You need to login before using this resource. Click Ok and be redirected");
-        window.location.href = "loginPage.html?selection.html";        
-    }
+        window.location.href = "loginPage.html?selection.html"; 
+    } 
+});
 
-    else
-    {
-        player = player.split("@");
-        player = toTitleCase(player[0]);
-        init();
-        charName.value = wholeChars[player]["charName"];
-        handleEnterButton();
-    }
+function userLoggedIn()
+{
+    player = auth.currentUser.email;
+    player = player.split("@");
+    player = toTitleCase(player[0]);
+    init();
+    charName.value = wholeChars[player]["charName"];
+    handleEnterButton();
 }
 
 function init()
