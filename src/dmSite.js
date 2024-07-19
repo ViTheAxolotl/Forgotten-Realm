@@ -948,7 +948,7 @@ function loadMap()
 
 function handleGenerate()
 {
-
+    set(ref(database, `playerChar/Vi`), {summons : {isSummonOn : false}});
 }
 
 function handleDone()
