@@ -30,6 +30,7 @@ let go = document.createElement("button");
 let people = [];
 let numToLet = {0 : "", 1 : "a", 2 : "b"};
 let firstRun = true;
+let oldToken = {};
 
 const charRef = ref(database, 'playerChar/');
 onValue(charRef, (snapshot) => 
@@ -57,6 +58,7 @@ function userLoggedIn()
     player = auth.currentUser.email;
     player = player.split("@");
     player = toTitleCase(player[0]);
+    oldToken = wholeChars[player]["token"];
     init();
     charName.value = wholeChars[player]["charName"];
     handleEnterButton();
@@ -155,6 +157,15 @@ function setUpCharacters(currentName)
         addBorders();
         addHp();
         div.appendChild(go);
+
+        if(oldToken != null || oldToken != undefined)
+        {
+            document.getElementById(`${oldToken["name"]}`).select();
+            document.getElementById(`${oldToken["border"]}`).select();
+            document.getElementById(`Max Hp`).value = oldToken["maxHp"];
+            document.getElementById(`Current Hp`).value = oldToken["currentHp"];
+            document.getElementById(`Temp Hp`).value = oldToken["tempHp"];
+        }
     }
 }
 
@@ -198,11 +209,11 @@ function addBorders()
 function addHp()
 {
     div.appendChild(hp);
-    let names = ["Max Hp", "Current Hp"];
-    let labels = [document.createElement("h6"), document.createElement("h6")];
-    let numbers = [document.createElement("input"), document.createElement("input")];
+    let names = ["Max Hp", "Current Hp", "Temp Hp"];
+    let labels = [document.createElement("h6"), document.createElement("h6"), document.createElement("h6")];
+    let numbers = [document.createElement("input"), document.createElement("input"), document.createElement("input")];
 
-    for(let i = 0; i < 2; i++)
+    for(let i = 0; i < names.length; i++)
     {
         let seprateDiv = document.createElement("div");
         labels[i].innerHTML = names[i] + ':';
@@ -296,7 +307,15 @@ function handleGoButton()
 function createChar(curCharacter, curBorder)
 {
     let charName = curCharacter.slice(0, curCharacter.indexOf("-"));
-    let char = {border : curBorder, currentHp : `${document.getElementById("Current Hp").value}`, maxHp : `${document.getElementById("Max Hp").value}`, map : "", id : charName, name : curCharacter, title : " " + charName + ", ", xPos : "1", yPos : "A"};
+    let char = {border : curBorder, currentHp : `${document.getElementById("Current Hp").value}`, maxHp : `${document.getElementById("Max Hp").value}`, tempHp : document.getElementById("Temp Hp").value, map : "", id : charName, name : curCharacter, title : " " + charName + ", ", xPos : "1", yPos : "A"};
+
+    if(oldToken != null || oldToken != undefined)
+    {
+        char["title"] = oldToken["title"];
+        char["xPos"] = oldToken["xPos"];
+        char["yPos"] = oldToken["yPos"];
+    }
 
     set(ref(database, `currentMap/${charName}`), char);
+    set(ref(database, `playerChar/${player}/token`), char);
 }
