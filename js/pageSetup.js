@@ -23,10 +23,18 @@ let url = window.location.href.split("/");
 let params = document.body.getElementsByTagName('script');
 let query = params[0].classList;
 let parentFolder = query[0];
+let wholeChars = {};
 
 let imageLocation;
 let jsaLocation;
 let mainLocation;
+
+const charRef = ref(database, 'playerChar/');
+onValue(charRef, (snapshot) => 
+{
+    const data = snapshot.val();
+    wholeChars = data;
+});
 
 if(parentFolder == "noParent")
 {
@@ -96,7 +104,15 @@ function navBarSetup()
                 </li>
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="${mainLocation}mapAndTowns.html">Maps</a></li>
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="${mainLocation}questAndNotes.html">Quests & Personal Notes</a></li> 
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="${mainLocation}selection.html">Map Board</a></li>
+                <li class="nav-item dropdown"> 
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Map Board
+                    </a>
+                    <ul class="dropdown-menu bg-dark" aria-labelledby="navbarScrollingDropdown">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="${mainLocation}selection.html">Change Token</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="${mainLocation}map.html?${wholeChars["name"]["id"]}_${wholeChars["name"]["border"]}_x}">Quick Start</a></li>
+                    </ul>
+                </li>
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="${mainLocation}recap.html">Sessions Recap</a></li> 
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="${mainLocation}itemIndex.html">Magic Item Index</a></li>);    
                 ${log}
