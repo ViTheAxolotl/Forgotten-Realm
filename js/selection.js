@@ -160,8 +160,8 @@ function setUpCharacters(currentName)
 
         if(oldToken != null || oldToken != undefined)
         {
-            document.getElementById(`${oldToken["name"]}`).choose();
-            document.getElementById(`${oldToken["border"]}`).choose();
+            document.getElementById(`${oldToken["name"]}`).onclick();
+            document.getElementById(`${oldToken["border"]}`).onclick();
             document.getElementById(`Max Hp`).value = oldToken["maxHp"];
             document.getElementById(`Current Hp`).value = oldToken["currentHp"];
             document.getElementById(`Temp Hp`).value = oldToken["tempHp"];
