@@ -1,6 +1,7 @@
 "use strict";
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
 import { getDatabase, ref, set, onValue } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
+import { getAuth, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
 
 const firebaseApp = initializeApp
 ({
@@ -13,6 +14,7 @@ const firebaseApp = initializeApp
     measurementId: "G-Q2W494NRDT"
 });
 
+let auth = getAuth();
 let database = getDatabase();
 const currentMapRef = ref(database, 'currentMap/');
 onValue(currentMapRef, (snapshot) => 
@@ -54,6 +56,15 @@ let divTO;
 let wholeTO;
 let currentTurn;
 let players = ["nibbly", "nook", "razor", "leonier"];
+
+onAuthStateChanged(auth, (user) => 
+{
+    if (!user) 
+    {
+        alert("You need to login before using this resource. Click Ok and be redirected");
+        window.location.href = "loginPage.html?selection.html"; 
+    } 
+});
 
 function init()
 {
