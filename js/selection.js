@@ -1,6 +1,7 @@
 "use strict";
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
 import { getDatabase, ref, set, onValue } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
+import { getAuth, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
 
 const firebaseApp = initializeApp
 ({
@@ -14,11 +15,13 @@ const firebaseApp = initializeApp
 });
 
 let database = getDatabase();
+const auth = getAuth();
+let player;
+let wholeChars = {};
 let enter = document.getElementById("enter");
 let charName = document.getElementById("name");
 let currentName;
 let div = document.getElementById("story");
-let characters = ["nook", "nibbly", "leonier", "razor", "axolotl"];
 let borders = ["blue", "golden", "green", "grey", "orange", "pink", "purple", "red"];
 let char = document.createElement("h3");
 let bord = document.createElement("h3");
@@ -26,6 +29,31 @@ let hp = document.createElement("h3");
 let go = document.createElement("button");
 let people = [];
 let numToLet = {0 : "", 1 : "a", 2 : "b"};
+
+const charRef = ref(database, 'playerChar/');
+onValue(charRef, (snapshot) => 
+{
+    const data = snapshot.val();
+    wholeChars = data;
+});
+
+onAuthStateChanged(auth, (user) => 
+{
+    if(!user) 
+    {
+        alert("You need to login before using this resource. Click Ok and be redirected");
+        window.location.href = "loginPage.html?questAndNotes.html";        
+    }
+
+    else
+    {
+        player = auth.currentUser.email.split("@");
+        player = toTitleCase(player[0]);
+        init();
+        charName.value = wholeChars[player]["charName"];
+        handleEnterButton();
+    }
+});
 
 function init()
 {
@@ -46,15 +74,17 @@ function init()
     go.onclick = handleGoButton;
 }
 
+function toTitleCase(word)
+{
+    let finalWord = word[0].toUpperCase() + word.slice(1);
+    return finalWord;
+}
+
 function handleEnterButton()
 {
     currentName = charName.value;
     currentName = currentName.toLowerCase();
-
-    if(characters.includes(currentName))
-    {
-        setUpCharacters(currentName);
-    }
+    setUpCharacters(currentName);
 }
 
 function setUpCharacters(currentName)
@@ -263,5 +293,3 @@ function createChar(curCharacter, curBorder)
 
     set(ref(database, `currentMap/${charName}`), char);
 }
-
-init();

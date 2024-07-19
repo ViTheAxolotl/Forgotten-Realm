@@ -948,7 +948,6 @@ function loadMap()
 
 function handleGenerate()
 {
-    let players = ["Garrett", "Ben", "Okami", "Alejandro"];
     let firstRun = true;
     const charRef = ref(database, 'playerChar/');
     onValue(charRef, (snapshot) => 
@@ -959,7 +958,7 @@ function handleGenerate()
             const data = snapshot.val();
             for(let player of Object.keys(data))
             {
-                if(players.includes(player))
+                if(player != "Vi")
                 {
                     let tokenName = data[player]["charName"].toLowerCase();
                     let token = wholeDB[tokenName];
