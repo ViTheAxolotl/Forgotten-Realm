@@ -64,7 +64,8 @@
         "feyPortal-" : "images/map/tokens/feyPortal-.png",
         "fairy-" : "images/map/tokens/fairy-.png",
         "harold-" : "images/map/tokens/harold-.png",
-        "MVElemental-" : "images/map/tokens/MVElemental-.png"
+        "MVElemental-" : "images/map/tokens/MVElemental-.png",
+        "magicAura-" : "images/map/tokens/magicAura-.png"
     },
  
     "borders" : 
