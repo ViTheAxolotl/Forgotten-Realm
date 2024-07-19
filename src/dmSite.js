@@ -948,7 +948,27 @@ function loadMap()
 
 function handleGenerate()
 {
-    set(ref(database, `playerChar/Vi`), {summons : {isSummonOn : false}});
+    let players = ["Garrett", "Ben", "Okami", "Alejandro"];
+    let firstRun = true;
+    const charRef = ref(database, 'playerChar/');
+    onValue(charRef, (snapshot) => 
+    {
+        if(firstRun)
+        {
+            firstRun = false;
+            const data = snapshot.val();
+            for(let player of Object.keys(data))
+            {
+                if(players.includes(player))
+                {
+                    let tokenName = data[player]["charName"].toLowerCase();
+                    let token = wholeDB[tokenName];
+                    token["tempHp"] = 0;
+                    set(ref(database, `playerChar/${player}/token`), token);
+                }
+            }
+        }
+    });
 }
 
 function handleDone()
