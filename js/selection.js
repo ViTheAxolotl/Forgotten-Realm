@@ -160,8 +160,8 @@ function setUpCharacters(currentName)
 
         if(oldToken != null || oldToken != undefined)
         {
-            document.getElementById(`${oldToken["name"]}`).select();
-            document.getElementById(`${oldToken["border"]}`).select();
+            document.getElementById(`${oldToken["name"]}`).choose();
+            document.getElementById(`${oldToken["border"]}`).choose();
             document.getElementById(`Max Hp`).value = oldToken["maxHp"];
             document.getElementById(`Current Hp`).value = oldToken["currentHp"];
             document.getElementById(`Temp Hp`).value = oldToken["tempHp"];
@@ -182,7 +182,7 @@ function addCharacters()
         person.id = char;
         person.src = `images/map/tokens/${char}.png`;
         person.classList = "char";
-        person.onclick = select;
+        person.onclick = choose;
         div.appendChild(person);
     }
 }
@@ -196,7 +196,7 @@ function addBorders()
         borders[i].src = `images/map/tokens/${color}Border.png`;
         borders[i].id = color;
         borders[i].classList = "bord";
-        borders[i].onclick = select;
+        borders[i].onclick = choose;
     }
 
     div.appendChild(bord);
@@ -232,7 +232,7 @@ function addHp()
     }
 }
 
-function select()
+function choose()
 {
     let classL = this.classList.value;
     if(classL.includes("char"))
