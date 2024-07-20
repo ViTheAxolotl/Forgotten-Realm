@@ -24,6 +24,7 @@ let params = document.body.getElementsByTagName('script');
 let query = params[0].classList;
 let parentFolder = query[0];
 let wholeChars = {};
+let name;
 
 let imageLocation;
 let jsaLocation;
@@ -52,7 +53,7 @@ if(parentFolder == "downOne")
 onAuthStateChanged(auth, (user) => {
     if (user) 
     {
-        let name = auth.currentUser.email.split("@");
+        name = auth.currentUser.email.split("@");
         name = toTitleCase(name[0]);
 
         log = `</ul>
@@ -109,7 +110,7 @@ function navBarSetup()
                     </a>
                     <ul class="dropdown-menu bg-dark" aria-labelledby="navbarScrollingDropdown">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="${mainLocation}selection.html">Change Token</a></li>
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="${mainLocation}map.html?${wholeChars["name"]["id"]}_${wholeChars["name"]["border"]}_x}">Quick Start</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="${mainLocation}map.html?${wholeChars[name]["id"]}_${wholeChars[name]["border"]}_x}">Quick Start</a></li>
                     </ul>
                 </li>
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="${mainLocation}recap.html">Sessions Recap</a></li> 
