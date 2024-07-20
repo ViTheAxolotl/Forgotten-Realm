@@ -17,6 +17,14 @@ const firebaseApp = initializeApp
 let auth = getAuth();
 let database = getDatabase();
 
+const currentMapRef = ref(database, 'currentMap/');
+onValue(currentMapRef, (snapshot) => 
+{
+    const data = snapshot.val();
+    wholeDB = data;
+    addTokens();
+});
+
 const charRef = ref(database, 'playerChar/');
 onValue(charRef, (snapshot) => 
 {
@@ -28,14 +36,6 @@ onValue(charRef, (snapshot) =>
         firstRun == false;
         setMainVaribles();
     }
-});
-
-const currentMapRef = ref(database, 'currentMap/');
-onValue(currentMapRef, (snapshot) => 
-{
-    const data = snapshot.val();
-    wholeDB = data;
-    addTokens();
 });
 
 const currentTORef = ref(database, 'currentTO/');
