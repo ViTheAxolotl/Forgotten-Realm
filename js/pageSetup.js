@@ -1,6 +1,6 @@
 "use strict";
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
-import { getDatabase, ref, set, onValue } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
+import { getDatabase, ref, onValue } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
 import { getAuth, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
 
 const firebaseApp = initializeApp
@@ -34,6 +34,7 @@ onValue(charRef, (snapshot) =>
 {
     const data = snapshot.val();
     wholeChars = data;
+    navBarSetup();
 });
 
 if(parentFolder == "noParent")
@@ -72,8 +73,6 @@ onAuthStateChanged(auth, (user) => {
             </div>
             <a class="navbar-brand" style="float = right" href="${mainLocation}loginPage.html?${url.slice(-1)}"><button class="link-primary bg-UP-grey">Login</button></a>);`;
     }
-
-    navBarSetup();
 });
 
 function init()
