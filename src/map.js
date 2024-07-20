@@ -49,7 +49,6 @@ onValue(currentTORef, (snapshot) =>
 
 let wholeDB = {};
 let div = document.getElementById("gridMap");
-let htmlInfo = window.location.href;
 let html = {};
 const gridMap = document.querySelector("#gridMap");
 const rect = gridMap.getBoundingClientRect();
@@ -118,9 +117,6 @@ function init()
 function setMainVaribles()
 {   
     fetch('https://vitheaxolotl.github.io/Forgotten-Realm/src/files.json').then(res => res.json()).then((json) => imgs = json);
-    htmlInfo = htmlInfo.split("?");
-    htmlInfo = wholeDB[wholeChar[player]["currentToken"]]["border"];
-    htmlInfo = htmlInfo.split("_");
     html[wholeChar[player]["currentToken"]] = {"border" : wholeDB[wholeChar[player]["currentToken"]]["border"], "name" : wholeChar[player]["currentToken"], title : " "};
     document.getElementById("hideCover").onclick = hideCover;
 }
