@@ -180,7 +180,7 @@ function addTokens()
 
     if(!(Object.keys(wholeDB).includes(wholeChar[player]["currentToken"].replace("-", ""))))
     {
-        let htmlChar = html[wholeChar[player]["currentToken"]];
+        let htmlChar = wholeDB[wholeChar[player]["currentToken"]];
         let token = document.getElementById(htmlChar["name"]);
         let x = parseInt(token.style.left.replace("px", ""));
         let y = parseInt(token.style.top.replace("px", ""));
