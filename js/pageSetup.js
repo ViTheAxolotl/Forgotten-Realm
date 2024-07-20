@@ -85,7 +85,7 @@ function init()
 
 function navBarSetup()
 {
-    if(auth.currentUser.email != undefined && auth.currentUser.email != null)
+    if(auth.currentUser != undefined && auth.currentUser != null)
     {
         tempQuick = `${wholeChars[name]["token"]["id"]}_${wholeChars[name]["token"]["border"]}_x}`;
     }
