@@ -26,7 +26,7 @@ onValue(charRef, (snapshot) =>
     if(firstRun)
     {
         firstRun == false;
-        init();
+        setMainVaribles();
     }
 });
 
@@ -62,11 +62,11 @@ let yPos;
 let xPos;
 let tokens = [];
 let imgs;
-let currentHp;
-let maxHp;
-let titleTxt;
+let currentHp = document.getElementById("current");;
+let maxHp = document.getElementById("max");
+let titleTxt = document.getElementById("title");
 let offSet;
-let divTO;
+let divTO = document.getElementById("turnOrder");
 let wholeTO;
 let player;
 let wholeChar;
@@ -91,19 +91,8 @@ onAuthStateChanged(auth, (user) =>
 
 function init()
 {
-    setMainVaribles();
     setInterval(timer, 100);
-}
-
-function setMainVaribles()
-{   
-    fetch('https://vitheaxolotl.github.io/Forgotten-Realm/src/files.json').then(res => res.json()).then((json) => imgs = json);
-    htmlInfo = htmlInfo.split("?");
-    htmlInfo = wholeDB[wholeChar[player]["currentToken"]]["border"];
-    htmlInfo = htmlInfo.split("_");
-    html[wholeChar[player]["currentToken"]] = {"border" : wholeDB[wholeChar[player]["currentToken"]]["border"], "name" : wholeChar[player]["currentToken"], title : " "};
-    document.getElementById("hideCover").onclick = hideCover;
-
+    
     if(rect.width < 999)
     {
         mapSize = rect.width;
@@ -124,11 +113,16 @@ function setMainVaribles()
     pos = [disAndBum, disAndBum + movement, disAndBum + (movement * 2), disAndBum + (movement * 3), disAndBum + (movement * 4), disAndBum + (movement * 5), disAndBum + (movement * 6), disAndBum + (movement * 7), disAndBum + (movement * 8), disAndBum + (movement * 9), disAndBum + (movement * 10), disAndBum + (movement * 11), disAndBum + (movement * 12)];
     yPos = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"];
     xPos = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"];
+}
 
-    currentHp = document.getElementById("current");
-    maxHp = document.getElementById("max");
-    titleTxt = document.getElementById("title");
-    divTO = document.getElementById("turnOrder");
+function setMainVaribles()
+{   
+    fetch('https://vitheaxolotl.github.io/Forgotten-Realm/src/files.json').then(res => res.json()).then((json) => imgs = json);
+    htmlInfo = htmlInfo.split("?");
+    htmlInfo = wholeDB[wholeChar[player]["currentToken"]]["border"];
+    htmlInfo = htmlInfo.split("_");
+    html[wholeChar[player]["currentToken"]] = {"border" : wholeDB[wholeChar[player]["currentToken"]]["border"], "name" : wholeChar[player]["currentToken"], title : " "};
+    document.getElementById("hideCover").onclick = hideCover;
 }
 
 function toTitleCase(word)
@@ -806,3 +800,5 @@ function updateToken(token)
         console.error("Error adding document: ", e);
     }
 }
+
+init();
