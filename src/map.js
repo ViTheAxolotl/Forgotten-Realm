@@ -623,7 +623,7 @@ function handleCharClick()
         location.reload();
     }
 
-    else if(name.includes(compName[0]))
+    else if(name.includes(compName[0]) && compName[0] != "")
     {
         set(ref(database, `playerChar/${player}/currentToken`), this.classList[1]);
         location.reload();
