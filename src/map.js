@@ -629,7 +629,7 @@ function handleCharClick()
     {
         handleViewTokens(this);
     }
-
+ 
     else if(htmlInfo[2] == "vi")
     {
         let charToken = document.getElementById(this.classList[1]);
