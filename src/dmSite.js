@@ -958,7 +958,7 @@ function handleGenerate()
             const data = snapshot.val();
             for(let player of Object.keys(data))
             {
-                if(player != "Vi")
+                if(player == "Vi")
                 {
                     let tokenName = data[player]["charName"].toLowerCase();
                     let token = wholeDB[tokenName];
