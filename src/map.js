@@ -625,7 +625,7 @@ function handleCharClick()
     let name = titleTxt.innerHTML.replaceAll(" ", "").split(":");
     let compName = this.title.replaceAll(" ", "").split(":");
 
-    if(wholeDB[wholeChar[player]["currentToken"]] == wholeDB[this][id])
+    if(wholeDB[wholeChar[player]["currentToken"]]["id"] == this.classList[1])
     {
         handleViewTokens(this);
     }
@@ -633,12 +633,14 @@ function handleCharClick()
     else if(htmlInfo[2] == "vi")
     {
         let charToken = document.getElementById(this.classList[1]);
+        set(ref(database, `playerChar/${player}/currentToken`), this.classList[1]);
         window.location.href= `map.html?${charToken.id}_${this.id}_vi`;
     }
 
     else if(name.includes(compName[1]))
     {
         let charToken = document.getElementById(this.classList[1]);
+        set(ref(database, `playerChar/${player}/currentToken`), this.classList[1]);
         window.location.href= `map.html?${charToken.id}_${this.id}_x`;
     }
 
