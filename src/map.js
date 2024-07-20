@@ -91,9 +91,9 @@ function setMainVaribles()
 {   
     fetch('https://vitheaxolotl.github.io/Forgotten-Realm/src/files.json').then(res => res.json()).then((json) => imgs = json);
     htmlInfo = htmlInfo.split("?");
-    htmlInfo = htmlInfo[1];
+    htmlInfo = wholeDB[wholeChar[player]["currentToken"]]["border"];
     htmlInfo = htmlInfo.split("_");
-    html[htmlInfo[0]] = {"border" : htmlInfo[1], "name" : htmlInfo[0], title : " "};
+    html[wholeChar[player]["currentToken"]] = {"border" : wholeDB[wholeChar[player]["currentToken"]]["border"], "name" : wholeChar[player]["currentToken"], title : " "};
     document.getElementById("hideCover").onclick = hideCover;
 
     if(rect.width < 999)
@@ -180,9 +180,9 @@ function addTokens()
         addCharacter(wholeDB[key], false);
     }
 
-    if(!(Object.keys(wholeDB).includes(htmlInfo[0].replace("-", ""))))
+    if(!(Object.keys(wholeDB).includes(wholeChar[player]["currentToken"].replace("-", ""))))
     {
-        let htmlChar = html[htmlInfo[0]];
+        let htmlChar = html[wholeChar[player]["currentToken"]];
         let token = document.getElementById(htmlChar["name"]);
         let x = parseInt(token.style.left.replace("px", ""));
         let y = parseInt(token.style.top.replace("px", ""));
@@ -289,7 +289,7 @@ function addCharacter(character, update)
             char[1].title = `${toTitleCase(character["id"])}:${character["title"]}`;
         }
 
-        if(htmlInfo[0] == character["id"])
+        if(wholeChar[player]["currentToken"] == character["id"])
         {
             if(currentHp.value == "" && maxHp.value == "" && title.innerHTML == "Status: ")
             {
@@ -630,18 +630,16 @@ function handleCharClick()
         handleViewTokens(this);
     }
  
-    else if(htmlInfo[2] == "vi")
+    else if(player == "vi")
     {
-        let charToken = document.getElementById(this.classList[1]);
         set(ref(database, `playerChar/${player}/currentToken`), this.classList[1]);
-        window.location.href= `map.html?${charToken.id}_${this.id}_vi`;
+        location.reload();
     }
 
     else if(name.includes(compName[1]))
     {
-        let charToken = document.getElementById(this.classList[1]);
         set(ref(database, `playerChar/${player}/currentToken`), this.classList[1]);
-        window.location.href= `map.html?${charToken.id}_${this.id}_x`;
+        location.reload();
     }
 
     else
@@ -737,8 +735,8 @@ function updateToken(token)
         let y;
         let t = document.getElementById("title");
         t = t.innerHTML.slice(t.innerHTML.indexOf(" "));
-        const currentTokens = document.getElementsByClassName(htmlInfo[0]);
-        let char = document.getElementById(htmlInfo[0]);
+        const currentTokens = document.getElementsByClassName(wholeChar[player]["currentToken"]);
+        let char = document.getElementById(wholeChar[player]["currentToken"]);
         let borderColor;
         let n = char.id + '-';
 

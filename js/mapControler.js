@@ -1,6 +1,7 @@
 "use strict";
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
 import { getDatabase, ref, set, onValue } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
+import { getAuth, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
 
 const firebaseApp = initializeApp
 ({
@@ -13,12 +14,29 @@ const firebaseApp = initializeApp
     measurementId: "G-Q2W494NRDT"
 });
 
+let auth = getAuth();
 let database = getDatabase();
 const currentTORef = ref(database, 'currentTO/');
 onValue(currentTORef, (snapshot) => 
 {
     const data = snapshot.val();
     wholeTO = data;
+});
+
+const charRef = ref(database, 'playerChar/');
+onValue(charRef, (snapshot) => 
+{
+    const data = snapshot.val();
+    wholeChar = data;
+});
+
+onAuthStateChanged(auth, (user) => 
+{
+    if (user) 
+    {
+        player = auth.currentUser.email.split("@");
+        player = toTitleCase(player[0]);
+    } 
 });
 
 const gridMap = document.querySelector("#gridMap");
@@ -29,7 +47,6 @@ let distance;
 let movement;
 let bounds;
 let currentPos;
-let htmlInfo = window.location.href;
 let currentCharacter;
 let playerName = document.getElementById("name");
 let key;
@@ -38,10 +55,12 @@ let arrows = [];
 let currentHp;
 let maxHp;
 let buttons;
+let player;
 let pos;
 let div = document.getElementById("grid");
 let currentBorders = document.getElementsByClassName("border_");
 let wholeTO = {};
+let wholeChar = {};
 
 function init()
 {
@@ -68,14 +87,11 @@ function init()
 function setMainVaribles()
 {   
     buttons = document.getElementsByClassName("inOrDe");
-    htmlInfo = htmlInfo.split("?");
-    htmlInfo = htmlInfo[1];
-    htmlInfo = htmlInfo.split("_");
-    playerName.innerHTML = htmlInfo[0].charAt(0).toUpperCase() + htmlInfo[0].slice(1);
-    currentCharacter = document.getElementsByClassName(htmlInfo[0]);
+    playerName.innerHTML = toTitleCase(wholeChar[player]["currentToken"]);
+    currentCharacter = document.getElementsByClassName(wholeChar[player]["currentToken"]);
     let hiddenVi = document.getElementsByClassName("isVi");
 
-    if(htmlInfo[2] != "vi")
+    if(player != "vi")
     {
         for(let elem of hiddenVi)
         {
@@ -117,6 +133,12 @@ function setMainVaribles()
     }
 }
 
+function toTitleCase(word)
+{
+    let finalWord = word[0].toUpperCase() + word.slice(1);
+    return finalWord;
+}
+
 function increaseValue()
 {
     let cHp = parseInt(currentHp.value);
@@ -140,7 +162,7 @@ function increaseValue()
         let title = document.getElementById("title");
         let status = document.getElementById("status");
 
-        title.innerHTML += ` ${status.value.charAt(0).toUpperCase() + status.value.slice(1)},`;
+        title.innerHTML += ` ${toTitleCase(status.value)},`;
     }
 
     else if(this.name == "turn")
@@ -184,7 +206,7 @@ function decreaseValue()
         let title = document.getElementById("title");
         let status = document.getElementById("status");
 
-        title.innerHTML = title.innerHTML.replace(` ${status.value.charAt(0).toUpperCase() + status.value.slice(1)},`, "");
+        title.innerHTML = title.innerHTML.replace(` ${toTitleCase(status.value)},`, "");
     }
 
     else if(this.name == "turn")

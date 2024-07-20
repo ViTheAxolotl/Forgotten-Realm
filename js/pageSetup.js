@@ -87,7 +87,7 @@ function navBarSetup()
 {
     if(auth.currentUser != undefined && auth.currentUser != null)
     {
-        tempQuick = `${wholeChars[name]["token"]["id"]}_${wholeChars[name]["token"]["border"]}_x}`;
+        tempQuick = `${wholeChars[name]["token"]["id"]}_${wholeChars[name]["token"]["border"]}_x`;
     }
 
     nav[0].innerHTML = `<div class="container-fluid">
