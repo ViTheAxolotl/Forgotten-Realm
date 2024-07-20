@@ -609,7 +609,7 @@ function getHpImg(character)
 
 function handleCharClick()
 {
-    let name = titleTxt.innerHTML.replaceAll(" ", "").split(":");
+    let name = titleTxt.innerHTML.replaceAll(" ", "").replace("Status:", "").split(",");
     let compName = this.title.replaceAll(" ", "").split(":");
 
     if(wholeChar[player]["currentToken"] == this.classList[1])
