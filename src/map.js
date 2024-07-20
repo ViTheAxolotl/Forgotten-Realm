@@ -33,6 +33,13 @@ onValue(currentTORef, (snapshot) =>
     setTurnOrder();
 });
 
+const charRef = ref(database, 'playerChar/');
+onValue(charRef, (snapshot) => 
+{
+    const data = snapshot.val();
+    wholeChar = data;
+});
+
 let wholeDB = {};
 let div = document.getElementById("gridMap");
 let htmlInfo = window.location.href;
@@ -54,6 +61,8 @@ let titleTxt;
 let offSet;
 let divTO;
 let wholeTO;
+let player;
+let wholeChar;
 let currentTurn;
 let players = ["nibbly", "nook", "razor", "leonier"];
 
@@ -64,6 +73,12 @@ onAuthStateChanged(auth, (user) =>
         alert("You need to login before using this resource. Click Ok and be redirected");
         window.location.href = "loginPage.html?map.html"; 
     } 
+
+    else
+    {
+        player = auth.currentUser.email.split("@");
+        player = toTitleCase(player[0]);
+    }
 });
 
 function init()
@@ -106,6 +121,12 @@ function setMainVaribles()
     maxHp = document.getElementById("max");
     titleTxt = document.getElementById("title");
     divTO = document.getElementById("turnOrder");
+}
+
+function toTitleCase(word)
+{
+    let finalWord = word[0].toUpperCase() + word.slice(1);
+    return finalWord;
 }
 
 function addTokens()
@@ -265,7 +286,7 @@ function addCharacter(character, update)
         
         if(!character["title"].includes("Hidden"))
         {
-            char[1].title = `${character["id"].charAt(0).toUpperCase() + character["id"].slice(1)}:${character["title"]}`;
+            char[1].title = `${toTitleCase(character["id"])}:${character["title"]}`;
         }
 
         if(htmlInfo[0] == character["id"])
@@ -604,7 +625,12 @@ function handleCharClick()
     let name = titleTxt.innerHTML.replaceAll(" ", "").split(":");
     let compName = this.title.replaceAll(" ", "").split(":");
 
-    if(htmlInfo[2] == "vi")
+    if(wholeDB[wholeChar[player]["currentToken"]] == wholeDB[this][id])
+    {
+        handleViewTokens(this);
+    }
+
+    else if(htmlInfo[2] == "vi")
     {
         let charToken = document.getElementById(this.classList[1]);
         window.location.href= `map.html?${charToken.id}_${this.id}_vi`;
