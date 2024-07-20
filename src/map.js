@@ -38,6 +38,12 @@ onValue(charRef, (snapshot) =>
 {
     const data = snapshot.val();
     wholeChar = data;
+
+    if(firstRun)
+    {
+        firstRun == false;
+        init();
+    }
 });
 
 let wholeDB = {};
@@ -63,6 +69,7 @@ let divTO;
 let wholeTO;
 let player;
 let wholeChar;
+let firstRun = true;
 let currentTurn;
 let players = ["nibbly", "nook", "razor", "leonier"];
 
@@ -798,5 +805,3 @@ function updateToken(token)
         console.error("Error adding document: ", e);
     }
 }
-
-init();

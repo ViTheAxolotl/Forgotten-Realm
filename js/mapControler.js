@@ -28,6 +28,12 @@ onValue(charRef, (snapshot) =>
 {
     const data = snapshot.val();
     wholeChar = data;
+
+    if(firstRun)
+    {
+        firstRun = false;
+        init();
+    }
 });
 
 onAuthStateChanged(auth, (user) => 
@@ -57,6 +63,7 @@ let maxHp;
 let buttons;
 let player;
 let pos;
+let firstRun = true;
 let div = document.getElementById("grid");
 let currentBorders = document.getElementsByClassName("border_");
 let wholeTO = {};
@@ -436,5 +443,3 @@ function handleArrow()
         } 
     }
 }
-
-init();
