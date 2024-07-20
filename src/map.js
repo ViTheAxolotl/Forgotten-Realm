@@ -602,7 +602,12 @@ function handleCharClick()
     let name = titleTxt.innerHTML.replaceAll(" ", "").split(":");
     let compName = this.title.replaceAll(" ", "").split(":");
 
-    if(htmlInfo[2] == "vi")
+    if(this.ctrlKey)
+    {
+        handleViewTokens(this);
+    }
+
+    else if(htmlInfo[2] == "vi")
     {
         let charToken = document.getElementById(this.classList[1]);
         window.location.href= `map.html?${charToken.id}_${this.id}_vi`;
