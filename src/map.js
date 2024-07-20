@@ -30,12 +30,6 @@ onValue(charRef, (snapshot) =>
 {
     const data = snapshot.val();
     wholeChar = data;
-
-    if(firstRun)
-    {
-        firstRun == false;
-        setMainVaribles();
-    }
 });
 
 const currentTORef = ref(database, 'currentTO/');
@@ -113,11 +107,6 @@ function init()
     yPos = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"];
     xPos = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"];
     fetch('https://vitheaxolotl.github.io/Forgotten-Realm/src/files.json').then(res => res.json()).then((json) => imgs = json);
-}
-
-function setMainVaribles()
-{   
-    html[wholeChar[player]["currentToken"]] = {"border" : wholeDB[wholeChar[player]["currentToken"]]["border"], "name" : wholeChar[player]["currentToken"], title : " "};
     document.getElementById("hideCover").onclick = hideCover;
 }
 
