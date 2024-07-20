@@ -958,13 +958,9 @@ function handleGenerate()
             const data = snapshot.val();
             for(let player of Object.keys(data))
             {
-                if(player == "Vi")
-                {
-                    let tokenName = data[player]["charName"].toLowerCase();
-                    let token = wholeDB[tokenName];
-                    token["tempHp"] = "0";
-                    set(ref(database, `playerChar/${player}/token`), token);
-                }
+                let tokenName = data[player]["charName"].toLowerCase();
+                let token = wholeDB[tokenName];
+                set(ref(database, `playerChar/${player}/currentToken`), token["id"]);
             }
         }
     });
