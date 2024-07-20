@@ -16,6 +16,20 @@ const firebaseApp = initializeApp
 
 let auth = getAuth();
 let database = getDatabase();
+
+const charRef = ref(database, 'playerChar/');
+onValue(charRef, (snapshot) => 
+{
+    const data = snapshot.val();
+    wholeChar = data;
+
+    if(firstRun)
+    {
+        firstRun == false;
+        init();
+    }
+});
+
 const currentMapRef = ref(database, 'currentMap/');
 onValue(currentMapRef, (snapshot) => 
 {
@@ -31,19 +45,6 @@ onValue(currentTORef, (snapshot) =>
     wholeTO = data;
     removeTurnOrder(); 
     setTurnOrder();
-});
-
-const charRef = ref(database, 'playerChar/');
-onValue(charRef, (snapshot) => 
-{
-    const data = snapshot.val();
-    wholeChar = data;
-
-    if(firstRun)
-    {
-        firstRun == false;
-        init();
-    }
 });
 
 let wholeDB = {};
