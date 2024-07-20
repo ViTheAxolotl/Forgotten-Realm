@@ -625,7 +625,7 @@ function handleCharClick()
     let name = titleTxt.innerHTML.replaceAll(" ", "").split(":");
     let compName = this.title.replaceAll(" ", "").split(":");
 
-    if(wholeDB[wholeChar[player]["currentToken"]]["id"] == this.classList[1])
+    if(wholeChar[player]["currentToken"] == this.classList[1])
     {
         handleViewTokens(this);
     }
