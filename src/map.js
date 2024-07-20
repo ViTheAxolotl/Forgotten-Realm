@@ -616,7 +616,7 @@ function handleCharClick()
     {
         handleViewTokens(this);
     }
- 
+
     else if(player == "Vi")
     {
         set(ref(database, `playerChar/${player}/currentToken`), this.classList[1]);
