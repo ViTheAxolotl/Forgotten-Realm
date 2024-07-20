@@ -609,8 +609,8 @@ function getHpImg(character)
 
 function handleCharClick()
 {
-    let name = titleTxt.innerHTML.replaceAll(" ", "").slice(titleTxt.innerHTML.indexOf(":")).split(",");
-    let compName = this.title.replaceAll(" ", "").slice(this.title.indexOf(":")).split(",")
+    let name = titleTxt.innerHTML.replaceAll(" ", "").slice(titleTxt.innerHTML.indexOf(":") + 1).split(",");
+    let compName = this.title.replaceAll(" ", "").slice(this.title.indexOf(":") + 1).split(",")
 
     if(wholeChar[player]["currentToken"] == this.classList[1])
     {
@@ -623,7 +623,7 @@ function handleCharClick()
         location.reload();
     }
 
-    else if(name.includes(compName[1]))
+    else if(name.includes(compName[0]))
     {
         set(ref(database, `playerChar/${player}/currentToken`), this.classList[1]);
         location.reload();
