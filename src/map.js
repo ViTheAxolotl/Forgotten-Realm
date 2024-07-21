@@ -178,31 +178,34 @@ function addTokens()
         addCharacter(wholeDB[key], false);
     }
 
-    if(!(Object.keys(wholeDB).includes(wholeChar[player]["currentToken"].replace("-", ""))))
+    if(player == "Vi")
     {
-        let htmlChar = wholeDB[wholeChar[player]["currentToken"]];
-        let token = document.getElementById(htmlChar["name"]);
-        let x = parseInt(token.style.left.replace("px", ""));
-        let y = parseInt(token.style.top.replace("px", ""));
-        x = xPos[pos.indexOf(x)];
-        y = yPos[pos.indexOf(y)];
-        let t = document.getElementById("title");
-        t = t.innerHTML.slice(t.innerHTML.indexOf(" "));
-
-        set(ref(database, `currentMap/${htmlChar["name"].slice(0, htmlChar["name"].indexOf("-"))}`),
+        if(isSummonOn && !(Object.keys(wholeDB).includes("sky")) && wholeSummons["sky"] != undefined)
         {
-            border : htmlChar["border"],
-            currentHp : document.getElementById("current").value,
-            maxHp : document.getElementById("max").value,
-            tempHp : document.getElementById("temp").value,
-            map : "",
-            id : htmlChar["name"].slice(0, htmlChar["name"].indexOf("-")),
-            name : htmlChar["name"],
-            title : t,
-            xPos : x,
-            yPos : y,
-            isSummon : htmlChar["isSummon"]
-        });
+            set(ref(database, "currentMap/sky"), wholeSummons["sky"]);
+        }
+    }
+
+    if(!(Object.keys(wholeDB).includes(wholeChar[player]["token"]["id"])))
+    {
+        set(ref(database, `currentMap/${wholeChar[player]["token"]["id"]}`), wholeChar[player]["token"]);
+
+        if(isSummonOn)
+        {
+            for(let key of Object.keys(wholeSummons))
+            {
+                if(key != "isSummonOn")
+                {
+                    let user = wholeSummons[key]["title"].replaceAll(" ", "").slice(wholeSummons[key]["title"].indexOf(":") + 1).split(",");
+                    user = toTitleCase(user[0]);
+
+                    if(wholeChar["charName"] == user)
+                    {
+                        set(ref(database, `currentMap/${wholeSummons[key]["id"]}`), wholeSummons[key]);
+                    }
+                }
+            }
+        }
     }
 }
 
