@@ -948,7 +948,7 @@ function loadMap()
 
 function handleGenerate()
 {
-    let firstRun = true;
+    /*let firstRun = true;
     const listsRef = ref(database, 'lists/');
     onValue(listsRef, (snapshot) => 
     {
@@ -982,7 +982,7 @@ function handleGenerate()
 
             alert("finished");
         }
-    });
+    });*/
 }
 
 function handleDone()
