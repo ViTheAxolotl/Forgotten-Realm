@@ -821,7 +821,7 @@ function updateToken(token)
         {
             if(wholeDB[char.id]["isSummon"])
             {
-                if(currentHp.value = "0")
+                if(currentHp.value == "0")
                 {
                     set(ref(database, `playerChar/Vi/summons/${char.id}`), null);
                 }
