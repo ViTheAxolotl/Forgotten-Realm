@@ -969,7 +969,7 @@ function handleGenerate()
                     {
                         const saveData = snapshot.val();
 
-                        for(let token of Object.keys(saveDatas))
+                        for(let token of Object.keys(saveData))
                         {
                             token["tempHp"] = "0";
                             token["isSummon"] = false;
