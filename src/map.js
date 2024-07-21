@@ -794,7 +794,7 @@ function updateToken(token)
     
     catch (e) 
     {
-        console.error("Error adding document: ", e);
+        alert("Error adding document: ", e);
     }
 }
 
