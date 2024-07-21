@@ -31,6 +31,13 @@ onValue(currentTORef, (snapshot) =>
     wholeTO = data;
 });
 
+const summonsRef = ref(database, 'playerChar/Vi/summons');
+onValue(summonsRef, (snapshot) => 
+{
+    const data = snapshot.val();
+    wholeSummons = data;
+});
+
 const presetRef = ref(database, 'preset/');
 onValue(presetRef, (snapshot) => 
 {
@@ -42,7 +49,10 @@ let fiveButtons = [];
 let wholeDB = {};
 let wholeTO = {};
 let wholePre = {};
+let wholeSummons = {};
+let db = [wholePre, wholeSummons["summonPreset"]];
 let div = document.getElementById("story");
+let preOrSumm;
 let editDiv;
 let imgs;
 let curCharacter;
@@ -71,6 +81,11 @@ function init()
             case "pre":
                 fiveButtons.push(button);
                 button.onclick = handlePreset;
+                break;
+            
+            case "sum":
+                fiveButtons.push(button);
+                button.onclick = handleSummons;
                 break;
 
             case "quick":
@@ -112,7 +127,7 @@ function handleAdd()
     hideButtons();
 
     mode = "add";
-    curCharacter = {border: "invisible", currentHp: "20", map: "", maxHp: "20", name: "invisible-", id: "invisible", title: " ", xPos: "5", yPos: "D"};
+    curCharacter = {border: "invisible", currentHp: "20", map: "", maxHp: "20", tempHp: "0", isSummon : false, name: "invisible-", id: "invisible", title: " ", xPos: "5", yPos: "D"};
     makeToken(curCharacter);
     editDiv = document.getElementById("invisible-div");
     temp = curCharacter.name;
@@ -215,7 +230,7 @@ function deleteToken()
  
 function handleEdit()
 {
-    let names = ["border", "name", "maxHp", "currentHp", "title", "xPos", "yPos"];
+    let names = ["border", "name", "maxHp", "currentHp", "title", "xPos", "yPos", "tempHp"];
     let txtFeilds = [];
     let buttons = [document.createElement("button"), document.createElement("button")];
     let buttonsName = ["edit", "back"];
@@ -272,7 +287,7 @@ function handleEdit()
         }
     }
     
-    for(let i = 0; i < 7; i++)
+    for(let i = 0; i < 8; i++)
     {
         let label = document.createElement("h6");
         label.innerHTML = `${names[i]}:`;
@@ -312,7 +327,7 @@ function handleEdit()
             }
         }
 
-        else if(i == 3)
+        else if(i == 3 || i == 7)
         {
             txtFeilds[i] = document.createElement("input");
             txtFeilds[i].name = names[i];
@@ -341,6 +356,7 @@ function handleEdit()
     txtFeilds[4].value = curCharacter.title;
     txtFeilds[5].value = curCharacter.xPos;
     txtFeilds[6].value = curCharacter.yPos;
+    txtFeilds[7].value = curCharacter.tempHp;
     editDiv.appendChild(document.createElement("h6"));
     buttons.forEach(em => {editDiv.appendChild(em)});
 }
@@ -372,7 +388,12 @@ function updateHpPic(maxHp, currentHp)
 {
     let fraction = parseInt(currentHp) / parseInt(maxHp);
 
-    if(maxHp == "0" && currentHp == "0")
+    if(document.getElementById("tempHp").value != "0")
+    {
+        return "images/map/hpBar/tempHp.png";
+    }
+
+    else if(maxHp == "0" && currentHp == "0")
     {
         return "images/map/hpBar/invisible.png";
     }
@@ -510,10 +531,12 @@ function quickUpdate()
 function handlePreset()
 {
     hideButtons();
-    for(let token of Object.keys(wholePre))
+    preOrSumm = 0;
+
+    for(let token of Object.keys(db[preOrSumm]))
     {
-        makeToken(wholePre[token]);
-        let currentDiv = document.getElementById(`${wholePre[token].id}-div`);
+        makeToken(db[preOrSumm][token]);
+        let currentDiv = document.getElementById(`${db[preOrSumm][token].id}-div`);
         let names = ["Edit", "Delete", "Upload"];
         let feilds = [document.createElement("button"), document.createElement("button"), document.createElement("button")];
 
@@ -528,7 +551,7 @@ function handlePreset()
             else{label.style.margin = `5px`;}
 
             feilds[i].style.display = "inline";
-            feilds[i].id = wholePre[token].name.slice(0, wholePre[token].name.length - 1);
+            feilds[i].id = db[preOrSumm][token].name.slice(0, db[preOrSumm][token].name.length - 1);
             feilds[i].style.margin = "5px";
             feilds[i].style.width = "9%";
             feilds[i].innerHTML = names[i];
@@ -562,10 +585,11 @@ function addPreset()
      
     if(this == undefined)
     {
-        token = {border : "invisible", currentHp : "20", maxHp : "20", map : "", name : "invisible-", title : " ", xPos : "1", yPos : "A"};
-        wholePre["invisible"] = token;
+        token = {border : "invisible", currentHp : "20", maxHp : "20", tempHp : "0", isSummon: false, map : "", name : "invisible-", title : " ", xPos : "1", yPos : "A"};
+        if(preOrSumm == 1){token[isSummon] = true};
+        db[preOrSumm]["invisible"] = token;
     }
-    else{token = wholePre[this.id]}
+    else{token = db[preOrSumm][this.id]}
 
     resetState();
     makeToken(token);
@@ -591,7 +615,7 @@ function updatePreset()
 
 function addToMap()
 {
-    let id = wholePre[this.id].id;
+    let id = db[preOrSumm][this.id].id;
     
     if(Object.keys(wholeDB).includes(id))
     {
@@ -603,8 +627,14 @@ function addToMap()
         }
     }
 
-    wholePre[this.id].id = id;
-    set(ref(database, `currentMap/${id}`), wholePre[this.id]);
+    db[preOrSumm][this.id].id = id;
+    set(ref(database, `currentMap/${id}`), db[preOrSumm][this.id]);
+}
+
+function handleSummons()
+{
+    preOrSumm = 1;
+    handlePreset();
 }
 
 function makeTORow(key)
@@ -792,6 +822,8 @@ function updateMap()
             t = wholeDB[key].title;
             x = wholeDB[key].xPos;
             y = wholeDB[key].yPos;
+            tH = wholeDB[key].tempHp;
+            s = wholeDB[key].isSummon;
         }
     }
 
@@ -805,7 +837,9 @@ function updateMap()
         name : n,
         title : t,
         xPos : x,
-        yPos : y
+        yPos : y,
+        tempHp : tH,
+        isSummon : s
     });
 
     handleDone();
@@ -1002,6 +1036,7 @@ function addToken()
     let b = document.getElementById("border").value;
     let c = document.getElementById("currentHp").value;
     let mH = document.getElementById("maxHp").value;
+    let tH = document.getElementById("tempHp").value;
     let n = document.getElementById("name").value;
     let t = document.getElementById("title").value;
     let x = document.getElementById("xPos").value;
@@ -1031,6 +1066,8 @@ function addToken()
         border : b,
         currentHp : c,
         maxHp : mH,
+        tempHp : tH,
+        isSummon : s,
         map : "",
         id : table.slice(table.indexOf("/") + 1),
         name : n,
