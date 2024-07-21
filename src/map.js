@@ -779,9 +779,9 @@ function updateToken(token)
         set(ref(database, `currentMap/${char.id}`),
         {
             border : borderColor,
-            currentHp : document.getElementById("current").value,
-            maxHp : document.getElementById("max").value,
-            tempHp : document.getElementById("temp").value,
+            currentHp : currentHp.value,
+            maxHp : maxHp.value,
+            tempHp : tempHp.value,
             map : "",
             isSummon : false,
             id : char.id,
