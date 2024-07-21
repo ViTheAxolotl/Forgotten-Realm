@@ -801,7 +801,7 @@ function updateToken(token)
 
         if(wholeChar[player]["currentToken"] == wholeChar[player]["token"]["id"])
         {
-            set(ref(database, `playerChar/${player}/token/${char.id}`),
+            set(ref(database, `playerChar/${player}/token`),
             {
                 border : borderColor,
                 currentHp : currentHp.value,
