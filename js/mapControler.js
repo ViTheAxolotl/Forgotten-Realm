@@ -155,7 +155,7 @@ function tempHpUpdate()
     
     if(tHp < 0)
     {
-        //tempHp.value = "0";
+        tempHp.value = "0";
     }
 
     addUpdate();
