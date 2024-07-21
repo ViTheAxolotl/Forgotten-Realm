@@ -199,7 +199,7 @@ function addTokens()
                     let user = wholeSummons[key]["title"].replaceAll(" ", "").slice(wholeSummons[key]["title"].indexOf(":") + 1).split(",");
                     user = toTitleCase(user[0]);
 
-                    if(wholeChar["charName"] == user)
+                    if(wholeChar[player]["charName"] == user)
                     {
                         set(ref(database, `currentMap/${wholeSummons[key]["id"]}`), wholeSummons[key]);
                     }
