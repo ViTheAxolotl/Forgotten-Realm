@@ -971,10 +971,10 @@ function handleGenerate()
 
                         for(let token of Object.keys(saveData))
                         {
-                            token["tempHp"] = "0";
-                            token["isSummon"] = false;
+                            saveData[token["tempHp"]] = "0";
+                            saveData[token["isSummon"]] = false;
 
-                            set(ref(database, `${player}/${token["id"]}`), token);
+                            set(ref(database, `${player}/${saveData[token["id"]]}`), saveData[token]);
                         }
                     });
                 }
