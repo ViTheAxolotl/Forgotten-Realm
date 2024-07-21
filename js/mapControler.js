@@ -58,9 +58,9 @@ let playerName = document.getElementById("name");
 let key;
 let keyControl;
 let arrows = [];
-let currentHp;
-let maxHp;
-let tempHp;
+let currentHp = document.getElementById("current");
+let maxHp = document.getElementById("max");
+let tempHp = document.getElementById("temp");
 let buttons;
 let player;
 let pos;
@@ -77,11 +77,9 @@ function init()
     arrows.push(document.getElementById("right"));
     arrows.push(document.getElementById("down"));
     
-    currentHp = document.getElementById("current");
+    
     currentHp.onchange = updateHp;
-    maxHp = document.getElementById("max");
     maxHp.onchange = addUpdate;
-    tempHp = document.getElementById("temp");
     tempHp.onchange = tempHpUpdate;
 
     for(let arrow of arrows)
@@ -342,7 +340,6 @@ function addUpdate()
 function updateHp()
 {
     let hpImg;
-    let maxHp = maxHp.value;
 
     for(let prop of currentCharacter)
     {
