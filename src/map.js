@@ -41,6 +41,14 @@ onValue(currentTORef, (snapshot) =>
     setTurnOrder();
 });
 
+const summonsRef = ref(database, 'playerChar/Vi/summons');
+onValue(summonsRef, (snapshot) => 
+{
+    const data = snapshot.val();
+    wholeSummons = data;
+    isSummonOn = wholeSummons["isSummonOn"];
+});
+
 let wholeDB = {};
 let div = document.getElementById("gridMap");
 let html = {};
@@ -62,6 +70,8 @@ let titleTxt = document.getElementById("title");
 let offSet;
 let divTO = document.getElementById("turnOrder");
 let wholeTO;
+let wholeSummons;
+let isSummonOn;
 let player;
 let wholeChar;
 let firstRun = true;
@@ -762,16 +772,14 @@ function updateToken(token)
             case "sky":
                 if(t.includes("Sky-dragon"))
                 {
-                    char.id = "sky-dragon";
-                    setInterval(() => {window.location.href= `map.html?${char.id}_${borderColor}_x`;}, 2000);
+                    n = "sky-dragon";
                 }
                 break;
             
             case "sky-dragon":
                 if(!(t.includes("Sky-dragon")))
                 {
-                    char.id = "sky";
-                    setInterval(() => {window.location.href= `map.html?${char.id}_${borderColor}_x`;}, 2000);
+                    n = "sky-";
                 }
                 break;
         }
@@ -783,13 +791,52 @@ function updateToken(token)
             maxHp : maxHp.value,
             tempHp : tempHp.value,
             map : "",
-            isSummon : false,
+            isSummon : wholeDB[char.id]["isSummon"],
             id : char.id,
             name : n,
             title : t,
             xPos : x,
             yPos : y
         });
+
+        if(wholeChar[player]["currentToken"] == wholeChar[player]["token"]["id"])
+        {
+            set(ref(database, `playerChar/${player}/token/${char.id}`),
+            {
+                border : borderColor,
+                currentHp : currentHp.value,
+                maxHp : maxHp.value,
+                tempHp : tempHp.value,
+                map : "",
+                isSummon : false,
+                id : char.id,
+                name : n,
+                title : t,
+                xPos : x,
+                yPos : y
+            });
+        }
+
+        else if(isSummonOn)
+        {
+            if(wholeDB[char.id]["isSummon"])
+            {
+                set(ref(database, `playerChar/Vi/summons/${char.id}`),
+                {
+                    border : borderColor,
+                    currentHp : currentHp.value,
+                    maxHp : maxHp.value,
+                    tempHp : tempHp.value,
+                    map : "",
+                    isSummon : wholeDB[char.id]["isSummon"],
+                    id : char.id,
+                    name : n,
+                    title : t,
+                    xPos : x,
+                    yPos : y
+                });
+            }
+        }
     } 
     
     catch (e) 
