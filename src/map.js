@@ -572,10 +572,16 @@ function getHpImg(character)
 {
     let maxHp = character["maxHp"];
     let currentHp = character["currentHp"];
+    let tempHp = character["tempHp"];
 
     let fraction = parseInt(currentHp) / parseInt(maxHp);
 
-    if(maxHp == "0" && currentHp == "0")
+    if(tempHp > 0)
+    {
+        return "images/map/hpBar/tempHp.png";
+    }
+
+    else if(maxHp == "0" && currentHp == "0")
     {
         return "images/map/hpBar/invisible.png";
     }
