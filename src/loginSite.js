@@ -60,7 +60,6 @@ function login(email, password)
         let user = userCredential.user;
         user = user.email.split("@");
         player = toTitleCase(user[0]);
-        alert(`Welcome ${player}!`);
         handleBackBtn();
 
     }).catch((error) => 

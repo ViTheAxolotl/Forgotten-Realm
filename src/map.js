@@ -194,7 +194,7 @@ function addTokens()
         {
             for(let key of Object.keys(wholeSummons))
             {
-                if(key != "isSummonOn")
+                if(key != "isSummonOn" && key != "summonPreset")
                 {
                     let user = wholeSummons[key]["title"].replaceAll(" ", "").slice(wholeSummons[key]["title"].indexOf(":") + 1).split(",");
                     user = toTitleCase(user[0]);

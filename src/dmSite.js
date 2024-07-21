@@ -948,41 +948,22 @@ function loadMap()
 
 function handleGenerate()
 {
-    /*let firstRun = true;
-    const listsRef = ref(database, 'lists/');
-    onValue(listsRef, (snapshot) => 
+    let firstRun = true;
+    const presetRef = ref(database, 'preset/');
+    onValue(presetRef, (snapshot) => 
     {
         if(firstRun)
         {
             firstRun = false;
             const data = snapshot.val();
 
-            for(let player of Object.keys(data))
-            {
-                let firstSave = true;
-
-                if(firstSave)
-                {
-                    firstSave = false;
-                    const saveRef = ref(database, `${player}/`);
-                    onValue(saveRef, (snapshot) =>
-                    {
-                        const saveData = snapshot.val();
-
-                        for(let token of Object.keys(saveData))
-                        {
-                            saveData[token]["tempHp"] = "0";
-                            saveData[token]["isSummon"] = false;
-
-                            set(ref(database, `${player}/${saveData[token]["id"]}`), saveData[token]);
-                        }
-                    });
-                }
-            }
+            set(ref(database, `playerChar/Vi/summons/summonPreset`), {"sky" : data["sky"], "shadow" : data["shadow"]});
+            set(ref(database, `preset/sky`), null);
+            set(ref(database, `preset/shadow`), null);
 
             alert("finished");
         }
-    });*/
+    });
 }
 
 function handleDone()
