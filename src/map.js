@@ -191,7 +191,7 @@ function addTokens()
             title : t,
             xPos : x,
             yPos : y,
-            isSummon : htmlChar["isSummon"];
+            isSummon : htmlChar["isSummon"]
         });
     }
 }
