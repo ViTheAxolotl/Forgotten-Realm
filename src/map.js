@@ -821,20 +821,28 @@ function updateToken(token)
         {
             if(wholeDB[char.id]["isSummon"])
             {
-                set(ref(database, `playerChar/Vi/summons/${char.id}`),
+                if(currentHp.value = "0")
                 {
-                    border : borderColor,
-                    currentHp : currentHp.value,
-                    maxHp : maxHp.value,
-                    tempHp : tempHp.value,
-                    map : "",
-                    isSummon : wholeDB[char.id]["isSummon"],
-                    id : char.id,
-                    name : n,
-                    title : t,
-                    xPos : x,
-                    yPos : y
-                });
+                    set(ref(database, `playerChar/Vi/summons/${char.id}`), null);
+                }
+
+                else
+                {
+                    set(ref(database, `playerChar/Vi/summons/${char.id}`),
+                    {
+                        border : borderColor,
+                        currentHp : currentHp.value,
+                        maxHp : maxHp.value,
+                        tempHp : tempHp.value,
+                        map : "",
+                        isSummon : wholeDB[char.id]["isSummon"],
+                        id : char.id,
+                        name : n,
+                        title : t,
+                        xPos : x,
+                        yPos : y
+                    });
+                }
             }
         }
     } 
