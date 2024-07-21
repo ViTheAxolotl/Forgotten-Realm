@@ -414,7 +414,7 @@ function addCharacter(character, update)
 
             if(title.includes("Invisible"))
             {
-                if(wholeChar[player]["token"]["id"] != character["id"] && player != "Vi")
+                if(wholeChar[player]["token"]["id"] != character["id"])
                 {
                     for(let image of char)
                     {
