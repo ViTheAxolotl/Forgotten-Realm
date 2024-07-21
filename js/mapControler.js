@@ -81,7 +81,7 @@ function init()
     currentHp.onchange = updateHp;
     maxHp = document.getElementById("max");
     maxHp.onchange = addUpdate;
-    tempHp = document.getElementById("tempHp");
+    tempHp = document.getElementById("temp");
     tempHp.onchange = tempHpUpdate;
 
     for(let arrow of arrows)
