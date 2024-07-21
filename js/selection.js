@@ -293,7 +293,7 @@ function handleGoButton()
 
         let loading = document.createElement("h3");
         let loadingGif = document.createElement("img");
-        loading.innerHTML = "Loading, AxolMap V2 now with less delay...";
+        loading.innerHTML = "Loading, AxolMap V3 now with memory...";
         loadingGif.src = "images/loadingGif.gif";
         loadingGif.style.minWidth = "10%";
         div.classList.add("center"); 

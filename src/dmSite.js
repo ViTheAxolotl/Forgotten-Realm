@@ -949,19 +949,38 @@ function loadMap()
 function handleGenerate()
 {
     let firstRun = true;
-    const charRef = ref(database, 'playerChar/');
-    onValue(charRef, (snapshot) => 
+    const listsRef = ref(database, 'lists/');
+    onValue(listsRef, (snapshot) => 
     {
         if(firstRun)
         {
             firstRun = false;
             const data = snapshot.val();
+
             for(let player of Object.keys(data))
             {
-                let tokenName = data[player]["charName"].toLowerCase();
-                let token = wholeDB[tokenName];
-                set(ref(database, `playerChar/${player}/currentToken`), token["id"]);
+                let firstSave = true;
+
+                if(firstSave)
+                {
+                    firstSave = false;
+                    const saveRef = ref(database, `${player}/`);
+                    onValue(saveRef, (snapshot) =>
+                    {
+                        const saveData = snapshot.val();
+
+                        for(let token of Object.keys(saveDatas))
+                        {
+                            token["tempHp"] = "0";
+                            token["isSummon"] = false;
+
+                            set(ref(database, `${player}/${token["id"]}`), token);
+                        }
+                    });
+                }
             }
+
+            alert("finished");
         }
     });
 }
