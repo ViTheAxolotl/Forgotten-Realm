@@ -55,8 +55,9 @@ let yPos;
 let xPos;
 let tokens = [];
 let imgs;
-let currentHp = document.getElementById("current");;
+let currentHp = document.getElementById("current");
 let maxHp = document.getElementById("max");
+let tempHp = document.getElementById("temp");
 let titleTxt = document.getElementById("title");
 let offSet;
 let divTO = document.getElementById("turnOrder");
@@ -183,12 +184,14 @@ function addTokens()
             border : htmlChar["border"],
             currentHp : document.getElementById("current").value,
             maxHp : document.getElementById("max").value,
+            tempHp : document.getElementById("temp").value,
             map : "",
             id : htmlChar["name"].slice(0, htmlChar["name"].indexOf("-")),
             name : htmlChar["name"],
             title : t,
             xPos : x,
-            yPos : y
+            yPos : y,
+            isSummon : htmlChar["isSummon"];
         });
     }
 }
@@ -282,6 +285,7 @@ function addCharacter(character, update)
             {
                 currentHp.defaultValue = character["currentHp"];
                 maxHp.defaultValue = character["maxHp"];
+                tempHp.defaultValue = character["tempHp"];
                 document.getElementById("title").innerHTML += character["title"];
             }
         }
@@ -771,7 +775,9 @@ function updateToken(token)
             border : borderColor,
             currentHp : document.getElementById("current").value,
             maxHp : document.getElementById("max").value,
+            tempHp : document.getElementById("temp").value,
             map : "",
+            isSummon : false,
             id : char.id,
             name : n,
             title : t,

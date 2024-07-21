@@ -60,6 +60,7 @@ let keyControl;
 let arrows = [];
 let currentHp;
 let maxHp;
+let tempHp;
 let buttons;
 let player;
 let pos;
@@ -80,6 +81,8 @@ function init()
     currentHp.onchange = updateHp;
     maxHp = document.getElementById("max");
     maxHp.onchange = addUpdate;
+    tempHp = document.getElementById("tempHp");
+    tempHp.onchange = tempHpUpdate;
 
     for(let arrow of arrows)
     {
@@ -146,10 +149,23 @@ function toTitleCase(word)
     return finalWord;
 }
 
+function tempHpUpdate()
+{
+    let tHp = parseInt(tempHp.value);
+    
+    if(tHp < 0)
+    {
+        tempHp.value = "0";
+    }
+
+    addUpdate();
+}
+
 function increaseValue()
 {
     let cHp = parseInt(currentHp.value);
     let mHp = parseInt(maxHp.value);
+    let tHp = parseInt(tempHp.value);
 
     if(this.name == "current")
     {
@@ -162,6 +178,11 @@ function increaseValue()
     else if(this.name == "max")
     {
         maxHp.value = `${mHp + 1}`;
+    }
+
+    else if(this.name == "temp")
+    {
+        tempHp.value = `${tHp + 1}`;
     }
 
     else if(this.name == "title")
@@ -191,6 +212,7 @@ function decreaseValue()
 {
     let cHp = parseInt(currentHp.value);
     let mHp = parseInt(maxHp.value);
+    let tHp = parseInt(tempHp.value);
 
     if(this.name == "current")
     {
@@ -205,6 +227,14 @@ function decreaseValue()
         if(!(mHp - 1 < cHp))
         {
             maxHp.value = `${mHp - 1}`;
+        }
+    }
+
+    else if(this.name == "temp")
+    {
+        if(tHp > 0)
+        {
+            tempHp.value = `${tHp - 1}`;
         }
     }
 
