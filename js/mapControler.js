@@ -101,7 +101,7 @@ function setMainVaribles()
     currentCharacter = document.getElementsByClassName(wholeChar[player]["currentToken"]);
     let hiddenVi = document.getElementsByClassName("isVi");
 
-    if(player != "vi")
+    if(player != "Vi")
     {
         for(let elem of hiddenVi)
         {
