@@ -86,7 +86,7 @@ function init()
 
 function navBarSetup()
 {
-    nav[0].innerHTML = nav[0].innerHTML + `<div class="container-fluid">
+    nav[0].innerHTML = `<div class="container-fluid">
         <a class="navbar-brand" href="${mainLocation}index.html"><img src = "${imageLocation}UP.png" title = "Forgotten Realm" alt = "Forgotten Realm" width = "70" height = "70"/></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
