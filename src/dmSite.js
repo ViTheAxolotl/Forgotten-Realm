@@ -384,7 +384,7 @@ function handleChangeCurrent()
     this.parentNode.childNodes[2].src = updateHpPic(maxHp, currentHp);
 }
 
-function updateHpPic(maxHp, currentHp, tempHp)
+function updateHpPic(maxHp, currentHp)
 {
     let fraction = parseInt(currentHp) / parseInt(maxHp);
     let tempHp = document.getElementById("tempHp");
