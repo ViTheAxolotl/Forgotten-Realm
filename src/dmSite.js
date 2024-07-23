@@ -1046,6 +1046,8 @@ function sendDiscordMessage(message)
 
 function handleGenerate()
 {
+    hideButtons();
+
     let dName = {"Vi" : "vitheaxolotl", "Ben" : "djfluttersmtf", "Garrett" : "garretttin", "Okami" : "cassiususious", "Alejandro" : "zanctionxvi"};
     
     for(let char of Object.keys(wholeChar))
@@ -1062,6 +1064,8 @@ function handleGenerate()
     let message = `@${wholeChar[user]["discordName"]} rolled \`1d${dice}+0\`: \`(${roll}) + ${modifier} = ${finalResult}\``;
     
     sendDiscordMessage(message);
+    alert("done");
+    handleDone();
 }
 
 function handleDone()
@@ -1072,7 +1076,7 @@ function handleDone()
 function hideButtons()
 {
     getUser(); 
-    
+
     if(fiveButtons != [])
     {
         for(let button of fiveButtons)
