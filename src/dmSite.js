@@ -591,7 +591,7 @@ function addPreset()
     if(this == undefined)
     {
         token = {border : "invisible", currentHp : "20", maxHp : "20", tempHp : "0", isSummon: false, map : "", name : "invisible-", title : " ", xPos : "1", yPos : "A"};
-        if(preOrSumm == 1){token[isSummon] = true};
+        if(preOrSumm == 1){token["isSummon"] = true};
         db[preOrSumm]["invisible"] = token;
     }
     else{token = db[preOrSumm][this.id]}
