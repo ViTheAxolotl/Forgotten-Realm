@@ -43,9 +43,6 @@ onValue(charRef, (snapshot) =>
 {
     const data = snapshot.val();
     wholeChar = data;
-    if(auth.currentUser == undefined){alert("Wrong Credentails!!!"); location.reload();}
-    else{user = auth.currentUser.email.split("@"); user = toTitleCase(user[0]);}
-    if(user != "vi"){alert("Wrong Credentails!!!"); location.reload();}
 });
 
 const presetRef = ref(database, 'preset/');
@@ -130,6 +127,13 @@ function init()
                 break;
         }
     }
+}
+
+function getUser()
+{
+    if(auth.currentUser == undefined){alert("Wrong Credentails!!!"); location.reload();}
+    else{user = auth.currentUser.email.split("@"); user = toTitleCase(user[0]);}
+    if(user != "vi"){alert("Wrong Credentails!!!"); location.reload();}
 }
 
 function toTitleCase(word)
@@ -1067,6 +1071,8 @@ function handleDone()
 
 function hideButtons()
 {
+    getUser(); 
+    
     if(fiveButtons != [])
     {
         for(let button of fiveButtons)
