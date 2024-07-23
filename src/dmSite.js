@@ -133,7 +133,7 @@ function getUser()
 {
     if(auth.currentUser == undefined){alert("Wrong Credentails!!!"); location.reload();}
     else{user = auth.currentUser.email.split("@"); user = toTitleCase(user[0]);}
-    if(user != "vi"){alert("Wrong Credentails!!!"); location.reload();}
+    if(user != "Vi"){alert("Wrong Credentails!!!"); location.reload();}
 }
 
 function toTitleCase(word)
@@ -1054,7 +1054,7 @@ function handleGenerate()
     let modifier = 0;
     let roll = arr[(Math.floor(Math.random() * arr.length))];
     let finalResult = roll + modifier;
-    let message = `@${wholeChar[user]["discordName"]} rolled \`1d${dice}+0\`: \`(${roll}) + ${modifier} = ${finalResult}\``;
+    let message = `${wholeChar[user]["discordName"]} rolled \`1d${dice}+0\`: \`(${roll}) + ${modifier} = ${finalResult}\``;
     
     sendDiscordMessage(message);
     alert("done");
