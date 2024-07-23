@@ -1018,10 +1018,8 @@ function loadMap()
     }, 500);
 }
 
-function handleGenerate()
+function sendDiscordMessage(message)
 {
-    let userName;
-    let message = "/roll expression:1d10";
     let webhook = wholeChar["Vi"]["webhook"];
     const contents = `${message}`;
     const request = new XMLHttpRequest();
@@ -1032,6 +1030,16 @@ function handleGenerate()
         content: contents
     }
     request.send(JSON.stringify(prams));
+}
+
+function handleGenerate()
+{
+    let arr = [];
+    for(let i = 1; i < 21; i++){arr.push(i);}
+    let roll = arr[(Math.floor(Math.random() * arr.length))];
+    let message = `${user}: roll on a d20 is ${roll}`
+    
+    sendDiscordMessage(message);
 }
 
 function handleDone()
