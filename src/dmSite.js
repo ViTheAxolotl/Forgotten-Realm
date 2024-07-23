@@ -1048,13 +1048,6 @@ function handleGenerate()
 {
     hideButtons();
 
-    let dName = {"Vi" : "vitheaxolotl", "Ben" : "djfluttersmtf", "Garrett" : "garretttin", "Okami" : "cassiususious", "Alejandro" : "zanctionxvi"};
-    
-    for(let char of Object.keys(wholeChar))
-    {
-        set(ref(database, `playerChar/${user}/discordName`), dName[char]);
-    }
-
     let dice = 20;
     let arr = [];
     for(let i = 1; i < dice + 1; i++){arr.push(i);}
