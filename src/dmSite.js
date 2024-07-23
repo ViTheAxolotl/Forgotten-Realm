@@ -50,7 +50,7 @@ let wholeDB = {};
 let wholeTO = {};
 let wholePre = {};
 let wholeSummons = {};
-let db = [wholePre, wholeSummons["summonPreset"]];
+let db;
 let div = document.getElementById("story");
 let preOrSumm;
 let editDiv;
@@ -532,6 +532,7 @@ function handlePreset()
 {
     hideButtons();
     if(preOrSumm == undefined){preOrSumm = 0;}
+    db = [wholePre, wholeSummons["summonPreset"]];
 
     for(let token of Object.keys(db[preOrSumm]))
     {
