@@ -25,7 +25,7 @@ let query = params[0].classList;
 let parentFolder = query[0];
 let wholeChars = {};
 let name;
-let tempQuick = "";
+let footer = document.getElementById("footer");
 let imageLocation;
 let jsaLocation;
 let mainLocation;
@@ -80,6 +80,7 @@ onAuthStateChanged(auth, (user) => {
 
 function init()
 {
+    copyrightSetup();
     discordSetup();
 }
 
@@ -136,22 +137,18 @@ function logout()
 
 function discordSetup()
 {
-    document.write(`<script src="https://cdn.jsdelivr.net/npm/@widgetbot/crate@3" async defer>
+    footer.innerHTML += `<script src="https://cdn.jsdelivr.net/npm/@widgetbot/crate@3" async defer>
         new Crate(
         {
             server: "1042157480463040613", 
             channel: "1042157480463040616",
         })
-        </script>`);
+        </script>`;
 }
 
 function copyrightSetup()
 {
-    let footer = document.getElementById("footer");
-    let copyright = document.createElement("h6");
-    footer.appendChild(copyright);
-
-    copyright.innerHTML = 'Copyright &copy; Vi Snyder '+ new Date().getFullYear() + ''; 
+    footer.innerHTML += `<h6>Copyright &copy; Vi Snyder ${new Date().getFullYear()}</h6>`;
 }
 
 function toTitleCase(word)
@@ -161,11 +158,3 @@ function toTitleCase(word)
 }
 
 init();
-
-document.onreadystatechange = function () 
-{
-    if(document.readyState == "complete") 
-    {
-        copyrightSetup();
-    }
-}
