@@ -35,7 +35,7 @@ onValue(charRef, (snapshot) =>
 {
     const data = snapshot.val();
     wholeChars = data;
-    navBarSetup();
+    init();
 });
 
 if(parentFolder == "noParent")
@@ -81,6 +81,7 @@ onAuthStateChanged(auth, (user) => {
 function init()
 {
     discordSetup();
+    navBarSetup();
 }
 
 function navBarSetup()
