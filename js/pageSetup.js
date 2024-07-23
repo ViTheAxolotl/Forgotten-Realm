@@ -35,7 +35,7 @@ onValue(charRef, (snapshot) =>
 {
     const data = snapshot.val();
     wholeChars = data;
-    init();
+    navBarSetup();
 });
 
 if(parentFolder == "noParent")
