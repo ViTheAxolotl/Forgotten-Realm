@@ -80,7 +80,6 @@ onAuthStateChanged(auth, (user) => {
 
 function init()
 {
-    navBarSetup();
     discordSetup();
 }
 
@@ -137,13 +136,13 @@ function logout()
 
 function discordSetup()
 {
-    nav[0].innerHTML = nav[0].innerHTML + `<script src="https://cdn.jsdelivr.net/npm/@widgetbot/crate@3" async defer>
+    document.write(`<script src="https://cdn.jsdelivr.net/npm/@widgetbot/crate@3" async defer>
         new Crate(
         {
             server: "1042157480463040613", 
             channel: "1042157480463040616",
         })
-        </script>`;
+        </script>`);
 }
 
 function copyrightSetup()
