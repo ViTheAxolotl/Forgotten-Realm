@@ -273,16 +273,16 @@ function handleEdit()
 
         else if(mode == "preset")
         {
-            for(let key of Object.keys(wholePre))
+            for(let key of Object.keys(db[preOrSumm]))
             {
-                if(wholePre[key].name == temp)
+                if(db[preOrSumm][key].name == temp)
                 {
-                    curCharacter = wholePre[key];
+                    curCharacter = db[preOrSumm][key];
                 }
             } 
 
             buttons[0].classList.add(curCharacter.name);
-            buttons[0].onclick = function () {let id = this.classList[0].slice(0, this.classList[0].length - 1); set(ref(database, `currentMap/${id}`), wholePre[id]);};
+            buttons[0].onclick = function () {let id = this.classList[0].slice(0, this.classList[0].length - 1); set(ref(database, `currentMap/${id}`), db[preOrSumm][id]);};
             buttons[1].onclick = resetPreset;
         }
     }
