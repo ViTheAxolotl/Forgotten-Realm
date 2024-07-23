@@ -458,6 +458,11 @@ function resetPreset()
     setTimeout(() => {resetState(); handlePreset();}, 1500);
 }
 
+function resetSummons()
+{
+    setTimeout(() => {resetState(); handleSummons();}, 1500);
+}
+
 function handleQuick()
 {
     hideButtons();
@@ -580,8 +585,17 @@ function handlePreset()
 
 function deletePreset()
 {
-    set(ref(database, `preset/${this.id}`), null);
-    resetPreset();
+    if(preOrSumm == 1)
+    {
+        set(ref(database, `playerChar/Vi/summons/summonPreset/${this.id}`), null);
+        resetSummons();
+    }
+
+    else
+    {
+        set(ref(database, `preset/${this.id}`), null); 
+        resetPreset();
+    }
 }
 
 function addPreset()
