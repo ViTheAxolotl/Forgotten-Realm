@@ -646,7 +646,7 @@ function addToMap()
         }
     }
 
-    db[preOrSumm][this.id].id = id;
+    //db[preOrSumm][this.id].id = id;
     set(ref(database, `currentMap/${id}`), db[preOrSumm][this.id]);
 }
 
