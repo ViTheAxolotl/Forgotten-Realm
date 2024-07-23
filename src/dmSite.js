@@ -59,6 +59,7 @@ let curCharacter;
 let temp;
 let mode;
 let user;
+const webhook = "https://discord.com/api/webhooks/1265402420528152586/waK2Tw-hkKtJ2fcFC7cifEVjXge5wor8ejXMW9xeufVbjxeEMe5m_rFQCl7TtWulFVuo";
 
 function init()
 {
@@ -1012,22 +1013,10 @@ function loadMap()
 
 function handleGenerate()
 {
-    let firstRun = true;
-    const presetRef = ref(database, 'preset/');
-    onValue(presetRef, (snapshot) => 
-    {
-        if(firstRun)
-        {
-            firstRun = false;
-            const data = snapshot.val();
+    let userName;
+    let message = "/roll expression:1d10";
 
-            set(ref(database, `playerChar/Vi/summons/summonPreset`), {"sky" : data["sky"], "shadow" : data["shadow"]});
-            set(ref(database, `preset/sky`), null);
-            set(ref(database, `preset/shadow`), null);
-
-            alert("finished");
-        }
-    });
+    set(ref(database, `playerChar/Vi/webhook`), webhook);
 }
 
 function handleDone()
