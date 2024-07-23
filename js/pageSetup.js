@@ -86,11 +86,6 @@ function init()
 
 function navBarSetup()
 {
-    if(auth.currentUser != undefined && auth.currentUser != null)
-    {
-        tempQuick = `${wholeChars[name]["token"]["id"]}_${wholeChars[name]["token"]["border"]}_x`;
-    }
-
     nav[0].innerHTML = `<div class="container-fluid">
         <a class="navbar-brand" href="${mainLocation}index.html"><img src = "${imageLocation}UP.png" title = "Forgotten Realm" alt = "Forgotten Realm" width = "70" height = "70"/></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -118,7 +113,7 @@ function navBarSetup()
                     </a>
                     <ul class="dropdown-menu bg-dark" aria-labelledby="navbarScrollingDropdown">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="${mainLocation}selection.html">Change Token</a></li>
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="${mainLocation}map.html?${tempQuick}">Quick Start</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="${mainLocation}map.html">Quick Start</a></li>
                     </ul>
                 </li>
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="${mainLocation}recap.html">Sessions Recap</a></li> 
