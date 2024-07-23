@@ -389,7 +389,7 @@ function updateHpPic(maxHp, currentHp)
     let fraction = parseInt(currentHp) / parseInt(maxHp);
     let tempHp = document.getElementById("tempHp");
 
-    if(document.getElementById("tempHp").value != null)
+    if(tempHp != null)
     {
         if(tempHp != "0")
         {
