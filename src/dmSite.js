@@ -1056,6 +1056,7 @@ function addToken()
     let t = document.getElementById("title").value;
     let x = document.getElementById("xPos").value;
     let y = document.getElementById("yPos").value;
+    let s = false;
     let id = n.slice(0, n.indexOf("-"));
     
     if(Object.keys(wholeDB).includes(id) && mode == "add")
@@ -1074,6 +1075,11 @@ function addToken()
     if(mode == "preset")
     {
         table = `preset/${id}`
+    }
+
+    if(preOrSumm == 1)
+    {
+        s = true;
     }
  
     set(ref(database, table),
