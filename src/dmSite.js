@@ -374,7 +374,7 @@ function updateTokenPic()
 function handleChangeCurrent()
 {
     let maxHp = document.getElementById("maxHp").value;
-    let currentHp = this.value;
+    let currentHp = document.getElementById("currentHp").value;;
 
     if(parseInt(currentHp) > parseInt(maxHp))
     {
