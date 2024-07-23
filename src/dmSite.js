@@ -375,23 +375,26 @@ function handleChangeCurrent()
 {
     let maxHp = document.getElementById("maxHp").value;
     let currentHp = this.value;
-    let tempHp = document.getElementById("tempHp").value;
 
     if(parseInt(currentHp) > parseInt(maxHp))
     {
         this.value = maxHp;
     }
 
-    this.parentNode.childNodes[2].src = updateHpPic(maxHp, currentHp, tempHp);
+    this.parentNode.childNodes[2].src = updateHpPic(maxHp, currentHp);
 }
 
 function updateHpPic(maxHp, currentHp, tempHp)
 {
     let fraction = parseInt(currentHp) / parseInt(maxHp);
+    let tempHp = document.getElementById("tempHp");
 
-    if(tempHp != "0")
+    if(document.getElementById("tempHp").value != null)
     {
-        return "images/map/hpBar/tempHp.png";
+        if(tempHp != "0")
+        {
+            return "images/map/hpBar/tempHp.png";
+        }
     }
 
     else if(maxHp == "0" && currentHp == "0")
