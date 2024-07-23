@@ -397,7 +397,7 @@ function updateHpPic(maxHp, currentHp)
         }
     }
 
-    else if(maxHp == "0" && currentHp == "0")
+    if(maxHp == "0" && currentHp == "0")
     {
         return "images/map/hpBar/invisible.png";
     }
