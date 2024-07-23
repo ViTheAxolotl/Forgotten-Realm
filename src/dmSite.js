@@ -1031,7 +1031,7 @@ function handleGenerate()
     {
         content: contents
     }
-    request.sent(JSON.stringify(prams));
+    request.send(JSON.stringify(prams));
 }
 
 function handleDone()
