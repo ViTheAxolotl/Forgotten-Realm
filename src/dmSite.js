@@ -38,6 +38,13 @@ onValue(summonsRef, (snapshot) =>
     wholeSummons = data;
 });
 
+const charRef = ref(database, 'playerChar/');
+onValue(charRef, (snapshot) => 
+{
+    const data = snapshot.val();
+    wholeChar = data;
+});
+
 const presetRef = ref(database, 'preset/');
 onValue(presetRef, (snapshot) => 
 {
@@ -50,6 +57,7 @@ let wholeDB = {};
 let wholeTO = {};
 let wholePre = {};
 let wholeSummons = {};
+let wholeChar;
 let db;
 let div = document.getElementById("story");
 let preOrSumm;
@@ -59,7 +67,6 @@ let curCharacter;
 let temp;
 let mode;
 let user;
-const webhook = "https://discord.com/api/webhooks/1265402420528152586/waK2Tw-hkKtJ2fcFC7cifEVjXge5wor8ejXMW9xeufVbjxeEMe5m_rFQCl7TtWulFVuo";
 
 function init()
 {
@@ -1015,8 +1022,16 @@ function handleGenerate()
 {
     let userName;
     let message = "/roll expression:1d10";
-
-    set(ref(database, `playerChar/Vi/webhook`), webhook);
+    let webhook = wholeChar["Vi"]["webhook"];
+    const contents = `${message}`;
+    const request = new XMLHttpRequest();
+    request.open("POST", webhook);
+    request.setRequestHeader("Content-type", "application/json");
+    const prams = 
+    {
+        content: contents
+    }
+    request.sent(JSON.stringify(prams));
 }
 
 function handleDone()
