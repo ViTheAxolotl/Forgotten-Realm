@@ -44,7 +44,7 @@ onValue(charRef, (snapshot) =>
     const data = snapshot.val();
     wholeChar = data;
     if(auth.currentUser == undefined){alert("Wrong Credentails!!!"); location.reload();}
-    else{user = auth.currentUser.email.split("@"); user = user[0];}
+    else{user = auth.currentUser.email.split("@"); user = toTitleCase(user[0]);}
     if(user != "vi"){alert("Wrong Credentails!!!"); location.reload();}
 });
 
@@ -132,6 +132,11 @@ function init()
     }
 }
 
+function toTitleCase(word)
+{
+    let finalWord = word[0].toUpperCase() + word.slice(1);
+    return finalWord;
+}
 
 function handleAdd()
 {
@@ -1037,10 +1042,20 @@ function sendDiscordMessage(message)
 
 function handleGenerate()
 {
+    let dName = {"Vi" : "vitheaxolotl", "Ben" : "djfluttersmtf", "Garrett" : "garretttin", "Okami" : "cassiususious", "Alejandro" : "zanctionxvi"};
+    
+    for(let char of Object.keys(wholeChar))
+    {
+        set(ref(database, `playerChar/${user}/discordName`), dName[char]);
+    }
+
+    let dice = 20;
     let arr = [];
-    for(let i = 1; i < 21; i++){arr.push(i);}
+    for(let i = 1; i < dice + 1; i++){arr.push(i);}
+    let modifier = 0;
     let roll = arr[(Math.floor(Math.random() * arr.length))];
-    let message = `${user}: roll on a d20 is ${roll}`
+    let finalResult = roll + modifier;
+    let message = `@${wholeChar[user]["discordName"]} rolled \`1d${dice}+0\`: \`(${roll}) + ${modifier} = ${finalResult}\``;
     
     sendDiscordMessage(message);
 }
