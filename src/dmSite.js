@@ -1074,12 +1074,16 @@ function addToken()
     let table = `currentMap/${id}`;
     if(mode == "preset")
     {
-        table = `preset/${id}`
-    }
+        if(preOrSumm == 1)
+        {
+            s = true;
+            table = `playerChar/Vi/summons/summonPreset/${id}`;
+        }
 
-    if(preOrSumm == 1)
-    {
-        s = true;
+        else
+        {
+            table = `preset/${id}`;    
+        }
     }
  
     set(ref(database, table),
@@ -1090,7 +1094,7 @@ function addToken()
         tempHp : tH,
         isSummon : s,
         map : "",
-        id : table.slice(table.indexOf("/") + 1),
+        id : `${id}`,
         name : n,
         title : t,
         xPos : x,
