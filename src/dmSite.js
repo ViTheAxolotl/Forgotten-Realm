@@ -1,7 +1,7 @@
 "use strict";
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
 import { getDatabase, ref, set, onValue } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
-import { getAuth, updatePassword } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
+import { getAuth } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
 
 
 const firebaseApp = initializeApp
@@ -43,6 +43,9 @@ onValue(charRef, (snapshot) =>
 {
     const data = snapshot.val();
     wholeChar = data;
+    if(auth.currentUser == undefined){alert("Wrong Credentails!!!"); location.reload();}
+    else{user = auth.currentUser.email.split("@"); user = user[0];}
+    if(user != "vi"){alert("Wrong Credentails!!!"); location.reload();}
 });
 
 const presetRef = ref(database, 'preset/');
@@ -1049,10 +1052,6 @@ function handleDone()
 
 function hideButtons()
 {
-    if(auth.currentUser == undefined){alert("Wrong Credentails!!!"); location.reload();}
-    else{user = auth.currentUser.email.split("@"); user = user[0];}
-    if(user != "vi"){alert("Wrong Credentails!!!"); location.reload();}
-
     if(fiveButtons != [])
     {
         for(let button of fiveButtons)
