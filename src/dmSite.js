@@ -635,6 +635,7 @@ function updatePreset()
 function addToMap()
 {
     let id = db[preOrSumm][this.id].id;
+    let token = db[preOrSumm][this.id];
     
     if(Object.keys(wholeDB).includes(id))
     {
@@ -646,8 +647,8 @@ function addToMap()
         }
     }
 
-    //db[preOrSumm][this.id].id = id;
-    set(ref(database, `currentMap/${id}`), db[preOrSumm][this.id]);
+    token["id"] = id;
+    set(ref(database, `currentMap/${id}`), token);
 }
 
 function handleSummons()
