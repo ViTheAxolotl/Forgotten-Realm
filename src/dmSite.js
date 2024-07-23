@@ -531,7 +531,7 @@ function quickUpdate()
 function handlePreset()
 {
     hideButtons();
-    preOrSumm = 0;
+    if(preOrSumm == undefined){preOrSumm = 0;}
 
     for(let token of Object.keys(db[preOrSumm]))
     {
@@ -633,7 +633,7 @@ function addToMap()
 
 function handleSummons()
 {
-    preOrSumm = 1;
+    if(preOrSumm == undefined){preOrSumm = 1;}
 
     let changeIsSummons = document.createElement("button");
     if(wholeSummons["isSummonOn"]){changeIsSummons.innerHTML = "Turn Summon's Off";}
