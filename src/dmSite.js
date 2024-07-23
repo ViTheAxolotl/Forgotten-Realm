@@ -391,7 +391,7 @@ function updateHpPic(maxHp, currentHp)
 
     if(tempHp != null)
     {
-        if(tempHp != "0")
+        if(tempHp.value != "0")
         {
             return "images/map/hpBar/tempHp.png";
         }
