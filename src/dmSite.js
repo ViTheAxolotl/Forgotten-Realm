@@ -634,6 +634,16 @@ function addToMap()
 function handleSummons()
 {
     preOrSumm = 1;
+
+    let changeIsSummons = document.createElement("button");
+    if(wholeSummons["isSummonOn"]){changeIsSummons.innerHTML = "Turn Summon's Off";}
+    else{changeIsSummons.innerHTML = "Turn Summon's On";}
+    changeIsSummons.onclick = (event) => 
+        {
+            if(wholeSummons["isSummonOn"]){changeIsSummons.innerHTML = "Turn Summon's On"; set(ref(database, `playerChar/Vi/summons/isSummonOn`), false);}
+            else{changeIsSummons.innerHTML = "Turn Summon's Off";set(ref(database, `playerChar/Vi/summons/isSummonOn`), true);}
+        };
+    div.appendChild(changeIsSummons);
     handlePreset();
 }
 
