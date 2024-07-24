@@ -184,7 +184,7 @@ function diceRoller(amount, dice, modifier)
         message += `${roll}+`;
     }
 
-    if(message[-1] == "+")
+    if(message[message.length-1] == "+")
     {
         message.slice(0, message.length - 2);
     }
