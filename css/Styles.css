@@ -267,6 +267,11 @@ table, .itemSearch, #itemImg
     display: none;
 }
 
+#map ul
+{
+    text-align: none;
+}
+
 .unhide
 {
     display: block;
