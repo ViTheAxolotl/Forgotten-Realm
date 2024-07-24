@@ -1082,7 +1082,8 @@ function handleGenerate()
                                 currentSpells["description"].push(`{@result} ${option}`);
                             }
                         }
-                        else{continue;}
+                        
+                        continue;
                     }
 
                     currentSpells["description"].push(`{@Choice} ${entry["entries"][0]}`);
