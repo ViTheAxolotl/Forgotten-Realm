@@ -1075,7 +1075,14 @@ function handleGenerate()
                 {
                     if(!entry["entries"])
                     {
-                        continue;
+                        if(entry[0])
+                        {
+                            for(let option of entry)
+                            {
+                                currentSpells["description"].push(`{@result} ${option}`);
+                            }
+                        }
+                        else{continue;}
                     }
 
                     currentSpells["description"].push(`{@Choice} ${entry["entries"][0]}`);
