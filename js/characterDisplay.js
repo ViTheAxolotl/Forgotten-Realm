@@ -18,7 +18,7 @@ function handleCharacterButton()
     let image = document.getElementById("charImg");
     let nameTxt = document.getElementById("name");
     txtBox.innerHTML = charStories[this.id];
-    image.setAttribute("class", "visible")
+    image.style.display = "block";
     image.src = charImg[this.id];
     nameTxt.innerHTML = [this.id];
     document.getElementById("display").scrollIntoView({behavior: 'smooth'});
@@ -55,7 +55,8 @@ let charStories =
     "Grain" : "Grain is the 8th in line at Slarus' Coast, he is a petty theif.",
     "Howard" : "Howard is the mad scientist of Castle Havenport, he uses what he finds to help anyone he can. His great-great-grandpa was one of the people King Alm brought from Main to help his kingdom grow and advance. Howard's family has been loyal to the king ever since, but when he vanished, Howard found other employment. Working for Castle Havenport.",
     "Jallion" : "Jallion is the royal map maker of Havenpont. He travels all around and gathers diffrent satistics to base his maps off of. From the most danagerous places to poverty, he has a map showing where and intesity. Resently Prince Grado and some other nearby kingdoms asked him to make a map of high density of MagicVoid. Grado hopes this could be used to find safer routes and what drives their migrations.",
-    "Slavve" : "King Slavve is the figurehead of Havenport, however, all he does is sign the papers he is told to. His son, Grado, handles everything in the kingdom. Slavve isn't the man he used to be, he used to be the active king who would go on quests and adventures to benefit his kingdom. That all changed when his husband of 35 years died in battle, the king took it hard. Now he barely leaves his bed, the only time he leaves is to eat. This is because the staff refuses to let him stay in his bed all day. They will not serve food to him in his bed with him only wearing underwear."
+    "Slavve" : "King Slavve is the figurehead of Havenport, however, all he does is sign the papers he is told to. His son, Grado, handles everything in the kingdom. Slavve isn't the man he used to be, he used to be the active king who would go on quests and adventures to benefit his kingdom. That all changed when his husband of 35 years died in battle, the king took it hard. Now he barely leaves his bed, the only time he leaves is to eat. This is because the staff refuses to let him stay in his bed all day. They will not serve food to him in his bed with him only wearing underwear.",
+    "Harold" : "Harold the CEO of Firetown has promised to deliver unlimited magic to his loyal customers. The magic seems to be fey magic."
 };
 
 let charImg = 
@@ -77,5 +78,6 @@ let charImg =
     "Grain" : "images/npcs/princeGrain.PNG",
     "Howard" : "images/npcs/madHoward.PNG",
     "Jallion" : "images/npcs/Jallion.PNG",
-    "Slavve" : "images/npcs/kingSlavve.PNG"
+    "Slavve" : "images/npcs/kingSlavve.PNG",
+    "Harold" : "images/npcs/firetownHarold.PNG"
 }

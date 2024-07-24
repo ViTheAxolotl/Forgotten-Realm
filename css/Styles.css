@@ -166,7 +166,7 @@ table, .itemSearch, #itemImg
     margin-right: auto;
 }
 
-#itemImg, #charImg
+#itemImg
 {
     display: block;
     width: 300px;
@@ -179,7 +179,7 @@ table, .itemSearch, #itemImg
 
 #charImg
 {
-    display: block;
+    display: none;
     width: 300px;
     height: 400px;
     margin: 10px 0px 20px 0px;

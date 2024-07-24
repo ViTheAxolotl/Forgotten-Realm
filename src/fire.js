@@ -2,6 +2,7 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
 import { getDatabase, ref, set, onValue } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
 import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
+import { toTitleCase } from './../js/viMethods.js';
 
 const firebaseApp = initializeApp
 ({
@@ -56,12 +57,6 @@ function init()
     let button = document.getElementById("enter");
 
     button.onclick = handleEnter;
-}
-
-function toTitleCase(word)
-{
-    let finalWord = word[0].toUpperCase() + word.slice(1);
-    return finalWord;
 }
 
 function handleEnter()

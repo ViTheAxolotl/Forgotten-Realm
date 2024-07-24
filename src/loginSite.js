@@ -1,6 +1,7 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
 import { getDatabase} from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
 import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
+import { toTitleCase } from './../js/viMethods.js';
 
 const firebaseApp = initializeApp
 ({
@@ -28,12 +29,6 @@ function init()
     backBtn.onclick = handleBackBtn;
     loginBtn = document.getElementById("submit");
     loginBtn.onclick = handleLoginBtn;
-}
-
-function toTitleCase(word)
-{
-    let finalWord = word[0].toUpperCase() + word.slice(1);
-    return finalWord;
 }
 
 function handleLoginBtn()

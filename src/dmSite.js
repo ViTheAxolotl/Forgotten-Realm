@@ -2,7 +2,7 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
 import { getDatabase, ref, set, onValue } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
 import { getAuth } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
-
+import { toTitleCase } from './../js/viMethods.js';
 
 const firebaseApp = initializeApp
 ({
@@ -134,26 +134,6 @@ function getUser()
     if(auth.currentUser == undefined){alert("Wrong Credentails!!!"); location.reload();}
     else{user = auth.currentUser.email.split("@"); user = toTitleCase(user[0]);}
     if(user != "Vi"){alert("Wrong Credentails!!!"); location.reload();}
-}
-
-function toTitleCase(word)
-{
-    let finalWord = "";
-    if(word.includes(" "))
-    {
-        word.split(" ");
-        for(let singleWord of word)
-        {
-            finalWord += `${singleWord[0].toUpperCase() + singleWord.slice(1)} `;
-        }
-    }
-
-    else
-    {
-        finalWord = word[0].toUpperCase() + word.slice(1);
-    }
-
-    return finalWord;
 }
 
 function handleAdd()
