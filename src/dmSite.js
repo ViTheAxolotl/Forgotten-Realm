@@ -1063,14 +1063,14 @@ function handleGenerate()
     { 
         let range;
 
-        let currentSpell = {"name" : spell["Name"], "level" : spell["level"], "castTime" : `${spell["time"]["number"]} ${spell["time"]["unit"]}`, "range" : spell["range"]["type"], "duration" : spell["duration"]["type"], "description" : spell["entries"], "components" : spell["components"]};
+        let currentSpells = {"name" : wholeSpells[spell["Name"]], "level" : wholeSpells[spell["level"]], "castTime" : `${wholeSpells[spell["time"]["number"]]} ${wholeSpells[spell["time"]["unit"]]}`, "range" : wholeSpells[spell["range"]["type"]], "duration" : wholeSpells[spell["duration"]["type"]], "description" : wholeSpells[spell["entries"]], "components" : wholeSpells[spell["components"]]};
         
-        if(spell["range"]["amount"]){currentSpell["range"] = `${spell["range"]["amount"]} ${spell["range"]["type"]}`;}
-        if(spell["duration"]["duration"]){currentSpell["duration"] = `${spell["duration"]["duration"]["amount"]} ${spell["duration"]["duration"]["type"]}`;}
-        if(spell["duration"]["concentration"]){currentSpell["concentration"] = true;}
-        else {currentSpell["concentration"] = false;}
+        if(wholeSpells[spell["range"]["amount"]]){currentSpells[spell["range"]] = `${wholeSpells[spell["range"]["amount"]]} ${wholeSpells[spell["range"]["type"]]}`;}
+        if(wholeSpells[spell["duration"]["duration"]]){currentSpells[spell["duration"]] = `${wholeSpells[spell["duration"]["duration"]["amount"]]} ${wholeSpells[spell["duration"]["duration"]["type"]]}`;}
+        if(wholeSpells[spell["duration"]["concentration"]]){currentSpells[spell["concentration"]] = true;}
+        else {currentSpells[spell["concentration"]] = false;}
 
-        levels[spell["level"]].push();
+        levels[wholeSpells[spell["level"]]].push();
     }
 
     for(let level of Object.keys(levels))
