@@ -1054,7 +1054,7 @@ function handleGenerate()
     hideButtons();
     
     let spells;
-    fetch('https://vitheaxolotl.github.io/Forgotten-Realm/src/files.json').then(res => res.json()).then((json) => spells = json);
+    fetch('https://vitheaxolotl.github.io/Forgotten-Realm/src/spells-phb.json').then(res => res.json()).then((json) => spells = json);
 
     let data = "{\n\"level\" :\n {\n"; //sample json
     let levels = {0 : [], 1 : [], 2 : [], 3 : [], 4 : [], 5 : [], 6 : [], 7 : [], 8 : [], 9 : []};
