@@ -174,7 +174,7 @@ function diceRoller(amount, dice, modifier)
         viewMod = "+" + modifier;
     }
 
-    let message = `${wholeChar[player]["discordName"]}. ${player} rolled \`${amount}d${dice}${viewMod}\`: \`(`;
+    let message = `${wholeChar[player]["discordName"]} ${player} rolled \`${amount}d${dice}${viewMod}\`: \`(`;
     
     for(let i = 0; i < amount; i++)
     {
@@ -186,7 +186,7 @@ function diceRoller(amount, dice, modifier)
 
     if(message[message.length-1] == "+")
     {
-        message.slice(0, message.length - 2);
+        message = message.slice(0, message.length - 2);
     }
     
     let finalResult = sum + modifier;
