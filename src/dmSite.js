@@ -1070,6 +1070,8 @@ function handleGenerate()
         levels[wholeSpells[spell]["level"]].push(currentSpells);
     }
 
+    data = `${levels}`;
+
     for(let level of Object.keys(levels))
     {
         data += `${level} : \n[\n`;
