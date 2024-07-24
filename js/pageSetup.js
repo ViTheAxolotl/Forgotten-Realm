@@ -2,6 +2,7 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
 import { getDatabase, ref, onValue } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
 import { getAuth, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
+import { toTitleCase } from viMethods.js;
 
 const firebaseApp = initializeApp
 ({
@@ -149,12 +150,6 @@ function discordSetup()
 function copyrightSetup()
 {
     footer.innerHTML += `<h6>Copyright &copy; Vi Snyder ${new Date().getFullYear()}</h6>`;
-}
-
-function toTitleCase(word)
-{
-    let finalWord = word[0].toUpperCase() + word.slice(1);
-    return finalWord;
 }
 
 init();
