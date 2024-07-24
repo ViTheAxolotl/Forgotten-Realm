@@ -1061,11 +1061,8 @@ function handleGenerate()
     
     for(let spell of Object.keys(wholeSpells))
     { 
-        let range;
-
-        let currentSpells = {"name" : wholeSpells[spell]["name"], "level" : wholeSpells[spell]["level"], "castTime" : `${wholeSpells[spell]["time"][0]["number"]} ${wholeSpells[spell]["time"][0]["unit"]}`, "range" : wholeSpells[spell]["range"]["type"], "duration" : wholeSpells[spell]["duration"][0]["type"], "description" : wholeSpells[spell]["entries"], "components" : wholeSpells[spell]["components"]};
+        let currentSpells = {"name" : wholeSpells[spell]["name"], "level" : wholeSpells[spell]["level"], "castTime" : `${wholeSpells[spell]["time"][0]["number"]} ${wholeSpells[spell]["time"][0]["unit"]}`, "range" : wholeSpells[spell]["range"], "duration" : wholeSpells[spell]["duration"][0]["type"], "description" : wholeSpells[spell]["entries"], "components" : wholeSpells[spell]["components"]};
         
-        if(wholeSpells[spell]["range"]["amount"]){currentSpells[spell["range"]] = `${wholeSpells[spell]["range"]["amount"]} ${wholeSpells[spell]["range"]["type"]}`;}
         if(wholeSpells[spell]["duration"]["duration"]){currentSpells[spell["duration"]] = `${wholeSpells[spell]["duration"]["duration"]["amount"]} ${wholeSpells[spell]["duration"]["duration"]["type"]}`;}
         if(wholeSpells[spell]["duration"]["concentration"]){currentSpells["concentration"] = true;}
         else {currentSpells["concentration"] = false;}
@@ -1101,7 +1098,7 @@ function handleGenerate()
                 }
             }
 
-            data += `\n}`;
+            data += `\n},`;
         }
 
         data += `\n]\n`
