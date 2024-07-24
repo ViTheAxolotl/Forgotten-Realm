@@ -1063,14 +1063,14 @@ function handleGenerate()
     { 
         let range;
 
-        let currentSpells = {"name" : wholeSpells[spell["Name"]], "level" : wholeSpells[spell["level"]], "castTime" : `${wholeSpells[spell["time"]["number"]]} ${wholeSpells[spell["time"]["unit"]]}`, "range" : wholeSpells[spell["range"]["type"]], "duration" : wholeSpells[spell["duration"]["type"]], "description" : wholeSpells[spell["entries"]], "components" : wholeSpells[spell["components"]]};
+        let currentSpells = {"name" : wholeSpells[spell]["Name"], "level" : wholeSpells[spell]["level"], "castTime" : `${wholeSpells[spell]["time"]["number"]} ${wholeSpells[spell]["time"]["unit"]}`, "range" : wholeSpells[spell]["range"]["type"], "duration" : wholeSpells[spell]["duration"]["type"], "description" : wholeSpells[spell]["entries"], "components" : wholeSpells[spell]["components"]};
         
-        if(wholeSpells[spell["range"]["amount"]]){currentSpells[spell["range"]] = `${wholeSpells[spell["range"]["amount"]]} ${wholeSpells[spell["range"]["type"]]}`;}
-        if(wholeSpells[spell["duration"]["duration"]]){currentSpells[spell["duration"]] = `${wholeSpells[spell["duration"]["duration"]["amount"]]} ${wholeSpells[spell["duration"]["duration"]["type"]]}`;}
-        if(wholeSpells[spell["duration"]["concentration"]]){currentSpells[spell["concentration"]] = true;}
-        else {currentSpells[spell["concentration"]] = false;}
+        if(wholeSpells[spell]["range"]["amount"]){currentSpells[spell["range"]] = `${wholeSpells[spell]["range"]["amount"]} ${wholeSpells[spell]["range"]["type"]}`;}
+        if(wholeSpells[spell]["duration"]["duration"]){currentSpells[spell["duration"]] = `${wholeSpells[spell]["duration"]["duration"]["amount"]} ${wholeSpells[spell]["duration"]["duration"]["type"]}`;}
+        if(wholeSpells[spell]["duration"]["concentration"]){currentSpells["concentration"] = true;}
+        else {currentSpells["concentration"] = false;}
 
-        levels[wholeSpells[spell["level"]]].push();
+        levels[wholeSpells[spell]["level"]].push();
     }
 
     for(let level of Object.keys(levels))
