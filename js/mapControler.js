@@ -193,6 +193,7 @@ function diceRoller(amount, dice, modifier)
     message += `)${viewMod}=${finalResult}\``;
     
     document.getElementById("showRoll").innerHTML = message;
+    alert(viewMod + "viewMod" + rolls[0] + ", " + rolls[1] + " " + dice);
     sendDiscordMessage(message);
 }
 
