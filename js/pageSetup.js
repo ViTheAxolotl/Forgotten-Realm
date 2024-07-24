@@ -82,8 +82,8 @@ onAuthStateChanged(auth, (user) => {
 
 function init()
 {
-    copyrightSetup();
     discordSetup();
+    copyrightSetup();
 }
 
 function navBarSetup()
@@ -140,7 +140,7 @@ function logout()
 function discordSetup()
 {
     body[0].innerHTML += `
-        <script src="https://cdn.jsdelivr.net/npm/@widgetbot/crate@3" async defer>
+        <script src="https://cdn.jsdelivr.net/npm/@widgetbot/crate@3" defer>
         new Crate({
         server: '1042157480463040613',
         channel: '1042157480463040616'
