@@ -139,7 +139,7 @@ function logout()
 
 function discordSetup()
 {
-    body.innerHTML += `
+    body[0].innerHTML += `
         <widgetbot
         server="1042157480463040613"
         channel="1042157480463040616"
