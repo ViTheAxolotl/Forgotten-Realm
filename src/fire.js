@@ -61,7 +61,6 @@ function init()
 
 function handleEnter()
 {
-    let enter = document.getElementById("enter");
     let title = document.getElementById("searchBar");
     let text = document.getElementById("text");
 
@@ -186,8 +185,12 @@ async function addNote(title, text)
 {
     try 
     {
+        if(currentTitle != undefined)
+        {
+            set(ref(database, `playerChar/${player}/notes/${currentTitle}`), null);
+        }
+  
         set(ref(database, `playerChar/${player}/notes/${title}`), text);
-
         setTimeout(() => {location.reload();}, 50);
     } 
     
@@ -214,6 +217,11 @@ async function deleteNote()
     {
         set(ref(database, `playerChar/${player}/notes/${currentTitle}`), null);
         setTimeout(() => {location.reload();}, 50);
+    }
+
+    else
+    {
+        location.reload();
     }
 }
 
