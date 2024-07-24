@@ -1075,7 +1075,7 @@ function handleGenerate()
                 {
                     if(!entry["entries"])
                     {
-                        if(entry[0])
+                        if(entry.items[0])
                         {
                             for(let option of entry)
                             {
