@@ -188,6 +188,7 @@ function diceRoller(amount, dice, modifier)
     let finalResult = sum + modifier;
     message += `)+${modifier}=${finalResult}\``;
     
+    document.getElementById("showRoll").innerHTML = message;
     sendDiscordMessage(message);
 }
 
