@@ -1066,18 +1066,14 @@ function handleGenerate()
         if(wholeSpells[spell]["duration"]["duration"]){currentSpells[spell["duration"]] = `${wholeSpells[spell]["duration"]["duration"]["amount"]} ${wholeSpells[spell]["duration"]["duration"]["type"]}`;}
         if(wholeSpells[spell]["duration"]["concentration"]){currentSpells["concentration"] = "true";}
         else {currentSpells["concentration"] = "false";}
-        if(wholeSpells[spell]["entriesHigherLevel"])
-        {
-            currentSpells["description"].push(`${wholeSpells[spell]["entriesHigherLevel"][0]["entries"][0]}`);
-        }
 
         if(wholeSpells[spell]["entries"]["entries"])
         {
             for(let entry of wholeSpells[spell]["entries"])
             {
-                if(typeof wholeSpells[spell]["entries"][entry] != "string")
+                if(typeof entry != "string")
                 {
-                    currentSpells["description"].push(`(@Choice) ${entry["entries"][0]}`);
+                    currentSpells["description"].push(`{@Choice} ${entry["entries"][0]}`);
                 }
 
                 else
@@ -1085,6 +1081,11 @@ function handleGenerate()
                     currentSpells["description"].push(entry);
                 }
             }
+        }
+
+        if(wholeSpells[spell]["entriesHigherLevel"])
+        {
+            currentSpells["description"].push(`${wholeSpells[spell]["entriesHigherLevel"][0]["entries"][0]}`);
         }
 
         for(let com of Object.keys(wholeSpells[spell]["components"]))
