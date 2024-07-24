@@ -1087,7 +1087,7 @@ function handleGenerate()
             }
         }
 
-        currentSpells["components"] = currentSpells["components"].slice(0, currentSpells["components"].length - 3);
+        currentSpells["components"] = currentSpells["components"].slice(0, currentSpells["components"].length - 2);
 
         levels[wholeSpells[spell]["level"]].push(currentSpells);
     }
