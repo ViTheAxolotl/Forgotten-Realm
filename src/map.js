@@ -207,6 +207,8 @@ function addTokens()
                 }
             }
         }
+        
+        location.reload();
     }
 }
 
