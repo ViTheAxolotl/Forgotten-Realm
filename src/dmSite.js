@@ -67,12 +67,10 @@ let curCharacter;
 let temp;
 let mode;
 let user;
-let spells;
 
 function init()
 {
     fetch('https://vitheaxolotl.github.io/Forgotten-Realm/src/files.json').then(res => res.json()).then((json) => imgs = json);
-    fetch('https://vitheaxolotl.github.io/Forgotten-Realm/src/spells-phb.json').then(res => res.json()).then((json) => spells = json);
     
     for(let button of document.getElementsByTagName("button"))
     {
@@ -1024,31 +1022,6 @@ function loadMap()
 
         handleDone();
     }, 500);
-}
-
-function sendDiscordMessage(message)
-{
-    let webhook = wholeChar["Vi"]["testingWebhook"];
-    const contents = `${message}`;
-    const request = new XMLHttpRequest();
-    request.open("POST", webhook);
-    request.setRequestHeader("Content-type", "application/json");
-    const prams = 
-    {
-        content: contents
-    }
-    request.send(JSON.stringify(prams));
-}
-
-function diceRoller(dice, modifier)
-{
-    let arr = [];
-    for(let i = 1; i < dice + 1; i++){arr.push(i);}
-    let roll = arr[(Math.floor(Math.random() * arr.length))];
-    let finalResult = roll + modifier;
-    let message = `${wholeChar[user]["discordName"]} rolled \`1d${dice}+0\`: \`(${roll})+${modifier}=${finalResult}\``;
-    
-    sendDiscordMessage(message);
 }
 
 function handleGenerate()

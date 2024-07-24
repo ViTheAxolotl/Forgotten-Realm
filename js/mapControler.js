@@ -68,6 +68,7 @@ let pos;
 let firstRun = true;
 let div = document.getElementById("grid");
 let currentBorders = document.getElementsByClassName("border_");
+let gridButtons;
 let wholeTO = {};
 let wholeChar = {};
 
@@ -99,6 +100,8 @@ function setMainVaribles()
     playerName.innerHTML = toTitleCase(wholeChar[player]["currentToken"]);
     currentCharacter = document.getElementsByClassName(wholeChar[player]["currentToken"]);
     let hiddenVi = document.getElementsByClassName("isVi");
+    gridButtons = document.getElementsByClassName("gridButton");
+    for(let gButton of gridButtons){gButton.onclick = handleChangeDisplay;}
 
     if(player != "Vi")
     {
@@ -138,6 +141,58 @@ function setMainVaribles()
         else
         {
             button.onclick = decreaseValue;
+        }
+    }
+}
+
+function sendDiscordMessage(message)
+{
+    let webhook = wholeChar["Vi"]["testingWebhook"];
+    const contents = `${message}`;
+    const request = new XMLHttpRequest();
+    request.open("POST", webhook);
+    request.setRequestHeader("Content-type", "application/json");
+    const prams = 
+    {
+        content: contents
+    }
+    request.send(JSON.stringify(prams));
+}
+
+function diceRoller(dice, modifier)
+{
+    let arr = [];
+    for(let i = 1; i < dice + 1; i++){arr.push(i);}
+    let roll = arr[(Math.floor(Math.random() * arr.length))];
+    let finalResult = roll + modifier;
+    let message = `${wholeChar[user]["discordName"]} rolled \`1d${dice}+0\`: \`(${roll})+${modifier}=${finalResult}\``;
+    
+    sendDiscordMessage(message);
+}
+
+function handleChangeDisplay()
+{
+    if(!this.classList.contains("Selected"))
+    {
+        let temp = document.getElementsByClassName("Selected");
+        temp[0].classList.remove("Selected");
+        this.classList.add("Selected");
+
+        for(let gButton of gridButtons)
+        {
+            let prop;
+
+            if(this.name != gButton.name)
+            {
+                prop = document.getElementById(gButton.name);
+                prop.style.display = "none";
+            }
+
+            else
+            {
+                prop = document.getElementById(this.name);
+                prop.style.display = "block";
+            }
         }
     }
 }
