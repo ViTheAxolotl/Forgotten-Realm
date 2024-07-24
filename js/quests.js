@@ -23,18 +23,17 @@ function setUpCards()
 
 let titleAndText =
 {
-    "Missing People (S)" : "The representative of Lago has been gone for quite some time, vanishing without a trace. He has been gone for over a week, the townspeople are worried something might have happened. A couple of other townspeople are missing as well. Talk to barkeep Mal, to learn more. Reward: 30 gold.",
-    "Nightly Attacks (S)" : "Lake View has been under attack by a MagicVoid monster. After the hunting parties return at night, the monster breaks into the walls. It kills a couple of people till the guards are able to make it retreat. We have not been able to kill it, we don't have enough food without hunting. Please help us, talk to the Lake View representative. Reward: 50 gold & weird crystal.",
-    "Finding the Petty Theif (S)" : "In Lake View peoples prized possesions have been stolen. The party is tasked to find the theif since the guards are still recoving from the MagicVoid. After gettign the items, they will recieve, 4 prenium tickets, free meal at Tiger's Pub, and a total of 36 gold. All clues point to a lady with red hair, a blue cloak with grey flowers on the trim, and puke green shoes. The party has found a spot she eats and hangs out at.",
-    "Researching MagicVoid (M)" : "The head scientist of Castle Havenport has found some less hostile MagicVoid. He wants to do some research to understand the properties of MagicVoid, however, he is not equipt to fight them if they attack. He asks for some escorts and protectors, so he can find a way to stop MagicVoid from taking over the world. Reward: 45 gold & information.",
-    "Report Progress to Haven (S)" : "The Crimson Fatales have completed their two missions, now they must make the treck home to report to Haven of the progress."
+    "Kill the Map Maker" : "Razor and Leoneir were given a quest to kill the map maker before he reached the prince with the map showing Leoneir was creating MV. The party found out she was hearing a voice in her head, and was creating MV during her sleep.",
+    "Get More Quests (M)" : "Go back to Castle Havenport to see updated quests on the quest board.",
+    "Find the Missing Fey (S)" : "Nibbly and Nook have gotten a dream to find the missing Fey that been kidnapped and experimented on. Their goal is to find them, and free them. Then stop the ones responsable by any means necessary. Given a vrase to destroy the nearby realm, killing all in the area. This magic will go to Nook and Nibbly.",
+    "Researching MagicVoid (M)" : "The head scientist of Castle Havenport has found some less hostile MagicVoid. He wants to do some research to understand the properties of MagicVoid, however, he is not equipt to fight them if they attack. He asks for some escorts and protectors, so he can find a way to stop MagicVoid from taking over the world. Reward: 45 gold & information."
 };
 
 let titleAndStatus =
 {
-    "Nightly Attacks (S)" : "complete",
-    "Finding the Petty Theif (S)" : "complete",
-    "Missing People (S)" : "complete",
+    "Kill the Map Maker" : "complete",
+    "Get More Quests (M)" : "incomplete",
+    "Find the Missing Fey (S)" : "incomplete",
     " Researching MagicVoid (M)" : "incomplete"
 };
 
