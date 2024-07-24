@@ -1056,7 +1056,7 @@ function handleGenerate()
     hideButtons();
 
     let data; //sample json
-    let levels = {0 : [], 1 : [], 2 : [], 3 : [], 4 : [], 5 : [], 6 : [], 7 : [], 8 : [], 9 : []};
+    let levels = {"0" : [], "1" : [], "2" : [], "3" : [], "4" : [], "5" : [], "6" : [], "7" : [], "8" : [], "9" : []};
     let wholeSpells = spells["spell"];
     
     for(let spell of Object.keys(wholeSpells))
@@ -1066,6 +1066,10 @@ function handleGenerate()
         if(wholeSpells[spell]["duration"]["duration"]){currentSpells[spell["duration"]] = `${wholeSpells[spell]["duration"]["duration"]["amount"]} ${wholeSpells[spell]["duration"]["duration"]["type"]}`;}
         if(wholeSpells[spell]["duration"]["concentration"]){currentSpells["concentration"] = "true";}
         else {currentSpells["concentration"] = "false";}
+        if(wholeSpells[spell]["entriesHigherLevel"])
+        {
+            currentSpells["description"].push(`${wholeSpells[spell]["entriesHigherLevel"]["entries"][0]}`);
+        }
         for(let com of Object.keys(wholeSpells[spell]["components"]))
         {
             if(com == "m")
@@ -1094,6 +1098,13 @@ function handleGenerate()
             currentSpells["range"] = `${wholeSpells[spell]["range"]["distance"]["amount"]} ${wholeSpells[spell]["range"]["distance"]["type"]}`;
         }
         else{currentSpells["range"] = wholeSpells[spell]["range"]["distance"]["type"];}
+
+        let tempEntry = "";
+        for(let entry of currentSpells["description"])
+        {
+            tempEntry += `${currentSpells["description"][entry]}`;
+        }
+        currentSpells["description"] = tempEntry;
 
         levels[wholeSpells[spell]["level"]].push(currentSpells);
     }
