@@ -1073,11 +1073,11 @@ function handleGenerate()
             {
                 if(typeof entry != "string")
                 {
-                    if(!entry["entries"][0])
+                    if(!entry["entries"])
                     {
                         continue;
                     }
-                    
+
                     currentSpells["description"].push(`{@Choice} ${entry["entries"][0]}`);
                 }
 
