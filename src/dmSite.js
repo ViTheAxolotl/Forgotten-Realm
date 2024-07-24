@@ -1055,7 +1055,7 @@ function handleGenerate()
 {
     hideButtons();
 
-    let data = "{\n\"level\" :\n {\n"; //sample json
+    let data; //sample json
     let levels = {0 : [], 1 : [], 2 : [], 3 : [], 4 : [], 5 : [], 6 : [], 7 : [], 8 : [], 9 : []};
     let wholeSpells = spells["spell"];
     
@@ -1070,43 +1070,29 @@ function handleGenerate()
         levels[wholeSpells[spell]["level"]].push(currentSpells);
     }
 
-    data = JSON.stringify(levels);
-
     for(let level of Object.keys(levels))
-    {
-        data += `${level} : \n[\n`;
-        
+    {   
         for(let spell of levels[level])
-        {
-            data += `{\n`; 
-            
+        {    
             for(let feild of Object.keys(spell))
             {
                 if(typeof spell[feild] != "string")
                 {
-                    data += `${feild} : `;
-
                     for(let x of Object.keys(spell[feild]))
                     {
-                        data += `${x}, `;
+                        
                     }
-
-                    data += `,\n`;
                 }
                 
                 else
                 {
-                    data += `${feild} : ${spell[feild]},\n`;
+                    
                 }
             }
-
-            data += `\n},`;
         }
-
-        data += `\n]\n`
     }
     
-    data += `}\n}`;
+    data = levels;
 
     const a = document.createElement('a');
     const blob = new Blob([JSON.stringify(data)]);
