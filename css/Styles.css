@@ -612,6 +612,11 @@ table, .itemSearch, #itemImg
         height: 27%;
     }
 
+    .center input
+    {
+        width: 11%;
+    }
+
     #arrows #left
     {
         margin-left: 10%;
