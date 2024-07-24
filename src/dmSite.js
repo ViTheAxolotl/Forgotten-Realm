@@ -1061,7 +1061,7 @@ function handleGenerate()
     
     for(let spell of Object.keys(wholeSpells))
     { 
-        let currentSpells = {"name" : wholeSpells[spell]["name"], "level" : `${wholeSpells[spell]["level"]}`, "castTime" : `${wholeSpells[spell]["time"][0]["number"]} ${wholeSpells[spell]["time"][0]["unit"]}`, "range" : "", "duration" : wholeSpells[spell]["duration"][0]["type"], "description" : wholeSpells[spell]["entries"], "components" : ""};
+        let currentSpells = {"name" : wholeSpells[spell]["name"], "level" : `${wholeSpells[spell]["level"]}`, "castTime" : `${wholeSpells[spell]["time"][0]["number"]} ${wholeSpells[spell]["time"][0]["unit"]}`, "range" : "", "duration" : wholeSpells[spell]["duration"][0]["type"], "description" : [], "components" : ""};
         
         if(wholeSpells[spell]["duration"]["duration"]){currentSpells[spell["duration"]] = `${wholeSpells[spell]["duration"]["duration"]["amount"]} ${wholeSpells[spell]["duration"]["duration"]["type"]}`;}
         if(wholeSpells[spell]["duration"]["concentration"]){currentSpells["concentration"] = "true";}
@@ -1070,6 +1070,23 @@ function handleGenerate()
         {
             currentSpells["description"].push(`${wholeSpells[spell]["entriesHigherLevel"][0]["entries"][0]}`);
         }
+
+        if(wholeSpells[spell]["entries"]["entries"])
+        {
+            for(let entry of wholeSpells[spell]["entries"])
+            {
+                if(typeof wholeSpells[spell]["entries"][entry] != "string")
+                {
+                    currentSpells["description"].push(`(@Choice) ${entry["entries"][0]}`);
+                }
+
+                else
+                {
+                    currentSpells["description"].push(entry);
+                }
+            }
+        }
+
         for(let com of Object.keys(wholeSpells[spell]["components"]))
         {
             if(com == "m")
@@ -1098,14 +1115,8 @@ function handleGenerate()
             currentSpells["range"] = `${wholeSpells[spell]["range"]["distance"]["amount"]} ${wholeSpells[spell]["range"]["distance"]["type"]}`;
         }
         else{currentSpells["range"] = wholeSpells[spell]["range"]["distance"]["type"];}
-
-        let tempEntry = "";
-        for(let entry of currentSpells["description"])
-        {
-            tempEntry += `${entry}`;
-        }
-        currentSpells["description"] = tempEntry;
-
+        
+        currentSpells["description"] = currentSpells["description"].join(" ");
         levels[wholeSpells[spell]["level"]].push(currentSpells);
     }
 
