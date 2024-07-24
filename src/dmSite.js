@@ -1063,7 +1063,7 @@ function handleGenerate()
     { 
         let range;
 
-        let currentSpells = {"name" : wholeSpells[spell]["Name"], "level" : wholeSpells[spell]["level"], "castTime" : `${wholeSpells[spell]["time"]["number"]} ${wholeSpells[spell]["time"]["unit"]}`, "range" : wholeSpells[spell]["range"]["type"], "duration" : wholeSpells[spell]["duration"]["type"], "description" : wholeSpells[spell]["entries"], "components" : wholeSpells[spell]["components"]};
+        let currentSpells = {"name" : wholeSpells[spell]["name"], "level" : wholeSpells[spell]["level"], "castTime" : `${wholeSpells[spell]["time"][0]["number"]} ${wholeSpells[spell]["time"][0]["unit"]}`, "range" : wholeSpells[spell]["range"]["type"], "duration" : wholeSpells[spell]["duration"][0]["type"], "description" : wholeSpells[spell]["entries"], "components" : wholeSpells[spell]["components"]};
         
         if(wholeSpells[spell]["range"]["amount"]){currentSpells[spell["range"]] = `${wholeSpells[spell]["range"]["amount"]} ${wholeSpells[spell]["range"]["type"]}`;}
         if(wholeSpells[spell]["duration"]["duration"]){currentSpells[spell["duration"]] = `${wholeSpells[spell]["duration"]["duration"]["amount"]} ${wholeSpells[spell]["duration"]["duration"]["type"]}`;}
@@ -1083,7 +1083,22 @@ function handleGenerate()
             
             for(let feild of Object.keys(spell))
             {
-                data += `${feild} : ${spell[feild]},\n`;
+                if(spell[feild].length > 1)
+                {
+                    data += `${feild} : `;
+                    
+                    for(let x of Object.keys(spell[feild]))
+                    {
+                        data += `${x}, `;
+                    }
+
+                    data += `,\n`;
+                }
+                
+                else
+                {
+                    data += `${feild} : ${spell[feild]},\n`;
+                }
             }
 
             data += `\n}`;
