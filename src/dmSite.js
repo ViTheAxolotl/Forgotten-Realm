@@ -1055,7 +1055,7 @@ function handleGenerate()
 {
     hideButtons();
 
-    let data; //sample json
+    /*let data; //sample json
     let levels = {"0" : [], "1" : [], "2" : [], "3" : [], "4" : [], "5" : [], "6" : [], "7" : [], "8" : [], "9" : []};
     let wholeSpells = spells["spell"];
     
@@ -1124,11 +1124,6 @@ function handleGenerate()
 
         currentSpells["components"] = currentSpells["components"].slice(0, currentSpells["components"].length - 2);
 
-        if(!wholeSpells[spell]["range"]["distance"])
-        {
-            alert(currentSpells["name"]);
-        }
-
         if(wholeSpells[spell]["range"]["distance"]["type"] == "feet" || wholeSpells[spell]["range"]["distance"]["type"] == "miles")
         {
             currentSpells["range"] = `${wholeSpells[spell]["range"]["distance"]["amount"]} ${wholeSpells[spell]["range"]["distance"]["type"]}`;
@@ -1138,28 +1133,6 @@ function handleGenerate()
         currentSpells["description"] = currentSpells["description"].join(" ");
         levels[wholeSpells[spell]["level"]].push(currentSpells);
     }
-
-    for(let level of Object.keys(levels))
-    {   
-        for(let spell of levels[level])
-        {    
-            for(let feild of Object.keys(spell))
-            {
-                if(typeof spell[feild] != "string")
-                {
-                    for(let x of Object.keys(spell[feild]))
-                    {
-                        
-                    }
-                }
-                
-                else
-                {
-                    
-                }
-            }
-        }
-    }
     
     data = levels;
 
@@ -1167,7 +1140,7 @@ function handleGenerate()
     const blob = new Blob([JSON.stringify(data)]);
     a.href = URL.createObjectURL(blob);
     a.download = 'sample-profile';                     //filename to download
-    a.click();
+    a.click();*/
 
     alert("done");
     handleDone();
