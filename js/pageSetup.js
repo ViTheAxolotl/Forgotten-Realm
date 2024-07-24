@@ -139,14 +139,14 @@ function logout()
 
 function discordSetup()
 {
-    body[0].innerHTML += `
+   /* body[0].innerHTML += `
         <widgetbot
         server="1042157480463040613"
         channel="1042157480463040616"
         width="800"
         height="600">
         </widgetbot>
-        <script src="https://cdn.jsdelivr.net/npm/@widgetbot/html-embed"></script>`;
+        <script src="https://cdn.jsdelivr.net/npm/@widgetbot/html-embed"></script>`;*/
 }
 
 function copyrightSetup()
