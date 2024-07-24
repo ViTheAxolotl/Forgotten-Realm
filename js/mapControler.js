@@ -69,6 +69,7 @@ let firstRun = true;
 let div = document.getElementById("grid");
 let currentBorders = document.getElementsByClassName("border_");
 let gridButtons;
+let rollDiceBtn;
 let wholeTO = {};
 let wholeChar = {};
 
@@ -102,6 +103,7 @@ function setMainVaribles()
     let hiddenVi = document.getElementsByClassName("isVi");
     gridButtons = document.getElementsByClassName("gridButton");
     for(let gButton of gridButtons){gButton.onclick = handleChangeDisplay;}
+    rollDiceBtn = document.getElementById("rollDice").onclick = handleDiceRoll;
 
     if(player != "Vi")
     {
@@ -159,15 +161,42 @@ function sendDiscordMessage(message)
     request.send(JSON.stringify(prams));
 }
 
-function diceRoller(dice, modifier)
+function diceRoller(amount, dice, modifier)
 {
     let arr = [];
+    let rolls = [];
+    let sum = 0;
+    let viewMod = modifier;
     for(let i = 1; i < dice + 1; i++){arr.push(i);}
-    let roll = arr[(Math.floor(Math.random() * arr.length))];
-    let finalResult = roll + modifier;
-    let message = `${wholeChar[user]["discordName"]} rolled \`1d${dice}+0\`: \`(${roll})+${modifier}=${finalResult}\``;
+    
+    if(!modifier < 0)
+    {
+        viewMod = "+" + modifier;
+    }
+
+    let message = `${wholeChar[user]["discordName"]} rolled \`1d${dice}${viewMod}\`: \`(`;
+    
+    for(let i = 0; i < amount; i++)
+    {
+        let roll = arr[(Math.floor(Math.random() * arr.length))];
+        rolls.push(roll);
+        sum += roll;
+        message += `${roll}+`;
+    }
+
+    message.slice(0, message.length - 2);
+    let finalResult = sum + modifier;
+    message += `)+${modifier}=${finalResult}\``;
     
     sendDiscordMessage(message);
+}
+
+function handleDiceRoll()
+{
+    let amount = parseInt(document.getElementById("diceToRoll").value);
+    let dice = parseInt(document.getElementById("sides").value);
+    let modifier = parseInt(document.getElementById("modifier").value);
+    diceRoller(amount, dice, modifier);
 }
 
 function handleChangeDisplay()
