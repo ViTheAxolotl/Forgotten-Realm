@@ -476,6 +476,11 @@ table, .itemSearch, #itemImg
     margin-left: -25%;
 }
 
+.center input
+{
+    width: 7%;
+}
+
 @media (max-width: 1399px) {
     .col-md-6
     {
