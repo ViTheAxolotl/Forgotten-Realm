@@ -139,11 +139,10 @@ function logout()
 
 function discordSetup()
 {
-    let scripts = [document.createElement("script"), document.createElement("script")];
-    scripts[0].src = "https://cdn.jsdelivr.net/npm/@widgetbot/crate@3";
-    scripts[1].innerHTML = "new Crate({server: '1042157480463040613', channel: '1042157480463040616'});";
-    body[0].appendChild(scripts[0]);
-    body[0].appendChild(scripts[1]);
+    let scripts = document.createElement("script");
+    scripts.src = "https://cdn.jsdelivr.net/npm/@widgetbot/crate@3";
+    scripts.innerText = "new Crate({server: '1042157480463040613', channel: '1042157480463040616'});";
+    body[0].appendChild(scripts);
 }
 
 function copyrightSetup()
