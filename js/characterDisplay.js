@@ -3,9 +3,9 @@ function init()
 {
     let characters = document.getElementsByTagName("button");
 
-    for (let i = 1; i < characters.length - 1; i++) 
+    for (let char of characters) 
     {
-        characters[i].onclick = handleCharacterButton;
+        char.onclick = handleCharacterButton;
     }
 
     characters[characters.length - 2].onclick = handleBringToTop;
