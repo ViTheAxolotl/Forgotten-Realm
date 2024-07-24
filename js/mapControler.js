@@ -169,7 +169,7 @@ function diceRoller(amount, dice, modifier)
     let viewMod = modifier;
     for(let i = 1; i < dice + 1; i++){arr.push(i);}
     
-    if(!modifier < 0)
+    if(modifier >= 0)
     {
         viewMod = "+" + modifier;
     }
@@ -184,9 +184,13 @@ function diceRoller(amount, dice, modifier)
         message += `${roll}+`;
     }
 
-    message.slice(0, message.length - 2);
+    if(message[-1] == "+")
+    {
+        message.slice(0, message.length - 2);
+    }
+    
     let finalResult = sum + modifier;
-    message += `)+${modifier}=${finalResult}\``;
+    message += `)${viewMod}=${finalResult}\``;
     
     document.getElementById("showRoll").innerHTML = message;
     sendDiscordMessage(message);
