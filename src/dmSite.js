@@ -1124,6 +1124,11 @@ function handleGenerate()
 
         currentSpells["components"] = currentSpells["components"].slice(0, currentSpells["components"].length - 2);
 
+        if(!wholeSpells[spell]["range"]["distance"])
+        {
+            alert(currentSpells["name"]);
+        }
+
         if(wholeSpells[spell]["range"]["distance"]["type"] == "feet" || wholeSpells[spell]["range"]["distance"]["type"] == "miles")
         {
             currentSpells["range"] = `${wholeSpells[spell]["range"]["distance"]["amount"]} ${wholeSpells[spell]["range"]["distance"]["type"]}`;
