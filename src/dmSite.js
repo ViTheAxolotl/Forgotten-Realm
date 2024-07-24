@@ -1102,7 +1102,7 @@ function handleGenerate()
         let tempEntry = "";
         for(let entry of currentSpells["description"])
         {
-            tempEntry += `${currentSpells["description"][entry]}`;
+            tempEntry += `${entry}`;
         }
         currentSpells["description"] = tempEntry;
 
