@@ -189,6 +189,7 @@ function addTokens()
     if(!(Object.keys(wholeDB).includes(wholeChar[player]["token"]["id"])))
     {
         set(ref(database, `currentMap/${wholeChar[player]["token"]["id"]}`), wholeChar[player]["token"]);
+        set(ref(database, `playerChar/${player}/currentToken`, wholeChar[player]["token"]["id"]));
 
         if(isSummonOn)
         {
