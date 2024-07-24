@@ -1070,7 +1070,7 @@ function handleGenerate()
         if(wholeSpells[spell]["duration"]["concentration"]){currentSpells["concentration"] = true;}
         else {currentSpells["concentration"] = false;}
 
-        levels[wholeSpells[spell]["level"]].push();
+        levels[wholeSpells[spell]["level"]].push(currentSpells);
     }
 
     for(let level of Object.keys(levels))
@@ -1086,7 +1086,7 @@ function handleGenerate()
                 if(spell[feild].length > 1)
                 {
                     data += `${feild} : `;
-                    
+
                     for(let x of Object.keys(spell[feild]))
                     {
                         data += `${x}, `;
