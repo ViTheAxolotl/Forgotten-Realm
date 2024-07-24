@@ -612,9 +612,9 @@ table, .itemSearch, #itemImg
         height: 27%;
     }
 
-    .center input
+    .center input, a button
     {
-        width: 11%;
+        min-width: 11%;
     }
 
     #arrows #left
