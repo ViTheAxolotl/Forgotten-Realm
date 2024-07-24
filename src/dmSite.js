@@ -1038,19 +1038,69 @@ function sendDiscordMessage(message)
     request.send(JSON.stringify(prams));
 }
 
+function diceRoller(dice, modifier)
+{
+    let arr = [];
+    for(let i = 1; i < dice + 1; i++){arr.push(i);}
+    let roll = arr[(Math.floor(Math.random() * arr.length))];
+    let finalResult = roll + modifier;
+    let message = `${wholeChar[user]["discordName"]} rolled \`1d${dice}+0\`: \`(${roll})+${modifier}=${finalResult}\``;
+    
+    sendDiscordMessage(message);
+}
+
 function handleGenerate()
 {
     hideButtons();
-
-    let dice = 20;
-    let arr = [];
-    for(let i = 1; i < dice + 1; i++){arr.push(i);}
-    let modifier = 0;
-    let roll = arr[(Math.floor(Math.random() * arr.length))];
-    let finalResult = roll + modifier;
-    let message = `${wholeChar[user]["discordName"]} rolled \`1d${dice}+0\`: \`(${roll}) + ${modifier} = ${finalResult}\``;
     
-    sendDiscordMessage(message);
+    let spells;
+    fetch('https://vitheaxolotl.github.io/Forgotten-Realm/src/files.json').then(res => res.json()).then((json) => spells = json);
+
+    let data = "{\n\"level\" :\n {\n"; //sample json
+    let levels = {0 : [], 1 : [], 2 : [], 3 : [], 4 : [], 5 : [], 6 : [], 7 : [], 8 : [], 9 : []};
+    let wholeSpells = spells["spell"];
+    
+    for(let spell of Object.keys(wholeSpells))
+    { 
+        let range;
+
+        let currentSpell = {"name" : spell["Name"], "level" : spell["level"], "castTime" : `${spell["time"]["number"]} ${spell["time"]["unit"]}`, "range" : spell["range"]["type"], "duration" : spell["duration"]["type"], "description" : spell["entries"], "components" : spell["components"]};
+        
+        if(spell["range"]["amount"]){currentSpell["range"] = `${spell["range"]["amount"]} ${spell["range"]["type"]}`;}
+        if(spell["duration"]["duration"]){currentSpell["duration"] = `${spell["duration"]["duration"]["amount"]} ${spell["duration"]["duration"]["type"]}`;}
+        if(spell["duration"]["concentration"]){currentSpell["concentration"] = true;}
+        else {currentSpell["concentration"] = false;}
+
+        levels[spell["level"]].push();
+    }
+
+    for(let level of Object.keys(levels))
+    {
+        data += `${level} : \n[\n`;
+        
+        for(let spell of levels[level])
+        {
+            data += `{\n`; 
+            
+            for(let feild of Object.keys(spell))
+            {
+                data += `${feild} : ${spell[feild]},\n`;
+            }
+
+            data += `\n}`;
+        }
+
+        data += `\n]\n`
+    }
+    
+    data += `}\n}`;
+
+    const a = document.createElement('a');
+    const blob = new Blob([JSON.stringify(data)]);
+    a.href = URL.createObjectURL(blob);
+    a.download = 'sample-profile';                     //filename to download
+    a.click();
+
     alert("done");
     handleDone();
 }
