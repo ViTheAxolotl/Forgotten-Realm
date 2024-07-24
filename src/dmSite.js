@@ -1032,7 +1032,7 @@ function loadMap()
 
 function sendDiscordMessage(message)
 {
-    let webhook = wholeChar["Vi"]["webhook"];
+    let webhook = wholeChar["Vi"]["testingWebhook"];
     const contents = `${message}`;
     const request = new XMLHttpRequest();
     request.open("POST", webhook);
