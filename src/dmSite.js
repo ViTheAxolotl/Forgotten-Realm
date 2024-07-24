@@ -1080,7 +1080,7 @@ function handleGenerate()
             
             for(let feild of Object.keys(spell))
             {
-                if(spell[feild].length > 1)
+                if(typeof spell[feild] != "string")
                 {
                     data += `${feild} : `;
 
