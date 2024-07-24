@@ -1066,7 +1066,7 @@ function handleGenerate()
         if(wholeSpells[spell]["duration"]["duration"]){currentSpells[spell["duration"]] = `${wholeSpells[spell]["duration"]["duration"]["amount"]} ${wholeSpells[spell]["duration"]["duration"]["type"]}`;}
         if(wholeSpells[spell]["duration"]["concentration"]){currentSpells["concentration"] = true;}
         else {currentSpells["concentration"] = false;}
-        for(let com of wholeSpells[spell]["components"])
+        for(let com of Object.keys(wholeSpells[spell]["components"]))
         {
             if(com == "m")
             {
