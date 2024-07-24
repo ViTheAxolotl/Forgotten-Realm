@@ -174,9 +174,9 @@ function handleChangeDisplay()
 {
     if(!this.classList.contains("Selected"))
     {
-        let temp = document.getElementsByClassName("Selected");
-        temp[0].classList.remove("Selected");
-        this.classList.add("Selected");
+        let temp = document.getElementsByClassName("selected");
+        temp[0].classList.remove("selected");
+        this.classList.add("selected");
 
         for(let gButton of gridButtons)
         {
