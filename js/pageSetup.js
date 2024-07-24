@@ -27,6 +27,7 @@ let parentFolder = query[0];
 let wholeChars = {};
 let name;
 let footer = document.getElementById("footer");
+let body = document.getElementsByTagName("body");
 let imageLocation;
 let jsaLocation;
 let mainLocation;
@@ -138,7 +139,7 @@ function logout()
 
 function discordSetup()
 {
-    footer.innerHTML += `
+    body.innerHTML += `
         <widgetbot
         server="1042157480463040613"
         channel="1042157480463040616"
