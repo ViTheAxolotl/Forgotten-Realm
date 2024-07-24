@@ -186,7 +186,7 @@ function diceRoller(amount, dice, modifier)
 
     if(message[message.length-1] == "+")
     {
-        message = message.slice(0, message.length - 2);
+        message = message.slice(0, message.length - 1);
     }
     
     let finalResult = sum + modifier;
