@@ -66,7 +66,9 @@ onAuthStateChanged(auth, (user) => {
             <ul class="dropdown-menu bg-dark" style="right: 0; left: auto;" aria-labelledby="navbarScrollingDropdown">
                 <li class="nav-item"><a class="nav-link active" aria-current="page" id = "logoutButton">Logout</a></li>
             </ul>`;
-            isLoggedIn = true;
+        
+        isLoggedIn = true;
+        discordSetup();
     } 
     
     else 
@@ -82,7 +84,6 @@ onAuthStateChanged(auth, (user) => {
 
 function init()
 {
-    discordSetup();
     copyrightSetup();
 }
 

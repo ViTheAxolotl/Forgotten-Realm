@@ -1061,11 +1061,33 @@ function handleGenerate()
     
     for(let spell of Object.keys(wholeSpells))
     { 
-        let currentSpells = {"name" : wholeSpells[spell]["name"], "level" : wholeSpells[spell]["level"], "castTime" : `${wholeSpells[spell]["time"][0]["number"]} ${wholeSpells[spell]["time"][0]["unit"]}`, "range" : wholeSpells[spell]["range"], "duration" : wholeSpells[spell]["duration"][0]["type"], "description" : wholeSpells[spell]["entries"], "components" : wholeSpells[spell]["components"]};
+        let currentSpells = {"name" : wholeSpells[spell]["name"], "level" : `${wholeSpells[spell]["level"]}`, "castTime" : `${wholeSpells[spell]["time"][0]["number"]} ${wholeSpells[spell]["time"][0]["unit"]}`, "range" : wholeSpells[spell]["range"], "duration" : wholeSpells[spell]["duration"][0]["type"], "description" : wholeSpells[spell]["entries"], "components" : ""};
         
         if(wholeSpells[spell]["duration"]["duration"]){currentSpells[spell["duration"]] = `${wholeSpells[spell]["duration"]["duration"]["amount"]} ${wholeSpells[spell]["duration"]["duration"]["type"]}`;}
         if(wholeSpells[spell]["duration"]["concentration"]){currentSpells["concentration"] = true;}
         else {currentSpells["concentration"] = false;}
+        for(let com of wholeSpells[spell]["components"])
+        {
+            if(com == "m")
+            {
+                if(typeof wholeSpells[spell]["components"][com] != "string")
+                {
+                    currentSpells["components"] += `m: ${wholeSpells[spell]["components"][com]["text"]}, `
+                }
+
+                else
+                {
+                    currentSpells["components"] += `m: ${wholeSpells[spell]["components"][com]}, `
+                }
+            }
+
+            else
+            {
+                currentSpells["components"] += `${com}, `;
+            }
+        }
+
+        currentSpells["components"] = currentSpells["components"].slice(0, currentSpells["components"].length - 3);
 
         levels[wholeSpells[spell]["level"]].push(currentSpells);
     }
