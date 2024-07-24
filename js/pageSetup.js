@@ -142,7 +142,7 @@ function discordSetup()
     body[0].innerHTML += `
         <script src="https://cdn.jsdelivr.net/npm/@widgetbot/crate@3"></script>
         <script>
-        const button = new Crate({
+        new Crate({
         server: '1042157480463040613',
         channel: '1042157480463040616'
         })
