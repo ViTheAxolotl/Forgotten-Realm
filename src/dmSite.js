@@ -1068,7 +1068,7 @@ function handleGenerate()
         else {currentSpells["concentration"] = "false";}
         if(wholeSpells[spell]["entriesHigherLevel"])
         {
-            currentSpells["description"].push(`${wholeSpells[spell]["entriesHigherLevel"]["entries"][0]}`);
+            currentSpells["description"].push(`${wholeSpells[spell]["entriesHigherLevel"][0]["entries"][0]}`);
         }
         for(let com of Object.keys(wholeSpells[spell]["components"]))
         {
