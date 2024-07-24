@@ -1075,9 +1075,9 @@ function handleGenerate()
                 {
                     if(!entry["entries"])
                     {
-                        if(entry.items[0])
+                        if(entry.items)
                         {
-                            for(let option of entry)
+                            for(let option of entry.items)
                             {
                                 currentSpells["description"].push(`{@result} ${option}`);
                             }
