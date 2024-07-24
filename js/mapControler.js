@@ -174,7 +174,7 @@ function diceRoller(amount, dice, modifier)
         viewMod = "+" + modifier;
     }
 
-    let message = `${wholeChar[player]["discordName"]} rolled \`${amount}d${dice}${viewMod}\`: \`(`;
+    let message = `${wholeChar[player]["discordName"]}. ${player} rolled \`${amount}d${dice}${viewMod}\`: \`(`;
     
     for(let i = 0; i < amount; i++)
     {
