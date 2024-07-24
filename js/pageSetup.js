@@ -141,7 +141,7 @@ function discordSetup()
 {
     let scripts = [document.createElement("script"), document.createElement("script")];
     scripts[0].src = "https://cdn.jsdelivr.net/npm/@widgetbot/crate@3";
-    scripts[1].innerHTML = "<script> new Crate({server: '1042157480463040613', channel: '1042157480463040616'})";
+    scripts[1].innerHTML = "new Crate({server: '1042157480463040613', channel: '1042157480463040616'});";
     body[0].appendChild(scripts[0]);
     body[0].appendChild(scripts[1]);
 }
