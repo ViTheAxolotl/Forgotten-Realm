@@ -67,10 +67,12 @@ let curCharacter;
 let temp;
 let mode;
 let user;
+let wholeSpells;
 
 function init()
 {
     fetch('https://vitheaxolotl.github.io/Forgotten-Realm/src/files.json').then(res => res.json()).then((json) => imgs = json);
+    fetch('https://vitheaxolotl.github.io/Forgotten-Realm/src/spells.json').then(res => res.json()).then((json) => wholeSpells = json);
     
     for(let button of document.getElementsByTagName("button"))
     {
@@ -1028,13 +1030,13 @@ function handleGenerate()
 {
     hideButtons();
 
-    /*let data; //sample json
-    let levels = {"0" : [], "1" : [], "2" : [], "3" : [], "4" : [], "5" : [], "6" : [], "7" : [], "8" : [], "9" : []};
-    let wholeSpells = spells["spell"];
+    let data; //sample json
+    let levels = {"0" : {}, "1" : {}, "2" : {}, "3" : {}, "4" : {}, "5" : {}, "6" : {}, "7" : {}, "8" : {}, "9" : {}};
     
     for(let spell of Object.keys(wholeSpells))
     { 
-        let currentSpells = {"name" : wholeSpells[spell]["name"], "level" : `${wholeSpells[spell]["level"]}`, "castTime" : `${wholeSpells[spell]["time"][0]["number"]} ${wholeSpells[spell]["time"][0]["unit"]}`, "range" : "", "duration" : wholeSpells[spell]["duration"][0]["type"], "description" : [], "components" : ""};
+        levels[wholeSpells[spell]["level"]][wholeSpells[spell]["name"]] =  wholeSpells[spell];
+        /*let currentSpells = {"name" : wholeSpells[spell]["name"], "level" : `${wholeSpells[spell]["level"]}`, "castTime" : `${wholeSpells[spell]["time"][0]["number"]} ${wholeSpells[spell]["time"][0]["unit"]}`, "range" : "", "duration" : wholeSpells[spell]["duration"][0]["type"], "description" : [], "components" : ""};
         
         if(wholeSpells[spell]["duration"]["duration"]){currentSpells[spell["duration"]] = `${wholeSpells[spell]["duration"]["duration"]["amount"]} ${wholeSpells[spell]["duration"]["duration"]["type"]}`;}
         if(wholeSpells[spell]["duration"]["concentration"]){currentSpells["concentration"] = "true";}
@@ -1103,8 +1105,7 @@ function handleGenerate()
         }
         else{currentSpells["range"] = wholeSpells[spell]["range"]["distance"]["type"];}
         
-        currentSpells["description"] = currentSpells["description"].join(" ");
-        levels[wholeSpells[spell]["level"]].push(currentSpells);
+        currentSpells["description"] = currentSpells["description"].join(" ");*/
     }
     
     data = levels;
@@ -1113,7 +1114,7 @@ function handleGenerate()
     const blob = new Blob([JSON.stringify(data)]);
     a.href = URL.createObjectURL(blob);
     a.download = 'sample-profile';                     //filename to download
-    a.click();*/
+    a.click();
 
     alert("done");
     handleDone();
