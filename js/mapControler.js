@@ -68,7 +68,7 @@ let pos;
 let firstRun = true;
 let div = document.getElementById("grid");
 let currentBorders = document.getElementsByClassName("border_");
-let gridButtons;
+let firstMenu;
 let rollDiceBtn;
 let wholeTO = {};
 let wholeChar = {};
@@ -101,8 +101,8 @@ function setMainVaribles()
     playerName.innerHTML = toTitleCase(wholeChar[player]["currentToken"]);
     currentCharacter = document.getElementsByClassName(wholeChar[player]["currentToken"]);
     let hiddenVi = document.getElementsByClassName("isVi");
-    gridButtons = document.getElementsByClassName("gridButton");
-    for(let gButton of gridButtons){gButton.onclick = handleChangeDisplay;}
+    firstMenu = document.getElementsByClassName("firstMenu");
+    for(let fButton of firstMenu){fButton.onclick = handleChangeFirstDisplay;}
     rollDiceBtn = document.getElementById("rollDice").onclick = handleDiceRoll;
 
     if(player != "Vi")
@@ -204,7 +204,7 @@ function handleDiceRoll()
     diceRoller(amount, dice, modifier);
 }
 
-function handleChangeDisplay()
+function handleChangeFirstDisplay()
 {
     if(!this.classList.contains("Selected"))
     {
@@ -212,13 +212,13 @@ function handleChangeDisplay()
         temp[0].classList.remove("selected");
         this.classList.add("selected");
 
-        for(let gButton of gridButtons)
+        for(let fButton of firstMenu)
         {
             let prop;
 
-            if(this.name != gButton.name)
+            if(this.name != fButton.name)
             {
-                prop = document.getElementById(gButton.name);
+                prop = document.getElementById(fButton.name);
                 prop.style.display = "none";
             }
 
