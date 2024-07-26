@@ -70,9 +70,11 @@ let div = document.getElementById("grid");
 let currentBorders = document.getElementsByClassName("border_");
 let firstMenu;
 let secondMenu;
+let spellBtn;
 let rollDiceBtn;
 let wholeTO = {};
 let wholeChar = {};
+let wholeSpells;
 
 function init()
 {
@@ -81,6 +83,7 @@ function init()
     arrows.push(document.getElementById("right"));
     arrows.push(document.getElementById("down"));
     
+    fetch('https://vitheaxolotl.github.io/Forgotten-Realm/src/spells.json').then(res => res.json()).then((json) => wholeSpells = json);
     
     currentHp.onchange = updateHp;
     maxHp.onchange = addUpdate;
@@ -106,6 +109,8 @@ function setMainVaribles()
     for(let fButton of firstMenu){fButton.onclick = handleChangeFirstDisplay;}
     secondMenu = document.getElementsByClassName("secondMenu");
     for(let sButton of secondMenu){sButton.onclick = handleChangeSecondDisplay;}
+    spellBtn = document.getElementsByClassName("spell");
+    for(let sButton of spellBtn){sButton.onclick = handleShowSpells;}
     rollDiceBtn = document.getElementById("rollDice").onclick = handleDiceRoll;
 
     if(player != "Vi")
@@ -589,4 +594,43 @@ function handleArrow()
             moveChar(currentPos[0] + movement, currentPos[1]);
         } 
     }
+}
+
+function handleShowSpells()
+{
+    let spells = wholeSpells[this.name];
+    let cards = document.getElementsByClassName("card");
+
+    for(let card of cards)
+    {
+        card.parentElement.removeChild(card);
+    }
+
+    for(let spell of Object.keys(spells))
+    {
+        let txt = `Casting Time: ${spells[spell]["castTime"]}\nRange: ${spells[spell]["range"]}\nComponents: ${spells[spell]["components"]}\nDuration: ${spells[spell]["Duration"]}`
+        if(spells[spell]["concentration"] == "true"){txt += "\nConcentration: True"}
+        txt += `\n${spells[spell]["description"]}`;
+        createCard(spell, txt);
+    }
+}
+
+function createCard(title, text)
+{
+    let cardDiv = document.createElement("div");
+    cardDiv.setAttribute("class", "card .bg-UP-blue notes");
+    let cardBody = document.createElement("div");
+    cardBody.setAttribute("class", "card-body notes");
+    cardBody.onclick = handleCardClick;
+    let cardTitle = document.createElement("h5");
+    cardTitle.setAttribute("class", "card-title");
+    cardTitle.innerHTML = title;
+    let cardText = document.createElement("p");
+    cardText.setAttribute("class", "card-text");
+    cardText.innerHTML = text;
+    let noteDisplay = document.getElementById("spells");
+    noteDisplay.appendChild(cardDiv);
+    cardDiv.appendChild(cardBody);
+    cardBody.appendChild(cardTitle);
+    cardBody.appendChild(cardText);
 }

@@ -141,8 +141,6 @@ function setCardScreen(enter, title, text)
     enter.innerHTML = "Enter";
     title.placeholder = "";
     title.value = "";
-    //readNotes(currentUser);
-    //createAddButton();
 }
 
 function createAddButton()
