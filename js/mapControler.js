@@ -601,7 +601,7 @@ function handleShowSpells()
 {
     let spells = wholeSpells[this.name];
     let cards = document.getElementsByClassName("card");
-    let temp = cards;
+    let upper = this.parentElement;
     
     for(let spell of spellBtn)
     {
@@ -613,9 +613,9 @@ function handleShowSpells()
 
     this.classList.add("selected");
 
-    for(let card of temp)
+    while(upper.children.length > 0)
     {
-        card.parentElement.removeChild(card);
+        upper.removeChild(upper.lastChild);
     }
 
     for(let spell of Object.keys(spells))
@@ -640,7 +640,7 @@ function createCard(title, text)
     let cardText = document.createElement("p");
     cardText.setAttribute("class", "card-text");
     cardText.innerHTML = text;
-    let noteDisplay = document.getElementById("spells");
+    let noteDisplay = document.getElementById("cards");
     noteDisplay.appendChild(cardDiv);
     cardDiv.appendChild(cardBody);
     cardBody.appendChild(cardTitle);
