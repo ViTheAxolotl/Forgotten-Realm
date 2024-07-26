@@ -622,7 +622,7 @@ function createCard(title, text)
     cardDiv.setAttribute("class", "card .bg-UP-blue notes");
     let cardBody = document.createElement("div");
     cardBody.setAttribute("class", "card-body notes");
-    cardBody.onclick = handleCardClick;
+    //cardBody.onclick = handleCardClick;
     let cardTitle = document.createElement("h5");
     cardTitle.setAttribute("class", "card-title");
     cardTitle.innerHTML = title;
