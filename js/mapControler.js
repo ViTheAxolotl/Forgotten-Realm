@@ -75,6 +75,7 @@ let rollDiceBtn;
 let wholeTO = {};
 let wholeChar = {};
 let wholeSpells;
+let currentLv = "5th level";
 
 function init()
 {
@@ -600,6 +601,16 @@ function handleShowSpells()
 {
     let spells = wholeSpells[this.name];
     let cards = document.getElementsByClassName("card");
+    cards = [].join(cards);
+    
+    for(let spell of spellBtn)
+    {
+        if(spell.classList.contains("selected"))
+        {
+            spell.classList.remove("selected");
+        }
+    }
+
     this.classList.add("selected");
 
     for(let card of cards)
@@ -609,9 +620,9 @@ function handleShowSpells()
 
     for(let spell of Object.keys(spells))
     {
-        let txt = `Casting Time: ${spells[spell]["castTime"]}\nRange: ${spells[spell]["range"]}\nComponents: ${spells[spell]["components"]}\nDuration: ${spells[spell]["Duration"]}`
-        if(spells[spell]["concentration"] == "true"){txt += "\nConcentration: True"}
-        txt += `\n${spells[spell]["description"]}`;
+        let txt = `Casting Time: ${toTitleCase(spells[spell]["castTime"])}<br />Range: ${toTitleCase(spells[spell]["range"])}<br />Components: ${spells[spell]["components"]}<br />Duration: ${spells[spell]["duration"]}`;
+        if(spells[spell]["concentration"] == "true"){txt += "<br />Concentration: True";}
+        txt += `<br />${spells[spell]["description"]}`;
         createCard(spell, txt);
     }
 }
