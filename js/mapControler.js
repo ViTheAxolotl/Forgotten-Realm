@@ -105,7 +105,7 @@ function setMainVaribles()
     firstMenu = document.getElementsByClassName("firstMenu");
     for(let fButton of firstMenu){fButton.onclick = handleChangeFirstDisplay;}
     secondMenu = document.getElementsByClassName("secondMenu");
-    for(let sButton of second){sButton.onclick = handleChangeSecondDisplay;}
+    for(let sButton of secondMenu){sButton.onclick = handleChangeSecondDisplay;}
     rollDiceBtn = document.getElementById("rollDice").onclick = handleDiceRoll;
 
     if(player != "Vi")
