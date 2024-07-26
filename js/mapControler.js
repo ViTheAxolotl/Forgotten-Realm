@@ -620,9 +620,9 @@ function handleShowSpells()
 
     for(let spell of Object.keys(spells))
     {
-        let txt = `Casting Time: ${toTitleCase(spells[spell]["castTime"])}<br />Range: ${toTitleCase(spells[spell]["range"])}<br />Components: ${spells[spell]["components"]}<br />Duration: ${spells[spell]["duration"]}`;
-        if(spells[spell]["concentration"] == "true"){txt += "<br />Concentration: True";}
-        txt += `<br />${spells[spell]["description"]}`;
+        let txt = [`Casting Time: ${toTitleCase(spells[spell]["castTime"])}`, `Range: ${toTitleCase(spells[spell]["range"])},`, `Components: ${spells[spell]["components"]}`, `Duration: ${spells[spell]["duration"]}`];
+        if(spells[spell]["concentration"] == "true"){txt.push(`Concentration: True`);}
+        txt.push(`${spells[spell]["description"]}`);
         createCard(spell, txt);
     }
 }
@@ -637,12 +637,16 @@ function createCard(title, text)
     let cardTitle = document.createElement("h5");
     cardTitle.setAttribute("class", "card-title");
     cardTitle.innerHTML = title;
-    let cardText = document.createElement("p");
-    cardText.setAttribute("class", "card-text");
-    cardText.innerHTML = text;
+    cardBody.appendChild(cardTitle);
+    for(let i = 0; i < text.length; i++)
+    {
+        let cardText = document.createElement("p");
+        cardText.setAttribute("class", "card-text");
+        cardText.innerHTML = text[i];
+        cardBody.appendChild(cardText);
+    }
+    
     let noteDisplay = document.getElementById("cards");
     noteDisplay.appendChild(cardDiv);
     cardDiv.appendChild(cardBody);
-    cardBody.appendChild(cardTitle);
-    cardBody.appendChild(cardText);
 }
