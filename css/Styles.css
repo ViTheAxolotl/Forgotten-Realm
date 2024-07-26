@@ -246,7 +246,8 @@ table, .itemSearch, #itemImg
 
 .notes
 {
-    background: url(../images/paper.PNG) #00098C no-repeat;    
+    background: url(../images/paper.PNG) #00098C no-repeat;
+    background-size: auto;    
     border-color: black;
     border-radius: 10%;
     color: black;
