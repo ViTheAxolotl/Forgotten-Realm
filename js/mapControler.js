@@ -600,6 +600,7 @@ function handleShowSpells()
 {
     let spells = wholeSpells[this.name];
     let cards = document.getElementsByClassName("card");
+    this.classList.add("selected");
 
     for(let card of cards)
     {
