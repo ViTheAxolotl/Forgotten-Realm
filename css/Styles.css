@@ -40,7 +40,7 @@ body
 
 .color-UP-black
 {
-    color: #dddddd;
+    color: #000000;
 }
 
 #corkBoard
@@ -249,6 +249,12 @@ table, .itemSearch, #itemImg
     background: url(../images/paper.PNG) #00098C;
     border-color: black;
     border-radius: 10%;
+    color: black;
+}
+
+.notes h5
+{
+    color: black;
 }
 
 .center
