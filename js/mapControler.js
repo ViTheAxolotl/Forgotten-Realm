@@ -600,8 +600,7 @@ function handleArrow()
 function handleShowSpells()
 {
     let spells = wholeSpells[this.name];
-    let cards = document.getElementsByClassName("card");
-    let upper = this.parentElement;
+    let upper = document.getElementById("cards");
     
     for(let spell of spellBtn)
     {
@@ -642,6 +641,7 @@ function createCard(title, text)
     {
         let cardText = document.createElement("p");
         cardText.setAttribute("class", "card-text");
+        cardText.style.margin = "3px";
         cardText.innerHTML = text[i];
         cardBody.appendChild(cardText);
     }
