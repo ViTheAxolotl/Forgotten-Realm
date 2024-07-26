@@ -221,7 +221,7 @@ function handleChangeFirstDisplay()
                         prop = document.getElementById(fButton.name);
                         prop.style.display = "none";
                         
-                        if(fButton.classList.includes("selected"))
+                        if(fButton.classList.contains("selected"))
                         {
                             fButton.classList.remove("selected");
                         }
@@ -251,7 +251,7 @@ function handleChangeSecondDisplay()
                 prop = document.getElementById(sButton.name);
                 prop.style.display = "none";
                 
-                if(sButton.classList.includes("selected"))
+                if(sButton.classList.contains("selected"))
                 {
                     sButton.classList.remove("selected");
                 }
