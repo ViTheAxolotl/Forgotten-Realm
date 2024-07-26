@@ -601,7 +601,7 @@ function handleShowSpells()
 {
     let spells = wholeSpells[this.name];
     let cards = document.getElementsByClassName("card");
-    cards = [].join(cards);
+    let temp = cards;
     
     for(let spell of spellBtn)
     {
@@ -613,7 +613,7 @@ function handleShowSpells()
 
     this.classList.add("selected");
 
-    for(let card of cards)
+    for(let card of temp)
     {
         card.parentElement.removeChild(card);
     }

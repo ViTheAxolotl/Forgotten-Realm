@@ -5,7 +5,7 @@ export function toTitleCase(word)
     let finalWord = "";
     if(word.includes(" "))
     {
-        word.split(" ");
+        word = word.split(" ");
         for(let singleWord of word)
         {
             finalWord += `${singleWord[0].toUpperCase() + singleWord.slice(1)} `;
