@@ -69,6 +69,7 @@ let firstRun = true;
 let div = document.getElementById("grid");
 let currentBorders = document.getElementsByClassName("border_");
 let firstMenu;
+let secondMenu;
 let rollDiceBtn;
 let wholeTO = {};
 let wholeChar = {};
@@ -103,6 +104,8 @@ function setMainVaribles()
     let hiddenVi = document.getElementsByClassName("isVi");
     firstMenu = document.getElementsByClassName("firstMenu");
     for(let fButton of firstMenu){fButton.onclick = handleChangeFirstDisplay;}
+    secondMenu = document.getElementsByClassName("secondMenu");
+    for(let sButton of second){sButton.onclick = handleChangeSecondDisplay;}
     rollDiceBtn = document.getElementById("rollDice").onclick = handleDiceRoll;
 
     if(player != "Vi")
@@ -191,8 +194,7 @@ function diceRoller(amount, dice, modifier)
     
     let finalResult = sum + modifier;
     message += `)${viewMod}=${finalResult}\``;
-    
-    document.getElementById("showRoll").innerHTML = message;
+
     sendDiscordMessage(message);
 }
 
@@ -208,24 +210,58 @@ function handleChangeFirstDisplay()
 {
     if(!this.classList.contains("Selected"))
     {
-        let temp = document.getElementsByClassName("selected");
-        temp[0].classList.remove("selected");
-        this.classList.add("selected");
+        if(!this.classList.contains("Selected"))
+            {
+                for(let fButton of firstMenu)
+                {
+                    let prop;
+        
+                    if(this.name != fButton.name)
+                    {
+                        prop = document.getElementById(fButton.name);
+                        prop.style.display = "none";
+                        
+                        if(fButton.classList.includes("selected"))
+                        {
+                            fButton.classList.remove("selected");
+                        }
+                    }
+        
+                    else
+                    {
+                        prop = document.getElementById(this.name);
+                        prop.style.display = "block";
+                        this.classList.add("selected");
+                    }
+                }
+            }
+    }
+}
 
-        for(let fButton of firstMenu)
+function handleChangeSecondDisplay()
+{
+    if(!this.classList.contains("Selected"))
+    {
+        for(let sButton of secondMenu)
         {
             let prop;
 
-            if(this.name != fButton.name)
+            if(this.name != sButton.name)
             {
-                prop = document.getElementById(fButton.name);
+                prop = document.getElementById(sButton.name);
                 prop.style.display = "none";
+                
+                if(sButton.classList.includes("selected"))
+                {
+                    sButton.classList.remove("selected");
+                }
             }
 
             else
             {
                 prop = document.getElementById(this.name);
                 prop.style.display = "block";
+                this.classList.add("selected");
             }
         }
     }
