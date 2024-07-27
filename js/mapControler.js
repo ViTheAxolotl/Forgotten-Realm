@@ -3,6 +3,7 @@ import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebas
 import { getDatabase, ref, set, onValue } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
 import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
 import { toTitleCase, createCard } from './viMethods.js';
+import { doc } from 'firebase/firestore/lite';
 
 const firebaseApp = initializeApp
 ({
@@ -78,6 +79,7 @@ let wholeSpells;
 let currentLv = "5th level";
 let spellLevel;
 let curClass;
+let searchBar = document.getElementById("search");
 
 function init()
 {
@@ -115,6 +117,7 @@ function setMainVaribles()
     spellBtn = document.getElementsByClassName("spell");
     for(let sButton of spellBtn){sButton.onclick = handleShowSpells;}
     rollDiceBtn = document.getElementById("rollDice").onclick = handleDiceRoll;
+    search.onValue = handleSearch;
 
     if(player != "Vi")
     {
@@ -621,11 +624,42 @@ function handleShowSpells()
         upper.removeChild(upper.lastChild);
     }
 
+    searchBar.style.display = "block";
+
     for(let spell of Object.keys(spells))
     {
-        let txt = [`Casting Time: ${toTitleCase(spells[spell]["castTime"])}`, `Range: ${toTitleCase(spells[spell]["range"])},`, `Components: ${spells[spell]["components"]}`, `Duration: ${toTitleCase(spells[spell]["duration"])}`];
-        if(spells[spell]["concentration"] == "true"){txt.push(`Concentration: True`);}
-        txt.push(`${spells[spell]["description"]}`);
-        createCard(spell, txt, "cards");
+        setUpSpell(spell, spells);
+    }
+}
+
+function setUpSpell(spell, spells)
+{
+    let txt = [`Casting Time: ${toTitleCase(spells[spell]["castTime"])}`, `Range: ${toTitleCase(spells[spell]["range"])},`, `Components: ${spells[spell]["components"]}`, `Duration: ${toTitleCase(spells[spell]["duration"])}`];
+    if(spells[spell]["concentration"] == "true"){txt.push(`Concentration: True`);}
+    txt.push(`${spells[spell]["description"]}`);
+    createCard(spell, txt, "cards");
+}
+
+function handleSearch()
+{
+    let search = searchBar.value;
+    
+    if(spellLevel)
+    {
+        let spells = wholeSpells[spellLevel];
+        let upper = document.getElementById("cards");
+
+        while(upper.children.length > 0)
+        {
+            upper.removeChild(upper.lastChild);
+        }
+    
+        for(let spell of Object.keys(spells))
+        {
+            if(spell.includes(search))
+            {
+                setUpSpell(spell, spells);
+            }
+        }
     }
 }
