@@ -68,11 +68,13 @@ let temp;
 let mode;
 let user;
 let wholeSpells;
+let newWholeSpells;
 
 function init()
 {
     fetch('https://vitheaxolotl.github.io/Forgotten-Realm/src/files.json').then(res => res.json()).then((json) => imgs = json);
-    fetch('https://vitheaxolotl.github.io/Forgotten-Realm/src/spells.json').then(res => res.json()).then((json) => wholeSpells = json);
+    fetch('https://vitheaxolotl.github.io/Forgotten-Realm/src/spells-phb.json').then(res => res.json()).then((json) => wholeSpells = json);
+    fetch('https://vitheaxolotl.github.io/Forgotten-Realm/src/spells.json').then(res => res.json()).then((json) => newWholeSpells = json);
     
     for(let button of document.getElementsByTagName("button"))
     {
@@ -1032,16 +1034,20 @@ function handleGenerate()
 
     for(let player of Object.keys(wholeChar))
     {
-        set(ref(database, `playerChar/${player}/favorites`), {"spells" : "hold", "actions" : "hold"});
+        set(ref(database, `playerChar/${player}/favorites`), {"spells" : {"0" : {}, "1" : {}, "2" : {}, "3" : {}, "4" : {}, "5" : {}, "6" : {}, "7" : {}, "8" : {}, "9" : {}}, "actions" : "hold"});
     }
+
     /*let data; //sample json
-    let levels = {"0" : {}, "1" : {}, "2" : {}, "3" : {}, "4" : {}, "5" : {}, "6" : {}, "7" : {}, "8" : {}, "9" : {}};
+    let levels = {"0" : {}, "1" : {}, "2" : {}, "3" : {}, "4" : {}, "5" : {}, "6" : {}, "7" : {}, "8" : {}, "9" : {}};*/
     
-    for(let spell of Object.keys(wholeSpells))
+    for(let spell of Object.keys(wholeSpells["spell"]))
     { 
-        let currentSpells = {"name" : wholeSpells[spell]["name"], "level" : `${wholeSpells[spell]["level"]}`, "castTime" : `${wholeSpells[spell]["time"][0]["number"]} ${wholeSpells[spell]["time"][0]["unit"]}`, "range" : "", "duration" : wholeSpells[spell]["duration"][0]["type"], "description" : [], "components" : ""};
-        
-        if(wholeSpells[spell]["duration"]["duration"]){currentSpells[spell["duration"]] = `${wholeSpells[spell]["duration"]["duration"]["amount"]} ${wholeSpells[spell]["duration"]["duration"]["type"]}`;}
+        if(wholeSpells["spell"][spell]["duration"]["duration"])
+        {
+            newWholeSpells[wholeSpells["spell"][spell]["level"]][wholeSpells["spell"][spell]["name"]]["duration"] = wholeSpells["spell"][spell]["duration"]["duration"]["amount"] + " " + wholeSpells["spell"][spell]["duration"]["duration"]["type"];
+        }
+                
+        /*if(wholeSpells[spell]["duration"]["duration"]){currentSpells[spell["duration"]] = `${wholeSpells[spell]["duration"]["duration"]["amount"]} ${wholeSpells[spell]["duration"]["duration"]["type"]}`;}
         if(wholeSpells[spell]["duration"]["concentration"]){currentSpells["concentration"] = "true";}
         else {currentSpells["concentration"] = "false";}
 
@@ -1109,15 +1115,15 @@ function handleGenerate()
         else{currentSpells["range"] = wholeSpells[spell]["range"]["distance"]["type"];}
         
         currentSpells["description"] = currentSpells["description"].join(" ");
-    }
+    }*/
     
-    data = levels;
+    data = newWholeSpells;
 
     const a = document.createElement('a');
     const blob = new Blob([JSON.stringify(data)]);
     a.href = URL.createObjectURL(blob);
     a.download = 'sample-profile';                     //filename to download
-    a.click();*/
+    a.click();
 
     alert("done");
     handleDone();

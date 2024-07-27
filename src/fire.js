@@ -2,7 +2,7 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
 import { getDatabase, ref, set, onValue } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
 import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
-import { toTitleCase } from './../js/viMethods.js';
+import { toTitleCase, createCard } from './../js/viMethods.js';
 
 const firebaseApp = initializeApp
 ({
@@ -205,7 +205,7 @@ async function readNotes()
 
     for(let key of Object.keys(wholeNotes))
     {
-        createCard(key, wholeNotes[key]);
+        createCard(key, [].push(wholeNotes[key]), "notesDisplay");
     }
 }
 
@@ -221,26 +221,6 @@ async function deleteNote()
     {
         location.reload();
     }
-}
-
-function createCard(title, text)
-{
-    let cardDiv = document.createElement("div");
-    cardDiv.setAttribute("class", "card .bg-UP-blue notes");
-    let cardBody = document.createElement("div");
-    cardBody.setAttribute("class", "card-body notes");
-    cardBody.onclick = handleCardClick;
-    let cardTitle = document.createElement("h5");
-    cardTitle.setAttribute("class", "card-title");
-    cardTitle.innerHTML = title;
-    let cardText = document.createElement("p");
-    cardText.setAttribute("class", "card-text");
-    cardText.innerHTML = text;
-    let noteDisplay = document.getElementById("notesDisplay");
-    noteDisplay.appendChild(cardDiv);
-    cardDiv.appendChild(cardBody);
-    cardBody.appendChild(cardTitle);
-    cardBody.appendChild(cardText);
 }
 
 window.onload = init;
