@@ -634,7 +634,7 @@ function handleShowSpells()
 function setUpSpell(spell, spells)
 {
     let txt = [`Casting Time: ${toTitleCase(spells[spell]["castTime"])}`, `Range: ${toTitleCase(spells[spell]["range"])},`, `Components: ${spells[spell]["components"]}`, `Duration: ${toTitleCase(spells[spell]["duration"])}`];
-    if(spells[spell]["concentration"] == "true"){txt.push(`Concentration: True`);}
+    if(spells[spell]["concentration"] == "true"){txt.push(`Concentration`);}
     txt.push(`${spells[spell]["description"]}`);
     createCard(spell, txt, "cards");
 }
@@ -655,7 +655,7 @@ function handleSearch()
     
         for(let spell of Object.keys(spells))
         {
-            if(spell.includes(search))
+            if(spell.toLowerCase().includes(search.toLowerCase()))
             {
                 setUpSpell(spell, spells);
             }
