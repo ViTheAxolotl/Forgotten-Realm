@@ -270,16 +270,9 @@ function handleChangeSecondDisplay()
                 prop = document.getElementById(this.name);
                 prop.style.display = "block";
                 this.classList.add("selected");
-                spellLevel = this.innerHTML;
-                curClass = undefined;
             }
         }
     }
-}
-
-function handleCardClick()
-{
-    
 }
 
 function tempHpUpdate()
@@ -608,7 +601,9 @@ function handleArrow()
 
 function handleShowSpells()
 {
-    let spells = wholeSpells[this.name];
+    spellLevel = this.name;
+    curClass = undefined;
+    let spells = wholeSpells[spellLevel];
     let upper = document.getElementById("cards");
     
     for(let spell of spellBtn)
@@ -628,7 +623,7 @@ function handleShowSpells()
 
     for(let spell of Object.keys(spells))
     {
-        let txt = [`Casting Time: ${toTitleCase(spells[spell]["castTime"])}`, `Range: ${toTitleCase(spells[spell]["range"])},`, `Components: ${spells[spell]["components"]}`, `Duration: ${spells[spell]["duration"]}`];
+        let txt = [`Casting Time: ${toTitleCase(spells[spell]["castTime"])}`, `Range: ${toTitleCase(spells[spell]["range"])},`, `Components: ${spells[spell]["components"]}`, `Duration: ${toTitleCase(spells[spell]["duration"])}`];
         if(spells[spell]["concentration"] == "true"){txt.push(`Concentration: True`);}
         txt.push(`${spells[spell]["description"]}`);
         createCard(spell, txt, "cards");
