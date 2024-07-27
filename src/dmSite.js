@@ -1032,19 +1032,19 @@ function handleGenerate()
 {
     hideButtons();
 
-    for(let player of Object.keys(wholeChar))
+    /*for(let player of Object.keys(wholeChar))
     {
         set(ref(database, `playerChar/${player}/favorites`), {"spells" : {"0" : {}, "1" : {}, "2" : {}, "3" : {}, "4" : {}, "5" : {}, "6" : {}, "7" : {}, "8" : {}, "9" : {}}, "actions" : "hold"});
     }
 
-    /*let data; //sample json
+    let data; //sample json
     let levels = {"0" : {}, "1" : {}, "2" : {}, "3" : {}, "4" : {}, "5" : {}, "6" : {}, "7" : {}, "8" : {}, "9" : {}};*/
     
     for(let spell of Object.keys(wholeSpells["spell"]))
     { 
-        if(wholeSpells["spell"][spell]["duration"]["duration"])
+        if(wholeSpells["spell"][spell]["duration"][0]["duration"])
         {
-            newWholeSpells[wholeSpells["spell"][spell]["level"]][wholeSpells["spell"][spell]["name"]]["duration"] = wholeSpells["spell"][spell]["duration"]["duration"]["amount"] + " " + wholeSpells["spell"][spell]["duration"]["duration"]["type"];
+            newWholeSpells[wholeSpells["spell"][spell]["level"]][wholeSpells["spell"][spell]["name"]]["duration"] = wholeSpells["spell"][spell]["duration"][0]["duration"]["amount"] + " " + wholeSpells["spell"][spell]["duration"][0]["duration"]["type"];
         }
                 
         /*if(wholeSpells[spell]["duration"]["duration"]){currentSpells[spell["duration"]] = `${wholeSpells[spell]["duration"]["duration"]["amount"]} ${wholeSpells[spell]["duration"]["duration"]["type"]}`;}

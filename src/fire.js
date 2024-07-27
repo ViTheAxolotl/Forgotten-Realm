@@ -205,7 +205,9 @@ async function readNotes()
 
     for(let key of Object.keys(wholeNotes))
     {
-        createCard(key, [].push(wholeNotes[key]), "notesDisplay");
+        let text = [];
+        text.push(wholeNotes[key]);
+        createCard(key, text, "notesDisplay");
     }
 
     for(let key of document.getElementsByClassName("card-body")){key.onclick = handleCardClick;}
