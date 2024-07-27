@@ -623,11 +623,19 @@ function handleShowSpells()
         upper.removeChild(upper.lastChild);
     }
 
-    document.getElementById("searchDiv").style.display = "block";
-
-    for(let spell of Object.keys(spells))
+    if(searchBar[0].value != "")
     {
-        setUpSpell(spell, spells);
+        handleSearch();
+    }
+
+    else
+    {
+        document.getElementById("searchDiv").style.display = "block";
+
+        for(let spell of Object.keys(spells))
+        {
+            setUpSpell(spell, spells);
+        }
     }
 }
 
