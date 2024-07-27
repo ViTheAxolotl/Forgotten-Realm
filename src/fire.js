@@ -207,6 +207,8 @@ async function readNotes()
     {
         createCard(key, [].push(wholeNotes[key]), "notesDisplay");
     }
+
+    for(let key of document.getElementsByClassName("card-body")){key.onclick = handleCardClick;}
 }
 
 async function deleteNote()

@@ -1114,8 +1114,8 @@ function handleGenerate()
         }
         else{currentSpells["range"] = wholeSpells[spell]["range"]["distance"]["type"];}
         
-        currentSpells["description"] = currentSpells["description"].join(" ");
-    }*/
+        currentSpells["description"] = currentSpells["description"].join(" ");*/
+    }
     
     data = newWholeSpells;
 

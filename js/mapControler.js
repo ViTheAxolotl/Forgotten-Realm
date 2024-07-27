@@ -76,6 +76,8 @@ let wholeTO = {};
 let wholeChar = {};
 let wholeSpells;
 let currentLv = "5th level";
+let spellLevel;
+let curClass;
 
 function init()
 {
@@ -268,9 +270,16 @@ function handleChangeSecondDisplay()
                 prop = document.getElementById(this.name);
                 prop.style.display = "block";
                 this.classList.add("selected");
+                spellLevel = this.innerHTML;
+                curClass = undefined;
             }
         }
     }
+}
+
+function handleCardClick()
+{
+    
 }
 
 function tempHpUpdate()
