@@ -92,6 +92,7 @@ function init()
     currentHp.onchange = updateHp;
     maxHp.onchange = addUpdate;
     tempHp.onchange = tempHpUpdate;
+    searchBar[0].onchange = handleSearch;
 
     for(let arrow of arrows)
     {
@@ -116,7 +117,6 @@ function setMainVaribles()
     spellBtn = document.getElementsByClassName("spell");
     for(let sButton of spellBtn){sButton.onclick = handleShowSpells;}
     rollDiceBtn = document.getElementById("rollDice").onclick = handleDiceRoll;
-    searchBar.onValue = handleSearch;
 
     if(player != "Vi")
     {
@@ -623,7 +623,7 @@ function handleShowSpells()
         upper.removeChild(upper.lastChild);
     }
 
-    document.getElementById("search").style.display = "block";
+    document.getElementById("searchDiv").style.display = "block";
 
     for(let spell of Object.keys(spells))
     {
