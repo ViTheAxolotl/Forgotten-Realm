@@ -1043,9 +1043,9 @@ function handleGenerate()
     
     for(let spell of Object.keys(wholeSpells["spell"]))
     { 
-        if(wholeSpells["spell"][spell]["duration"][0]["duration"])
+        if(wholeSpells["spell"][spell]["duration"][0]["concentration"])
         {
-            newWholeSpells[wholeSpells["spell"][spell]["level"]][wholeSpells["spell"][spell]["name"]]["duration"] = wholeSpells["spell"][spell]["duration"][0]["duration"]["amount"] + " " + wholeSpells["spell"][spell]["duration"][0]["duration"]["type"];
+            newWholeSpells[wholeSpells["spell"][spell]["level"]][wholeSpells["spell"][spell]["name"]]["concentration"] = "true";
         }
                 
         /*if(wholeSpells[spell]["duration"]["duration"]){currentSpells[spell["duration"]] = `${wholeSpells[spell]["duration"]["duration"]["amount"]} ${wholeSpells[spell]["duration"]["duration"]["type"]}`;}
