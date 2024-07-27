@@ -78,7 +78,7 @@ let wholeSpells;
 let currentLv = "5th level";
 let spellLevel;
 let curClass;
-let searchBar = document.getElementById("search");
+let searchBar = document.getElementsByName("search");
 
 function init()
 {
@@ -116,7 +116,7 @@ function setMainVaribles()
     spellBtn = document.getElementsByClassName("spell");
     for(let sButton of spellBtn){sButton.onclick = handleShowSpells;}
     rollDiceBtn = document.getElementById("rollDice").onclick = handleDiceRoll;
-    search.onValue = handleSearch;
+    searchBar.onValue = handleSearch;
 
     if(player != "Vi")
     {
@@ -623,7 +623,7 @@ function handleShowSpells()
         upper.removeChild(upper.lastChild);
     }
 
-    searchBar.style.display = "block";
+    document.getElementById("search").style.display = "block";
 
     for(let spell of Object.keys(spells))
     {
