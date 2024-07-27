@@ -641,7 +641,7 @@ function setUpSpell(spell, spells)
 
 function handleSearch()
 {
-    let search = searchBar.value;
+    let search = searchBar[0].value;
     
     if(spellLevel)
     {
