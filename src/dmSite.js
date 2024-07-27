@@ -1032,12 +1032,13 @@ function handleGenerate()
 {
     hideButtons();
 
+    let data;
     /*for(let player of Object.keys(wholeChar))
     {
         set(ref(database, `playerChar/${player}/favorites`), {"spells" : {"0" : {}, "1" : {}, "2" : {}, "3" : {}, "4" : {}, "5" : {}, "6" : {}, "7" : {}, "8" : {}, "9" : {}}, "actions" : "hold"});
     }
 
-    let data; //sample json
+    //sample json
     let levels = {"0" : {}, "1" : {}, "2" : {}, "3" : {}, "4" : {}, "5" : {}, "6" : {}, "7" : {}, "8" : {}, "9" : {}};*/
     
     for(let spell of Object.keys(wholeSpells["spell"]))
