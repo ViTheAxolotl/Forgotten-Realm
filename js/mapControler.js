@@ -756,13 +756,13 @@ function handleCardClick()
         {
             if(wholeChar[player]["favorites"]["spells"][spellLevel][currentTitle])
             {
-                favoriteBtn.setAttribute("src", "images/favorited.png");
+                favoriteBtn.setAttribute("src", "../images/favorited.png");
             }
         }
 
         else
         {
-            favoriteBtn.setAttribute("src", "images/unFavorite.png");
+            favoriteBtn.setAttribute("src", "../images/unFavorite.png");
         }
 
         optionDiv.appendChild(wrapper);
@@ -823,13 +823,13 @@ function handleFavoriteBtn()
 
     if(this.src.includes("images/unFavorite.png")) //Add to favrites
     {
-        this.src = "images/favorited.png";
+        this.src = "../images/favorited.png";
         set(ref(database, `playerChar/${player}/favorites/spells/${spellLevel}/${spellName}`), wholeSpells[spellLevel][spellName]);
     }
 
     else //Remove from favorites
     {
-        this.src = "images/unFavorite.png";
+        this.src = "../images/unFavorite.png";
         set(ref(database, `playerChar/${player}/favorites/spells/${spellLevel}/${spellName}`), null);
     }
 }
