@@ -818,7 +818,7 @@ function castSpell()
 
 function handleFavoriteBtn()
 {
-    let spellName = this.classList[0].replaceAll("_", " ");
+    let spellName = this.lastChild.classList[0].replaceAll("_", " ");
 
     if(this.lastChild.src.includes("images/unFavorite.png")) //Add to favrites
     {
