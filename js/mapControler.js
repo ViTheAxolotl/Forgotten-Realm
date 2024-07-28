@@ -775,6 +775,8 @@ function handleCardClick()
                 option.text = `${i}${suff} Level Slot (${option.value})`;
                 slotSelect.appendChild(option);
             }
+
+            this.parentElement.appendChild(slotSelect);
         }
 
         if(favorite) //let edit
@@ -787,6 +789,7 @@ function handleCardClick()
         castBtn.onclick = castSpell;
         castBtn.innerHTML = "Cast Spell";
         castBtn.name = currentTitle;
+        this.parentElement.appendChild(castBtn);
     }
 }
 
