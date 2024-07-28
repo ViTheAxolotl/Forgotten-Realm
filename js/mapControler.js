@@ -169,6 +169,7 @@ function setMainVaribles()
 
 function sendDiscordMessage(message)
 {
+    message = message + "\n";
     let webhook = wholeChar["Vi"]["testingWebhook"];
     const contents = `${message}`;
     const request = new XMLHttpRequest();
@@ -826,7 +827,7 @@ function handleCastSpell()
     if(favorite){display = setUpText(lastSpell, db[spellLevel]);}
     else{display = setUpText(lastSpell, db[spellLevel]);}
     display = display.join("\n");
-    display = `${wholeChar[player]["discordName"]} ${player} cast:\n${lastSpell}\n${display}\n`;
+    display = `${wholeChar[player]["discordName"]} ${player} cast:\n${lastSpell}\n${display}`;
     sendDiscordMessage(display);
 }
 
