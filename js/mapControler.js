@@ -822,6 +822,7 @@ function handleCastSpell()
 {
     let display = setUpText(spell, spells);
     display = display.join("\n");
+    display = `${wholeChar[player]["discordName"]} ${player} cast:\n${display}`;
     sendDiscordMessage(display);
 }
 
