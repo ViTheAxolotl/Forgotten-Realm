@@ -820,15 +820,15 @@ function handleFavoriteBtn()
 {
     let spellName = this.classList[0].replaceAll("_", " ");
 
-    if(this.src.includes("images/unFavorite.png")) //Add to favrites
+    if(this.lastChild.src.includes("images/unFavorite.png")) //Add to favrites
     {
-        this.src = "../images/favorited.png";
+        this.lastChild.src = "../images/favorited.png";
         set(ref(database, `playerChar/${player}/favorites/spells/${spellLevel}/${spellName}`), wholeSpells[spellLevel][spellName]);
     }
 
     else //Remove from favorites
     {
-        this.src = "../images/unFavorite.png";
+        this.lastChild.src = "../images/unFavorite.png";
         set(ref(database, `playerChar/${player}/favorites/spells/${spellLevel}/${spellName}`), null);
     }
 }
