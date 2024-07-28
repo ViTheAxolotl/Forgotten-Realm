@@ -744,8 +744,9 @@ function handleCardClick()
     {
         let favoriteBtn = document.createElement("img");
         favoriteBtn.setAttribute("id", "favoriteBtn");
-        favoriteBtn.classList.add(currentTitle.replace(" ", "_"));
+        favoriteBtn.classList.add(currentTitle.replaceAll(" ", "_"));
         favoriteBtn.style.height = "20px";
+        favoriteBtn.style.width = "20px";
         let wrapper = document.createElement("button");
         wrapper.classList.add("gridButton");
         wrapper.onclick = handleFavoriteBtn;
@@ -818,7 +819,7 @@ function castSpell()
 
 function handleFavoriteBtn()
 {
-    let spellName = this.classList[0].replace("_", " ");
+    let spellName = this.classList[0].replaceAll("_", " ");
 
     if(this.src.includes("images/unFavorite.png")) //Add to favrites
     {
