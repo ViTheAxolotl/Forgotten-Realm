@@ -737,10 +737,10 @@ function handleCardClick()
         let favoriteBtn = document.createElement("img");
         favoriteBtn.setAttribute("id", "favoriteBtn");
         favoriteBtn.classList.add(currentTitle.replace(" ", "_"));
+        favoriteBtn.style.height = "20px";
         let wrapper = document.createElement("button");
         wrapper.classList.add("gridButton");
         wrapper.onclick = handleFavoriteBtn;
-        wrapper.style.height = "20px";
         wrapper.appendChild(favoriteBtn);
         
         if(wholeChar[player]["favorites"]["spells"])
