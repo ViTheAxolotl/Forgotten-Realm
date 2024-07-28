@@ -37,6 +37,8 @@ onValue(charRef, (snapshot) =>
     }
 });
 
+let favoriteRef;
+
 onAuthStateChanged(auth, (user) => 
 {
     if (user) 
@@ -74,11 +76,14 @@ let spellBtn;
 let rollDiceBtn;
 let wholeTO = {};
 let wholeChar = {};
+let wholeFavorite = {};
 let wholeSpells;
 let currentLv = "5th level";
 let spellLevel;
 let curClass;
 let searchBar = document.getElementsByName("search");
+let favorite = false;
+let db;
 
 function init()
 {
@@ -174,25 +179,31 @@ function sendDiscordMessage(message)
     request.send(JSON.stringify(prams));
 }
 
-function diceRoller(amount, dice, modifier)
+function basicRoll(amount, dice)
 {
     let arr = [];
     let rolls = [];
-    let sum = 0;
-    let viewMod = modifier;
     for(let i = 1; i < dice + 1; i++){arr.push(i);}
-    
-    if(modifier >= 0)
-    {
-        viewMod = "+" + modifier;
-    }
 
-    let message = `${wholeChar[player]["discordName"]} ${player} rolled \`${amount}d${dice}${viewMod}\`: \`(`;
-    
     for(let i = 0; i < amount; i++)
     {
         let roll = arr[(Math.floor(Math.random() * arr.length))];
         rolls.push(roll);
+    }
+
+    return rolls;
+}
+
+function diceRoller(amount, dice, modifier)
+{
+    let rolls = basicRoll(amount, dice);
+    let sum = 0;
+    let viewMod = modifier;
+    if(modifier >= 0){viewMod = "+" + modifier;}
+    let message = `${wholeChar[player]["discordName"]} ${player} rolled \`${amount}d${dice}${viewMod}\`: \`(`;
+    
+    for(let roll of rolls)
+    {
         sum += roll;
         message += `${roll}+`;
     }
@@ -205,7 +216,7 @@ function diceRoller(amount, dice, modifier)
     let finalResult = sum + modifier;
     message += `)${viewMod}=${finalResult}\``;
 
-    sendDiscordMessage(message);
+    return message;
 }
 
 function handleDiceRoll()
@@ -213,38 +224,64 @@ function handleDiceRoll()
     let amount = parseInt(document.getElementById("diceToRoll").value);
     let dice = parseInt(document.getElementById("sides").value);
     let modifier = parseInt(document.getElementById("modifier").value);
-    diceRoller(amount, dice, modifier);
+    sendDiscordMessage(diceRoller(amount, dice, modifier));
 }
 
 function handleChangeFirstDisplay()
 {
     if(!this.classList.contains("Selected"))
     {
-        if(!this.classList.contains("Selected"))
+        for(let fButton of firstMenu)
+        {
+            let prop;
+            favorite = false;
+
+            if(this.name != fButton.name)
             {
-                for(let fButton of firstMenu)
+                prop = document.getElementById(fButton.name);
+                prop.style.display = "none";
+                
+                if(fButton.classList.contains("selected"))
                 {
-                    let prop;
-        
-                    if(this.name != fButton.name)
-                    {
-                        prop = document.getElementById(fButton.name);
-                        prop.style.display = "none";
-                        
-                        if(fButton.classList.contains("selected"))
-                        {
-                            fButton.classList.remove("selected");
-                        }
-                    }
-        
-                    else
-                    {
-                        prop = document.getElementById(this.name);
-                        prop.style.display = "block";
-                        this.classList.add("selected");
-                    }
+                    fButton.classList.remove("selected");
                 }
             }
+
+            else
+            {
+                prop = document.getElementById(this.name);
+                prop.style.display = "block";
+                this.classList.add("selected");
+            }
+        }
+
+        if(this.name == "favorites")
+        {
+            favorite = true;
+            favoriteRef = ref(database, 'playerChar/');
+            onValue(favoriteRef, (snapshot) => 
+            {
+                const data = snapshot.val();
+                wholeFavorite = data;
+
+                let spellDiv = document.getElementById("spellsF")
+                while(spellDiv.children.length > 0)
+                {
+                    spellDiv.removeChild(spellDiv.lastChild);
+                }
+
+                for(let i = 0; i < wholeFavorite["spells"].length; i++)
+                {
+                    let lvlBtn = document.createElement("button");
+                    lvlBtn.name = i;
+                    lvlBtn.classList = "gridButton spell";
+                    lvlBtn.innerHTML = `Lvl ${i}`;
+                    if(i == 0){lvlBtn.innerHTML = "Cantrips";}
+                    lvlBtn.onclick = handleShowSpells;
+                    spellDiv.appendChild(lvlBtn);
+                }
+            });
+        }
     }
 }
 
@@ -605,7 +642,9 @@ function handleShowSpells()
 {
     spellLevel = this.name;
     curClass = undefined;
-    let spells = wholeSpells[spellLevel];
+    db = wholeSpells;
+    if(favorite){db = wholeFavorite["spells"];}
+    let spells = db[spellLevel];
     let upper = document.getElementById("cards");
     
     for(let spell of spellBtn)
@@ -634,17 +673,20 @@ function handleShowSpells()
 
         for(let spell of Object.keys(spells))
         {
-            setUpSpell(spell, spells);
+            createCard(spell, setUpText(spell, spells), "cards");
         }
+
+        for(let key of document.getElementsByClassName("card-body")){key.onclick = handleCardClick;}
     }
 }
 
-function setUpSpell(spell, spells)
+function setUpText(spell, spells)
 {
     let txt = [`Casting Time: ${toTitleCase(spells[spell]["castTime"])}`, `Range: ${toTitleCase(spells[spell]["range"])},`, `Components: ${spells[spell]["components"]}`, `Duration: ${toTitleCase(spells[spell]["duration"])}`];
     if(spells[spell]["concentration"] == "true"){txt.push(`Concentration`);}
     txt.push(`${spells[spell]["description"]}`);
-    createCard(spell, txt, "cards");
+    txt.push("");
+    return txt;
 }
 
 function handleSearch()
@@ -653,7 +695,7 @@ function handleSearch()
     
     if(spellLevel)
     {
-        let spells = wholeSpells[spellLevel];
+        let spells = db[spellLevel];
         let upper = document.getElementById("cards");
 
         while(upper.children.length > 0)
@@ -665,8 +707,96 @@ function handleSearch()
         {
             if(spell.toLowerCase().includes(search.toLowerCase()))
             {
-                setUpSpell(spell, spells);
+                createCard(spell, setUpText(spell, spells), "cards");
             }
         }
+
+        for(let key of document.getElementsByClassName("card-body")){key.onclick = handleCardClick;}
+    }
+}
+
+function handleCardClick()
+{
+    let children = this.childNodes;
+    let currentTitle = children[0].innerHTML;
+    let spellDisc = children[1].innerHTML;
+
+    if(spellLevel)
+    {
+        let favoriteBtn = document.createElement("img");
+        favoriteBtn.setAttribute("id", "favoriteBtn");
+        favoriteBtn.onclick = handleFavoriteBtn;
+        favoriteBtn.classList.add(currentTitle);
+        
+        if(wholeChar[player]["favorites"]["spells"][spellLevel][currentTitle])
+        {
+            favoriteBtn.setAttribute("src", "images/favorited.png");
+        }
+
+        else
+        {
+            favoriteBtn.setAttribute("src", "images/unFavorite.png");
+        }
+
+        this.parentElement.appendChild(favoriteBtn);
+
+        if(spellDisc.includes("spell slot"))
+        {
+            let scale = children[children.length - 1].slice(children[children.length - 1].indexOf("@scaledamage"), children[children.length - 1].indexOf("}"));
+            let individual = scale.split(" ");
+            individual = individual[1].split("|");
+            let slotSelect = document.createElement("select");
+            slotSelect.name = "upcast";
+            slotSelect.id = individual[0] + "|" + individual[2];
+
+            for(let i = parseInt(spellLevel); i < 10; i++)
+            {
+                let option = document.createElement("option");
+                let suff = ["st", "nd", "rd", "th"];
+                if(i > 3){suff = suff[3];}
+                else{suff = suff[i - 1];}
+                option.value = individual[0];
+                if(i > parseInt(spellLevel))
+                {
+                    let inisal = individual[0].split("d");
+                    let multiplier = individual[2].split("d");
+                    let total = parseInt(inisal[0]) + parseInt(multiplier[0]) * (i - parseInt(spellLevel));
+                    option.value = `${total}d${inisal[1]}`;
+                }
+                option.text = `${i}${suff} Level Slot (${option.value})`;
+                slotSelect.appendChild(option);
+            }
+        }
+
+        if(favorite) //let edit
+        {
+
+        }
+
+        let castBtn = document.createElement("button");
+        castBtn.classList.add("gridButton");
+        castBtn.onclick = castSpell;
+        castBtn.innerHTML = "Cast Spell";
+        castBtn.name = currentTitle;
+    }
+}
+
+function castSpell()
+{
+
+}
+
+function handleFavoriteBtn()
+{
+    if(this.src == "images/unFavorite.png") //Add to favrites
+    {
+        this.src = "images/favorited.png";
+        set(ref(database, `playerChar/${player}/favorites/spells/${spellLevel}/${this.classList[0]}`), wholeSpells[spellLevel][this.classList[0]]);
+    }
+
+    else //Remove from favorites
+    {
+        this.src = "images/unFavorite.png";
+        set(ref(database, `playerChar/${player}/favorites/spells/${spellLevel}/${this.classList[0]}`), null);
     }
 }
