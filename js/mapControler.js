@@ -82,6 +82,7 @@ let currentLv = "5th level";
 let spellLevel;
 let curClass;
 let searchBar = document.getElementsByName("search");
+let upper = document.getElementById("cards");
 let favorite = false;
 let db;
 
@@ -237,6 +238,8 @@ function handleChangeFirstDisplay()
 {
     if(!this.classList.contains("Selected"))
     {
+        emptyCards();
+        
         for(let fButton of firstMenu)
         {
             let prop;
@@ -644,6 +647,14 @@ function handleArrow()
     }
 }
 
+function emptyCards()
+{
+    while(upper.children.length > 0)
+    {
+        upper.removeChild(upper.lastChild);
+    }
+}
+
 function handleShowSpells()
 {
     spellLevel = this.name;
@@ -651,7 +662,6 @@ function handleShowSpells()
     db = wholeSpells;
     if(favorite){db = wholeFavorite["spells"];}
     let spells = db[spellLevel];
-    let upper = document.getElementById("cards");
     
     for(let spell of spellBtn)
     {
@@ -663,10 +673,7 @@ function handleShowSpells()
 
     this.classList.add("selected");
 
-    while(upper.children.length > 0)
-    {
-        upper.removeChild(upper.lastChild);
-    }
+    emptyCards()
 
     if(searchBar[0].value != "")
     {
@@ -702,12 +709,8 @@ function handleSearch()
     if(spellLevel)
     {
         let spells = db[spellLevel];
-        let upper = document.getElementById("cards");
 
-        while(upper.children.length > 0)
-        {
-            upper.removeChild(upper.lastChild);
-        }
+        emptyCards();
     
         for(let spell of Object.keys(spells))
         {
