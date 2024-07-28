@@ -728,7 +728,7 @@ function handleCardClick()
 {
     let children = this.childNodes;
     let currentTitle = children[0].innerHTML;
-    let spellDisc = children[1].innerHTML;
+    let spellDisc = wholeSpells[spellLevel][currentTitle]["discription"];
     let temp = document.getElementById("optionDiv");
     
     if(temp)
