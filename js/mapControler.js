@@ -697,8 +697,8 @@ function setUpText(spell, spells)
 {
     let txt = [`Casting Time: ${toTitleCase(spells[spell]["castTime"])}`, `Range: ${toTitleCase(spells[spell]["range"])},`, `Components: ${spells[spell]["components"]}`, `Duration: ${toTitleCase(spells[spell]["duration"])}`];
     if(spells[spell]["concentration"] == "true"){txt.push(`Concentration`);}
+    txt.push("<hr>")
     txt.push(`${spells[spell]["description"]}`);
-    txt.push("");
     return txt;
 }
 
