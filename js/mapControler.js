@@ -726,7 +726,7 @@ function handleCardClick()
         let favoriteBtn = document.createElement("img");
         favoriteBtn.setAttribute("id", "favoriteBtn");
         favoriteBtn.onclick = handleFavoriteBtn;
-        favoriteBtn.classList.add(currentTitle);
+        favoriteBtn.classList.add(currentTitle.replace(" ", "_"));
         
         if(wholeChar[player]["favorites"]["spells"][spellLevel][currentTitle])
         {
@@ -791,12 +791,13 @@ function handleFavoriteBtn()
     if(this.src == "images/unFavorite.png") //Add to favrites
     {
         this.src = "images/favorited.png";
-        set(ref(database, `playerChar/${player}/favorites/spells/${spellLevel}/${this.classList[0]}`), wholeSpells[spellLevel][this.classList[0]]);
+        let spellName = this.classList[0].replace("_", " ");
+        set(ref(database, `playerChar/${player}/favorites/spells/${spellLevel}/${spellName}`), wholeSpells[spellLevel][spellName]);
     }
 
     else //Remove from favorites
     {
         this.src = "images/unFavorite.png";
-        set(ref(database, `playerChar/${player}/favorites/spells/${spellLevel}/${this.classList[0]}`), null);
+        set(ref(database, `playerChar/${player}/favorites/spells/${spellLevel}/${spellName}`), null);
     }
 }
