@@ -820,7 +820,9 @@ function handleCardClick()
 
 function handleCastSpell()
 {
-
+    let display = setUpText(spell, spells);
+    display = display.join("\n");
+    sendDiscordMessage(display);
 }
 
 function handleEditCard()
@@ -857,6 +859,7 @@ function handleEditCard()
             cardInput.id = text[i].replace(" ", "");
             cardBody.appendChild(cardText);
             cardBody.appendChild(cardInput);
+            cardBody.appendChild(document.createElement("br"));
         }
 
         let cardText = document.createElement("p");
@@ -865,9 +868,11 @@ function handleEditCard()
         cardText.style.display = "inline";
         cardText.innerHTML = "Instructions for auto roll";
         cardBody.appendChild(cardText);
+        cardBody.appendChild(document.createElement("br"));
 
         let uploadBtn = document.createElement("button");
         uploadBtn.classList.add("gridButton");
+        uploadBtn.classList.add("center");
         uploadBtn.onclick = uploadEdit;
         uploadBtn.innerHTML = "Upload";
         uploadBtn.style.margin = "0px 5px";
