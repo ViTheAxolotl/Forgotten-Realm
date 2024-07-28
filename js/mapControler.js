@@ -85,6 +85,7 @@ let searchBar = document.getElementsByName("search");
 let upper = document.getElementById("cards");
 let favorite = false;
 let db;
+let lastSpell;
 
 function init()
 {
@@ -239,6 +240,7 @@ function handleChangeFirstDisplay()
     if(!this.classList.contains("Selected"))
     {
         emptyCards();
+        document.getElementById("searchDiv").style.display = "none";
 
         for(let fButton of firstMenu)
         {
@@ -695,9 +697,9 @@ function handleShowSpells()
 
 function setUpText(spell, spells)
 {
-    let txt = [`Casting Time: ${toTitleCase(spells[spell]["castTime"])}`, `Range: ${toTitleCase(spells[spell]["range"])},`, `Components: ${spells[spell]["components"]}`, `Duration: ${toTitleCase(spells[spell]["duration"])}`];
+    let txt = [`Casting Time: ${toTitleCase(spells[spell]["castTime"])}`, `Range: ${toTitleCase(spells[spell]["range"])}`, `Components: ${spells[spell]["components"]}`, `Duration: ${toTitleCase(spells[spell]["duration"])}`];
     if(spells[spell]["concentration"] == "true"){txt.push(`Concentration`);}
-    txt.push("");
+    txt.push(" ");
     txt.push(`${spells[spell]["description"]}`);
     return txt;
 }
@@ -731,10 +733,8 @@ function handleCardClick()
     let spellDisc = wholeSpells[spellLevel][currentTitle]["description"];
     let temp = document.getElementById("optionDiv");
     
-    if(temp)
-    {
-        temp.remove();
-    }
+    if(temp){temp.remove();}
+    if(favorite){spellDisc = wholeFavorite["spells"][spellLevel][currentTitle]["description"]}
     
     let optionDiv = document.createElement("div");
     optionDiv.classList.add("center");
@@ -795,14 +795,20 @@ function handleCardClick()
             optionDiv.appendChild(slotSelect);
         }
 
-        if(favorite) //let edit
+        if(favorite) 
         {
-
+            let edit = document.createElement("button");
+            edit.classList.add("gridButton");
+            edit.onclick = handleEditCard;
+            edit.innerHTML = "Edit";
+            edit.name = currentTitle;
+            edit.style.margin = "0px 5px";
+            optionDiv.appendChild(edit);
         }
 
         let castBtn = document.createElement("button");
         castBtn.classList.add("gridButton");
-        castBtn.onclick = castSpell;
+        castBtn.onclick = handleCastSpell;
         castBtn.innerHTML = "Cast Spell";
         castBtn.name = currentTitle;
         castBtn.style.margin = "0px 5px";
@@ -811,9 +817,84 @@ function handleCardClick()
     }
 }
 
-function castSpell()
+function handleCastSpell()
 {
 
+}
+
+function handleEditCard()
+{
+    emptyCards();
+
+    if(spellLevel)
+    {
+        let text = ["Name:", "Casting Time:", "Range:", "Components:", "Duration:", "Concentration:", "Description:"];
+        let temp = [`${toTitleCase(wholeFavorite["spells"][spellLevel][spell]["name"])}`, `${toTitleCase(wholeFavorite["spells"][spellLevel][spell]["castTime"])}`, `${toTitleCase(wholeFavorite["spells"][spellLevel][spell]["range"])}`, `${wholeFavorite["spells"][spellLevel][spell]["components"]}`, `${toTitleCase(wholeFavorite["spells"][spellLevel][spell]["duration"])}`, `${wholeFavorite["spells"][spellLevel][spell]["concentration"]}`, `${wholeFavorite["spells"][spellLevel][spell]["description"]}`]
+        lastSpell = wholeFavorite["spells"][spellLevel][spell]["name"];
+        let cardDiv = document.createElement("div");
+        cardDiv.setAttribute("class", "card .bg-UP-blue notes");
+        let cardBody = document.createElement("div");
+        cardBody.setAttribute("class", "card-body notes");
+        let cardTitle = document.createElement("h5");
+        cardTitle.setAttribute("class", "card-title");
+        cardTitle.innerHTML = title;
+        cardBody.appendChild(cardTitle);
+
+        for(let i = 0; i < text.length; i++)
+        {
+            let cardText = document.createElement("p");
+            cardText.setAttribute("class", "card-text");
+            cardText.style.margin = "3px";
+            cardText.style.display = "inline";
+            cardText.innerHTML = text[i];
+            let cardInput = document.createElement("input");
+            cardInput.setAttribute("class", "card-text");
+            cardInput.classList.add("spellDisc");
+            cardInput.style.margin = "3px";
+            cardInput.style.display = "inline";
+            cardInput.innerHTML = temp[i];
+            cardInput.id = text[i].replace(" ", "");
+            cardBody.appendChild(cardText);
+            cardBody.appendChild(cardInput);
+        }
+
+        let cardText = document.createElement("p");
+        cardText.setAttribute("class", "card-text");
+        cardText.style.margin = "3px";
+        cardText.style.display = "inline";
+        cardText.innerHTML = "Instructions for auto roll";
+        cardBody.appendChild(cardText);
+
+        let uploadBtn = document.createElement("button");
+        uploadBtn.classList.add("gridButton");
+        uploadBtn.onclick = uploadEdit;
+        uploadBtn.innerHTML = "Upload";
+        uploadBtn.style.margin = "0px 5px";
+        
+        let noteDisplay = document.getElementById("cards");
+        noteDisplay.appendChild(cardDiv);
+        cardDiv.appendChild(cardBody);
+        cardDiv.appendChild(uploadBtn);
+    }
+}
+
+function uploadEdit()
+{
+    let spellDisc = document.getElementsByClassName["spellDisc"];
+
+    set(ref(database, `playerChar/${player}/favorites/spells/${spellLevel}/${spellDisc[0].value}`), 
+    {
+        castTime : spellDisc[1].value,
+        components : spellDisc[3].value,
+        concentration : spellDisc[5].value,
+        description : spellDisc[6].value,
+        duration : spellDisc[4].value,
+        level : spellLevel,
+        name : spellDisc[0].value,
+        range : spellDisc[2].value
+    });
+
+    set(ref(database, `playerChar/${player}/favorites/spells/${spellLevel}/${lastSpell}`), null);
 }
 
 function handleFavoriteBtn()
@@ -822,13 +903,14 @@ function handleFavoriteBtn()
 
     if(this.lastChild.src.includes("images/unFavorite.png")) //Add to favrites
     {
-        this.lastChild.src = "../images/favorited.png";
+        this.lastChild.src = "images/favorited.png";
         set(ref(database, `playerChar/${player}/favorites/spells/${spellLevel}/${spellName}`), wholeSpells[spellLevel][spellName]);
     }
 
     else //Remove from favorites
     {
-        this.lastChild.src = "../images/unFavorite.png";
+        this.lastChild.src = "images/unFavorite.png";
         set(ref(database, `playerChar/${player}/favorites/spells/${spellLevel}/${spellName}`), null);
+        emptyCards();
     }
 }
