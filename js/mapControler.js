@@ -893,16 +893,16 @@ function uploadEdit()
 {
     let spellDisc = document.getElementsByClassName("spellDisc");
 
-    set(ref(database, `playerChar/${player}/favorites/spells/${spellLevel}/${spellDisc[0].value}`), 
+    set(ref(database, `playerChar/${player}/favorites/spells/${spellLevel}/${spellDisc[0].value.trim()}`), 
     {
-        castTime : spellDisc[1].value,
-        components : spellDisc[3].value,
-        concentration : spellDisc[5].value,
-        description : spellDisc[6].value,
-        duration : spellDisc[4].value,
+        castTime : spellDisc[1].value.trim(),
+        components : spellDisc[3].value.trim(),
+        concentration : spellDisc[5].value.trim(),
+        description : spellDisc[6].value.trim(),
+        duration : spellDisc[4].value.trim(),
         level : spellLevel,
-        name : spellDisc[0].value,
-        range : spellDisc[2].value
+        name : spellDisc[0].value.trim(),
+        range : spellDisc[2].value.trim()
     });
 
     set(ref(database, `playerChar/${player}/favorites/spells/${spellLevel}/${lastSpell}`), null);
