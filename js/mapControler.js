@@ -843,7 +843,7 @@ function handleEditCard()
         cardBody.setAttribute("class", "card-body notes");
         let cardTitle = document.createElement("h5");
         cardTitle.setAttribute("class", "card-title");
-        cardTitle.innerHTML = title;
+        cardTitle.innerHTML = temp[0];
         cardBody.appendChild(cardTitle);
 
         for(let i = 0; i < text.length; i++)
