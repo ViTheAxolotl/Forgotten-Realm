@@ -728,9 +728,12 @@ function handleCardClick()
         favoriteBtn.onclick = handleFavoriteBtn;
         favoriteBtn.classList.add(currentTitle.replace(" ", "_"));
         
-        if(wholeChar[player]["favorites"]["spells"][spellLevel][currentTitle])
+        if(wholeChar[player]["favorites"]["spells"])
         {
-            favoriteBtn.setAttribute("src", "images/favorited.png");
+            if(wholeChar[player]["favorites"]["spells"][spellLevel][currentTitle])
+            {
+                favoriteBtn.setAttribute("src", "images/favorited.png");
+            }
         }
 
         else
