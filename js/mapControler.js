@@ -224,7 +224,13 @@ function handleDiceRoll()
     let amount = parseInt(document.getElementById("diceToRoll").value);
     let dice = parseInt(document.getElementById("sides").value);
     let modifier = parseInt(document.getElementById("modifier").value);
-    sendDiscordMessage(diceRoller(amount, dice, modifier));
+    
+    if(amount != "" && dice != "" && modifier != "")
+    {
+        sendDiscordMessage(diceRoller(amount, dice, modifier));
+    }
+
+    else{alert("Need input in all 3 spaces.");}
 }
 
 function handleChangeFirstDisplay()
@@ -258,7 +264,7 @@ function handleChangeFirstDisplay()
         if(this.name == "favorites")
         {
             favorite = true;
-            favoriteRef = ref(database, 'playerChar/');
+            favoriteRef = ref(database, `playerChar/${player}/favorites/`);
             onValue(favoriteRef, (snapshot) => 
             {
                 const data = snapshot.val();
