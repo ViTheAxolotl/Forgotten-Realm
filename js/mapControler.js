@@ -799,7 +799,7 @@ function handleCardClick()
         castBtn.innerHTML = "Cast Spell";
         castBtn.name = currentTitle;
         optionDiv.appendChild(castBtn);
-        this.parentNode.insertBefore(optionDiv, this.nextSibling);
+        this.parentNode.parentNode.insertBefore(optionDiv, this.parentNode.nextSibling);
     }
 }
 
