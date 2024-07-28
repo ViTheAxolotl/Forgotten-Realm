@@ -765,7 +765,7 @@ function handleCardClick()
 
         if(spellDisc.includes("spell slot"))
         {
-            let scale = spellDisc.slice(spellDisc.indexOf("@scaledamage"), spellDisc.indexOf("}"));
+            let scale = spellDisc.slice(spellDisc.indexOf("scaledamage"), spellDisc.indexOf("}"));
             let individual = scale.split(" ");
             individual = individual[1].split("|");
             let slotSelect = document.createElement("select");
