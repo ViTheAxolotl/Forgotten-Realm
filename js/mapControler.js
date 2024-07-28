@@ -733,7 +733,7 @@ function handleCardClick()
     let children = this.childNodes;
     let currentTitle = children[0].innerHTML;
     lastSpell = currentTitle;
-    let spellDisc = wholeSpells[spellLevel][currentTitle]["description"];
+    let spellDisc = db[spellLevel][currentTitle]["description"];
     let temp = document.getElementById("optionDiv");
     
     if(temp){temp.remove();}
@@ -826,7 +826,7 @@ function handleCastSpell()
     if(favorite){display = setUpText(lastSpell, db["spells"]);}
     else{display = setUpText(lastSpell, db[spellLevel]);}
     display = display.join("\n");
-    display = `${wholeChar[player]["discordName"]} ${player} cast:\n${display}`;
+    display = `${wholeChar[player]["discordName"]} ${player} cast:\n${lastSpell}\n${display}`;
     sendDiscordMessage(display);
 }
 
