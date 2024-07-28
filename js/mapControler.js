@@ -906,6 +906,7 @@ function uploadEdit()
     });
 
     set(ref(database, `playerChar/${player}/favorites/spells/${spellLevel}/${lastSpell}`), null);
+    emptyCards();
 }
 
 function handleFavoriteBtn()
