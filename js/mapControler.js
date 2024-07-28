@@ -729,8 +729,16 @@ function handleCardClick()
     let children = this.childNodes;
     let currentTitle = children[0].innerHTML;
     let spellDisc = children[1].innerHTML;
+    let temp = document.getElementById("optionDiv");
+    
+    if(temp)
+    {
+        temp.remove();
+    }
+    
     let optionDiv = document.createElement("div");
     optionDiv.classList.add("center");
+    optionDiv.id = "optionDiv";
 
     if(spellLevel)
     {
