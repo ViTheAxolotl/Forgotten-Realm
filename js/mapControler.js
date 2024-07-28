@@ -730,6 +730,7 @@ function handleCardClick()
 {
     let children = this.childNodes;
     let currentTitle = children[0].innerHTML;
+    lastSpell = currentTitle;
     let spellDisc = wholeSpells[spellLevel][currentTitle]["description"];
     let temp = document.getElementById("optionDiv");
     
@@ -824,13 +825,13 @@ function handleCastSpell()
 
 function handleEditCard()
 {
+    let spell = lastSpell;
     emptyCards();
 
     if(spellLevel)
     {
         let text = ["Name:", "Casting Time:", "Range:", "Components:", "Duration:", "Concentration:", "Description:"];
         let temp = [`${toTitleCase(wholeFavorite["spells"][spellLevel][spell]["name"])}`, `${toTitleCase(wholeFavorite["spells"][spellLevel][spell]["castTime"])}`, `${toTitleCase(wholeFavorite["spells"][spellLevel][spell]["range"])}`, `${wholeFavorite["spells"][spellLevel][spell]["components"]}`, `${toTitleCase(wholeFavorite["spells"][spellLevel][spell]["duration"])}`, `${wholeFavorite["spells"][spellLevel][spell]["concentration"]}`, `${wholeFavorite["spells"][spellLevel][spell]["description"]}`]
-        lastSpell = wholeFavorite["spells"][spellLevel][spell]["name"];
         let cardDiv = document.createElement("div");
         cardDiv.setAttribute("class", "card .bg-UP-blue notes");
         let cardBody = document.createElement("div");
