@@ -752,7 +752,7 @@ function handleCardClick()
         wrapper.onclick = handleFavoriteBtn;
         wrapper.appendChild(favoriteBtn);
         
-        if(wholeChar[player]["favorites"]["spells"])
+        if(wholeChar[player]["favorites"]["spells"][spellLevel])
         {
             if(wholeChar[player]["favorites"]["spells"][spellLevel][currentTitle])
             {
