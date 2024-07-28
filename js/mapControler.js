@@ -729,6 +729,8 @@ function handleCardClick()
     let children = this.childNodes;
     let currentTitle = children[0].innerHTML;
     let spellDisc = children[1].innerHTML;
+    let optionDiv = document.createElement("div");
+    optionDiv.classList("center");
 
     if(spellLevel)
     {
@@ -738,6 +740,7 @@ function handleCardClick()
         let wrapper = document.createElement("button");
         wrapper.classList.add("gridButton");
         wrapper.onclick = handleFavoriteBtn;
+        wrapper.style.height = "20px";
         wrapper.appendChild(favoriteBtn);
         
         if(wholeChar[player]["favorites"]["spells"])
@@ -753,8 +756,8 @@ function handleCardClick()
             favoriteBtn.setAttribute("src", "images/unFavorite.png");
         }
 
-        this.parentElement.appendChild(wrapper);
-        
+        optionDiv.appendChild(wrapper);
+
         if(spellDisc.includes("spell slot"))
         {
             let scale = children[children.length - 1].slice(children[children.length - 1].indexOf("@scaledamage"), children[children.length - 1].indexOf("}"));
@@ -782,7 +785,7 @@ function handleCardClick()
                 slotSelect.appendChild(option);
             }
 
-            this.parentElement.appendChild(slotSelect);
+            optionDiv.appendChild(slotSelect);
         }
 
         if(favorite) //let edit
@@ -795,7 +798,8 @@ function handleCardClick()
         castBtn.onclick = castSpell;
         castBtn.innerHTML = "Cast Spell";
         castBtn.name = currentTitle;
-        this.parentElement.appendChild(castBtn);
+        optionDiv.appendChild(castBtn);
+        this.parentNode.insertBefore(optionDiv, this.nextSibling);
     }
 }
 
