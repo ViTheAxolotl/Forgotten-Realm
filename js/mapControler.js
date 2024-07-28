@@ -822,7 +822,9 @@ function handleCardClick()
 
 function handleCastSpell()
 {
-    let display = setUpText(spell, spells);
+    let display;
+    if(db == wholeFavorite){display = setUpText(lastSpell, db["spells"]);}
+    else if(db == wholeSpells){display = setUpText(lastSpell, db);}
     display = display.join("\n");
     display = `${wholeChar[player]["discordName"]} ${player} cast:\n${display}`;
     sendDiscordMessage(display);
