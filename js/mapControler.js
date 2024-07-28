@@ -697,7 +697,7 @@ function setUpText(spell, spells)
 {
     let txt = [`Casting Time: ${toTitleCase(spells[spell]["castTime"])}`, `Range: ${toTitleCase(spells[spell]["range"])},`, `Components: ${spells[spell]["components"]}`, `Duration: ${toTitleCase(spells[spell]["duration"])}`];
     if(spells[spell]["concentration"] == "true"){txt.push(`Concentration`);}
-    txt.push("<hr>")
+    txt.push("");
     txt.push(`${spells[spell]["description"]}`);
     return txt;
 }
@@ -728,7 +728,7 @@ function handleCardClick()
 {
     let children = this.childNodes;
     let currentTitle = children[0].innerHTML;
-    let spellDisc = wholeSpells[spellLevel][currentTitle]["discription"];
+    let spellDisc = wholeSpells[spellLevel][currentTitle]["description"];
     let temp = document.getElementById("optionDiv");
     
     if(temp)
