@@ -729,7 +729,6 @@ function handleCardClick()
     let children = this.childNodes;
     let currentTitle = children[0].innerHTML;
     let spellDisc = children[1].innerHTML;
-    let optionDiv = document.createElement("div");
 
     if(spellLevel)
     {
@@ -754,8 +753,8 @@ function handleCardClick()
             favoriteBtn.setAttribute("src", "images/unFavorite.png");
         }
 
-        optionDiv.appendChild(wrapper);
-
+        this.parentElement.appendChild(wrapper);
+        
         if(spellDisc.includes("spell slot"))
         {
             let scale = children[children.length - 1].slice(children[children.length - 1].indexOf("@scaledamage"), children[children.length - 1].indexOf("}"));
@@ -783,7 +782,7 @@ function handleCardClick()
                 slotSelect.appendChild(option);
             }
 
-            optionDiv.appendChild(slotSelect);
+            this.parentElement.appendChild(slotSelect);
         }
 
         if(favorite) //let edit
@@ -796,9 +795,7 @@ function handleCardClick()
         castBtn.onclick = castSpell;
         castBtn.innerHTML = "Cast Spell";
         castBtn.name = currentTitle;
-        optionDiv.appendChild(castBtn);
-        optionDiv.classList.add("center");
-        this.parentElement.appendChild(optionDiv);
+        this.parentElement.appendChild(castBtn);
     }
 }
 
