@@ -891,7 +891,7 @@ function handleEditCard()
 
 function uploadEdit()
 {
-    let spellDisc = document.getElementsByClassName["spellDisc"];
+    let spellDisc = document.getElementsByClassName("spellDisc");
 
     set(ref(database, `playerChar/${player}/favorites/spells/${spellLevel}/${spellDisc[0].value}`), 
     {
