@@ -791,10 +791,11 @@ function castSpell()
 
 function handleFavoriteBtn()
 {
-    if(this.src == "images/unFavorite.png") //Add to favrites
+    let spellName = this.classList[0].replace("_", " ");
+
+    if(this.src.includes("images/unFavorite.png")) //Add to favrites
     {
         this.src = "images/favorited.png";
-        let spellName = this.classList[0].replace("_", " ");
         set(ref(database, `playerChar/${player}/favorites/spells/${spellLevel}/${spellName}`), wholeSpells[spellLevel][spellName]);
     }
 
