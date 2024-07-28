@@ -281,6 +281,8 @@ function handleChangeFirstDisplay()
                     spellDiv.removeChild(spellDiv.lastChild);
                 }
 
+                spellDiv.classList.add("center");
+
                 for(let i = 0; i < wholeFavorite["spells"].length; i++)
                 {
                     let lvlBtn = document.createElement("button");
@@ -856,7 +858,7 @@ function handleEditCard()
             cardInput.classList.add("spellDisc");
             cardInput.style.margin = "3px";
             cardInput.style.display = "inline";
-            cardInput.innerHTML = temp[i];
+            cardInput.value = temp[i];
             cardInput.id = text[i].replace(" ", "");
             cardBody.appendChild(cardText);
             cardBody.appendChild(cardInput);
@@ -876,7 +878,6 @@ function handleEditCard()
         uploadBtn.classList.add("center");
         uploadBtn.onclick = uploadEdit;
         uploadBtn.innerHTML = "Upload";
-        uploadBtn.style.margin = "0px 5px";
         
         let noteDisplay = document.getElementById("cards");
         noteDisplay.appendChild(cardDiv);
