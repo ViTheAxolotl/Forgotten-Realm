@@ -747,6 +747,7 @@ function handleCardClick()
         favoriteBtn.classList.add(currentTitle.replaceAll(" ", "_"));
         favoriteBtn.style.height = "20px";
         favoriteBtn.style.width = "20px";
+        favoriteBtn.setAttribute("src", "../images/unFavorite.png");
         let wrapper = document.createElement("button");
         wrapper.classList.add("gridButton");
         wrapper.onclick = handleFavoriteBtn;
@@ -758,11 +759,6 @@ function handleCardClick()
             {
                 favoriteBtn.setAttribute("src", "../images/favorited.png");
             }
-        }
-
-        else
-        {
-            favoriteBtn.setAttribute("src", "../images/unFavorite.png");
         }
 
         optionDiv.appendChild(wrapper);
