@@ -239,7 +239,7 @@ function handleChangeFirstDisplay()
     if(!this.classList.contains("Selected"))
     {
         emptyCards();
-        
+
         for(let fButton of firstMenu)
         {
             let prop;
@@ -735,8 +735,11 @@ function handleCardClick()
     {
         let favoriteBtn = document.createElement("img");
         favoriteBtn.setAttribute("id", "favoriteBtn");
-        favoriteBtn.onclick = handleFavoriteBtn;
         favoriteBtn.classList.add(currentTitle.replace(" ", "_"));
+        let wrapper = document.createElement("button");
+        wrapper.classList.add("gridButton");
+        wrapper.onclick = handleFavoriteBtn;
+        castBtn.appendChild(favoriteBtn);
         
         if(wholeChar[player]["favorites"]["spells"])
         {
@@ -751,7 +754,7 @@ function handleCardClick()
             favoriteBtn.setAttribute("src", "images/unFavorite.png");
         }
 
-        optionDiv.appendChild(favoriteBtn);
+        optionDiv.appendChild(wrapper);
 
         if(spellDisc.includes("spell slot"))
         {
