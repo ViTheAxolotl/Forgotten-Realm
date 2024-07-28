@@ -752,7 +752,8 @@ function handleCardClick()
         wrapper.classList.add("gridButton");
         wrapper.onclick = handleFavoriteBtn;
         wrapper.appendChild(favoriteBtn);
-        
+        wrapper.style.margin = "0px 5px";
+
         if(wholeChar[player]["favorites"]["spells"][spellLevel])
         {
             if(wholeChar[player]["favorites"]["spells"][spellLevel][currentTitle])
@@ -771,6 +772,7 @@ function handleCardClick()
             let slotSelect = document.createElement("select");
             slotSelect.name = "upcast";
             slotSelect.id = individual[0] + "|" + individual[2];
+            slotSelect.style.margin = "0px 5px";
 
             for(let i = parseInt(spellLevel); i < 10; i++)
             {
@@ -803,6 +805,7 @@ function handleCardClick()
         castBtn.onclick = castSpell;
         castBtn.innerHTML = "Cast Spell";
         castBtn.name = currentTitle;
+        castBtn.style.margin = "0px 5px";
         optionDiv.appendChild(castBtn);
         this.parentNode.parentNode.insertBefore(optionDiv, this.parentNode.nextSibling);
     }
