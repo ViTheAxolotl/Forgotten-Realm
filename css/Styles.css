@@ -286,7 +286,7 @@ table, .itemSearch, #itemImg
     display: block;
 }
 
-#deleteButton, #text
+#deleteButton, #text, #favoriteBtn
 {
     display: block;
     margin-left: auto;
@@ -294,7 +294,7 @@ table, .itemSearch, #itemImg
     margin-top: 5px;
 }
 
-#deleteButton, #addButton
+#deleteButton, #addButton, #favoriteBtn
 {
     width: 75px;
     height: 75px;
