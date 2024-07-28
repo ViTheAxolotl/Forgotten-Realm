@@ -854,6 +854,7 @@ function handleEditCard()
             cardText.style.display = "inline";
             cardText.innerHTML = text[i];
             let cardInput = document.createElement("input");
+            if(text[i] == "Description:"){cardInput = document.createElement("textarea");}
             cardInput.setAttribute("class", "card-text");
             cardInput.classList.add("spellDisc");
             cardInput.style.margin = "3px";
