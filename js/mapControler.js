@@ -849,7 +849,7 @@ function handleCastSpell()
 
         else if(upcast[0])
         {
-
+            discription = `{@damage ${upcast[0].value}}`;
         }
         
         damage = discription.slice(discription.indexOf("@damage"));
