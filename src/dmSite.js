@@ -1034,7 +1034,7 @@ function handleGenerate()
 
     for(let user of Object.keys(wholeChar))
     {
-        set(ref(database, `playerChar/${user}/favorites/spells/`), {"hold" : "hold"});
+        set(ref(database, `playerChar/${user}/favorites/spells/`), {"hold" : {"hold" : "hold"}});
     }
     //let data;
     /*for(let player of Object.keys(wholeChar))
