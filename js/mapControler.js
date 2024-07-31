@@ -835,7 +835,7 @@ function handleCastSpell()
 
     if(favorite){spellInfo = setUpText(lastSpell, db[spellLevel]);}
     else{spellInfo = setUpText(lastSpell, db[spellLevel]);}
-    spellInfo = display.join("\n");
+    spellInfo = spellInfo.join("\n");
 
     if(discription.includes("{@damage"))
     {
