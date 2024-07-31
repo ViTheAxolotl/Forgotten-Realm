@@ -830,7 +830,7 @@ function handleCastSpell()
     let display;
     let spellInfo;
     let damage;
-    let discription = db[spellLevel]["description"];
+    let discription = db[spellLevel][lastSpell]["description"];
     let upcast = document.getElementsByName("upcast");
 
     if(favorite){spellInfo = setUpText(lastSpell, db[spellLevel]);}
