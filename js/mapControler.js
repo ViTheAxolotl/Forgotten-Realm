@@ -284,8 +284,6 @@ function handleChangeFirstDisplay()
 
                 spellDiv.classList.add("center");
                 
-                spellDiv.appendChild(lvlBtn);
-                
                 if(wholeFavorite["spells"])
                 {
                     for(let spellLv of Object.keys(wholeFavorite["spells"]))
