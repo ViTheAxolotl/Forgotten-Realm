@@ -186,7 +186,7 @@ function basicRoll(amount, dice)
 {
     let arr = [];
     let rolls = [];
-    for(let i = 1; i < dice + 1; i++){arr.push(i);}
+    for(let i = 1; i < parseInt(dice) + 1; i++){arr.push(i);}
 
     for(let i = 0; i < amount; i++)
     {
@@ -203,7 +203,7 @@ function diceRoller(amount, dice, modifier)
     let sum = 0;
     let viewMod = modifier;
     if(modifier >= 0){viewMod = "+" + modifier;}
-    let message = `${wholeChar[player]["discordName"]} ${player} rolled \`${amount}d${dice}${viewMod}\`: \`(`;
+    let message = `${player} rolled \`${amount}d${dice}${viewMod}\`: \`(`;
     
     for(let roll of rolls)
     {
@@ -216,7 +216,7 @@ function diceRoller(amount, dice, modifier)
         message = message.slice(0, message.length - 1);
     }
     
-    let finalResult = sum + modifier;
+    let finalResult = sum + parseInt(modifier);
     message += `)${viewMod}=${finalResult}\``;
 
     return message;
@@ -844,7 +844,7 @@ function handleCastSpell()
         
         if(discription.includes(currentLv))
         {
-            discription = discription.slice(`${currentLv}`);
+            discription = discription.slice(`${discription.indexOf(currentLv)}`);
         }
 
         else if(upcast[0])
@@ -858,7 +858,7 @@ function handleCastSpell()
         damage.push("0");
         damage = diceRoller(damage[0], damage[1], damage[2]);
         
-        display = `${wholeChar[player]["discordName"]} ${player} cast:\n${lastSpell}\n${spellInfo}\nThe spell roll is 1d20 + ${userAddTo}. \nResualting in: ${accurcy}.\nOn Success Damage would be: ${damage}`;
+        display = `${wholeChar[player]["discordName"]} ${player} cast:\n${lastSpell}\n${spellInfo}\n\nThe spell roll is 1d20 + ${userAddTo}. \nResulting in: ${accurcy}.\nOn Success Damage would be: ${damage}`;
         set(ref(database, `playerChar/${player}/stats/addToSpell`), userAddTo);
     }
 
