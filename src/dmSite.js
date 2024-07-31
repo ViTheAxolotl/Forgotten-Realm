@@ -1031,11 +1031,10 @@ function loadMap()
 function handleGenerate()
 {
     hideButtons();
-    let playerStats = {"Alejandro" : {"spellDC" : "14", "addToSpell" : "7"}, "Ben" : {"spellDC" : "14", "addToSpell" : "7"}, "Garrett" : {"spellDC" : "15", "addToSpell" : "7"}, "Okami" : {"spellDC" : "14", "addToSpell" : "0"}, "Vi" : {"spellDC" : "0", "addToSpell" : "0"}};
 
     for(let user of Object.keys(wholeChar))
     {
-        set(ref(database, `playerChar/${user}/stats/`), playerStats[user]);
+        set(ref(database, `playerChar/${user}/favorites/spells/`), {"hold" : "hold"});
     }
     //let data;
     /*for(let player of Object.keys(wholeChar))
