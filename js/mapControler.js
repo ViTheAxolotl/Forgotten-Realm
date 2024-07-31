@@ -847,7 +847,7 @@ function handleCreateNew()
     {
         spellLevel = "0";
         lastSpell = "Sacred Flame";
-        set(ref(database, `playerChar/${player}/favorites/spells/${spellLevel}/${spellName}`), wholeSpells[spellLevel][spellName]);
+        set(ref(database, `playerChar/${player}/favorites/spells/${spellLevel}/${lastSpell}`), wholeSpells[spellLevel][lastSpell]);
     }
 
     handleEditCard();
