@@ -287,7 +287,7 @@ function handleChangeFirstDisplay()
                 let lvlBtn = document.createElement("button");
                 lvlBtn.name = "0";
                 lvlBtn.classList = "gridButton spell";
-                lvlBtn.innerHTML = `Create New`;
+                lvlBtn.innerHTML = `Create New Spell`;
                 lvlBtn.onclick = handleCreateNew;
                 spellDiv.appendChild(lvlBtn);
                 
@@ -843,7 +843,7 @@ function handleCastSpell()
 
 function handleCreateNew()
 {
-    if(this.innerHTML == "Spells")
+    if(this.innerHTML == "Create New Spell")
     {
         spellLevel = "0";
         lastSpell = "Sacred Flame";
