@@ -95,7 +95,8 @@ function init()
     arrows.push(document.getElementById("down"));
     
     fetch('https://vitheaxolotl.github.io/Forgotten-Realm/src/spells.json').then(res => res.json()).then((json) => wholeSpells = json);
-    
+
+    for(let create of document.getElementsByClassName("create")){create.onclick = handleCreateNew;}
     currentHp.onchange = updateHp;
     maxHp.onchange = addUpdate;
     tempHp.onchange = tempHpUpdate;
@@ -840,8 +841,12 @@ function handleCastSpell()
 
 function handleCreateNew()
 {
-    spellLevel = "0";
-    lastSpell = "Sacred Flame";
+    if(spellLevel)
+    {
+        spellLevel = "0";
+        lastSpell = "Sacred Flame";
+    }
+
     handleEditCard();
 }
 
