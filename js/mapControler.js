@@ -834,18 +834,43 @@ function handleCardClick()
 function handleCastSpell()
 {
     let display;
+    let spellInfo;
+    let damage;
+    let discription = db[spellLevel]["description"];
+    let upcast = document.getElementsByName("upcast");
 
-    if(db[spellLevel]["description"].includes("{@damage"))
+    if(favorite){spellInfo = setUpText(lastSpell, db[spellLevel]);}
+    else{spellInfo = setUpText(lastSpell, db[spellLevel]);}
+    spellInfo = display.join("\n");
+
+    if(discription.includes("{@damage"))
     {
-        diceRoller();
+        let userAddTo = prompt("What is your Spell Attack Bonus? Leave blank to use last bonus.", wholeChar[player]["stats"]["addToSpell"]);
+        let accurcy = diceRoller(1, 20, userAddTo);
+        
+        if(discription.includes(currentLv))
+        {
+            damage = discription.slice(`${currentLv}`);
+        }
+
+        else if(upcast[0])
+        {
+
+        }
+        
+        damage = discription.slice(discription.indexOf("@damage"));
+        damage = damage.slice(7, discription.indexOf("}"));
+        damage.split("d");
+        damage.push("0");
+        damage = diceRoller(damage[0], damage[1], damage[2]);
+        
+        display = `${wholeChar[player]["discordName"]} ${player} cast:\n${lastSpell}\n${spellInfo}\nThe spell roll is 1d20 + ${userAddTo}. \nResualting in: ${accurcy}.\nOn Success Damage would be: ${damage}`;
+        set(ref(database, `playerChar/${player}/stats/addToSpell`), userAddTo);
     }
 
     else
     {
-        if(favorite){display = setUpText(lastSpell, db[spellLevel]);}
-        else{display = setUpText(lastSpell, db[spellLevel]);}
-        display = display.join("\n");
-        display = `${wholeChar[player]["discordName"]} ${player} cast:\n${lastSpell}\n${display}`;
+        display = `${wholeChar[player]["discordName"]} ${player} cast:\n${lastSpell}\n${spellInfo}`;
     }
     
     sendDiscordMessage(display);
