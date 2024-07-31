@@ -844,7 +844,7 @@ function handleCastSpell()
         
         if(discription.includes(currentLv))
         {
-            damage = discription.slice(`${currentLv}`);
+            discription = discription.slice(`${currentLv}`);
         }
 
         else if(upcast[0])
@@ -854,7 +854,7 @@ function handleCastSpell()
         
         damage = discription.slice(discription.indexOf("@damage"));
         damage = damage.slice(8, damage.indexOf("}"));
-        damage.split("d");
+        damage = damage.split("d");
         damage.push("0");
         damage = diceRoller(damage[0], damage[1], damage[2]);
         
