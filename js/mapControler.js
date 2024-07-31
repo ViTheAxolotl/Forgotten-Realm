@@ -283,24 +283,20 @@ function handleChangeFirstDisplay()
                 }
 
                 spellDiv.classList.add("center");
-
-                let lvlBtn = document.createElement("button");
-                lvlBtn.name = "0";
-                lvlBtn.classList = "gridButton spell";
-                lvlBtn.innerHTML = `Create New Spell`;
-                lvlBtn.onclick = handleCreateNew;
+                
                 spellDiv.appendChild(lvlBtn);
                 
                 if(wholeFavorite["spells"])
                 {
-                    for(let i = 0; i < wholeFavorite["spells"].length; i++)
+                    for(let spellLv of Object.keys(wholeFavorite["spells"]))
                     {
                         let lvlBtn = document.createElement("button");
-                        lvlBtn.name = i;
+                        lvlBtn.name = spellLv;
                         lvlBtn.classList = "gridButton spell";
-                        lvlBtn.innerHTML = `Lvl ${i}`;
-                        if(i == 0){lvlBtn.innerHTML = "Cantrips";}
+                        lvlBtn.innerHTML = `Lvl ${spellLv}`;
                         lvlBtn.onclick = handleShowSpells;
+                        if(spellLv == "0"){lvlBtn.innerHTML = "Cantrips";}
+                        else if(spellLv == "hold"){lvlBtn.innerHTML = "Create New Spell"; lvlBtn.onclick = handleCreateNew;}
                         spellDiv.appendChild(lvlBtn);
                     }
                 }

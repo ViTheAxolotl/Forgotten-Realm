@@ -1031,7 +1031,7 @@ function loadMap()
 function handleGenerate()
 {
     hideButtons();
-
+    
     for(let user of Object.keys(wholeChar))
     { 
         set(ref(database, `playerChar/${user}/favorites/spells/`), {"hold" : {"hold" : "hold"}});
