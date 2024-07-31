@@ -839,7 +839,7 @@ function handleCastSpell()
 
     if(discription.includes("{@damage"))
     {
-        let userAddTo = prompt("What is your Spell Attack Bonus? Leave blank to use last bonus.", wholeChar[player]["stats"]["addToSpell"]);
+        let userAddTo = prompt("What is your Spell Attack Bonus?", wholeChar[player]["stats"]["addToSpell"]);
         let accurcy = diceRoller(1, 20, userAddTo);
         
         if(discription.includes(currentLv))
@@ -853,7 +853,7 @@ function handleCastSpell()
         }
         
         damage = discription.slice(discription.indexOf("@damage"));
-        damage = damage.slice(7, discription.indexOf("}"));
+        damage = damage.slice(8, damage.indexOf("}"));
         damage.split("d");
         damage.push("0");
         damage = diceRoller(damage[0], damage[1], damage[2]);
