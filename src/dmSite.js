@@ -1031,15 +1031,20 @@ function loadMap()
 function handleGenerate()
 {
     hideButtons();
+    let playerStats = {"Alejandro" : {"spellDC" : "14"}, "Ben" : {"spellDC" : "14"}, "Garrett" : {"spellDC" : "15"}, "Okami" : {"spellDC" : "14"}, "Vi" : {}};
 
-    let data;
+    for(let user of Object.keys(wholeChar))
+    {
+        set(ref(database, `playerChar/${user}/stats/`), playerStats[user]);
+    }
+    //let data;
     /*for(let player of Object.keys(wholeChar))
     {
         set(ref(database, `playerChar/${player}/favorites`), {"spells" : {"0" : {}, "1" : {}, "2" : {}, "3" : {}, "4" : {}, "5" : {}, "6" : {}, "7" : {}, "8" : {}, "9" : {}}, "actions" : "hold"});
     }
 
     //sample json
-    let levels = {"0" : {}, "1" : {}, "2" : {}, "3" : {}, "4" : {}, "5" : {}, "6" : {}, "7" : {}, "8" : {}, "9" : {}};*/
+    let levels = {"0" : {}, "1" : {}, "2" : {}, "3" : {}, "4" : {}, "5" : {}, "6" : {}, "7" : {}, "8" : {}, "9" : {}};
     
     for(let spell of Object.keys(wholeSpells["spell"]))
     { 
@@ -1115,7 +1120,7 @@ function handleGenerate()
         }
         else{currentSpells["range"] = wholeSpells[spell]["range"]["distance"]["type"];}
         
-        currentSpells["description"] = currentSpells["description"].join(" ");*/
+        currentSpells["description"] = currentSpells["description"].join(" ");
     }
     
     data = newWholeSpells;
@@ -1124,7 +1129,7 @@ function handleGenerate()
     const blob = new Blob([JSON.stringify(data)]);
     a.href = URL.createObjectURL(blob);
     a.download = 'sample-profile';                     //filename to download
-    a.click();
+    a.click();*/
 
     alert("done");
     handleDone();
