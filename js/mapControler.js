@@ -284,6 +284,13 @@ function handleChangeFirstDisplay()
 
                 spellDiv.classList.add("center");
 
+                let lvlBtn = document.createElement("button");
+                lvlBtn.name = "0";
+                lvlBtn.classList = "gridButton spell";
+                lvlBtn.innerHTML = `Create New`;
+                lvlBtn.onclick = handleCreateNew;
+                spellDiv.appendChild(lvlBtn);
+
                 for(let i = 0; i < wholeFavorite["spells"].length; i++)
                 {
                     let lvlBtn = document.createElement("button");
@@ -829,6 +836,13 @@ function handleCastSpell()
     display = display.join("\n");
     display = `${wholeChar[player]["discordName"]} ${player} cast:\n${lastSpell}\n${display}`;
     sendDiscordMessage(display);
+}
+
+function handleCreateNew()
+{
+    spellLevel = "0";
+    lastSpell = "Sacred Flame";
+    handleEditCard();
 }
 
 function handleEditCard()
