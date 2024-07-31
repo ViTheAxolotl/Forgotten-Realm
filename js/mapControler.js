@@ -838,8 +838,8 @@ function handleEditCard()
 
     if(spellLevel)
     {
-        let text = ["Name:", "Casting Time:", "Range:", "Components:", "Duration:", "Concentration:", "Description:"];
-        let temp = [`${toTitleCase(wholeFavorite["spells"][spellLevel][spell]["name"])}`, `${toTitleCase(wholeFavorite["spells"][spellLevel][spell]["castTime"])}`, `${toTitleCase(wholeFavorite["spells"][spellLevel][spell]["range"])}`, `${wholeFavorite["spells"][spellLevel][spell]["components"]}`, `${toTitleCase(wholeFavorite["spells"][spellLevel][spell]["duration"])}`, `${wholeFavorite["spells"][spellLevel][spell]["concentration"]}`, `${wholeFavorite["spells"][spellLevel][spell]["description"]}`]
+        let text = ["Name:", "Level:", "Casting Time:", "Range:", "Components:", "Duration:", "Concentration:", "Description:"];
+        let temp = [`${toTitleCase(wholeFavorite["spells"][spellLevel][spell]["name"])}`, `${spellLevel}`, `${toTitleCase(wholeFavorite["spells"][spellLevel][spell]["castTime"])}`, `${toTitleCase(wholeFavorite["spells"][spellLevel][spell]["range"])}`, `${wholeFavorite["spells"][spellLevel][spell]["components"]}`, `${toTitleCase(wholeFavorite["spells"][spellLevel][spell]["duration"])}`, `${wholeFavorite["spells"][spellLevel][spell]["concentration"]}`, `${wholeFavorite["spells"][spellLevel][spell]["description"]}`]
         let cardDiv = document.createElement("div");
         cardDiv.setAttribute("class", "card .bg-UP-blue notes");
         let cardBody = document.createElement("div");
@@ -894,16 +894,16 @@ function uploadEdit()
 {
     let spellDisc = document.getElementsByClassName("spellDisc");
 
-    set(ref(database, `playerChar/${player}/favorites/spells/${spellLevel}/${spellDisc[0].value.trim()}`), 
+    set(ref(database, `playerChar/${player}/favorites/spells/${spellDisc[1].value.trim()}/${spellDisc[0].value.trim()}`), 
     {
-        castTime : spellDisc[1].value.trim(),
-        components : spellDisc[3].value.trim(),
-        concentration : spellDisc[5].value.trim(),
-        description : spellDisc[6].value.trim(),
-        duration : spellDisc[4].value.trim(),
-        level : spellLevel,
+        castTime : spellDisc[2].value.trim(),
+        components : spellDisc[4].value.trim(),
+        concentration : spellDisc[6].value.trim(),
+        description : spellDisc[7].value.trim(),
+        duration : spellDisc[5].value.trim(),
+        level : spellDisc[1].value.trim(),
         name : spellDisc[0].value.trim(),
-        range : spellDisc[2].value.trim()
+        range : spellDisc[3].value.trim()
     });
 
     set(ref(database, `playerChar/${player}/favorites/spells/${spellLevel}/${lastSpell}`), null);
