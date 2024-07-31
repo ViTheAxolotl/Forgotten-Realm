@@ -834,10 +834,20 @@ function handleCardClick()
 function handleCastSpell()
 {
     let display;
-    if(favorite){display = setUpText(lastSpell, db[spellLevel]);}
-    else{display = setUpText(lastSpell, db[spellLevel]);}
-    display = display.join("\n");
-    display = `${wholeChar[player]["discordName"]} ${player} cast:\n${lastSpell}\n${display}`;
+
+    if(db[spellLevel]["description"].includes("{@damage"))
+    {
+        diceRoller();
+    }
+
+    else
+    {
+        if(favorite){display = setUpText(lastSpell, db[spellLevel]);}
+        else{display = setUpText(lastSpell, db[spellLevel]);}
+        display = display.join("\n");
+        display = `${wholeChar[player]["discordName"]} ${player} cast:\n${lastSpell}\n${display}`;
+    }
+    
     sendDiscordMessage(display);
 }
 
