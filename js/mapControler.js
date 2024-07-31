@@ -291,16 +291,19 @@ function handleChangeFirstDisplay()
                 lvlBtn.innerHTML = `Create New`;
                 lvlBtn.onclick = handleCreateNew;
                 spellDiv.appendChild(lvlBtn);
-
-                for(let i = 0; i < wholeFavorite["spells"].length; i++)
+                
+                if(wholeFavorite["spells"])
                 {
-                    let lvlBtn = document.createElement("button");
-                    lvlBtn.name = i;
-                    lvlBtn.classList = "gridButton spell";
-                    lvlBtn.innerHTML = `Lvl ${i}`;
-                    if(i == 0){lvlBtn.innerHTML = "Cantrips";}
-                    lvlBtn.onclick = handleShowSpells;
-                    spellDiv.appendChild(lvlBtn);
+                    for(let i = 0; i < wholeFavorite["spells"].length; i++)
+                    {
+                        let lvlBtn = document.createElement("button");
+                        lvlBtn.name = i;
+                        lvlBtn.classList = "gridButton spell";
+                        lvlBtn.innerHTML = `Lvl ${i}`;
+                        if(i == 0){lvlBtn.innerHTML = "Cantrips";}
+                        lvlBtn.onclick = handleShowSpells;
+                        spellDiv.appendChild(lvlBtn);
+                    }
                 }
             });
         }
