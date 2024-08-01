@@ -764,6 +764,7 @@ function setUpText(current, lst)
     else
     {
         txt = [""];
+        let lineNum = 0;
         let temp = JSON.stringify(lst[current]["description"]).replaceAll("\"", "").split("\\n");
         for(let t in temp)
         {
@@ -772,23 +773,28 @@ function setUpText(current, lst)
                 if(!temp[`${parseInt(t) - 1}`].includes("{@Choice}"))
                 {
                     txt.push("<ul>");
+                    lineNum++;
                 }
                 
                 txt.push(temp[t].replace("{@Choice}", "<li>")); 
                 txt.push("</li>");
+                lineNum += 2;
                 
                 if(temp[`${parseInt(t) + 1}`])
                 {
                     if(!temp[`${parseInt(t) + 1}`].includes("{@Choice}"))
                     {
                         txt.push("</ul>");
+                        lineNum++;
                     }
                 }
+                
+                txt.push("");
             }
 
             else
             {
-                txt[t] = txt[t] + ` ${temp[t]}`;
+                txt[`${lineNum}`] = txt[`${lineNum}`] + ` ${temp[t]}`;
             }
         }
     }
