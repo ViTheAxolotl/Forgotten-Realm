@@ -785,6 +785,11 @@ function setUpText(current, lst)
                     }
                 }
             }
+
+            else
+            {
+                txt.push(temp[t]);
+            }
         }
     }
     
