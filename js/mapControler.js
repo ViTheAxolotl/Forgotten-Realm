@@ -788,7 +788,7 @@ function setUpText(current, lst)
 
             else
             {
-                txt[`${parseInt(t) - 1}`] += ` ${temp[t]}`;
+                txt[t] = txt[t] + ` ${temp[t]}`;
             }
         }
     }
