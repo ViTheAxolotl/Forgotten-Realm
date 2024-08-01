@@ -312,6 +312,8 @@ function handleChangeSecondDisplay()
 {
     if(!this.classList.contains("Selected"))
     {
+        emptyCards();
+
         for(let sButton of secondMenu)
         {
             let prop;
@@ -761,10 +763,29 @@ function setUpText(current, lst)
 
     else
     {
-        txt = ["<ul>"];
+        txt = [];
         let temp = JSON.stringify(lst[current]["description"]).replaceAll("\"", "").split("\\n");
-        for(let t in temp){txt.push(temp[t].replace("{@Choice}", "<li>")); txt.push("</li>")}
-        txt.push("</ul>");
+        for(let t in temp)
+        {
+            if(temp[t].includes("{@Choice}"))
+            {
+                if(!temp[`${parseInt(t) - 1}`].includes("{@Choice}"))
+                {
+                    txt.push("<ul>");
+                }
+                
+                txt.push(temp[t].replace("{@Choice}", "<li>")); 
+                txt.push("</li>");
+                
+                if(temp[`${parseInt(t) + 1}`])
+                {
+                    if(!temp[`${parseInt(t) + 1}`].includes("{@Choice}"))
+                    {
+                        txt.push("</ul>");
+                    }
+                }
+            }
+        }
     }
     
     return txt;
