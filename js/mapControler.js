@@ -761,9 +761,10 @@ function setUpText(current, lst)
 
     else
     {
-        txt = [];
+        txt = ["<ul>"];
         let temp = JSON.stringify(lst[current]["description"]).replaceAll("\"", "").split("\\n");
-        for(let t in temp){txt.push(temp[t]);}
+        for(let t in temp){txt.push(temp[t].replace("{@Choice}", "<li>")); txt.push("</li>")}
+        txt.push("</ul>");
     }
     
     return txt;
