@@ -762,7 +762,7 @@ function setUpText(current, lst)
     else
     {
         txt = [`${toTitleCase(lst[current]["name"])}`];
-        let temp = JSON.stringify(lst[current]["description"]).split("\\n");
+        let temp = JSON.stringify(lst[current]["description"]).replaceAll("\"", "").split("\\n");
         for(let t in temp){txt.push(t);}
     }
     
