@@ -762,7 +762,7 @@ function setUpText(current, lst)
     else
     {
         txt = [`${toTitleCase(lst[current]["name"])}`];
-        temp = lst[current]["discription"].split("\n");
+        temp = lst[current]["description"].split("\n");
         for(let t in temp){txt.push(t);}
     }
     
