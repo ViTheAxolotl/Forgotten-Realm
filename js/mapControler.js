@@ -74,10 +74,12 @@ let firstMenu;
 let secondMenu;
 let spellBtn;
 let rollDiceBtn;
+let actionBtn;
 let wholeTO = {};
 let wholeChar = {};
 let wholeFavorite = {};
 let wholeSpells;
+let wholeActions;
 let currentLv = "5th level";
 let spellLevel;
 let curClass;
@@ -95,6 +97,7 @@ function init()
     arrows.push(document.getElementById("down"));
     
     fetch('https://vitheaxolotl.github.io/Forgotten-Realm/src/spells.json').then(res => res.json()).then((json) => wholeSpells = json);
+    fetch('https://vitheaxolotl.github.io/Forgotten-Realm/src/actions.json').then(res => res.json()).then((json) => wholeActions = json);
 
     currentHp.onchange = updateHp;
     maxHp.onchange = addUpdate;
@@ -123,6 +126,8 @@ function setMainVaribles()
     for(let sButton of secondMenu){sButton.onclick = handleChangeSecondDisplay;}
     spellBtn = document.getElementsByClassName("spell");
     for(let sButton of spellBtn){sButton.onclick = handleShowSpells;}
+    actionBtn = document.getElementsByClassName("action");
+    for(let aButton of actionBtn){aButton.onclick = handleShowActions;}
     rollDiceBtn = document.getElementById("rollDice").onclick = handleDiceRoll;
 
     if(player != "Vi")
@@ -702,12 +707,65 @@ function handleShowSpells()
     }
 }
 
-function setUpText(spell, spells)
+function handleShowActions()
 {
-    let txt = [`Casting Time: ${toTitleCase(spells[spell]["castTime"])}`, `Range: ${toTitleCase(spells[spell]["range"])}`, `Components: ${spells[spell]["components"]}`, `Duration: ${toTitleCase(spells[spell]["duration"])}`];
-    if(spells[spell]["concentration"] == "true"){txt.push(`Concentration`);}
-    txt.push(" ");
-    txt.push(`${spells[spell]["description"]}`);
+    spellLevel = undefined;
+    curClass = this.name;
+    db = wholeActions;
+    if(favorite){db = wholeFavorite["actions"];}
+    let actions = db[curClass];
+
+    for(let action of actionBtn)
+    {
+        if(action.classList.contains("selected"))
+        {
+            action.classList.remove("selected");
+        }
+    }
+
+    this.classList.add("selected");
+
+    emptyCards()
+
+    if(searchBar[0].value != "")
+    {
+        handleSearch();
+    }
+
+    else if(db[curClass].length == 0){}
+
+    else
+    {
+        document.getElementById("searchDiv").style.display = "block";
+
+        for(let action of Object.keys(actions))
+        {
+            createCard(action, setUpText(action, actions), "cards");
+        }
+
+        for(let key of document.getElementsByClassName("card-body")){key.onclick = handleCardClick;}
+    }
+}
+
+function setUpText(current, lst)
+{
+    let txt = "";
+    
+    if(spellLevel)
+    {
+        txt = [`Casting Time: ${toTitleCase(lst[current]["castTime"])}`, `Range: ${toTitleCase(lst[current]["range"])}`, `Components: ${lst[current]["components"]}`, `Duration: ${toTitleCase(lst[current]["duration"])}`];
+        if(lst[current]["concentration"] == "true"){txt.push(`Concentration`);}
+        txt.push(" ");
+        txt.push(`${lst[current]["description"]}`);
+    }
+
+    else
+    {
+        txt = [`${toTitleCase(lst[current]["name"])}`];
+        temp = lst[current]["discription"].split("\n");
+        for(let t in temp){txt.push(t);}
+    }
+    
     return txt;
 }
 
