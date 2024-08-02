@@ -774,21 +774,21 @@ function setUpText(current, lst)
 
                 if(!temp[`${parseInt(t) - 1}`].includes("{@Choice}"))
                 {
-                    txtToPush = "<ul>";
+                    //txtToPush = "<ul>";
                 }
                 
                 txtToPush += temp[t].replace("{@Choice}", "<li>") + "</li>"; 
                 
                 if(temp[`${parseInt(t) + 1}`])
                 {
-                    if(!temp[`${parseInt(t) + 1}`].includes("{@Choice}"))
+                    /*if(!temp[`${parseInt(t) + 1}`].includes("{@Choice}"))
                     {
                         txtToPush += "</ul>";
                         txt.push(txtToPush);
                         txt.push("");
                         lineNum++;
                         continue;
-                    }
+                    }*/
                 }
 
                 txt.push(txtToPush);
