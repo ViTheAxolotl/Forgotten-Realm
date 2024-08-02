@@ -954,18 +954,26 @@ function handleCardClick()
 function handleCastSpell()
 {
     let display;
-    let spellInfo;
+    let useInfo;
     let damage;
-    let discription = db[spellLevel][lastSpell]["description"];
+    let discription;
     let upcast = document.getElementsByName("upcast");
+    let listOf;
+    let lastUse;
 
-    if(favorite){spellInfo = setUpText(lastSpell, db[spellLevel]);}
-    else{spellInfo = setUpText(lastSpell, db[spellLevel]);}
-    spellInfo = spellInfo.join("\n");
+    if(spellLevel){listOf = db[spellLevel]; lastUse = lastSpell;}
+    else{listOf = db[curClass]; lastUse = lastAbility;}
+
+    discription = listOf[lastUse]["description"];
+    
+    useInfo = setUpText(lastUse, listOf);
+    useInfo = useInfo.join("\n");
 
     if(discription.includes("{@damage"))
     {
-        let userAddTo = prompt("What is your Spell Attack Bonus?", wholeChar[player]["stats"]["addToSpell"]);
+        let userAddTo;
+        if(spellLevel){userAddTo = prompt("What is your Spell Attack Bonus?", wholeChar[player]["stats"]["addToSpell"]);}
+        else{userAddTo = prompt("What is your Attack Bonus?", wholeChar[player]["stats"]["attackBonus"]);}
         let accurcy = diceRoller(1, 20, userAddTo);
         
         if(discription.includes(currentLv))
@@ -984,15 +992,27 @@ function handleCastSpell()
         damage.push("0");
         damage = diceRoller(damage[0], damage[1], damage[2]);
         
-        display = `${wholeChar[player]["discordName"]} ${player} cast:\n${lastSpell}\n${spellInfo}\n\nThe spell roll is 1d20 + ${userAddTo}. \nResulting in: ${accurcy}.\nOn Success Damage would be: ${damage}`;
-        set(ref(database, `playerChar/${player}/stats/addToSpell`), userAddTo);
+        display = `${wholeChar[player]["discordName"]} ${player} cast:\n${lastUse}\n${useInfo}\n\nThe accurcy roll is 1d20 + ${userAddTo}. \nResulting in: ${accurcy}.\nOn Success Damage would be: ${damage}`;
+
+        if(spellLevel)
+        {
+            set(ref(database, `playerChar/${player}/stats/addToSpell`), userAddTo);
+        }
+
+        else
+        {
+            display = display.replaceAll("cast", "use ability");
+            set(ref(database, `playerChar/${player}/stats/attackBonus`), userAddTo);
+        }
     }
 
     else
     {
-        display = `${wholeChar[player]["discordName"]} ${player} cast:\n${lastSpell}\n${spellInfo}`;
+        display = `${wholeChar[player]["discordName"]} ${player} cast:\n${lastUse}\n${useInfo}`;
+
+        if(curClass){display = display.replaceAll("cast", "use ability");}
     }
-    
+
     sendDiscordMessage(display);
 }
 
