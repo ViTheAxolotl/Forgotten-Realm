@@ -314,16 +314,15 @@ function handleChangeFirstDisplay()
 
                 if(wholeFavorite["actions"])
                 {
-                    for(let actionTag of Object.keys(wholeFavorite["spells"]))
+                    for(let actionTag of Object.keys(wholeFavorite["actions"]))
                     {
-                        let lvlBtn = document.createElement("button");
-                        lvlBtn.name = actionTag;
-                        lvlBtn.classList = "gridButton spell";
-                        lvlBtn.innerHTML = `Lvl ${actionTag}`;
-                        lvlBtn.onclick = handleShowSpells;
-                        if(actionTag == "0"){lvlBtn.innerHTML = "Cantrips";}
-                        else if(actionTag == "hold"){lvlBtn.innerHTML = "Create New Spell"; lvlBtn.onclick = handleCreateNew;}
-                        spellDiv.appendChild(lvlBtn);
+                        let tagBtn = document.createElement("button");
+                        tagBtn.name = actionTag;
+                        tagBtn.classList = "gridButton action";
+                        tagBtn.innerHTML = `${actionTag}`;
+                        tagBtn.onclick = handleShowActions;
+                        if(actionTag == "hold"){tagBtn.innerHTML = "Create New Ability"; tagBtn.onclick = handleCreateNew;}
+                        actionDiv.appendChild(tagBtn);
                     }
                 }
             });
