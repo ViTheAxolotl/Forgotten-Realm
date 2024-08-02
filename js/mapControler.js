@@ -288,7 +288,14 @@ function handleChangeFirstDisplay()
                     spellDiv.removeChild(spellDiv.lastChild);
                 }
 
+                let actionDiv = document.getElementById("abilityF")
+                while(actionDiv.children.length > 0)
+                {
+                    actionDiv.removeChild(spellDiv.lastChild);
+                }
+
                 spellDiv.classList.add("center");
+                actionDiv.classList.add("center");
                 
                 if(wholeFavorite["spells"])
                 {
@@ -301,6 +308,21 @@ function handleChangeFirstDisplay()
                         lvlBtn.onclick = handleShowSpells;
                         if(spellLv == "0"){lvlBtn.innerHTML = "Cantrips";}
                         else if(spellLv == "hold"){lvlBtn.innerHTML = "Create New Spell"; lvlBtn.onclick = handleCreateNew;}
+                        spellDiv.appendChild(lvlBtn);
+                    }
+                }
+
+                if(wholeFavorite["actions"])
+                {
+                    for(let actionTag of Object.keys(wholeFavorite["spells"]))
+                    {
+                        let lvlBtn = document.createElement("button");
+                        lvlBtn.name = actionTag;
+                        lvlBtn.classList = "gridButton spell";
+                        lvlBtn.innerHTML = `Lvl ${actionTag}`;
+                        lvlBtn.onclick = handleShowSpells;
+                        if(actionTag == "0"){lvlBtn.innerHTML = "Cantrips";}
+                        else if(actionTag == "hold"){lvlBtn.innerHTML = "Create New Spell"; lvlBtn.onclick = handleCreateNew;}
                         spellDiv.appendChild(lvlBtn);
                     }
                 }
@@ -991,9 +1013,9 @@ function handleCreateNew()
 
     else if(this.innerHTML == "Create New Ability")
     {
-        curClass = wholeChar[player]["stats"]["class"];
-        lastSpell = "Sacred Flame";
-        set(ref(database, `playerChar/${player}/favorites/spells/${spellLevel}/${lastSpell}`), wholeSpells[spellLevel][lastSpell]);
+        curClass = "Artificer";
+        lastAbility = "Magical Tinkering";
+        set(ref(database, `playerChar/${player}/favorites/actions/${curClass}/${lastAbility}`), wholeActions[curClass][lastAbility]);
     }
 
     handleEditCard();

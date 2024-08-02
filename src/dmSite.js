@@ -1031,11 +1031,10 @@ function loadMap()
 function handleGenerate()
 {
     hideButtons();
-    let players = {"Garrett" : "Druid", "Ben" : "Barbarian", "Alejandro" : "Wizard", "Okami" : "Rogue", "Vi" : "Bard"};
-
+    
     for(let user of Object.keys(wholeChar))
     { 
-        set(ref(database, `playerChar/${user}/stats/class`), players[user]);
+        set(ref(database, `playerChar/${user}/favorites/actions/`), {"hold" : {"hold" : "hold"}});
     }
 
     alert("done");
