@@ -291,7 +291,7 @@ function handleChangeFirstDisplay()
                 let actionDiv = document.getElementById("abilityF")
                 while(actionDiv.children.length > 0)
                 {
-                    actionDiv.removeChild(spellDiv.lastChild);
+                    actionDiv.removeChild(actionDiv.lastChild);
                 }
 
                 spellDiv.classList.add("center");
