@@ -1101,18 +1101,37 @@ function uploadEdit()
 
 function handleFavoriteBtn()
 {
-    let spellName = this.lastChild.classList[0].replaceAll("_", " ");
+    let cardName = this.lastChild.classList[0].replaceAll("_", " ");
 
     if(this.lastChild.src.includes("images/unFavorite.png")) //Add to favrites
     {
         this.lastChild.src = "images/favorited.png";
-        set(ref(database, `playerChar/${player}/favorites/spells/${spellLevel}/${spellName}`), wholeSpells[spellLevel][spellName]);
+        
+        if(spellLevel)
+        {
+            set(ref(database, `playerChar/${player}/favorites/spells/${spellLevel}/${cardName}`), wholeSpells[spellLevel][spellName]);
+        }
+
+        else
+        {
+            set(ref(database, `playerChar/${player}/favorites/actions/${curClass}/${cardName}`), wholeActions[curClass][cardName]);
+        }
     }
 
     else //Remove from favorites
     {
         this.lastChild.src = "images/unFavorite.png";
-        set(ref(database, `playerChar/${player}/favorites/spells/${spellLevel}/${spellName}`), null);
+        
+        if(spellLevel)
+        {
+            set(ref(database, `playerChar/${player}/favorites/spells/${spellLevel}/${cardName}`), null);
+        }
+
+        else
+        {
+            set(ref(database, `playerChar/${player}/favorites/actions/${curClass}/${cardName}`), null);
+        }
+        
         emptyCards();
     }
 }
