@@ -842,6 +842,14 @@ function handleCardClick()
     wrapper.onclick = handleFavoriteBtn;
     wrapper.appendChild(favoriteBtn);
     wrapper.style.margin = "0px 5px";
+    optionDiv.appendChild(wrapper);
+
+    let castBtn = document.createElement("button");
+    castBtn.classList.add("gridButton");
+    castBtn.onclick = handleCastSpell;
+    castBtn.innerHTML = "Cast Spell";
+    castBtn.name = currentTitle;
+    castBtn.style.margin = "0px 5px";
 
     if(spellLevel)
     {
@@ -856,8 +864,6 @@ function handleCardClick()
                 favoriteBtn.setAttribute("src", "images/favorited.png");
             }
         }
-
-        optionDiv.appendChild(wrapper);
 
         if(spellDisc.includes("spell slot") && spellDisc.includes("scaledamage"))
         {
@@ -900,15 +906,6 @@ function handleCardClick()
             edit.style.margin = "0px 5px";
             optionDiv.appendChild(edit);
         }
-
-        let castBtn = document.createElement("button");
-        castBtn.classList.add("gridButton");
-        castBtn.onclick = handleCastSpell;
-        castBtn.innerHTML = "Cast Spell";
-        castBtn.name = currentTitle;
-        castBtn.style.margin = "0px 5px";
-        optionDiv.appendChild(castBtn);
-        this.parentNode.parentNode.insertBefore(optionDiv, this.parentNode.nextSibling);
     }
 
     else
@@ -917,14 +914,20 @@ function handleCardClick()
         let abilityDisc = db[curClass][currentTitle]["description"];
         if(favorite){abilityDisc = wholeFavorite["actions"][curClass][currentTitle]["description"];}
 
-        if(wholeChar[player]["favorites"]["spells"][spellLevel])
+        if(wholeChar[player]["favorites"]["actions"][curClass])
         {
-            if(wholeChar[player]["favorites"]["spells"][spellLevel][currentTitle])
+            if(wholeChar[player]["favorites"]["actions"][curClass][currentTitle])
             {
                 favoriteBtn.setAttribute("src", "images/favorited.png");
             }
         }
+
+        castBtn.innerHTML = "Use Ability";
+        castBtn.onclick = handleUseAbility;
     }
+
+    optionDiv.appendChild(castBtn);
+    this.parentNode.parentNode.insertBefore(optionDiv, this.parentNode.nextSibling);
 }
 
 function handleCastSpell()
@@ -972,6 +975,11 @@ function handleCastSpell()
     sendDiscordMessage(display);
 }
 
+function handleUseAbility()
+{
+
+}
+
 function handleCreateNew()
 {
     if(this.innerHTML == "Create New Spell")
@@ -981,16 +989,23 @@ function handleCreateNew()
         set(ref(database, `playerChar/${player}/favorites/spells/${spellLevel}/${lastSpell}`), wholeSpells[spellLevel][lastSpell]);
     }
 
+    else if(this.innerHTML == "Create New Ability")
+    {
+        curClass = wholeChar[player]["stats"]["class"];
+        lastSpell = "Sacred Flame";
+        set(ref(database, `playerChar/${player}/favorites/spells/${spellLevel}/${lastSpell}`), wholeSpells[spellLevel][lastSpell]);
+    }
+
     handleEditCard();
 }
 
 function handleEditCard()
 {
-    let spell = lastSpell;
     emptyCards();
 
     if(spellLevel)
     {
+        let spell = lastSpell;
         let text = ["Name:", "Level:", "Casting Time:", "Range:", "Components:", "Duration:", "Concentration:", "Description:"];
         let temp = [`${toTitleCase(wholeFavorite["spells"][spellLevel][spell]["name"])}`, `${spellLevel}`, `${toTitleCase(wholeFavorite["spells"][spellLevel][spell]["castTime"])}`, `${toTitleCase(wholeFavorite["spells"][spellLevel][spell]["range"])}`, `${wholeFavorite["spells"][spellLevel][spell]["components"]}`, `${toTitleCase(wholeFavorite["spells"][spellLevel][spell]["duration"])}`, `${wholeFavorite["spells"][spellLevel][spell]["concentration"]}`, `${wholeFavorite["spells"][spellLevel][spell]["description"]}`]
         let cardDiv = document.createElement("div");

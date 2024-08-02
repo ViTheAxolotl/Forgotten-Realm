@@ -1031,104 +1031,12 @@ function loadMap()
 function handleGenerate()
 {
     hideButtons();
-    
+    let players = {"Garrett" : "Druid", "Ben" : "Barbarian", "Alejandro" : "Wizard", "Okami" : "Rogue", "Vi" : "Bard"};
+
     for(let user of Object.keys(wholeChar))
     { 
-        set(ref(database, `playerChar/${user}/favorites/spells/`), {"hold" : {"hold" : "hold"}});
+        set(ref(database, `playerChar/${user}/stats/class`), players[user]);
     }
-    //let data;
-    /*for(let player of Object.keys(wholeChar))
-    {
-        set(ref(database, `playerChar/${player}/favorites`), {"spells" : {"0" : {}, "1" : {}, "2" : {}, "3" : {}, "4" : {}, "5" : {}, "6" : {}, "7" : {}, "8" : {}, "9" : {}}, "actions" : "hold"});
-    }
-
-    //sample json
-    let levels = {"0" : {}, "1" : {}, "2" : {}, "3" : {}, "4" : {}, "5" : {}, "6" : {}, "7" : {}, "8" : {}, "9" : {}};
-    
-    for(let spell of Object.keys(wholeSpells["spell"]))
-    { 
-        if(wholeSpells["spell"][spell]["duration"][0]["concentration"])
-        {
-            newWholeSpells[wholeSpells["spell"][spell]["level"]][wholeSpells["spell"][spell]["name"]]["concentration"] = "true";
-        }
-                
-        /*if(wholeSpells[spell]["duration"]["duration"]){currentSpells[spell["duration"]] = `${wholeSpells[spell]["duration"]["duration"]["amount"]} ${wholeSpells[spell]["duration"]["duration"]["type"]}`;}
-        if(wholeSpells[spell]["duration"]["concentration"]){currentSpells["concentration"] = "true";}
-        else {currentSpells["concentration"] = "false";}
-
-        if(wholeSpells[spell]["entries"]["entries"])
-        {
-            for(let entry of wholeSpells[spell]["entries"])
-            {
-                if(typeof entry != "string")
-                {
-                    if(!entry["entries"])
-                    {
-                        if(entry.items)
-                        {
-                            for(let option of entry.items)
-                            {
-                                currentSpells["description"].push(`{@result} ${option}`);
-                            }
-                        }
-                        
-                        continue;
-                    }
-
-                    currentSpells["description"].push(`{@Choice} ${entry["entries"][0]}`);
-                }
-
-                else
-                {
-                    currentSpells["description"].push(entry);
-                }
-            }
-        }
-
-        if(wholeSpells[spell]["entriesHigherLevel"])
-        {
-            currentSpells["description"].push(`${wholeSpells[spell]["entriesHigherLevel"][0]["entries"][0]}`);
-        }
-
-        for(let com of Object.keys(wholeSpells[spell]["components"]))
-        {
-            if(com == "m")
-            {
-                if(typeof wholeSpells[spell]["components"][com] != "string")
-                {
-                    currentSpells["components"] += `m: ${wholeSpells[spell]["components"][com]["text"]}, `
-                }
-
-                else
-                {
-                    currentSpells["components"] += `m: ${wholeSpells[spell]["components"][com]}, `
-                }
-            }
-
-            else
-            {
-                currentSpells["components"] += `${com}, `;
-            }
-        }
-
-        currentSpells["components"] = currentSpells["components"].slice(0, currentSpells["components"].length - 2);
-
-        if(wholeSpells[spell]["range"]["distance"]["type"] == "feet" || wholeSpells[spell]["range"]["distance"]["type"] == "miles")
-        {
-            currentSpells["range"] = `${wholeSpells[spell]["range"]["distance"]["amount"]} ${wholeSpells[spell]["range"]["distance"]["type"]}`;
-        }
-        else{currentSpells["range"] = wholeSpells[spell]["range"]["distance"]["type"];}
-        
-        currentSpells["description"] = currentSpells["description"].join(" ");
-    }
-    
-    data = newWholeSpells;
-
-    const a = document.createElement('a');
-    const blob = new Blob([JSON.stringify(data)]);
-    a.href = URL.createObjectURL(blob);
-    a.download = 'sample-profile';                     //filename to download
-    a.click();*/
 
     alert("done");
     handleDone();
