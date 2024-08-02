@@ -770,33 +770,18 @@ function setUpText(current, lst)
         {
             if(temp[t].includes("{@Choice}"))
             {
-                let txtToPush = "";
-
-                if(!temp[`${parseInt(t) - 1}`].includes("{@Choice}"))
-                {
-                    //txtToPush = "<ul>";
-                }
-                
-                txtToPush += temp[t].replace("{@Choice}", "<li>") + "</li>"; 
-                
-                if(temp[`${parseInt(t) + 1}`])
-                {
-                    /*if(!temp[`${parseInt(t) + 1}`].includes("{@Choice}"))
-                    {
-                        txtToPush += "</ul>";
-                        txt.push(txtToPush);
-                        txt.push("");
-                        lineNum++;
-                        continue;
-                    }*/
-                }
-
-                txt.push(txtToPush);
+                txt.push(temp[t].replace("{@Choice}", "<li>") + "</li>");
                 lineNum++;
             }
 
             else
             {
+                if(lineNum > 0 && txt[`${lineNum}`].includes("<li>"))
+                {
+                    lineNum++;
+                    txt.push("");
+                }
+
                 txt[`${lineNum}`] = txt[`${lineNum}`] + ` ${temp[t]}`;
             }
         }
