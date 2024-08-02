@@ -867,7 +867,7 @@ function handleCardClick()
 
     let castBtn = document.createElement("button");
     castBtn.classList.add("gridButton");
-    castBtn.onclick = handleCastSpell;
+    castBtn.onclick = handleUseAction;
     castBtn.innerHTML = "Cast Spell";
     castBtn.name = currentTitle;
     castBtn.style.margin = "0px 5px";
@@ -944,14 +944,13 @@ function handleCardClick()
         }
 
         castBtn.innerHTML = "Use Ability";
-        castBtn.onclick = handleUseAbility;
     }
 
     optionDiv.appendChild(castBtn);
     this.parentNode.parentNode.insertBefore(optionDiv, this.parentNode.nextSibling);
 }
 
-function handleCastSpell()
+function handleUseAction()
 {
     let display;
     let useInfo;
@@ -1014,11 +1013,6 @@ function handleCastSpell()
     }
 
     sendDiscordMessage(display);
-}
-
-function handleUseAbility()
-{
-
 }
 
 function handleCreateNew()
