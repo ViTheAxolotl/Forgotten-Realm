@@ -770,7 +770,7 @@ function setUpText(current, lst)
         {
             if(temp[t].includes("{@Choice}"))
             {
-                let txtToPush;
+                let txtToPush = "";
 
                 if(!temp[`${parseInt(t) - 1}`].includes("{@Choice}"))
                 {
