@@ -88,6 +88,7 @@ let upper = document.getElementById("cards");
 let favorite = false;
 let db;
 let lastSpell;
+let lastAbility;
 
 function init()
 {
@@ -793,53 +794,60 @@ function setUpText(current, lst)
 function handleSearch()
 {
     let search = searchBar[0].value;
-    
+    let listOf;
+
     if(spellLevel)
     {
-        let spells = db[spellLevel];
-
-        emptyCards();
-    
-        for(let spell of Object.keys(spells))
-        {
-            if(spell.toLowerCase().includes(search.toLowerCase()))
-            {
-                createCard(spell, setUpText(spell, spells), "cards");
-            }
-        }
-
-        for(let key of document.getElementsByClassName("card-body")){key.onclick = handleCardClick;}
+        listOf = db[spellLevel];
     }
+
+    else
+    {
+        listOf = db[curClass];
+    }
+
+    emptyCards();
+    
+    for(let elm of Object.keys(listOf))
+    {
+        if(elm.toLowerCase().includes(search.toLowerCase()))
+        {
+            createCard(elm, setUpText(elm, listOf), "cards");
+        }
+    }
+
+    for(let key of document.getElementsByClassName("card-body")){key.onclick = handleCardClick;}
 }
 
 function handleCardClick()
 {
     let children = this.childNodes;
     let currentTitle = children[0].innerHTML;
-    lastSpell = currentTitle;
-    let spellDisc = db[spellLevel][currentTitle]["description"];
-    let temp = document.getElementById("optionDiv");
     
+    let temp = document.getElementById("optionDiv");
     if(temp){temp.remove();}
-    if(favorite){spellDisc = wholeFavorite["spells"][spellLevel][currentTitle]["description"]}
     
     let optionDiv = document.createElement("div");
     optionDiv.classList.add("center");
     optionDiv.id = "optionDiv";
 
+    let favoriteBtn = document.createElement("img");
+    favoriteBtn.setAttribute("id", "favoriteBtn");
+    favoriteBtn.classList.add(currentTitle.replaceAll(" ", "_"));
+    favoriteBtn.style.height = "20px";
+    favoriteBtn.style.width = "20px";
+    favoriteBtn.setAttribute("src", "images/unFavorite.png");
+    let wrapper = document.createElement("button");
+    wrapper.classList.add("gridButton");
+    wrapper.onclick = handleFavoriteBtn;
+    wrapper.appendChild(favoriteBtn);
+    wrapper.style.margin = "0px 5px";
+
     if(spellLevel)
     {
-        let favoriteBtn = document.createElement("img");
-        favoriteBtn.setAttribute("id", "favoriteBtn");
-        favoriteBtn.classList.add(currentTitle.replaceAll(" ", "_"));
-        favoriteBtn.style.height = "20px";
-        favoriteBtn.style.width = "20px";
-        favoriteBtn.setAttribute("src", "images/unFavorite.png");
-        let wrapper = document.createElement("button");
-        wrapper.classList.add("gridButton");
-        wrapper.onclick = handleFavoriteBtn;
-        wrapper.appendChild(favoriteBtn);
-        wrapper.style.margin = "0px 5px";
+        lastSpell = currentTitle;
+        let spellDisc = db[spellLevel][currentTitle]["description"];
+        if(favorite){spellDisc = wholeFavorite["spells"][spellLevel][currentTitle]["description"]}
 
         if(wholeChar[player]["favorites"]["spells"][spellLevel])
         {
@@ -901,6 +909,21 @@ function handleCardClick()
         castBtn.style.margin = "0px 5px";
         optionDiv.appendChild(castBtn);
         this.parentNode.parentNode.insertBefore(optionDiv, this.parentNode.nextSibling);
+    }
+
+    else
+    {
+        lastAbility = currentTitle;
+        let abilityDisc = db[curClass][currentTitle]["description"];
+        if(favorite){abilityDisc = wholeFavorite["actions"][curClass][currentTitle]["description"];}
+
+        if(wholeChar[player]["favorites"]["spells"][spellLevel])
+        {
+            if(wholeChar[player]["favorites"]["spells"][spellLevel][currentTitle])
+            {
+                favoriteBtn.setAttribute("src", "images/favorited.png");
+            }
+        }
     }
 }
 
