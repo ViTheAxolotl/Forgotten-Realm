@@ -223,7 +223,7 @@ function diceRoller(amount, dice, modifier)
     }
     
     let finalResult = sum + parseInt(modifier);
-    message += `)${viewMod}=${finalResult}\``;
+    message += `)${viewMod}= **${finalResult}**\``;
 
     return message;
 }
@@ -991,7 +991,7 @@ function handleUseAction()
         damage.push("0");
         damage = diceRoller(damage[0], damage[1], damage[2]);
         
-        display = `${wholeChar[player]["discordName"]} ${player} cast:\n${lastUse}\n${useInfo}\n\nThe accurcy roll is 1d20 + ${userAddTo}. \nResulting in: ${accurcy}.\nOn Success Damage would be: ${damage}`;
+        display = `${wholeChar[player]["discordName"]} ${player} cast:\n${lastUse}\n${useInfo}\n\nAccurcy: ${accurcy}.\nOn Hit: ${damage} damage.\n`;
 
         if(spellLevel)
         {
@@ -1140,7 +1140,7 @@ function uploadEdit()
 
         set(ref(database, `playerChar/${player}/favorites/actions/${curClass}/${lastAbility}`), null);
     }
-    
+
     emptyCards();
 }
 
