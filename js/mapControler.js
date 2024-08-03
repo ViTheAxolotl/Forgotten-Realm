@@ -1123,7 +1123,7 @@ function handleFavoriteBtn()
         
         if(spellLevel)
         {
-            set(ref(database, `playerChar/${player}/favorites/spells/${spellLevel}/${cardName}`), wholeSpells[spellLevel][spellName]);
+            set(ref(database, `playerChar/${player}/favorites/spells/${spellLevel}/${cardName}`), wholeSpells[spellLevel][cardName]);
         }
 
         else
