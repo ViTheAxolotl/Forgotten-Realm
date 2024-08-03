@@ -1112,19 +1112,35 @@ function uploadEdit()
 {
     let spellDisc = document.getElementsByClassName("spellDisc");
 
-    set(ref(database, `playerChar/${player}/favorites/spells/${spellDisc[1].value.trim()}/${spellDisc[0].value.trim()}`), 
+    if(spellLevel)
     {
-        castTime : spellDisc[2].value.trim(),
-        components : spellDisc[4].value.trim(),
-        concentration : spellDisc[6].value.trim(),
-        description : spellDisc[7].value.trim(),
-        duration : spellDisc[5].value.trim(),
-        level : spellDisc[1].value.trim(),
-        name : spellDisc[0].value.trim(),
-        range : spellDisc[3].value.trim()
-    });
+        set(ref(database, `playerChar/${player}/favorites/spells/${spellDisc[1].value.trim()}/${spellDisc[0].value.trim()}`), 
+        {
+            castTime : spellDisc[2].value.trim(),
+            components : spellDisc[4].value.trim(),
+            concentration : spellDisc[6].value.trim(),
+            description : spellDisc[7].value.trim(),
+            duration : spellDisc[5].value.trim(),
+            level : spellDisc[1].value.trim(),
+            name : spellDisc[0].value.trim(),
+            range : spellDisc[3].value.trim()
+        });
 
-    set(ref(database, `playerChar/${player}/favorites/spells/${spellLevel}/${lastSpell}`), null);
+        set(ref(database, `playerChar/${player}/favorites/spells/${spellLevel}/${lastSpell}`), null);
+    }
+
+    else
+    {
+        set(ref(database, `playerChar/${player}/favorites/actions/${spellDisc[1].value.trim()}/${spellDisc[0].value.trim()}`), 
+        {
+            description : spellDisc[2].value.trim(),
+            level : spellDisc[1].value.trim(),
+            name : spellDisc[0].value.trim(),
+        });
+
+        set(ref(database, `playerChar/${player}/favorites/actions/${curClass}/${lastAbility}`), null);
+    }
+    
     emptyCards();
 }
 
