@@ -209,7 +209,7 @@ function diceRoller(amount, dice, modifier)
     let sum = 0;
     let viewMod = modifier;
     if(modifier >= 0){viewMod = "+" + modifier;}
-    let message = `${player} rolled \`${amount}d${dice}${viewMod}\`: \`(`;
+    let message = `${player} rolled *${amount}d${dice}${viewMod}*: *(`;
     
     for(let roll of rolls)
     {
@@ -223,7 +223,7 @@ function diceRoller(amount, dice, modifier)
     }
     
     let finalResult = sum + parseInt(modifier);
-    message += `)${viewMod}= **${finalResult}**\``;
+    message += `)${viewMod}=* **${finalResult}**`;
 
     return message;
 }
