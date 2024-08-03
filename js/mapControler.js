@@ -916,17 +916,6 @@ function handleCardClick()
 
             optionDiv.appendChild(slotSelect);
         }
-
-        if(favorite) 
-        {
-            let edit = document.createElement("button");
-            edit.classList.add("gridButton");
-            edit.onclick = handleEditCard;
-            edit.innerHTML = "Edit";
-            edit.name = currentTitle;
-            edit.style.margin = "0px 5px";
-            optionDiv.appendChild(edit);
-        }
     }
 
     else
@@ -944,6 +933,17 @@ function handleCardClick()
         }
 
         castBtn.innerHTML = "Use Ability";
+    }
+
+    if(favorite) 
+    {
+        let edit = document.createElement("button");
+        edit.classList.add("gridButton");
+        edit.onclick = handleEditCard;
+        edit.innerHTML = "Edit";
+        edit.name = currentTitle;
+        edit.style.margin = "0px 5px";
+        optionDiv.appendChild(edit);
     }
 
     optionDiv.appendChild(castBtn);
@@ -1038,59 +1038,74 @@ function handleEditCard()
 {
     emptyCards();
 
+    let cardDiv = document.createElement("div");
+    cardDiv.setAttribute("class", "card .bg-UP-blue notes");
+    let cardBody = document.createElement("div");
+    cardBody.setAttribute("class", "card-body notes");
+    let cardTitle = document.createElement("h5");
+    cardTitle.setAttribute("class", "card-title");
+    cardBody.appendChild(cardTitle);
+    let text;
+    let temp;
+
     if(spellLevel)
     {
         let spell = lastSpell;
-        let text = ["Name:", "Level:", "Casting Time:", "Range:", "Components:", "Duration:", "Concentration:", "Description:"];
-        let temp = [`${toTitleCase(wholeFavorite["spells"][spellLevel][spell]["name"])}`, `${spellLevel}`, `${toTitleCase(wholeFavorite["spells"][spellLevel][spell]["castTime"])}`, `${toTitleCase(wholeFavorite["spells"][spellLevel][spell]["range"])}`, `${wholeFavorite["spells"][spellLevel][spell]["components"]}`, `${toTitleCase(wholeFavorite["spells"][spellLevel][spell]["duration"])}`, `${wholeFavorite["spells"][spellLevel][spell]["concentration"]}`, `${wholeFavorite["spells"][spellLevel][spell]["description"]}`]
-        let cardDiv = document.createElement("div");
-        cardDiv.setAttribute("class", "card .bg-UP-blue notes");
-        let cardBody = document.createElement("div");
-        cardBody.setAttribute("class", "card-body notes");
-        let cardTitle = document.createElement("h5");
-        cardTitle.setAttribute("class", "card-title");
-        cardTitle.innerHTML = temp[0];
-        cardBody.appendChild(cardTitle);
-
-        for(let i = 0; i < text.length; i++)
-        {
-            let cardText = document.createElement("p");
-            cardText.setAttribute("class", "card-text");
-            cardText.style.margin = "3px";
-            cardText.style.display = "inline";
-            cardText.innerHTML = text[i];
-            let cardInput = document.createElement("input");
-            if(text[i] == "Description:"){cardInput = document.createElement("textarea"); cardInput.rows = "8"; cardInput.style.width = "80%";}
-            cardInput.setAttribute("class", "card-text");
-            cardInput.classList.add("spellDisc");
-            cardInput.style.margin = "3px";
-            cardInput.style.display = "inline";
-            cardInput.value = temp[i];
-            cardInput.id = text[i].replace(" ", "");
-            cardBody.appendChild(cardText);
-            cardBody.appendChild(cardInput);
-            cardBody.appendChild(document.createElement("br"));
-        }
-
-        let cardText = document.createElement("p");
-        cardText.setAttribute("class", "card-text");
-        cardText.style.margin = "3px";
-        cardText.style.display = "inline";
-        cardText.innerHTML = "Instructions for auto roll";
-        cardBody.appendChild(cardText);
-        cardBody.appendChild(document.createElement("br"));
-
-        let uploadBtn = document.createElement("button");
-        uploadBtn.classList.add("gridButton");
-        uploadBtn.classList.add("center");
-        uploadBtn.onclick = uploadEdit;
-        uploadBtn.innerHTML = "Upload";
-        
-        let noteDisplay = document.getElementById("cards");
-        noteDisplay.appendChild(cardDiv);
-        cardDiv.appendChild(cardBody);
-        cardDiv.appendChild(uploadBtn);
+        text = ["Name:", "Level:", "Casting Time:", "Range:", "Components:", "Duration:", "Concentration:", "Description:"];
+        temp = [`${toTitleCase(wholeFavorite["spells"][spellLevel][spell]["name"])}`, `${spellLevel}`, `${toTitleCase(wholeFavorite["spells"][spellLevel][spell]["castTime"])}`, `${toTitleCase(wholeFavorite["spells"][spellLevel][spell]["range"])}`, `${wholeFavorite["spells"][spellLevel][spell]["components"]}`, `${toTitleCase(wholeFavorite["spells"][spellLevel][spell]["duration"])}`, `${wholeFavorite["spells"][spellLevel][spell]["concentration"]}`, `${wholeFavorite["spells"][spellLevel][spell]["description"]}`];
     }
+
+    else
+    {
+        let action = lastAbility;
+        text = ["Name:", "Tag:", "Description:"];
+        temp = [`${toTitleCase(wholeFavorite["actions"][curClass][action]["name"])}`, `${curClass}`, `${wholeFavorite["actions"][curClass][action]["description"]}`];
+    }
+
+    for(let i = 0; i < text.length; i++)
+    {
+        editCardSetup(text, temp, cardBody);
+    }
+
+    cardTitle.innerHTML = temp[0];
+    let cardText = document.createElement("p");
+    cardText.setAttribute("class", "card-text");
+    cardText.style.margin = "3px";
+    cardText.style.display = "inline";
+    cardText.innerHTML = "Instructions for auto roll";
+    cardBody.appendChild(cardText);
+    cardBody.appendChild(document.createElement("br"));
+
+    let uploadBtn = document.createElement("button");
+    uploadBtn.classList.add("gridButton");
+    uploadBtn.classList.add("center");
+    uploadBtn.onclick = uploadEdit;
+    uploadBtn.innerHTML = "Upload";
+    
+    let noteDisplay = document.getElementById("cards");
+    noteDisplay.appendChild(cardDiv);
+    cardDiv.appendChild(cardBody);
+    cardDiv.appendChild(uploadBtn);
+}
+
+function editCardSetup(text, temp, cardBody)
+{
+    let cardText = document.createElement("p");
+    cardText.setAttribute("class", "card-text");
+    cardText.style.margin = "3px";
+    cardText.style.display = "inline";
+    cardText.innerHTML = text[i];
+    let cardInput = document.createElement("input");
+    if(text[i] == "Description:"){cardInput = document.createElement("textarea"); cardInput.rows = "8"; cardInput.style.width = "80%";}
+    cardInput.setAttribute("class", "card-text");
+    cardInput.classList.add("spellDisc");
+    cardInput.style.margin = "3px";
+    cardInput.style.display = "inline";
+    cardInput.value = temp[i];
+    cardInput.id = text[i].replace(" ", "");
+    cardBody.appendChild(cardText);
+    cardBody.appendChild(cardInput);
+    cardBody.appendChild(document.createElement("br"));
 }
 
 function uploadEdit()
