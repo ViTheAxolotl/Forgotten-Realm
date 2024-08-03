@@ -209,7 +209,7 @@ function diceRoller(amount, dice, modifier, ifName)
     let sum = 0;
     let viewMod = modifier;
     if(modifier >= 0){viewMod = "+" + modifier;}
-    let message; 
+    let message = ""; 
     if(ifName){message = `${player} rolled `;}
     message += `*${amount}d${dice}${viewMod}*: *(`;
     
@@ -865,7 +865,6 @@ function handleCardClick()
     wrapper.onclick = handleFavoriteBtn;
     wrapper.appendChild(favoriteBtn);
     wrapper.style.margin = "0px 5px";
-    optionDiv.appendChild(wrapper);
 
     let castBtn = document.createElement("button");
     castBtn.classList.add("gridButton");
@@ -949,6 +948,7 @@ function handleCardClick()
     }
 
     optionDiv.appendChild(castBtn);
+    optionDiv.appendChild(wrapper);
     this.parentNode.parentNode.insertBefore(optionDiv, this.parentNode.nextSibling);
 }
 
@@ -993,7 +993,7 @@ function handleUseAction()
         damage.push("0");
         damage = diceRoller(damage[0], damage[1], damage[2], false);
         
-        display = `${wholeChar[player]["discordName"]} ${player} cast:\n${lastUse}\n${useInfo}\n\nAccurcy: ${accurcy} to Hit.\nOn Hit: ${damage} damage.\n`;
+        display = `${wholeChar[player]["discordName"]} ${player} cast:\n${lastUse}\n${useInfo}\n\nAccurcy: ${accurcy} to Hit.\nOn Hit: ${damage} Damage.\n`;
 
         if(spellLevel)
         {
