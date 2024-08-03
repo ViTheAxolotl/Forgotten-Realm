@@ -203,13 +203,15 @@ function basicRoll(amount, dice)
     return rolls;
 }
 
-function diceRoller(amount, dice, modifier)
+function diceRoller(amount, dice, modifier, ifName)
 {
     let rolls = basicRoll(amount, dice);
     let sum = 0;
     let viewMod = modifier;
     if(modifier >= 0){viewMod = "+" + modifier;}
-    let message = `${player} rolled *${amount}d${dice}${viewMod}*: *(`;
+    let message; 
+    if(ifName){message = `${player} rolled `;}
+    message += `*${amount}d${dice}${viewMod}*: *(`;
     
     for(let roll of rolls)
     {
@@ -236,7 +238,7 @@ function handleDiceRoll()
     
     if(amount != "" && dice != "" && modifier != "")
     {
-        sendDiscordMessage(diceRoller(amount, dice, modifier));
+        sendDiscordMessage(diceRoller(amount, dice, modifier, true));
     }
 
     else{alert("Need input in all 3 spaces.");}
@@ -973,7 +975,7 @@ function handleUseAction()
         let userAddTo;
         if(spellLevel){userAddTo = prompt("What is your Spell Attack Bonus?", wholeChar[player]["stats"]["addToSpell"]);}
         else{userAddTo = prompt("What is your Attack Bonus?", wholeChar[player]["stats"]["attackBonus"]);}
-        let accurcy = diceRoller(1, 20, userAddTo);
+        let accurcy = diceRoller(1, 20, userAddTo, false);
         
         if(discription.includes(currentLv))
         {
@@ -989,9 +991,9 @@ function handleUseAction()
         damage = damage.slice(8, damage.indexOf("}"));
         damage = damage.split("d");
         damage.push("0");
-        damage = diceRoller(damage[0], damage[1], damage[2]);
+        damage = diceRoller(damage[0], damage[1], damage[2], false);
         
-        display = `${wholeChar[player]["discordName"]} ${player} cast:\n${lastUse}\n${useInfo}\n\nAccurcy: ${accurcy}.\nOn Hit: ${damage} damage.\n`;
+        display = `${wholeChar[player]["discordName"]} ${player} cast:\n${lastUse}\n${useInfo}\n\nAccurcy: ${accurcy} to Hit.\nOn Hit: ${damage} damage.\n`;
 
         if(spellLevel)
         {
