@@ -1064,7 +1064,7 @@ function handleEditCard()
 
     for(let i = 0; i < text.length; i++)
     {
-        editCardSetup(text, temp, cardBody);
+        editCardSetup(text, temp, cardBody, i);
     }
 
     cardTitle.innerHTML = temp[0];
@@ -1088,7 +1088,7 @@ function handleEditCard()
     cardDiv.appendChild(uploadBtn);
 }
 
-function editCardSetup(text, temp, cardBody)
+function editCardSetup(text, temp, cardBody, i)
 {
     let cardText = document.createElement("p");
     cardText.setAttribute("class", "card-text");
