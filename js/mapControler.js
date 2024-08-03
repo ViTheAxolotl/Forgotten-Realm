@@ -175,7 +175,7 @@ function setMainVaribles()
 
 function sendDiscordMessage(message)
 {
-    message = message + "\n";
+    message = message + "\n\`\`\`───────────────────────────────────────────────────────────────────────────────────────────────────\`\`\`";
     let webhook = wholeChar["Vi"]["testingWebhook"];
     const contents = `${message}`;
     const request = new XMLHttpRequest();
