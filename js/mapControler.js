@@ -175,7 +175,7 @@ function setMainVaribles()
 
 function sendDiscordMessage(message)
 {
-    message = message + "\n\`\`\`───────────────────────────────────────────────────────────────────────────────────────────────────\`\`\`";
+    message = message + "\`\`\`";
     let webhook = wholeChar["Vi"]["testingWebhook"];
     const contents = `${message}`;
     const request = new XMLHttpRequest();
@@ -238,7 +238,7 @@ function handleDiceRoll()
     
     if(amount != "" && dice != "" && modifier != "")
     {
-        sendDiscordMessage(diceRoller(amount, dice, modifier, true));
+        sendDiscordMessage("\`\`\`" + diceRoller(amount, dice, modifier, true));
     }
 
     else{alert("Need input in all 3 spaces.");}
@@ -993,7 +993,7 @@ function handleUseAction()
         damage.push("0");
         damage = diceRoller(damage[0], damage[1], damage[2], false);
         
-        display = `${wholeChar[player]["discordName"]} ${player} cast:\n${lastUse}\n${useInfo}\n\nAccurcy: ${accurcy} to Hit.\nOn Hit: ${damage} Damage.\n`;
+        display = `\`\`\`${wholeChar[player]["discordName"]} ${player} cast:\n${lastUse}\n${useInfo}\n\nAccurcy: ${accurcy} to Hit.\nOn Hit: ${damage} Damage.\n`;
 
         if(spellLevel)
         {
