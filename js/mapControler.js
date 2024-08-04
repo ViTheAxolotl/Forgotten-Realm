@@ -338,6 +338,9 @@ function handleChangeSecondDisplay()
     {
         emptyCards();
 
+        spellLevel = undefined;
+        curClass = undefined;
+
         for(let sButton of secondMenu)
         {
             let prop;
