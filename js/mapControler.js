@@ -959,6 +959,12 @@ function handleCardClick()
         this.parentNode.appendChild(wrapper);
         this.parentNode.parentNode.insertBefore(optionDiv, this.parentNode.nextSibling);
     }
+
+    else
+    {
+        lastSpell = "";
+        lastAbility = "";
+    }
 }
 
 function handleUseAction()
@@ -1005,7 +1011,7 @@ function handleUseAction()
         else{damage.push("0");}
         damage = diceRoller(damage[0], damage[1], damage[2], false);
         
-        display = `${wholeChar[player]["discordName"]} ${player} cast,\n${lastUse}:\n${useInfo}\n\nAccurcy: ${accurcy} to Hit.\nOn Hit: ${damage} Damage.\n`;
+        display = `@${player} cast,\n${lastUse}:\n${useInfo}\n\nAccurcy: ${accurcy} to Hit.\nOn Hit: ${damage} Damage.\n`;
 
         if(spellLevel)
         {
