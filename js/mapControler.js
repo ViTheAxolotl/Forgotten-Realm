@@ -208,7 +208,7 @@ function diceRoller(amount, dice, modifier, ifName)
     let rolls = basicRoll(amount, dice);
     let sum = 0;
     let viewMod = modifier;
-    if(modifier >= 0){viewMod = "+" + modifier;}
+    if(modifier >= 0 && !viewMod.includes("+")){viewMod = "+" + modifier;}
     let message = ""; 
     if(ifName){message = `${player} rolled `;}
     message += `*${amount}d${dice}${viewMod}*: *(`;
@@ -852,107 +852,113 @@ function handleCardClick()
     
     let temp = document.getElementById("optionDiv");
     if(temp){temp.remove();}
+    let favBtn = document.getElementById("favBtn");
+    if(favBtn){favBtn.remove();}
     
-    let optionDiv = document.createElement("div");
-    optionDiv.classList.add("center");
-    optionDiv.id = "optionDiv";
-
-    let favoriteBtn = document.createElement("img");
-    favoriteBtn.setAttribute("id", "favoriteBtn");
-    favoriteBtn.classList.add(currentTitle.replaceAll(" ", "_"));
-    favoriteBtn.style.height = "20px";
-    favoriteBtn.style.width = "20px";
-    favoriteBtn.setAttribute("src", "images/unFavorite.png");
-    let wrapper = document.createElement("button");
-    wrapper.classList.add("gridButton");
-    wrapper.classList.add("center");
-    wrapper.onclick = handleFavoriteBtn;
-    wrapper.appendChild(favoriteBtn);
-
-    let castBtn = document.createElement("button");
-    castBtn.classList.add("gridButton");
-    castBtn.onclick = handleUseAction;
-    castBtn.innerHTML = "Cast Spell";
-    castBtn.name = currentTitle;
-    castBtn.style.margin = "0px 5px";
-
-    if(spellLevel)
+    if(lastAbility != currentTitle && lastSpell != currentTitle)
     {
-        lastSpell = currentTitle;
-        let spellDisc = db[spellLevel][currentTitle]["description"];
-        if(favorite){spellDisc = wholeFavorite["spells"][spellLevel][currentTitle]["description"]}
+        let optionDiv = document.createElement("div");
+        optionDiv.classList.add("center");
+        optionDiv.id = "optionDiv";
 
-        if(wholeChar[player]["favorites"]["spells"][spellLevel])
+        let favoriteBtn = document.createElement("img");
+        favoriteBtn.setAttribute("id", "favoriteBtn");
+        favoriteBtn.classList.add(currentTitle.replaceAll(" ", "_"));
+        favoriteBtn.style.height = "20px";
+        favoriteBtn.style.width = "20px";
+        favoriteBtn.setAttribute("src", "images/unFavorite.png");
+        let wrapper = document.createElement("button");
+        wrapper.classList.add("gridButton");
+        wrapper.classList.add("center");
+        wrapper.onclick = handleFavoriteBtn;
+        wrapper.id = "favBtn";
+        wrapper.appendChild(favoriteBtn);
+
+        let castBtn = document.createElement("button");
+        castBtn.classList.add("gridButton");
+        castBtn.onclick = handleUseAction;
+        castBtn.innerHTML = "Cast Spell";
+        castBtn.name = currentTitle;
+        castBtn.style.margin = "0px 5px";
+
+        if(spellLevel)
         {
-            if(wholeChar[player]["favorites"]["spells"][spellLevel][currentTitle])
-            {
-                favoriteBtn.setAttribute("src", "images/favorited.png");
-            }
-        }
+            lastSpell = currentTitle;
+            let spellDisc = db[spellLevel][currentTitle]["description"];
+            if(favorite){spellDisc = wholeFavorite["spells"][spellLevel][currentTitle]["description"]}
 
-        if(spellDisc.includes("spell slot") && spellDisc.includes("scaledamage"))
-        {
-            let scale = spellDisc.slice(spellDisc.indexOf("scaledamage"), spellDisc.indexOf("} for each slot"));
-            let individual = scale.split(" ");
-            individual = individual[1].split("|");
-            let slotSelect = document.createElement("select");
-            slotSelect.name = "upcast";
-            slotSelect.id = individual[0] + "|" + individual[2];
-            slotSelect.style.margin = "0px 5px";
-
-            for(let i = parseInt(spellLevel); i < 10; i++)
+            if(wholeChar[player]["favorites"]["spells"][spellLevel])
             {
-                let option = document.createElement("option");
-                let suff = ["st", "nd", "rd", "th"];
-                if(i > 3){suff = suff[3];}
-                else{suff = suff[i - 1];}
-                option.value = individual[0];
-                if(i > parseInt(spellLevel))
+                if(wholeChar[player]["favorites"]["spells"][spellLevel][currentTitle])
                 {
-                    let inisal = individual[0].split("d");
-                    let multiplier = individual[2].split("d");
-                    let total = parseInt(inisal[0]) + parseInt(multiplier[0]) * (i - parseInt(spellLevel));
-                    option.value = `${total}d${inisal[1]}`;
+                    favoriteBtn.setAttribute("src", "images/favorited.png");
                 }
-                option.text = `${i}${suff} Level Slot (${option.value})`;
-                slotSelect.appendChild(option);
             }
 
-            optionDiv.appendChild(slotSelect);
-        }
-    }
-
-    else
-    {
-        lastAbility = currentTitle;
-        let abilityDisc = db[curClass][currentTitle]["description"];
-        if(favorite){abilityDisc = wholeFavorite["actions"][curClass][currentTitle]["description"];}
-
-        if(wholeChar[player]["favorites"]["actions"][curClass])
-        {
-            if(wholeChar[player]["favorites"]["actions"][curClass][currentTitle])
+            if(spellDisc.includes("spell slot") && spellDisc.includes("scaledamage"))
             {
-                favoriteBtn.setAttribute("src", "images/favorited.png");
+                let scale = spellDisc.slice(spellDisc.indexOf("scaledamage"), spellDisc.indexOf("} for each slot"));
+                let individual = scale.split(" ");
+                individual = individual[1].split("|");
+                let slotSelect = document.createElement("select");
+                slotSelect.name = "upcast";
+                slotSelect.id = individual[0] + "|" + individual[2];
+                slotSelect.style.margin = "0px 5px";
+
+                for(let i = parseInt(spellLevel); i < 10; i++)
+                {
+                    let option = document.createElement("option");
+                    let suff = ["st", "nd", "rd", "th"];
+                    if(i > 3){suff = suff[3];}
+                    else{suff = suff[i - 1];}
+                    option.value = individual[0];
+                    if(i > parseInt(spellLevel))
+                    {
+                        let inisal = individual[0].split("d");
+                        let multiplier = individual[2].split("d");
+                        let total = parseInt(inisal[0]) + parseInt(multiplier[0]) * (i - parseInt(spellLevel));
+                        option.value = `${total}d${inisal[1]}`;
+                    }
+                    option.text = `${i}${suff} Level Slot (${option.value})`;
+                    slotSelect.appendChild(option);
+                }
+
+                optionDiv.appendChild(slotSelect);
             }
         }
 
-        castBtn.innerHTML = "Use Ability";
-    }
+        else
+        {
+            lastAbility = currentTitle;
+            let abilityDisc = db[curClass][currentTitle]["description"];
+            if(favorite){abilityDisc = wholeFavorite["actions"][curClass][currentTitle]["description"];}
 
-    if(favorite) 
-    {
-        let edit = document.createElement("button");
-        edit.classList.add("gridButton");
-        edit.onclick = handleEditCard;
-        edit.innerHTML = "Edit";
-        edit.name = currentTitle;
-        edit.style.margin = "0px 5px";
-        optionDiv.appendChild(edit);
-    }
+            if(wholeChar[player]["favorites"]["actions"][curClass])
+            {
+                if(wholeChar[player]["favorites"]["actions"][curClass][currentTitle])
+                {
+                    favoriteBtn.setAttribute("src", "images/favorited.png");
+                }
+            }
 
-    optionDiv.appendChild(castBtn);
-    this.parentNode.appendChild(wrapper);
-    this.parentNode.parentNode.insertBefore(optionDiv, this.parentNode.nextSibling);
+            castBtn.innerHTML = "Use Ability";
+        }
+
+        if(favorite) 
+        {
+            let edit = document.createElement("button");
+            edit.classList.add("gridButton");
+            edit.onclick = handleEditCard;
+            edit.innerHTML = "Edit";
+            edit.name = currentTitle;
+            edit.style.margin = "0px 5px";
+            optionDiv.appendChild(edit);
+        }
+
+        optionDiv.appendChild(castBtn);
+        this.parentNode.appendChild(wrapper);
+        this.parentNode.parentNode.insertBefore(optionDiv, this.parentNode.nextSibling);
+    }
 }
 
 function handleUseAction()
