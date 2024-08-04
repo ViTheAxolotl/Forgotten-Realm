@@ -81,6 +81,7 @@ let wholeFavorite = {};
 let wholeSpells;
 let wholeActions;
 let currentLv = "5th level";
+let profBonus = "3";
 let spellLevel;
 let curClass;
 let searchBar = document.getElementsByName("search");
@@ -1009,9 +1010,10 @@ function handleUseAction()
         if(damage[1].includes("+")){let temp = damage[1].split("+"); damage.push(temp[1]); damage[1] = temp[0];}
         else if(damage[1].includes("-")){let temp = damage[1].split("-"); damage.push(`-${temp[1]}`); damage[1] = temp[0];}
         else{damage.push("0");}
+        if(accurcy.includes("(20)")){damage[0] = `${parseInt(damage[0]) * 2}`}
         damage = diceRoller(damage[0], damage[1], damage[2], false);
         
-        display = `@${player} cast,\n${lastUse}:\n${useInfo}\n\nAccurcy: ${accurcy} to Hit.\nOn Hit: ${damage} Damage.\n`;
+        display = `${wholeChar[player]["charName"]} cast,\n${lastUse}:\n${useInfo}\n\nAccurcy: ${accurcy} to Hit.\nOn Hit: ${damage} Damage.\n`;
 
         if(spellLevel)
         {
@@ -1020,7 +1022,7 @@ function handleUseAction()
 
         else
         {
-            display = display.replaceAll("cast", "use ability");
+            display = display.replaceAll("cast", "use the ability");
             set(ref(database, `playerChar/${player}/stats/attackBonus`), userAddTo);
         }
     }
