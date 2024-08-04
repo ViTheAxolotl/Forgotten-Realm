@@ -865,7 +865,6 @@ function handleCardClick()
     wrapper.classList.add("center");
     wrapper.onclick = handleFavoriteBtn;
     wrapper.appendChild(favoriteBtn);
-    wrapper.style.margin = "0px 5px";
 
     let castBtn = document.createElement("button");
     castBtn.classList.add("gridButton");
@@ -1080,7 +1079,7 @@ function handleEditCard()
     cardBody.appendChild(document.createElement("br"));
 
     let btnDiv = document.createElement("div");
-    btnDiv.classList.add("center");
+    btnDiv.style.textAlign = "center";
 
     let uploadBtn = document.createElement("button");
     uploadBtn.classList.add("gridButton");
@@ -1093,6 +1092,7 @@ function handleEditCard()
     cancelBtn.classList.add("center");
     cancelBtn.onclick = cancelEdit;
     cancelBtn.innerHTML = "Cancel";
+    cancelBtn.style.marginLeft = "5px";
     
     let noteDisplay = document.getElementById("cards");
     noteDisplay.appendChild(cardDiv);
