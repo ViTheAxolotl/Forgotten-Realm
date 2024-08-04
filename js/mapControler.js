@@ -975,8 +975,9 @@ function handleUseAction()
 
     if(discription.includes("{@damage"))
     {
-        let userAddTo;
-        if(spellLevel){userAddTo = prompt("What is your Spell Attack Bonus?", wholeChar[player]["stats"]["addToSpell"]);}
+        let userAddTo = "";
+        if(discription.includes("ToHit}")){let temp = discription.charAt(discription.indexOf("toHit}")); userAddTo = temp - 2; userAddTo += temp - 1}
+        else if(spellLevel){userAddTo = prompt("What is your Spell Attack Bonus?", wholeChar[player]["stats"]["addToSpell"]);}
         else{userAddTo = prompt("What is your Attack Bonus?", wholeChar[player]["stats"]["attackBonus"]);}
         let accurcy = diceRoller(1, 20, userAddTo, false);
         
@@ -993,7 +994,9 @@ function handleUseAction()
         damage = discription.slice(discription.indexOf("@damage"));
         damage = damage.slice(8, damage.indexOf("}"));
         damage = damage.split("d");
-        damage.push("0");
+        if(damage[1].includes("+")){let temp = damage.split("+"); damage.push(temp[1]); damage[1] = temp[0];}
+        else if(damage[1].includes("-")){let temp = damage.split("-"); damage.push(`-${temp[1]}`); damage[1] = temp[0];}
+        else{damage.push("0");}
         damage = diceRoller(damage[0], damage[1], damage[2], false);
         
         display = `${wholeChar[player]["discordName"]} ${player} cast:\n${lastUse}\n${useInfo}\n\nAccurcy: ${accurcy} to Hit.\nOn Hit: ${damage} Damage.\n`;
