@@ -862,6 +862,7 @@ function handleCardClick()
     favoriteBtn.setAttribute("src", "images/unFavorite.png");
     let wrapper = document.createElement("button");
     wrapper.classList.add("gridButton");
+    wrapper.classList.add("center");
     wrapper.onclick = handleFavoriteBtn;
     wrapper.appendChild(favoriteBtn);
     wrapper.style.margin = "0px 5px";
@@ -1078,6 +1079,9 @@ function handleEditCard()
     cardBody.appendChild(cardText);
     cardBody.appendChild(document.createElement("br"));
 
+    let btnDiv = document.createElement("div");
+    btnDiv.classList.add("center");
+
     let uploadBtn = document.createElement("button");
     uploadBtn.classList.add("gridButton");
     uploadBtn.classList.add("center");
@@ -1093,8 +1097,9 @@ function handleEditCard()
     let noteDisplay = document.getElementById("cards");
     noteDisplay.appendChild(cardDiv);
     cardDiv.appendChild(cardBody);
-    cardDiv.appendChild(uploadBtn);
-    cardDiv.appendChild(cancelBtn);
+    btnDiv.appendChild(uploadBtn);
+    btnDiv.appendChild(cancelBtn);
+    cardDiv.appendChild(btnDiv);
 }
 
 function editCardSetup(text, temp, cardBody, i)
