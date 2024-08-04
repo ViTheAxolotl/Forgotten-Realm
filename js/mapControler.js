@@ -1029,9 +1029,9 @@ function handleUseAction()
 
     else
     {
-        display = `${wholeChar[player]["discordName"]} ${player} cast:\n${lastUse}\n${useInfo}`;
+        display = `${wholeChar[player]["charName"]} cast:\n${lastUse}\n${useInfo}`;
 
-        if(curClass){display = display.replaceAll("cast", "use ability");}
+        if(curClass){display = display.replaceAll("cast", "use the ability");}
     }
 
     sendDiscordMessage(display);
