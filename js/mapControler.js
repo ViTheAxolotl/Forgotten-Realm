@@ -1083,6 +1083,12 @@ function handleEditCard()
     uploadBtn.classList.add("center");
     uploadBtn.onclick = uploadEdit;
     uploadBtn.innerHTML = "Upload";
+
+    let cancelBtn = document.createElement("button");
+    cancelBtn.classList.add("gridButton");
+    cancelBtn.classList.add("center");
+    cancelBtn.onclick = cancelEdit;
+    cancelBtn.innerHTML = "Cancel";
     
     let noteDisplay = document.getElementById("cards");
     noteDisplay.appendChild(cardDiv);
@@ -1108,6 +1114,27 @@ function editCardSetup(text, temp, cardBody, i)
     cardBody.appendChild(cardText);
     cardBody.appendChild(cardInput);
     cardBody.appendChild(document.createElement("br"));
+}
+
+function cancelEdit()
+{
+    if(spellLevel)
+    {
+        if(lastSpell == "Sacred Flame")
+        {
+            set(ref(database, `playerChar/${player}/favorites/spells/${spellLevel}/${lastSpell}`), null);
+        }
+    }
+
+    else
+    {
+        if(lastAbility == "Magical Tinkering")
+        {
+            set(ref(database, `playerChar/${player}/favorites/actions/${curClass}/${lastAbility}`), null);
+        }   
+    }
+
+    emptyCards();
 }
 
 function uploadEdit()
