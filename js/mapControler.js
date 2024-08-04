@@ -976,7 +976,7 @@ function handleUseAction()
     if(discription.includes("{@damage"))
     {
         let userAddTo = "";
-        if(discription.includes("ToHit}")){let temp = discription.indexOf("toHit}"); userAddTo = discription.charAt(temp - 2); userAddTo += discription.charAt(temp - 1)}
+        if(discription.includes("toHit}")){let temp = discription.indexOf("toHit}"); userAddTo = discription.charAt(temp - 2); userAddTo += discription.charAt(temp - 1)}
         else if(spellLevel){userAddTo = prompt("What is your Spell Attack Bonus?", wholeChar[player]["stats"]["addToSpell"]);}
         else{userAddTo = prompt("What is your Attack Bonus?", wholeChar[player]["stats"]["attackBonus"]);}
         let accurcy = diceRoller(1, 20, userAddTo, false);
@@ -999,7 +999,7 @@ function handleUseAction()
         else{damage.push("0");}
         damage = diceRoller(damage[0], damage[1], damage[2], false);
         
-        display = `${wholeChar[player]["discordName"]} ${player} cast:\n${lastUse}\n${useInfo}\n\nAccurcy: ${accurcy} to Hit.\nOn Hit: ${damage} Damage.\n`;
+        display = `${wholeChar[player]["discordName"]} ${player} cast,\n${lastUse}:\n${useInfo}\n\nAccurcy: ${accurcy} to Hit.\nOn Hit: ${damage} Damage.\n`;
 
         if(spellLevel)
         {
@@ -1173,7 +1173,7 @@ function uploadEdit()
     else
     {
         set(ref(database, `playerChar/${player}/favorites/actions/${curClass}/${lastAbility}`), null);
-        
+
         set(ref(database, `playerChar/${player}/favorites/actions/${spellDisc[1].value.trim()}/${spellDisc[0].value.trim()}`), 
         {
             description : spellDisc[2].value.trim(),
