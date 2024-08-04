@@ -948,7 +948,7 @@ function handleCardClick()
     }
 
     optionDiv.appendChild(castBtn);
-    optionDiv.appendChild(wrapper);
+    this.parentNode.appendChild(wrapper);
     this.parentNode.parentNode.insertBefore(optionDiv, this.parentNode.nextSibling);
 }
 
@@ -1094,6 +1094,7 @@ function handleEditCard()
     noteDisplay.appendChild(cardDiv);
     cardDiv.appendChild(cardBody);
     cardDiv.appendChild(uploadBtn);
+    cardDiv.appendChild(cancelBtn);
 }
 
 function editCardSetup(text, temp, cardBody, i)
