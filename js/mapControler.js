@@ -175,7 +175,7 @@ function setMainVaribles()
 
 function sendDiscordMessage(message)
 {
-    message = message + "\n\n || ||";
+    message = message + "\n\n ||                ||";
     let webhook = wholeChar["Vi"]["testingWebhook"];
     const contents = `${message}`;
     const request = new XMLHttpRequest();
