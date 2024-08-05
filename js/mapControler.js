@@ -1198,7 +1198,7 @@ function uploadEdit()
 
 function handleFavoriteBtn()
 {
-    let cardName = this.lastChild.classList[0].replaceAll("_", " ");
+    let cardName = this.lastChild.classList[0].replaceAll("_", " ").replaceAll("/", " or ");
 
     if(this.lastChild.src.includes("images/unFavorite.png")) //Add to favrites
     {
