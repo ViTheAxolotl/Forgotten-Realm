@@ -341,6 +341,7 @@ function handleChangeSecondDisplay()
 
         spellLevel = undefined;
         curClass = undefined;
+        document.getElementById("searchDiv").style.display = "none";
 
         for(let sButton of secondMenu)
         {
@@ -779,41 +780,37 @@ function handleShowActions()
 
 function setUpText(current, lst)
 {
-    let txt = "";
+    let txt = [""];
     
     if(spellLevel)
     {
         txt = [`Casting Time: ${toTitleCase(lst[current]["castTime"])}`, `Range: ${toTitleCase(lst[current]["range"])}`, `Components: ${lst[current]["components"]}`, `Duration: ${toTitleCase(lst[current]["duration"])}`];
         if(lst[current]["concentration"] == "true"){txt.push(`Concentration`);}
         txt.push(" ");
-        txt.push(`${lst[current]["description"]}`);
     }
 
-    else
+    let lineNum = txt.length - 1;
+    let temp = JSON.stringify(lst[current]["description"]).replaceAll("\"", "").split("\\n");
+    for(let t in temp)
     {
-        txt = [""];
-        let lineNum = 0;
-        let temp = JSON.stringify(lst[current]["description"]).replaceAll("\"", "").split("\\n");
-        for(let t in temp)
+        if(temp[t].includes("{@Choice}"))
         {
-            if(temp[t].includes("{@Choice}"))
+            txt.push(temp[t].replace("{@Choice}", "<li>") + "</li>");
+            lineNum++;
+        }
+
+        else
+        {
+            if(lineNum > 0 && txt[`${lineNum}`].includes("<li>"))
             {
-                txt.push(temp[t].replace("{@Choice}", "<li>") + "</li>");
                 lineNum++;
+                txt.push("");
             }
 
-            else
-            {
-                if(lineNum > 0 && txt[`${lineNum}`].includes("<li>"))
-                {
-                    lineNum++;
-                    txt.push("");
-                }
-
-                txt[`${lineNum}`] = txt[`${lineNum}`] + ` ${temp[t]}`;
-            }
+            txt[`${lineNum}`] = txt[`${lineNum}`] + ` ${temp[t]}`;
         }
     }
+    
     
     return txt;
 }
