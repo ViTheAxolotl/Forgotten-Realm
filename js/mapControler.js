@@ -341,7 +341,7 @@ function handleChangeSecondDisplay()
 
         spellLevel = undefined;
         curClass = undefined;
-        document.getElementById("searchDiv").style.display = "none";
+        document.getElementById("searchDiv").style.display = "block";
 
         for(let sButton of secondMenu)
         {
