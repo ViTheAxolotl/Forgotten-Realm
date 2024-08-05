@@ -1025,7 +1025,7 @@ function handleUseAction()
             display = display.replaceAll("cast", "use the ability");
             set(ref(database, `playerChar/${player}/stats/attackBonus`), userAddTo);
         }
-    }
+    } 
 
     else
     {
