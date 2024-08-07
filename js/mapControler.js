@@ -143,9 +143,9 @@ function setMainVaribles()
     if(rect.width < 999)
     {
         mapSize = rect.width;
-        bumper = 0; //was 9
-        distance = mapSize / 14; //Math.round(mapSize / 14);
-        movement = distance - 4; 
+        bumper = 9;
+        distance = Math.round(mapSize / 14);
+        movement = distance - 4;
     }
 
     else
@@ -1053,7 +1053,7 @@ function handleUseAction()
             damage = diceRoller(damage[0], damage[1], damage[2], false);
     
             if(display){display += `\nResult: ${damage}. \n`;}
-            else{display = `${wholeChar[player]["charName"]} used the ability, \n${lastUse}:\n${useInfo}\n\nResult: ${damage}. \n`};
+            else{display = `${wholeChar[player]["charName"]} used the ability, \n${lastUse}:\n${useInfo}\n\nResult: ${damage}. \n`;}
         }
     
         if(discription.includes("{@sneak"))
@@ -1063,7 +1063,7 @@ function handleUseAction()
             damage = diceRoller(damage[0], damage[1], damage[2], false);
     
             if(display){display += `nResult: ${damage}. \n`;}
-            else{display = `${wholeChar[player]["charName"]} used the ability, \n${lastUse}:\n${useInfo}\n\nResult: ${damage}. \n`};
+            else{display = `${wholeChar[player]["charName"]} used the ability, \n${lastUse}:\n${useInfo}\n\nResult: ${damage}. \n`;}
         }
     }
     
