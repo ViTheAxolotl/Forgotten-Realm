@@ -102,7 +102,7 @@ function init()
     {
         mapSize = rect.width * (93/100); //remove fraction
         bumper = 0; //was 9
-        distance = mapSize / 14; //Math.round(mapSize / 14);
+        distance = mapSize / 13; //Math.round(mapSize / 14);
         movement = distance; //-4
     }
 
