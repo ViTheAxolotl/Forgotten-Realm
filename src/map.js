@@ -112,7 +112,7 @@ function init()
         bumper = Math.round(rect.width / 10) + 2;
         distance = Math.round(mapSize / 14);
         movement = distance - 6;
-    }
+    } 
 
     let disAndBum = distance + bumper;
     pos = [disAndBum, disAndBum + movement, disAndBum + (movement * 2), disAndBum + (movement * 3), disAndBum + (movement * 4), disAndBum + (movement * 5), disAndBum + (movement * 6), disAndBum + (movement * 7), disAndBum + (movement * 8), disAndBum + (movement * 9), disAndBum + (movement * 10), disAndBum + (movement * 11), disAndBum + (movement * 12)];
