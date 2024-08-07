@@ -67,14 +67,12 @@ let curCharacter;
 let temp;
 let mode;
 let user;
-let wholeSpells;
-let newWholeSpells;
+let wholeActions;
 
 function init()
 {
     fetch('https://vitheaxolotl.github.io/Forgotten-Realm/src/files.json').then(res => res.json()).then((json) => imgs = json);
-    fetch('https://vitheaxolotl.github.io/Forgotten-Realm/src/spells-phb.json').then(res => res.json()).then((json) => wholeSpells = json);
-    fetch('https://vitheaxolotl.github.io/Forgotten-Realm/src/spells.json').then(res => res.json()).then((json) => newWholeSpells = json);
+    fetch('https://vitheaxolotl.github.io/Forgotten-Realm/src/actions.json').then(res => res.json()).then((json) => wholeActions = json);
     
     for(let button of document.getElementsByTagName("button"))
     {
@@ -1034,7 +1032,10 @@ function handleGenerate()
     
     for(let user of Object.keys(wholeChar))
     { 
-        set(ref(database, `playerChar/${user}/favorites/actions/`), {"hold" : {"hold" : "hold"}});
+        for(let title of Object.keys(wholeActions))
+        {
+            set(ref(database, `playerChar/${user}/favorites/actions/Misc/${title}`), {"hold" : {"hold" : "hold"}});
+        }
     }
 
     alert("done");
