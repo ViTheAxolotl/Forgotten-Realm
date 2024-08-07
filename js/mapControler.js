@@ -939,6 +939,29 @@ function handleCardClick()
                 }
             }
 
+            if(spellDisc.includes("{@absorb}"))
+            {
+                let dice = 4;
+                let lvlSelect = document.createElement("select");
+                lvlSelect.name = "levelSel";
+                lvlSelect.style.margin = "0px 5px";
+
+                for(let i = 1; i < 10; i++)
+                {
+                    let option = document.createElement("option");
+                    let suff = ["st", "nd", "rd", "th"];
+                    if(i > 3){suff = suff[3];}
+                    else{suff = suff[i - 1];}
+
+                    option.value = `1d${dice}`;
+                    dice = dice + 2;
+                    option.text = `${i}${suff} Level Slot (1 on ${option.value})`;
+                    lvlSelect.appendChild(option);
+                }
+
+                optionDiv.appendChild(slotSelect);
+            }
+
             castBtn.innerHTML = "Use Ability";
         }
 
@@ -983,6 +1006,12 @@ function handleUseAction()
     useInfo = setUpText(lastUse, listOf);
     useInfo = useInfo.join("\n");
 
+    if(upcast[0])
+    {
+        if(discription.includes("{@damage")){discription = `{@damage ${upcast[0].value}}`;}
+        else if(discription.includes("{@absorb")){discription = `{@sDice ${upcast[0].value}}`}
+    }
+
     if(discription.includes("{@damage"))
     {
         let userAddTo = "";
@@ -994,11 +1023,6 @@ function handleUseAction()
         if(discription.includes(currentLv))
         {
             discription = discription.slice(`${discription.indexOf(currentLv)}`);
-        }
-
-        else if(upcast[0])
-        {
-            discription = `{@damage ${upcast[0].value}}`;
         }
         
         damage = splitRoll(discription, "@damage");
@@ -1024,7 +1048,16 @@ function handleUseAction()
         damage = splitRoll(discription, "@sDice");
         damage = diceRoller(damage[0], damage[1], damage[2], false);
 
-        display = `${wholeChar[player]["charName"]} used the ability, \n${lastUse}:\n${useInfo}\n\nResult: ${damage} Damage. \n`;
+        display = `${wholeChar[player]["charName"]} used the ability, \n${lastUse}:\n${useInfo}\n\nResult: ${damage}. \n`;
+    }
+
+    else if(discription.includes("{@sneak"))
+    {
+        let lvl = currentLv.charAt(0);
+        damage = [`${Math.ceil(parseInt(lvl) / 2)}`, "6", "0"];
+        damage = diceRoller(damage[0], damage[1], damage[2], false);
+
+        display = `${wholeChar[player]["charName"]} used the ability, \n${lastUse}:\n${useInfo}\n\nResult: ${damage}. \n`;
     }
 
     else
