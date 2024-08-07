@@ -101,7 +101,7 @@ function init()
     if(rect.width < 999)
     {
         mapSize = rect.width;
-        bumper = 9;
+        bumper = 0; //was 9
         distance = Math.round(mapSize / 14);
         movement = distance - 4;
     }
