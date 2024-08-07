@@ -1041,7 +1041,7 @@ function splitRoll(discription, splitValue)
 {
     let damage;
     damage = discription.slice(discription.indexOf(splitValue));
-    damage = damage.slice(8, damage.indexOf("}"));
+    damage = damage.slice(splitValue.length + 2, damage.indexOf("}"));
     damage = damage.split("d");
     if(damage[1].includes("+")){let temp = damage[1].split("+"); damage.push(temp[1]); damage[1] = temp[0];}
     else if(damage[1].includes("-")){let temp = damage[1].split("-"); damage.push(`-${temp[1]}`); damage[1] = temp[0];}
