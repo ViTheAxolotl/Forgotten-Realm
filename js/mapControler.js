@@ -939,7 +939,7 @@ function handleCardClick()
                 }
             }
 
-            if(spellDisc.includes("{@absorb}"))
+            if(abilityDisc.includes("{@absorb}"))
             {
                 let dice = 4;
                 let lvlSelect = document.createElement("select");
