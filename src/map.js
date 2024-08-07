@@ -53,7 +53,7 @@ onValue(summonsRef, (snapshot) =>
 let wholeDB = {};
 let div = document.getElementById("gridMap");
 let html = {};
-const gridMap = document.querySelector("#gridMap");
+const gridMap = document.querySelector("#grid"); //gridMap
 const rect = gridMap.getBoundingClientRect();
 let mapSize;
 let bumper;
@@ -101,7 +101,7 @@ function init()
     if(rect.width < 999)
     {
         mapSize = rect.width;
-        bumper = 2; //was 9
+        bumper = 0; //was 9
         distance = mapSize / 14; //Math.round(mapSize / 14);
         movement = distance - 4; 
     }
