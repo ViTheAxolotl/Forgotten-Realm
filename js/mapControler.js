@@ -1008,7 +1008,8 @@ function handleUseAction()
 
     if(upcast[0])
     {
-        if(discription.includes("{@damage")){discription = `{@damage ${upcast[0].value}}`;}
+        if(discription.includes("{@damage")){discription += `{@sDice ${upcast[0].value}}`;}
+        else if(discription.includes("{@scaledamage")){discription = `{@damage ${upcast[0].value}}`;}
         else if(discription.includes("{@absorb")){discription = `{@sDice ${upcast[0].value}}`}
     }
 
@@ -1031,7 +1032,8 @@ function handleUseAction()
             if(accurcy.includes("(20)")){damage[0] = `${parseInt(damage[0]) * 2}`}
             damage = diceRoller(damage[0], damage[1], damage[2], false);
             
-            display = `${wholeChar[player]["charName"]} cast,\n${lastUse}:\n${useInfo}\n\nAccurcy: ${accurcy} to Hit.\nOn Hit: ${damage} Damage.\n`;
+            if(display){display += `\nAccurcy: ${accurcy} to Hit.\nOn Hit: ${damage} Damage.\n`;}
+            else{display = `${wholeChar[player]["charName"]} cast,\n${lastUse}:\n${useInfo}\n\nAccurcy: ${accurcy} to Hit.\nOn Hit: ${damage} Damage.\n`;}
     
             if(spellLevel)
             {
@@ -1050,7 +1052,8 @@ function handleUseAction()
             damage = splitRoll(discription, "@sDice");
             damage = diceRoller(damage[0], damage[1], damage[2], false);
     
-            display = `${wholeChar[player]["charName"]} used the ability, \n${lastUse}:\n${useInfo}\n\nResult: ${damage}. \n`;
+            if(display){display += `\nResult: ${damage}. \n`;}
+            else{display = `${wholeChar[player]["charName"]} used the ability, \n${lastUse}:\n${useInfo}\n\nResult: ${damage}. \n`};
         }
     
         if(discription.includes("{@sneak"))
@@ -1059,7 +1062,8 @@ function handleUseAction()
             damage = [`${Math.ceil(parseInt(lvl) / 2)}`, "6", "0"];
             damage = diceRoller(damage[0], damage[1], damage[2], false);
     
-            display = `${wholeChar[player]["charName"]} used the ability, \n${lastUse}:\n${useInfo}\n\nResult: ${damage}. \n`;
+            if(display){display += `nResult: ${damage}. \n`;}
+            else{display = `${wholeChar[player]["charName"]} used the ability, \n${lastUse}:\n${useInfo}\n\nResult: ${damage}. \n`};
         }
     }
     
