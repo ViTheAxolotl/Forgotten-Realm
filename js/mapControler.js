@@ -959,7 +959,7 @@ function handleCardClick()
                     lvlSelect.appendChild(option);
                 }
 
-                optionDiv.appendChild(slotSelect);
+                optionDiv.appendChild(lvlSelect);
             }
 
             castBtn.innerHTML = "Use Ability";
@@ -1012,54 +1012,57 @@ function handleUseAction()
         else if(discription.includes("{@absorb")){discription = `{@sDice ${upcast[0].value}}`}
     }
 
-    if(discription.includes("{@damage"))
+    if(discription.includes("{@"))
     {
-        let userAddTo = "";
-        if(discription.includes("toHit}")){let temp = discription.indexOf("toHit}"); userAddTo = discription.charAt(temp - 2); userAddTo += discription.charAt(temp - 1)}
-        else if(spellLevel){userAddTo = prompt("What is your Spell Attack Bonus?", wholeChar[player]["stats"]["addToSpell"]);}
-        else{userAddTo = prompt("What is your Attack Bonus?", wholeChar[player]["stats"]["attackBonus"]);}
-        let accurcy = diceRoller(1, 20, userAddTo, false);
-        
-        if(discription.includes(currentLv))
+        if(discription.includes("{@damage"))
         {
-            discription = discription.slice(`${discription.indexOf(currentLv)}`);
+            let userAddTo = "";
+            if(discription.includes("toHit}")){let temp = discription.indexOf("toHit}"); userAddTo = discription.charAt(temp - 2); userAddTo += discription.charAt(temp - 1)}
+            else if(spellLevel){userAddTo = prompt("What is your Spell Attack Bonus?", wholeChar[player]["stats"]["addToSpell"]);}
+            else{userAddTo = prompt("What is your Attack Bonus?", wholeChar[player]["stats"]["attackBonus"]);}
+            let accurcy = diceRoller(1, 20, userAddTo, false);
+            
+            if(discription.includes(currentLv))
+            {
+                discription = discription.slice(`${discription.indexOf(currentLv)}`);
+            }
+            
+            damage = splitRoll(discription, "@damage");
+            if(accurcy.includes("(20)")){damage[0] = `${parseInt(damage[0]) * 2}`}
+            damage = diceRoller(damage[0], damage[1], damage[2], false);
+            
+            display = `${wholeChar[player]["charName"]} cast,\n${lastUse}:\n${useInfo}\n\nAccurcy: ${accurcy} to Hit.\nOn Hit: ${damage} Damage.\n`;
+    
+            if(spellLevel)
+            {
+                set(ref(database, `playerChar/${player}/stats/addToSpell`), userAddTo);
+            }
+    
+            else
+            {
+                display = display.replaceAll("cast", "used the ability");
+                set(ref(database, `playerChar/${player}/stats/attackBonus`), userAddTo);
+            }
         }
         
-        damage = splitRoll(discription, "@damage");
-        if(accurcy.includes("(20)")){damage[0] = `${parseInt(damage[0]) * 2}`}
-        damage = diceRoller(damage[0], damage[1], damage[2], false);
-        
-        display = `${wholeChar[player]["charName"]} cast,\n${lastUse}:\n${useInfo}\n\nAccurcy: ${accurcy} to Hit.\nOn Hit: ${damage} Damage.\n`;
-
-        if(spellLevel)
+        if(discription.includes("{@sDice"))
         {
-            set(ref(database, `playerChar/${player}/stats/addToSpell`), userAddTo);
+            damage = splitRoll(discription, "@sDice");
+            damage = diceRoller(damage[0], damage[1], damage[2], false);
+    
+            display = `${wholeChar[player]["charName"]} used the ability, \n${lastUse}:\n${useInfo}\n\nResult: ${damage}. \n`;
         }
-
-        else
+    
+        if(discription.includes("{@sneak"))
         {
-            display = display.replaceAll("cast", "used the ability");
-            set(ref(database, `playerChar/${player}/stats/attackBonus`), userAddTo);
+            let lvl = currentLv.charAt(0);
+            damage = [`${Math.ceil(parseInt(lvl) / 2)}`, "6", "0"];
+            damage = diceRoller(damage[0], damage[1], damage[2], false);
+    
+            display = `${wholeChar[player]["charName"]} used the ability, \n${lastUse}:\n${useInfo}\n\nResult: ${damage}. \n`;
         }
     }
     
-    else if(discription.includes("{@sDice"))
-    {
-        damage = splitRoll(discription, "@sDice");
-        damage = diceRoller(damage[0], damage[1], damage[2], false);
-
-        display = `${wholeChar[player]["charName"]} used the ability, \n${lastUse}:\n${useInfo}\n\nResult: ${damage}. \n`;
-    }
-
-    else if(discription.includes("{@sneak"))
-    {
-        let lvl = currentLv.charAt(0);
-        damage = [`${Math.ceil(parseInt(lvl) / 2)}`, "6", "0"];
-        damage = diceRoller(damage[0], damage[1], damage[2], false);
-
-        display = `${wholeChar[player]["charName"]} used the ability, \n${lastUse}:\n${useInfo}\n\nResult: ${damage}. \n`;
-    }
-
     else
     {
         display = `${wholeChar[player]["charName"]} cast:\n${lastUse}\n${useInfo}`;
