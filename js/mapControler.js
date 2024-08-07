@@ -943,7 +943,7 @@ function handleCardClick()
             {
                 let dice = 4;
                 let lvlSelect = document.createElement("select");
-                lvlSelect.name = "levelSel";
+                lvlSelect.name = "upcast";
                 lvlSelect.style.margin = "0px 5px";
 
                 for(let i = 1; i < 10; i++)
