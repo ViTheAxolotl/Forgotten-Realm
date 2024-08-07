@@ -1001,12 +1001,7 @@ function handleUseAction()
             discription = `{@damage ${upcast[0].value}}`;
         }
         
-        damage = discription.slice(discription.indexOf("@damage"));
-        damage = damage.slice(8, damage.indexOf("}"));
-        damage = damage.split("d");
-        if(damage[1].includes("+")){let temp = damage[1].split("+"); damage.push(temp[1]); damage[1] = temp[0];}
-        else if(damage[1].includes("-")){let temp = damage[1].split("-"); damage.push(`-${temp[1]}`); damage[1] = temp[0];}
-        else{damage.push("0");}
+        damage = splitRoll(discription, "@damage");
         if(accurcy.includes("(20)")){damage[0] = `${parseInt(damage[0]) * 2}`}
         damage = diceRoller(damage[0], damage[1], damage[2], false);
         
@@ -1019,10 +1014,18 @@ function handleUseAction()
 
         else
         {
-            display = display.replaceAll("cast", "use the ability");
+            display = display.replaceAll("cast", "used the ability");
             set(ref(database, `playerChar/${player}/stats/attackBonus`), userAddTo);
         }
-    } 
+    }
+    
+    else if(discription.includes("{@sDice"))
+    {
+        damage = splitRoll(discription, "@sDice");
+        damage = diceRoller(damage[0], damage[1], damage[2], false);
+
+        display = `${wholeChar[player]["charName"]} used the ability, \n${lastUse}:\n${useInfo}\n\nResult: ${damage} Damage. \n`;
+    }
 
     else
     {
@@ -1032,6 +1035,18 @@ function handleUseAction()
     }
 
     sendDiscordMessage(display);
+}
+
+function splitRoll(discription, splitValue)
+{
+    let damage;
+    damage = discription.slice(discription.indexOf(splitValue));
+    damage = damage.slice(8, damage.indexOf("}"));
+    damage = damage.split("d");
+    if(damage[1].includes("+")){let temp = damage[1].split("+"); damage.push(temp[1]); damage[1] = temp[0];}
+    else if(damage[1].includes("-")){let temp = damage[1].split("-"); damage.push(`-${temp[1]}`); damage[1] = temp[0];}
+    else{damage.push("0");}
+    return damage;
 }
 
 function handleCreateNew()
