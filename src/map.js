@@ -100,10 +100,10 @@ function init()
     
     if(rect.width < 999)
     {
-        mapSize = rect.width;
+        mapSize = rect.width * (93/100); //remove fraction
         bumper = 0; //was 9
         distance = mapSize / 14; //Math.round(mapSize / 14);
-        movement = distance - 4; 
+        movement = distance; //-4
     }
 
     else
