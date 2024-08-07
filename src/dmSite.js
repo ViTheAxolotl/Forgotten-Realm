@@ -1034,7 +1034,7 @@ function handleGenerate()
     { 
         for(let title of Object.keys(wholeActions["Misc"]))
         {
-            set(ref(database, `playerChar/${user}/favorites/actions/Misc/${title}`), {"name" : `${title}`, "description" : `${wholeActions[title]["description"]}`});
+            set(ref(database, `playerChar/${user}/favorites/actions/Misc/${title}`), {"name" : `${title}`, "description" : `${wholeActions["Misc"][title]["description"]}`});
         }
     }
 
