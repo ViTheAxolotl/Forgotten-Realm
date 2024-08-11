@@ -1018,7 +1018,7 @@ function handleUseAction()
         if(discription.includes("{@save")) 
             {
                 let skill = "unknown";
-                let toBeat = spellOrAttackBonus();
+                let toBeat = spellOrAttackBonus("@save");
     
                 if(discription.includes("{@skill")) //Get the skill check
                 {
@@ -1051,7 +1051,7 @@ function handleUseAction()
         {
             let userAddTo = "";
             if(discription.includes("toHit}")){let temp = discription.indexOf("toHit}"); userAddTo = discription.charAt(temp - 2); userAddTo += discription.charAt(temp - 1)}
-            else{userAddTo = spellOrAttackBonus()}
+            else{userAddTo = spellOrAttackBonus("@damage")}
             let accurcy = diceRoller(1, 20, userAddTo, false);
             
             if(discription.includes(currentLv))
@@ -1113,15 +1113,24 @@ function handleUseAction()
     sendDiscordMessage(display);
 }
 
-function spellOrAttackBonus()
+function spellOrAttackBonus(usage)
 {
     let userAddTo;
 
-    if(spellLevel){userAddTo = prompt("What is your Spell Attack Bonus?", wholeChar[player]["stats"]["addToSpell"]);}
-    else{userAddTo = prompt("What is your Attack Bonus?", wholeChar[player]["stats"]["attackBonus"]);}
+    if(usage == "@damage")
+    {
+        if(spellLevel){userAddTo = prompt("What is your Spell Attack Bonus?", wholeChar[player]["stats"]["addToSpell"]);}
+        else{userAddTo = prompt("What is your Attack Bonus?", wholeChar[player]["stats"]["attackBonus"]);}
 
-    if(spellLevel){set(ref(database, `playerChar/${player}/stats/addToSpell`), userAddTo);}
-    else{set(ref(database, `playerChar/${player}/stats/attackBonus`), userAddTo);}
+        if(spellLevel){set(ref(database, `playerChar/${player}/stats/addToSpell`), userAddTo);}
+        else{set(ref(database, `playerChar/${player}/stats/attackBonus`), userAddTo);}
+    }
+    
+    else if(usage == "@save")
+    {
+        userAddTo = prompt("What is the DC to beat (Spell DC)?", wholeChar[player]["stats"]["spellDC"]);
+        set(ref(database, `playerChar/${player}/stats/spellDC`), userAddTo);
+    }
 
     return userAddTo;
 }
