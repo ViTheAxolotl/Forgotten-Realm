@@ -1032,7 +1032,7 @@ function handleUseAction()
     
                     for(let save in abilityNames)
                     {
-                        if(discription.includes(save))
+                        if(discription.includes(abilityNames[save]))
                         {
                             skill = abilityNames[save];
                         }
