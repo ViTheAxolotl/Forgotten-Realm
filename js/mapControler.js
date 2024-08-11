@@ -1066,7 +1066,7 @@ function handleUseAction()
             if(display){display += `\nAccurcy: ${accurcy} to Hit.\nOn Hit: ${damage} Damage.\n`;}
             else{display = `${wholeChar[player]["charName"]} cast,\n${lastUse}:\n${useInfo}\n\nAccurcy: ${accurcy} to Hit.\nOn Hit: ${damage} Damage.\n`;}
     
-            if(!spellLevel){display = display.replaceAll("cast", "used the ability");
+            if(!spellLevel){display = display.replaceAll("cast", "used the ability");}
         }
         
         if(discription.includes("{@sDice"))
@@ -1077,7 +1077,7 @@ function handleUseAction()
             if(display){display += `\nResult: ${damage}. \n`;}
             else{display = `${wholeChar[player]["charName"]} used the ability, \n${lastUse}:\n${useInfo}\n\nResult: ${damage}. \n`;}
         }
-    
+
         if(discription.includes("{@sneak"))
         {
             let lvl = currentLv.charAt(0);
@@ -1087,8 +1087,7 @@ function handleUseAction()
             if(display){display += `nResult: ${damage}. \n`;}
             else{display = `${wholeChar[player]["charName"]} used the ability, \n${lastUse}:\n${useInfo}\n\nResult: ${damage}. \n`;}
         }
-
-
+    
         if(discription.includes("{@response}")) //Needs to check if half damage if sucess
         {
             if(discription.includes("{@scaledamage")) //If they upcast the spell to increse damage
@@ -1102,6 +1101,7 @@ function handleUseAction()
             }
         }
     }
+
     
     else
     {
