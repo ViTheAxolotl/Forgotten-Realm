@@ -1034,14 +1034,14 @@ function handleUseAction()
                     {
                         if(discription.includes(save))
                         {
-                            skill = save;
+                            skill = abilityNames[save];
                         }
                     }
                 }
 
                 set(ref(database, `playerChar/Vi/responses`), {"ability" : skill, "currentResponse" : lastUse, "toBeat" : toBeat});
     
-                display = `${wholeChar[player]["charName"]} cast,\n${lastUse}:\n${useInfo}\n Waiting for others to use the Response Action (Under Misc Actions)...`;
+                display = `${wholeChar[player]["charName"]} cast,\n${lastUse}:\n${useInfo}Waiting for others to use the Response Action (Under Misc Actions)...`;
     
                 if(!spellLevel){display = display.replaceAll("cast", "used the ability");} //At the end
             }
