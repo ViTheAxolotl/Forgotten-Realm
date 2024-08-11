@@ -1042,7 +1042,7 @@ function handleUseAction()
 
             set(ref(database, `playerChar/Vi/responses`), {"ability" : skill, "currentResponse" : lastUse, "toBeat" : toBeat});
 
-            display = `${wholeChar[player]["charName"]} cast,\n${lastUse}:\n${useInfo}Waiting for others to use the Response Action (Under Misc Actions)...`;
+            display = `${wholeChar[player]["charName"]} cast,\n${lastUse}:\n${useInfo} \nWaiting for others to use the Response Action (Under Actions, Miscs)...`;
 
             if(!spellLevel){display = display.replaceAll("cast", "used the ability");} //At the end
         }
