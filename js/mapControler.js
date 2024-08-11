@@ -1016,35 +1016,35 @@ function handleUseAction()
     if(discription.includes("{@"))
     {
         if(discription.includes("{@save")) 
+        {
+            let skill = "unknown";
+            let toBeat = spellOrAttackBonus("@save");
+
+            if(discription.includes("{@skill")) //Get the skill check
             {
-                let skill = "unknown";
-                let toBeat = spellOrAttackBonus("@save");
-    
-                if(discription.includes("{@skill")) //Get the skill check
+                skill = discription.slice(discription.indexOf("{@skill"));
+                skill = skill.slice(7, skill.indexOf("}"));
+            }
+
+            else //search for what to check
+            {
+                let abilityNames = ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"];
+
+                for(let save in abilityNames)
                 {
-                    skill = discription.slice(discription.indexOf("{@skill"));
-                    skill = skill.slice(7, skill.indexOf("}"));
-                }
-    
-                else //search for what to check
-                {
-                    let abilityNames = ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"];
-    
-                    for(let save in abilityNames)
+                    if(discription.includes(abilityNames[save]))
                     {
-                        if(discription.includes(abilityNames[save]))
-                        {
-                            skill = abilityNames[save];
-                        }
+                        skill = abilityNames[save];
+                        break;
                     }
                 }
-
-                set(ref(database, `playerChar/Vi/responses`), {"ability" : skill, "currentResponse" : lastUse, "toBeat" : toBeat});
-    
-                display = `${wholeChar[player]["charName"]} cast,\n${lastUse}:\n${useInfo}Waiting for others to use the Response Action (Under Misc Actions)...`;
-    
-                if(!spellLevel){display = display.replaceAll("cast", "used the ability");} //At the end
             }
+
+            set(ref(database, `playerChar/Vi/responses`), {"ability" : skill, "currentResponse" : lastUse, "toBeat" : toBeat});
+
+            display = `${wholeChar[player]["charName"]} cast,\n${lastUse}:\n${useInfo}Waiting for others to use the Response Action (Under Misc Actions)...`;
+
+            if(!spellLevel){display = display.replaceAll("cast", "used the ability");} //At the end
         }
 
         if(discription.includes("{@damage"))
