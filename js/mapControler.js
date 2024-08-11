@@ -1015,12 +1015,43 @@ function handleUseAction()
 
     if(discription.includes("{@"))
     {
+        if(discription.includes("{@save")) 
+            {
+                let skill = "unknown";
+                let toBeat = spellOrAttackBonus();
+    
+                if(discription.includes("{@skill")) //Get the skill check
+                {
+                    skill = discription.slice(discription.indexOf("{@skill"));
+                    skill = skill.slice(7, skill.indexOf("}"));
+                }
+    
+                else //search for what to check
+                {
+                    let abilityNames = ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"];
+    
+                    for(let save in abilityNames)
+                    {
+                        if(discription.includes(save))
+                        {
+                            skill = save;
+                        }
+                    }
+                }
+
+                set(ref(database, `playerChar/Vi/responses`), {"ability" : skill, "currentResponse" : lastUse, "toBeat" : toBeat});
+    
+                display = `${wholeChar[player]["charName"]} cast,\n${lastUse}:\n${useInfo}\n Waiting for others to use the Response Action (Under Misc Actions)...`;
+    
+                if(!spellLevel){display = display.replaceAll("cast", "used the ability");} //At the end
+            }
+        }
+
         if(discription.includes("{@damage"))
         {
             let userAddTo = "";
             if(discription.includes("toHit}")){let temp = discription.indexOf("toHit}"); userAddTo = discription.charAt(temp - 2); userAddTo += discription.charAt(temp - 1)}
-            else if(spellLevel){userAddTo = prompt("What is your Spell Attack Bonus?", wholeChar[player]["stats"]["addToSpell"]);}
-            else{userAddTo = prompt("What is your Attack Bonus?", wholeChar[player]["stats"]["attackBonus"]);}
+            else{userAddTo = spellOrAttackBonus()}
             let accurcy = diceRoller(1, 20, userAddTo, false);
             
             if(discription.includes(currentLv))
@@ -1035,16 +1066,7 @@ function handleUseAction()
             if(display){display += `\nAccurcy: ${accurcy} to Hit.\nOn Hit: ${damage} Damage.\n`;}
             else{display = `${wholeChar[player]["charName"]} cast,\n${lastUse}:\n${useInfo}\n\nAccurcy: ${accurcy} to Hit.\nOn Hit: ${damage} Damage.\n`;}
     
-            if(spellLevel)
-            {
-                set(ref(database, `playerChar/${player}/stats/addToSpell`), userAddTo);
-            }
-    
-            else
-            {
-                display = display.replaceAll("cast", "used the ability");
-                set(ref(database, `playerChar/${player}/stats/attackBonus`), userAddTo);
-            }
+            if(!spellLevel){display = display.replaceAll("cast", "used the ability");
         }
         
         if(discription.includes("{@sDice"))
@@ -1065,6 +1087,20 @@ function handleUseAction()
             if(display){display += `nResult: ${damage}. \n`;}
             else{display = `${wholeChar[player]["charName"]} used the ability, \n${lastUse}:\n${useInfo}\n\nResult: ${damage}. \n`;}
         }
+
+
+        if(discription.includes("{@response}")) //Needs to check if half damage if sucess
+        {
+            if(discription.includes("{@scaledamage")) //If they upcast the spell to increse damage
+            {
+
+            }
+
+            else //If it is just base damage. Also need to check if it is damage or not, since some are just flavor.
+            {
+
+            }
+        }
     }
     
     else
@@ -1075,6 +1111,19 @@ function handleUseAction()
     }
 
     sendDiscordMessage(display);
+}
+
+function spellOrAttackBonus()
+{
+    let userAddTo;
+
+    if(spellLevel){userAddTo = prompt("What is your Spell Attack Bonus?", wholeChar[player]["stats"]["addToSpell"]);}
+    else{userAddTo = prompt("What is your Attack Bonus?", wholeChar[player]["stats"]["attackBonus"]);}
+
+    if(spellLevel){set(ref(database, `playerChar/${player}/stats/addToSpell`), userAddTo);}
+    else{set(ref(database, `playerChar/${player}/stats/attackBonus`), userAddTo);}
+
+    return userAddTo;
 }
 
 function splitRoll(discription, splitValue)

@@ -310,6 +310,11 @@
         "Hide" : {
             "name" : "Hide",
             "description" : "When you take the Hide action, you make a Dexterity ({@skill Stealth}) check in an attempt to hide, following the rules in {@book chapter 7 |phb|7|hiding} for hiding. If you succeed, you gain certain benefits, as described in the \"{@book Unseen Attackers and Targets|PHB|9|unseen attackers and targets}\" section in the Player's Handbook."
+        },
+
+        "Response" : {
+            "name" : "Response",
+            "description" : "This action is used to respond to the last stat save or check that has been posted. {@respond}"
         }
     }
 } 
