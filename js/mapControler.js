@@ -1038,9 +1038,11 @@ function handleUseAction()
             let toBeat = spellOrAttackBonus("@save");
             let isSpell = true;
             let ind;
+            let castUp = false;
 
             if(curClass){isSpell = false; ind = curClass;}
             else{ind = spellLevel;}
+            if(upcast){castUp = `{@save ${upcast[0].value}}`;}
 
             if(discription.includes("{@skill")) //Get the skill check
             {
@@ -1062,7 +1064,7 @@ function handleUseAction()
                 }
             }
 
-            set(ref(database, `playerChar/Vi/responses`), {"ability" : skill, "currentResponse" : lastUse, "toBeat" : toBeat, "castBy" : wholeChar[player]["charName"], "isSpell" : isSpell, "ind" : ind});
+            set(ref(database, `playerChar/Vi/responses`), {"ability" : skill, "currentResponse" : lastUse, "toBeat" : toBeat, "castBy" : wholeChar[player]["charName"], "isSpell" : isSpell, "ind" : ind, "castUp" : upcast});
 
             display = `${wholeChar[player]["charName"]} cast,\n${lastUse}:\n${useInfo} \nWaiting for others to use the Response Action (Under Actions, Miscs)...`;
 
@@ -1087,7 +1089,7 @@ function handleUseAction()
             {
                 let damage;
                 damage = splitRoll(abilityDisc, "@save");
-                if(abilityDisc.includes("{@scaledamage")){damage = splitRoll(`{@save ${upcast[0].value}`, "@save")}
+                if(abilityDisc.includes("{@scaledamage")){damage = splitRoll(wholeRespone["castUp"], "@save")}
                 else if(discription.includes(currentLv)){damage = splitRoll(discription.slice(`${discription.indexOf(currentLv)}`), "@damage");}
                 damage = lesserDiceRoll(damage[0], damage[1], damage[2]);
 
