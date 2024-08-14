@@ -1046,15 +1046,15 @@ function handleGenerate()
             }
         }
 
-        for(let abilityTag of Object.keys(wholeChar[user]["favorites"]["abilities"]))
+        for(let abilityTag of Object.keys(wholeChar[user]["favorites"]["actions"]))
         {
             let ability_Tag = abilityTag;
             if(!wholeActions[abilityTag]){ability_Tag = "Misc"}
 
-            for(let ability of Object.keys(wholeChar[user]["favorites"]["abilities"][abilityTag]))
+            for(let ability of Object.keys(wholeChar[user]["favorites"]["actions"][abilityTag]))
             {
                 if(ability == "hold"){continue;}
-                let abilityInfo = wholeChar[user]["favorites"]["abilities"][abilityTag][ability];
+                let abilityInfo = wholeChar[user]["favorites"]["actions"][abilityTag][ability];
                 actions[ability_Tag][ability] = {"name" : ability,"description" : abilityInfo["description"]};
             }
         }
