@@ -1063,6 +1063,8 @@ function handleUseAction()
 
             set(ref(database, `playerChar/${player}/stats/${wholeRespone["ability"]}`), userAddTo);
             usersRoll = diceRoller("1", "20", userAddTo);
+            usersRoll = usersRoll.slice(usersRoll.indexOf("**") + 2);
+            usersRoll = usersRoll.slice(0, usersRoll.indexOf("**"));
 
             if(abilityDisc.includes("{@save "))
             {
