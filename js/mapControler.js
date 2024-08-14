@@ -1069,6 +1069,7 @@ function handleUseAction()
                 let damage;
                 damage = splitRoll(abilityDisc, "@save");
                 if(abilityDisc.includes("{@scaledamage")){damage = splitRoll(`{@save ${upcast[0].value}`, "@save")};
+                else if(discription.includes(currentLv)){damage = splitRoll(discription.slice(`${discription.indexOf(currentLv)}`), "@damage");}
                 damage = diceRoller(damage[0], damage[1], damage[2]);
 
                 if(parseInt(usersRoll) >= parseInt(wholeRespone["toBeat"])) 
