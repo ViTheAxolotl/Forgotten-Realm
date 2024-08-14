@@ -1078,19 +1078,19 @@ function handleUseAction()
                 {
                     if(abilityDisc.includes("half damage"))
                     {
-                        display = `${wholeChar["charName"]} has succeded the ${wholeRespone["ability"]} check/save (**${usersRoll}**) taking half of the damage. (${damage} / 2) = **${parseInt(damage) / 2}**`;
+                        display = `${wholeChar[player]["charName"]} has succeded the ${wholeRespone["ability"]} check/save (**${usersRoll}**) taking half of the damage. (${damage} / 2) = **${parseInt(damage) / 2}**`;
                     }
 
                     else
                     {
-                        display = `${wholeChar["charName"]} has succeded the ${wholeRespone["ability"]} check/save. With the roll of **${usersRoll}**.`
+                        display = `${wholeChar[player]["charName"]} has succeded the ${wholeRespone["ability"]} check/save. With the roll of **${usersRoll}**.`
                     }
                 }
             }
 
             else
             {
-                display = `${wholeChar["charName"]} has failed the ${wholeRespone["ability"]} check/save.`;
+                display = `${wholeChar[player]["charName"]} has failed the ${wholeRespone["ability"]} check/save.`;
             }
             
             discription = abilityDisc;
