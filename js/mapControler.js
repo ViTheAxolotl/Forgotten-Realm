@@ -1019,6 +1019,11 @@ function handleUseAction()
         {
             let skill = "unknown";
             let toBeat = spellOrAttackBonus("@save");
+            let isSpell = true;
+            let ind;
+
+            if(curClass){isSpell = false; ind = curClass;}
+            else{ind = spellLevel;}
 
             if(discription.includes("{@skill")) //Get the skill check
             {
@@ -1040,11 +1045,52 @@ function handleUseAction()
                 }
             }
 
-            set(ref(database, `playerChar/Vi/responses`), {"ability" : skill, "currentResponse" : lastUse, "toBeat" : toBeat});
+            set(ref(database, `playerChar/Vi/responses`), {"ability" : skill, "currentResponse" : lastUse, "toBeat" : toBeat, "castBy" : wholeChar[player][charName], "isSpell" : isSpell, "ind" : ind});
 
             display = `${wholeChar[player]["charName"]} cast,\n${lastUse}:\n${useInfo} \nWaiting for others to use the Response Action (Under Actions, Miscs)...`;
 
             if(!spellLevel){display = display.replaceAll("cast", "used the ability");} //At the end
+        }
+
+        if(discription.includes("{@response}")) //Needs to check if half damage if sucess
+        {
+            let wholeRespone = wholeChar["Vi"]["responses"];
+            let usersRoll;
+            let userAddTo = prompt(`The Current Response is to ${wholeRespone["currentResponse"]}, cast by ${wholeRespone["castBy"]}. This check is checking for ${wholeRespone["ability"]} stat. What is your Modifier? (+/-)`, wholeChar[player]["stats"][wholeRespone["ability"]]);
+            let abilityDisc;
+            if(wholeRespone["isSpell"]){abilityDisc = wholeSpells[wholeRespone["ind"]][wholeRespone["currentResponse"]]["description"];}
+            else{abilityDisc = wholeActions[wholeRespone["ind"]][wholeRespone["currentResponse"]]["description"];}
+
+            set(ref(database, `playerChar/${player}/stats/${wholeRespone["ability"]}`), userAddTo);
+            usersRoll = diceRoller("1", "20", userAddTo);
+
+            if(abilityDisc.includes("{@save "))
+            {
+                let damage;
+                damage = splitRoll(abilityDisc, "@save");
+                if(abilityDisc.includes("{@scaledamage")){damage = splitRoll(`{@save ${upcast[0].value}`, "@save")};
+                damage = diceRoller(damage[0], damage[1], damage[2]);
+
+                if(parseInt(usersRoll) >= parseInt(wholeRespone["toBeat"])) 
+                {
+                    if(abilityDisc.includes("half damage"))
+                    {
+                        display = `${wholeChar["charName"]} has succeded the ${wholeRespone["ability"]} check/save (**${usersRoll}**) taking half of the damage. (${damage} / 2) = **${parseInt(damage) / 2}**`;
+                    }
+
+                    else
+                    {
+                        display = `${wholeChar["charName"]} has succeded the ${wholeRespone["ability"]} check/save. With the roll of **${usersRoll}**.`
+                    }
+                }
+            }
+
+            else
+            {
+                display = `${wholeChar["charName"]} has failed the ${wholeRespone["ability"]} check/save.`;
+            }
+            
+            discription = abilityDisc;
         }
 
         if(discription.includes("{@damage"))
@@ -1086,19 +1132,6 @@ function handleUseAction()
     
             if(display){display += `nResult: ${damage}. \n`;}
             else{display = `${wholeChar[player]["charName"]} used the ability, \n${lastUse}:\n${useInfo}\n\nResult: ${damage}. \n`;}
-        }
-    
-        if(discription.includes("{@response}")) //Needs to check if half damage if sucess
-        {
-            if(discription.includes("{@scaledamage")) //If they upcast the spell to increse damage
-            {
-
-            }
-
-            else //If it is just base damage. Also need to check if it is damage or not, since some are just flavor.
-            {
-
-            }
         }
     }
 
