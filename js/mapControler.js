@@ -1074,7 +1074,7 @@ function handleUseAction()
             let wholeRespone = wholeChar["Vi"]["responses"];
             let usersRoll;
             let userAddTo = prompt(`The Current Response is to ${wholeRespone["currentResponse"]}, cast by ${wholeRespone["castBy"]}. This check is checking for ${wholeRespone["ability"]} stat. What is your Modifier? (+/-)`, wholeChar[player]["stats"][wholeRespone["ability"]]);
-            userAddTo.replace(" ", "");
+            userAddTo = userAddTo.replaceAll(" ", "");
             let abilityDisc;
             if(wholeRespone["isSpell"]){abilityDisc = wholeSpells[wholeRespone["ind"]][wholeRespone["currentResponse"]]["description"];}
             else{abilityDisc = wholeActions[wholeRespone["ind"]][wholeRespone["currentResponse"]]["description"];}
@@ -1183,7 +1183,7 @@ function spellOrAttackBonus(usage)
     {
         if(spellLevel){userAddTo = prompt("What is your Spell Attack Bonus?", wholeChar[player]["stats"]["addToSpell"]);}
         else{userAddTo = prompt("What is your Attack Bonus?", wholeChar[player]["stats"]["attackBonus"]);}
-        userAddTo.replace(" ", "");
+        userAddTo = userAddTo.replaceAll(" ", "");
 
         if(spellLevel){set(ref(database, `playerChar/${player}/stats/addToSpell`), userAddTo);}
         else{set(ref(database, `playerChar/${player}/stats/attackBonus`), userAddTo);}
