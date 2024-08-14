@@ -1041,7 +1041,7 @@ function handleGenerate()
             for(let spell of Object.keys(wholeChar[user]["favorites"]["spells"][spellLv]))
             {
                 let spellInfo = wholeChar[user]["favorites"]["spells"][spellLv][spell];
-                spells[spellLv][spell] = {"name":spell,"level":spellLv,"castTime":spellInfo["castTime"],"range":spellInfo["range"],"duration":spellInfo["duration"],"description":spellInfo[description],"components":spellInfo["components"],"concentration":spellInfo["concentration"]};
+                spells[spellLv][spell] = {"name":spell,"level":spellLv,"castTime":spellInfo["castTime"],"range":spellInfo["range"],"duration":spellInfo["duration"],"description":spellInfo["description"],"components":spellInfo["components"],"concentration":spellInfo["concentration"]};
             }
         }
 
