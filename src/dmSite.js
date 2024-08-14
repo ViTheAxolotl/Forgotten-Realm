@@ -68,11 +68,13 @@ let temp;
 let mode;
 let user;
 let wholeActions;
+let wholeSpells;
 
 function init()
 {
     fetch('https://vitheaxolotl.github.io/Forgotten-Realm/src/files.json').then(res => res.json()).then((json) => imgs = json);
     fetch('https://vitheaxolotl.github.io/Forgotten-Realm/src/actions.json').then(res => res.json()).then((json) => wholeActions = json);
+    fetch('https://vitheaxolotl.github.io/Forgotten-Realm/src/spells.json').then(res => res.json()).then((json) => wholeSpells = json);
     
     for(let button of document.getElementsByTagName("button"))
     {
@@ -1029,13 +1031,42 @@ function loadMap()
 function handleGenerate()
 {
     hideButtons();
+    let actions = wholeActions;
+    let spells = wholeSpells;
     
     for(let user of Object.keys(wholeChar))
-    { 
-        for(let title of Object.keys(wholeActions["Misc"]))
+    {
+        for(let spellLv of wholeChar[user]["favorites"]["spells"])
         {
-            set(ref(database, `playerChar/${user}/favorites/actions/Misc/${title}`), {"name" : `${title}`, "description" : `${wholeActions["Misc"][title]["description"]}`});
+            for(let spell of wholeChar[user]["favorites"]["spells"][spellLv])
+            {
+                let spellInfo = wholeChar[user]["favorites"]["spells"][spellLv][spell];
+                spells[spellLv][spell] = {"name":spell,"level":spellLv,"castTime":spellInfo["castTime"],"range":spellInfo["range"],"duration":spellInfo["duration"],"description":spellInfo[description],"components":spellInfo["components"],"concentration":spellInfo["concentration"]};
+            }
         }
+
+        for(let abilityTag of wholeChar[user]["favorites"]["abilities"])
+        {
+            let ability_Tag = abilityTag;
+            if(!wholeActions[abilityTag]){ability_Tag = "Misc"}
+
+            for(let ability of wholeChar[user]["favorites"]["abilities"][abilityTag])
+            {
+                let abilityInfo = wholeChar[user]["favorites"]["abilities"][abilityTag][ability];
+                actions[ability_Tag][ability] = {"name" : ability,"description" : abilityInfo["description"]};
+            }
+        }
+    }
+
+    let data = [actions, spells];
+    
+    for(let print of data)
+    {
+        let a = document.createElement('a');
+        let blob = new Blob([JSON.stringify(print)]);
+        a.href = URL.createObjectURL(blob);
+        a.download = 'sample-profile';                     //filename to download
+        a.click();
     }
 
     alert("done");
