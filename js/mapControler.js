@@ -1033,7 +1033,7 @@ function handleUseAction()
         else if(discription.includes("{@absorb")){discription = `{@sDice ${upcast[0].value}}`}
     }
 
-    if(discription.includes("{@"))
+    if(discription.includes("{@") && !discription.includes("{@Choice"))
     {
         if(discription.includes("{@save")) 
         {
