@@ -1036,21 +1036,21 @@ function handleGenerate()
     
     for(let user of Object.keys(wholeChar))
     {
-        for(let spellLv of wholeChar[user]["favorites"]["spells"])
+        for(let spellLv of Object.keys(wholeChar[user]["favorites"]["spells"]))
         {
-            for(let spell of wholeChar[user]["favorites"]["spells"][spellLv])
+            for(let spell of Object.keys(wholeChar[user]["favorites"]["spells"][spellLv]))
             {
                 let spellInfo = wholeChar[user]["favorites"]["spells"][spellLv][spell];
                 spells[spellLv][spell] = {"name":spell,"level":spellLv,"castTime":spellInfo["castTime"],"range":spellInfo["range"],"duration":spellInfo["duration"],"description":spellInfo[description],"components":spellInfo["components"],"concentration":spellInfo["concentration"]};
             }
         }
 
-        for(let abilityTag of wholeChar[user]["favorites"]["abilities"])
+        for(let abilityTag of Object.keys(wholeChar[user]["favorites"]["abilities"]))
         {
             let ability_Tag = abilityTag;
             if(!wholeActions[abilityTag]){ability_Tag = "Misc"}
 
-            for(let ability of wholeChar[user]["favorites"]["abilities"][abilityTag])
+            for(let ability of Object.keys(wholeChar[user]["favorites"]["abilities"][abilityTag]))
             {
                 let abilityInfo = wholeChar[user]["favorites"]["abilities"][abilityTag][ability];
                 actions[ability_Tag][ability] = {"name" : ability,"description" : abilityInfo["description"]};
