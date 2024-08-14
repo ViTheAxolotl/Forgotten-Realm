@@ -1026,7 +1026,7 @@ function handleUseAction()
     if(upcast[0])
     {
         if(discription.includes("{@damage")){discription += `{@sDice ${upcast[0].value}}`;}
-        else if(discription.includes("{@scaledamage")){discription = `{@damage ${upcast[0].value}}`;}
+        else if(discription.includes("{@scaledamage")){if(!discription.includes("{@save")){discription = `{@damage ${upcast[0].value}}`;}}
         else if(discription.includes("{@absorb")){discription = `{@sDice ${upcast[0].value}}`}
     }
 
@@ -1067,6 +1067,7 @@ function handleUseAction()
             display = `${wholeChar[player]["charName"]} cast,\n${lastUse}:\n${useInfo} \nWaiting for others to use the Response Action (Under Actions, Miscs)...`;
 
             if(!spellLevel){display = display.replaceAll("cast", "used the ability");} //At the end
+            discription = "";
         }
 
         if(discription.includes("{@respond}")) //Needs to check if half damage if sucess
