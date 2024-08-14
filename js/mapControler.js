@@ -382,6 +382,9 @@ function handleChangeSecondDisplay()
                 this.classList.add("selected");
             }
         }
+
+        for(let spell of spellBtn){if(spell.classList.contains("selected")){spell.classList.remove("selected");}}
+        for(let action of actionBtn){if(action.classList.contains("selected")){action.classList.remove("selected");}}
     }
 }
 
