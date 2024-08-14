@@ -1040,6 +1040,7 @@ function handleGenerate()
         {
             for(let spell of Object.keys(wholeChar[user]["favorites"]["spells"][spellLv]))
             {
+                if(spell == hold){continue;}
                 let spellInfo = wholeChar[user]["favorites"]["spells"][spellLv][spell];
                 spells[spellLv][spell] = {"name":spell,"level":spellLv,"castTime":spellInfo["castTime"],"range":spellInfo["range"],"duration":spellInfo["duration"],"description":spellInfo["description"],"components":spellInfo["components"],"concentration":spellInfo["concentration"]};
             }
@@ -1052,6 +1053,7 @@ function handleGenerate()
 
             for(let ability of Object.keys(wholeChar[user]["favorites"]["abilities"][abilityTag]))
             {
+                if(ability == hold){continue;}
                 let abilityInfo = wholeChar[user]["favorites"]["abilities"][abilityTag][ability];
                 actions[ability_Tag][ability] = {"name" : ability,"description" : abilityInfo["description"]};
             }
