@@ -1170,7 +1170,6 @@ function handleUseAction()
         }
     }
 
-    
     else
     {
         display = `${wholeChar[player]["charName"]} cast:\n${lastUse}\n${useInfo}`;
@@ -1178,6 +1177,8 @@ function handleUseAction()
         if(curClass){display = display.replaceAll("cast", "use the ability");}
     }
 
+    display = display.replaceAll("<li>", "\n-");
+    display = display.replaceAll("</li>", "");
     sendDiscordMessage(display);
 }
 
