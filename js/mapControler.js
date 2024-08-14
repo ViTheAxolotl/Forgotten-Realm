@@ -1052,7 +1052,7 @@ function handleUseAction()
             if(!spellLevel){display = display.replaceAll("cast", "used the ability");} //At the end
         }
 
-        if(discription.includes("{@response}")) //Needs to check if half damage if sucess
+        if(discription.includes("{@respond}")) //Needs to check if half damage if sucess
         {
             let wholeRespone = wholeChar["Vi"]["responses"];
             let usersRoll;
