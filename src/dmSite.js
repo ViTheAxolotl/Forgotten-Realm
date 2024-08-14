@@ -1032,24 +1032,13 @@ function handleGenerate()
 {
     hideButtons();
     let actions = wholeActions;
-    let spells = wholeSpells;
     
     for(let user of Object.keys(wholeChar))
     {
-        for(let spellLv of Object.keys(wholeChar[user]["favorites"]["spells"]))
-        {
-            for(let spell of Object.keys(wholeChar[user]["favorites"]["spells"][spellLv]))
-            {
-                if(spell == "hold"){continue;}
-                let spellInfo = wholeChar[user]["favorites"]["spells"][spellLv][spell];
-                spells[spellLv][spell] = {"name":spell,"level":spellLv,"castTime":spellInfo["castTime"],"range":spellInfo["range"],"duration":spellInfo["duration"],"description":spellInfo["description"],"components":spellInfo["components"],"concentration":spellInfo["concentration"]};
-            }
-        }
-
         for(let abilityTag of Object.keys(wholeChar[user]["favorites"]["actions"]))
         {
             let ability_Tag = abilityTag;
-            if(!wholeActions[abilityTag]){ability_Tag = "Misc"}
+            if(!wholeActions[abilityTag]){ability_Tag = "Backup"}
 
             for(let ability of Object.keys(wholeChar[user]["favorites"]["actions"][abilityTag]))
             {
@@ -1060,16 +1049,14 @@ function handleGenerate()
         }
     }
 
-    let data = [actions, spells];
-    
-    for(let print of data)
-    {
+    let data = actions;
+
         let a = document.createElement('a');
-        let blob = new Blob([JSON.stringify(print)]);
+        let blob = new Blob([JSON.stringify(data)]);
         a.href = URL.createObjectURL(blob);
         a.download = 'sample-profile';                     //filename to download
         a.click();
-    }
+
 
     alert("done");
     handleDone();
