@@ -1093,24 +1093,24 @@ function handleUseAction()
                 {
                     if(abilityDisc.includes("half damage"))
                     {
-                        display = `${wholeChar[player]["charName"]} has succeded the ${wholeRespone["ability"]} check/save for ${wholeRespone["currentResponse"]}, (**${usersRoll}**) taking half of the damage. (${damage} / 2) = **${parseInt(damage) / 2}**.`;
+                        display = `${wholeChar[player]["charName"]} has succeded the ${wholeRespone["ability"]} check/save for ${wholeRespone["currentResponse"]}, (${parseInt(usersRoll) + (-1 * parseInt(userAddTo))} + ${userAddTo} = **${usersRoll}**) taking half of the damage. (${damage} / 2) = **${parseInt(damage) / 2}**.`;
                     }
 
                     else
                     {
-                        display = `${wholeChar[player]["charName"]} has succeded the ${wholeRespone["ability"]} check/save for ${wholeRespone["currentResponse"]}. With the roll of **${usersRoll}**.`
+                        display = `${wholeChar[player]["charName"]} has succeded the ${wholeRespone["ability"]} check/save for ${wholeRespone["currentResponse"]}. With the roll of ${parseInt(usersRoll) + (-1 * parseInt(userAddTo))} + ${userAddTo} = **${usersRoll}**.`
                     }
                 }
                 
                 else
                 {
-                    display = `${wholeChar[player]["charName"]} has failed the ${wholeRespone["ability"]} check/save for ${wholeRespone["currentResponse"]}, (**${usersRoll}**) taking the damage of **${damage}**.`;
+                    display = `${wholeChar[player]["charName"]} has failed the ${wholeRespone["ability"]} check/save for ${wholeRespone["currentResponse"]}, (${parseInt(usersRoll) + (-1 * parseInt(userAddTo))} + ${userAddTo} = **${usersRoll}**) taking the damage of **${damage}**.`;
                 }
             }
 
             else
             {
-                display = `${wholeChar[player]["charName"]} has failed the ${wholeRespone["ability"]} check/save for ${wholeRespone["currentResponse"]}.`;
+                display = `${wholeChar[player]["charName"]} has failed the ${wholeRespone["ability"]} check/save for ${wholeRespone["currentResponse"]}, ${parseInt(usersRoll) + (-1 * parseInt(userAddTo))} + ${userAddTo} = **${usersRoll}**.`;
 
                 if(parseInt(usersRoll) >= parseInt(wholeRespone["toBeat"])) 
                 {
