@@ -231,6 +231,23 @@ function diceRoller(amount, dice, modifier, ifName)
     return message;
 }
 
+function lesserDiceRoll (amount, dice, modifier, ifName)
+{
+    let rolls = basicRoll(amount, dice);
+    let sum = 0;
+    let message = ""; 
+    
+    for(let roll of rolls)
+    {
+        sum += roll;
+    }
+    
+    let finalResult = sum + parseInt(modifier);
+    message += `${finalResult}`;
+
+    return message;
+}
+
 function handleDiceRoll()
 {
     let amount = parseInt(document.getElementById("diceToRoll").value);
@@ -1062,9 +1079,7 @@ function handleUseAction()
             else{abilityDisc = wholeActions[wholeRespone["ind"]][wholeRespone["currentResponse"]]["description"];}
 
             set(ref(database, `playerChar/${player}/stats/${wholeRespone["ability"]}`), userAddTo);
-            usersRoll = diceRoller("1", "20", userAddTo);
-            usersRoll = usersRoll.slice(usersRoll.indexOf("**") + 2);
-            usersRoll = usersRoll.slice(0, usersRoll.indexOf("**"));
+            usersRoll = lesserDiceRoll("1", "20", userAddTo);
 
             if(abilityDisc.includes("{@save "))
             {
@@ -1072,7 +1087,7 @@ function handleUseAction()
                 damage = splitRoll(abilityDisc, "@save");
                 if(abilityDisc.includes("{@scaledamage")){damage = splitRoll(`{@save ${upcast[0].value}`, "@save")}
                 else if(discription.includes(currentLv)){damage = splitRoll(discription.slice(`${discription.indexOf(currentLv)}`), "@damage");}
-                damage = diceRoller(damage[0], damage[1], damage[2]);
+                damage = lesserDiceRoll(damage[0], damage[1], damage[2]);
 
                 if(parseInt(usersRoll) >= parseInt(wholeRespone["toBeat"])) 
                 {
