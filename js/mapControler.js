@@ -1078,21 +1078,31 @@ function handleUseAction()
                 {
                     if(abilityDisc.includes("half damage"))
                     {
-                        display = `${wholeChar[player]["charName"]} has succeded the ${wholeRespone["ability"]} check/save (**${usersRoll}**) taking half of the damage. (${damage} / 2) = **${parseInt(damage) / 2}**`;
+                        display = `${wholeChar[player]["charName"]} has succeded the ${wholeRespone["ability"]} check/save for ${wholeRespone["currentResponse"]}, (**${usersRoll}**) taking half of the damage. (${damage} / 2) = **${parseInt(damage) / 2}**.`;
                     }
 
                     else
                     {
-                        display = `${wholeChar[player]["charName"]} has succeded the ${wholeRespone["ability"]} check/save. With the roll of **${usersRoll}**.`
+                        display = `${wholeChar[player]["charName"]} has succeded the ${wholeRespone["ability"]} check/save for ${wholeRespone["currentResponse"]}. With the roll of **${usersRoll}**.`
                     }
+                }
+                
+                else
+                {
+                    display = `${wholeChar[player]["charName"]} has failed the ${wholeRespone["ability"]} check/save for ${wholeRespone["currentResponse"]}, (**${usersRoll}**) taking the damage of **${damage}**.`;
                 }
             }
 
             else
             {
-                display = `${wholeChar[player]["charName"]} has failed the ${wholeRespone["ability"]} check/save.`;
+                display = `${wholeChar[player]["charName"]} has failed the ${wholeRespone["ability"]} check/save for ${wholeRespone["currentResponse"]}.`;
+
+                if(parseInt(usersRoll) >= parseInt(wholeRespone["toBeat"])) 
+                {
+                    display = display.replace("failed", "succeded");
+                }
             }
-            
+
             discription = abilityDisc;
         }
 
