@@ -1038,7 +1038,7 @@ function handleGenerate()
         for(let abilityTag of Object.keys(wholeChar[user]["favorites"]["actions"]))
         {
             let ability_Tag = abilityTag;
-            if(!wholeActions[abilityTag]){ability_Tag = "Backup"}
+            if(!wholeActions[abilityTag]){ability_Tag = "Backup"; wholeChar[user]["favorites"]["actions"]["Backup"]["hold"] = {"hold" : "hold"};}
 
             for(let ability of Object.keys(wholeChar[user]["favorites"]["actions"][abilityTag]))
             {
