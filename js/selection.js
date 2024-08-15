@@ -124,6 +124,13 @@ function setUpCharacters(currentName)
             }
             break;
 
+        case "guest1":
+        case "guest2":
+            for(let i = 0; i < 1; i++)
+            {
+                people.push(currentName + '-' + numToLet[i]);
+            }
+
         case "leonier":
             for(let i = 0; i < 3; i++)
             {
