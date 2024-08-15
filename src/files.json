@@ -66,8 +66,8 @@
         "harold-" : "images/map/tokens/harold-.png",
         "MVElemental-" : "images/map/tokens/MVElemental-.png",
         "magicAura-" : "images/map/tokens/magicAura-.png",
-        "guest1-" : "images/map/tokens/g1-.png",
-        "guest2-" : "images/map/tokens/g2-.png"
+        "guest1-" : "images/map/tokens/guest1-.png",
+        "guest2-" : "images/map/tokens/guest2-.png"
     },
  
     "borders" : 

@@ -130,6 +130,7 @@ function setUpCharacters(currentName)
             {
                 people.push(currentName + '-' + numToLet[i]);
             }
+            break;
 
         case "leonier":
             for(let i = 0; i < 3; i++)

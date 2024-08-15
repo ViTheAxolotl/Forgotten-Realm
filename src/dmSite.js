@@ -1031,10 +1031,7 @@ function loadMap()
 function handleGenerate()
 {
     hideButtons();    
-    let templete = wholeChar["Okami"];
-
-    set(ref(database, "playerChar/Guest1"), templete);
-    set(ref(database, "playerChar/Guest2"), templete);
+    
 
     alert("done");
     handleDone();
