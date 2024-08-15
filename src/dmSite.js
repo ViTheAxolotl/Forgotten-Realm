@@ -1030,33 +1030,11 @@ function loadMap()
 
 function handleGenerate()
 {
-    hideButtons();
-    let actions = wholeActions;
-    
-    for(let user of Object.keys(wholeChar))
-    {
-        for(let abilityTag of Object.keys(wholeChar[user]["favorites"]["actions"]))
-        {
-            let ability_Tag = abilityTag;
-            if(!wholeActions[abilityTag]){ability_Tag = "Backup";}
+    hideButtons();    
+    let templete = wholeChar["Okami"];
 
-            for(let ability of Object.keys(wholeChar[user]["favorites"]["actions"][abilityTag]))
-            {
-                if(ability == "hold"){continue;}
-                let abilityInfo = wholeChar[user]["favorites"]["actions"][abilityTag][ability];
-                actions[ability_Tag][ability] = {"name" : ability,"description" : abilityInfo["description"]};
-            }
-        }
-    }
-
-    let data = actions;
-
-        let a = document.createElement('a');
-        let blob = new Blob([JSON.stringify(data)]);
-        a.href = URL.createObjectURL(blob);
-        a.download = 'sample-profile';                     //filename to download
-        a.click();
-
+    set(ref(database, "playerChar/Guest1"), templete);
+    set(ref(database, "playerChar/Guest2"), templete);
 
     alert("done");
     handleDone();
