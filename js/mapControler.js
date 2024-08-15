@@ -1274,7 +1274,7 @@ function handleEditCard()
     cardText.setAttribute("class", "card-text");
     cardText.style.margin = "3px";
     cardText.style.display = "inline";
-    cardText.innerHTML = "Instructions for auto roll";
+    cardText.innerHTML = "<li>{@save} : makes it able to use the save/check rolls. Can use {@save 2d6} to have it roll damage as well, for the skill you need to write strength (etc.) or use {@skil Perception} to show.</li> <li>{@damage 3d4} will roll accuracy then damage of 3d4.</li><li>{@Choice} will make a bullet point.</li><li>{@sDice 2d4} Will just roll 2d4 not accuercy</li>";
     cardBody.appendChild(cardText);
     cardBody.appendChild(document.createElement("br"));
 
