@@ -766,11 +766,11 @@ function updateToken(token)
         let borderColor;
         let n = char.id + '-';
 
-        if(/\d/.test(char.id))
+        if(/\d/.test(char.id) && !char.id.includes("guest"))
         {
             n = char.id.replace(/\d/g, '') + '-';
         }
-//!Object.keys(wholeDB).includes(token.id) && 
+
         for(let token of currentTokens)
         {
             if(token.classList.contains("border_"))
