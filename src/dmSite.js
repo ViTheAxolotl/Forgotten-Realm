@@ -1031,7 +1031,10 @@ function loadMap()
 function handleGenerate()
 {
     hideButtons();    
-    
+    for(let player of Object.keys(wholeChar))
+    {
+        set(ref(`playerChar/${player}/token/isSummon`), false);
+    }
 
     alert("done");
     handleDone();
