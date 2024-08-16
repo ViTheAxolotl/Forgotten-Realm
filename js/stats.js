@@ -59,9 +59,11 @@ function init()
 
 function submitChanges()
 {
-    for(let stat of stats)
+    for(let stat of Object.keys(stats))
     {
-        stats[stat] = document.getElementById(stat).value;
+        let value = document.getElementById(stat).value;
+        if(value == ""){value = "0";}
+        stats[stat] = value;
     }
 
     set(ref(database, `playerChar/${player}/stats`), stats);
