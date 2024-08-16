@@ -1,6 +1,6 @@
 "use strict";
-import { ref, set, onValue } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
-import { toTitleCase, auth, database } from './viMethods.js';
+import { ref, onValue } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
+import { toTitleCase, auth, database, setDoc, deleteDoc } from './viMethods.js';
 
 const currentMapRef = ref(database, 'currentMap/');
 onValue(currentMapRef, (snapshot) => 
@@ -218,7 +218,7 @@ function deleteToken()
         {
             try
             { 
-                set(ref(database, `currentMap/${wholeDB[key].id}`), null);
+                deleteDoc(`currentMap/${wholeDB[key].id}`);
             }
             
             catch (e) 
@@ -285,7 +285,7 @@ function handleEdit()
             } 
 
             buttons[0].classList.add(curCharacter.name);
-            buttons[0].onclick = function () {let id = this.classList[0].slice(0, this.classList[0].length - 1); set(ref(database, `currentMap/${id}`), db[preOrSumm][id]);};
+            buttons[0].onclick = function () {let id = this.classList[0].slice(0, this.classList[0].length - 1); setDoc(`currentMap/${id}`, db[preOrSumm][id]);};
             buttons[1].onclick = resetPreset;
         }
     }
@@ -524,7 +524,7 @@ function quickUpdate()
     let i = this.id;
     let newHp = document.getElementById('newHp_' + i);
 
-    set(ref(database, `currentMap/${i}`),
+    setDoc(`currentMap/${i}`,
     {
         border : wholeDB[i].border,
         currentHp : newHp.value,
@@ -590,13 +590,13 @@ function deletePreset()
 {
     if(preOrSumm == 1)
     {
-        set(ref(database, `playerChar/Vi/summons/summonPreset/${this.id}`), null);
+        deleteDoc(`playerChar/Vi/summons/summonPreset/${this.id}`);
         resetSummons();
     }
 
     else
     {
-        set(ref(database, `preset/${this.id}`), null); 
+        deleteDoc(`preset/${this.id}`);
         resetPreset();
     }
 }
@@ -651,7 +651,7 @@ function addToMap()
     }
 
     token["id"] = id;
-    set(ref(database, `currentMap/${id}`), token);
+    setDoc(`currentMap/${id}`, token);
 }
 
 function handleSummons()
@@ -663,8 +663,8 @@ function handleSummons()
     else{changeIsSummons.innerHTML = "Turn Summon's On";}
     changeIsSummons.onclick = (event) => 
         {
-            if(wholeSummons["isSummonOn"]){changeIsSummons.innerHTML = "Turn Summon's On"; set(ref(database, `playerChar/Vi/summons/isSummonOn`), false);}
-            else{changeIsSummons.innerHTML = "Turn Summon's Off";set(ref(database, `playerChar/Vi/summons/isSummonOn`), true);}
+            if(wholeSummons["isSummonOn"]){changeIsSummons.innerHTML = "Turn Summon's On"; setDoc(`playerChar/Vi/summons/isSummonOn`, false);}
+            else{changeIsSummons.innerHTML = "Turn Summon's Off"; setDoc(`playerChar/Vi/summons/isSummonOn`, true);}
         };
     div.appendChild(changeIsSummons);
     handlePreset();
@@ -804,7 +804,7 @@ function uploadTO()
 
 function uploadRowTO(key)
 {
-    set(ref(database, `currentTO/${key}`),
+    setDoc(`currentTO/${key}`,
     {
         charName : document.getElementById(`Name_${temp[key].charName}`).innerHTML,
         position : document.getElementById(`Order_${temp[key].charName}`).value,
@@ -860,7 +860,7 @@ function updateMap()
         }
     }
 
-    set(ref(database, `currentMap/${n.slice(0, n.indexOf("-"))}`),
+    setDoc(`currentMap/${n.slice(0, n.indexOf("-"))}`,
     {
         border : b,
         currentHp : c,
@@ -951,26 +951,26 @@ function handleUploadeSave()
 
     for(let key of Object.keys(wholeDB))
     {
-        set(ref(database, `${cName}/${key}`), wholeDB[key]);
+        setDoc(`${cName}/${key}`, wholeDB[key]);
     }
 
-    set(ref(database, `${cName}/${Object.keys(wholeDB)[0]}`), wholeDB[Object.keys(wholeDB)[0]]);
+    setDoc(`${cName}/${Object.keys(wholeDB)[0]}`, wholeDB[Object.keys(wholeDB)[0]]);
 
     wholeDB[Object.keys(wholeDB)[0]]
 
-    set(ref(database, `lists/${cName}`), {name : `${cName}`});
+    setDoc(`lists/${cName}`, {name : `${cName}`});
 
     handleDone();
 }
 
 function emptyCollection(cName)
 {
-    set(ref(database, `${cName}/`), null);
+    deleteDoc(`${cName}/`);
 }
 
 function emptyTOCollection()
 {
-    set(ref(database, `currentTO/`), null);
+    deleteDoc(`currentTO/`);
 }
 
 function handleLoad()
@@ -1006,7 +1006,7 @@ function loadMap()
         temp = wholeDB;
         for(let key of Object.keys(temp))
         {
-            set(ref(database, `currentMap/${key}`), temp[key]);
+            setDoc(`currentMap/${key}`, temp[key]);
         }
 
         handleDone();
@@ -1018,7 +1018,7 @@ function handleGenerate()
     hideButtons();    
     for(let player of Object.keys(wholeChar))
     {
-        set(ref(`playerChar/${player}/token/isSummon`), false);
+        setDoc(`playerChar/${player}/token/isSummon`, false);
     }
 
     alert("done");
@@ -1094,7 +1094,7 @@ function addToken()
         }
     }
  
-    set(ref(database, table),
+    setDoc(table,
     {
         border : b,
         currentHp : c,

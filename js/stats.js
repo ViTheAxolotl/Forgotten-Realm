@@ -1,8 +1,8 @@
 "use strict";
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
-import { getDatabase, ref, set, onValue } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
-import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
-import { toTitleCase, auth, database } from './viMethods.js';
+import { ref, onValue } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
+import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
+import { toTitleCase, auth, database, setDoc } from './viMethods.js';
 
 let player;
 let wholeChar = {};
@@ -44,7 +44,7 @@ function init()
         elem[0].classList = "color-UP-yellow";
         elem[1].style.width = "75px";
         elem[1].id = stat;
-        elem[1].style.margin = "5px";
+        elem[1].style.marginLeft = "5%";
         elem[1].value = stats[stat]
         elem[2].appendChild(elem[0]);
         elem[2].appendChild(elem[1]);
@@ -66,7 +66,7 @@ function submitChanges()
         stats[stat] = value;
     }
 
-    set(ref(database, `playerChar/${player}/stats`), stats);
+    setDoc(`playerChar/${player}/stats`, stats)
     alert("Stats have been changed.");
     location.reload();
 }

@@ -1,7 +1,7 @@
 "use strict";
-import { ref, set, onValue } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
+import { ref, onValue } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
 import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
-import { toTitleCase, auth, database } from './viMethods.js';
+import { toTitleCase, auth, database, setDoc } from './viMethods.js';
 
 let player;
 let wholeChars = {};
@@ -305,6 +305,6 @@ function createChar(curCharacter, curBorder)
         char["yPos"] = oldToken["yPos"];
     }
 
-    set(ref(database, `currentMap/${charName}`), char);
-    set(ref(database, `playerChar/${player}/token`), char);
+    setDoc(`currentMap/${charName}`, char);
+    setDoc(`playerChar/${player}/token`, char);
 }

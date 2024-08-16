@@ -1,7 +1,7 @@
 "use strict";
-import { ref, set, onValue } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
+import { ref, onValue } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
 import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
-import { toTitleCase, auth, database } from './viMethods.js';
+import { toTitleCase, auth, database, setDoc, deleteDoc } from './viMethods.js';
 
 const currentMapRef = ref(database, 'currentMap/');
 onValue(currentMapRef, (snapshot) => 
@@ -162,13 +162,13 @@ function addTokens()
     {
         if(isSummonOn && !(Object.keys(wholeDB).includes("sky")) && wholeSummons["sky"] != undefined)
         {
-            set(ref(database, "currentMap/sky"), wholeSummons["sky"]);
+            setDoc("currentMap/sky", wholeSummons["sky"]);
         }
     }
 
     if(!(Object.keys(wholeDB).includes(wholeChar[player]["token"]["id"])))
     {
-        set(ref(database, `currentMap/${wholeChar[player]["token"]["id"]}`), wholeChar[player]["token"]);
+        setDoc(`currentMap/${wholeChar[player]["token"]["id"]}`, wholeChar[player]["token"]);
 
         if(isSummonOn)
         {
@@ -181,13 +181,13 @@ function addTokens()
 
                     if(wholeChar[player]["charName"] == user)
                     {
-                        set(ref(database, `currentMap/${wholeSummons[key]["id"]}`), wholeSummons[key]);
+                        setDoc(`currentMap/${wholeSummons[key]["id"]}`, wholeSummons[key]);
                     }
                 }
             }
         }
 
-        set(ref(database, `playerChar/${player}/currentToken`, wholeChar[player]["token"]["id"]));
+        setDoc(`playerChar/${player}/currentToken`, wholeChar[player]["token"]["id"]);
         location.reload();
     }
 }
@@ -643,13 +643,13 @@ function handleCharClick()
 
     else if(player == "Vi")
     {
-        set(ref(database, `playerChar/${player}/currentToken`), this.classList[1]);
+        setDoc(`playerChar/${player}/currentToken`, this.classList[1]);
         location.reload();
     }
 
     else if(name.includes(compName[0]) && compName[0] != "")
     {
-        set(ref(database, `playerChar/${player}/currentToken`), this.classList[1]);
+        setDoc(`playerChar/${player}/currentToken`, this.classList[1]);
         location.reload();
     }
 
@@ -788,7 +788,7 @@ function updateToken(token)
                 break;
         }
 
-        set(ref(database, `currentMap/${char.id}`),
+        setDoc(`currentMap/${char.id}`,
         {
             border : borderColor,
             currentHp : currentHp.value,
@@ -805,7 +805,7 @@ function updateToken(token)
 
         if(wholeChar[player]["currentToken"] == wholeChar[player]["token"]["id"])
         {
-            set(ref(database, `playerChar/${player}/token`),
+            setDoc(`playerChar/${player}/token`, 
             {
                 border : borderColor,
                 currentHp : currentHp.value,
@@ -827,12 +827,12 @@ function updateToken(token)
             {
                 if(currentHp.value == "0")
                 {
-                    set(ref(database, `playerChar/Vi/summons/${char.id}`), null);
+                    deleteDoc(`playerChar/Vi/summons/${char.id}`);
                 }
 
                 else
                 {
-                    set(ref(database, `playerChar/Vi/summons/${char.id}`),
+                    setDoc(`playerChar/Vi/summons/${char.id}`,
                     {
                         border : borderColor,
                         currentHp : currentHp.value,

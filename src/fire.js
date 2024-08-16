@@ -1,7 +1,7 @@
 "use strict"
-import { ref, set, onValue } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
+import { ref, onValue } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
 import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
-import { toTitleCase, auth, database, createCard } from './viMethods.js';
+import { toTitleCase, auth, database, createCard, setDoc, deleteDoc } from './viMethods.js';
 
 let wholeNotes = {};
 let player;
@@ -171,10 +171,10 @@ async function addNote(title, text)
     {
         if(currentTitle != undefined)
         {
-            set(ref(database, `playerChar/${player}/notes/${currentTitle}`), null);
+            deleteDoc(`playerChar/${player}/notes/${currentTitle}`);
         }
   
-        set(ref(database, `playerChar/${player}/notes/${title}`), text);
+        setDoc(`playerChar/${player}/notes/${title}`, text);
         setTimeout(() => {location.reload();}, 50);
     } 
     
@@ -203,7 +203,7 @@ async function deleteNote()
 {
     if(currentTitle != undefined)
     {
-        set(ref(database, `playerChar/${player}/notes/${currentTitle}`), null);
+        deleteDoc(`playerChar/${player}/notes/${currentTitle}`);
         setTimeout(() => {location.reload();}, 50);
     }
 

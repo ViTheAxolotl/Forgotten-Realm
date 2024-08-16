@@ -1,8 +1,8 @@
 "use strict";
 
-import { ref, set, onValue } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
+import { ref, onValue } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
 import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
-import { toTitleCase, auth, database, createCard } from './viMethods.js';
+import { toTitleCase, auth, database, createCard, setDoc, deleteDoc } from './viMethods.js';
 
 const currentTORef = ref(database, 'currentTO/');
 onValue(currentTORef, (snapshot) => 
@@ -496,7 +496,7 @@ function changeTOValue(data, sit)
         sel = "true";
     }
 
-    set(ref(database, `currentTO/${data.charName}`),
+    setDoc(`currentTO/${data.charName}`,
     {
         charName : data.charName,
         position : data.position,
@@ -1054,7 +1054,7 @@ function handleUseAction()
                 }
             }
 
-            set(ref(database, `playerChar/Vi/responses`), {"ability" : skill, "currentResponse" : lastUse, "toBeat" : toBeat, "castBy" : wholeChar[player]["charName"], "isSpell" : isSpell, "ind" : ind, "castUp" : castUp});
+            setDoc(`playerChar/Vi/responses`, {"ability" : skill, "currentResponse" : lastUse, "toBeat" : toBeat, "castBy" : wholeChar[player]["charName"], "isSpell" : isSpell, "ind" : ind, "castUp" : castUp});
 
             display = `${wholeChar[player]["charName"]} cast,\n${lastUse}:\n${useInfo} \nWaiting for others to use the Response Action (Under Actions, Miscs)...`;
 
@@ -1072,7 +1072,7 @@ function handleUseAction()
             if(wholeRespone["isSpell"]){abilityDisc = wholeSpells[wholeRespone["ind"]][wholeRespone["currentResponse"]]["description"];}
             else{abilityDisc = wholeActions[wholeRespone["ind"]][wholeRespone["currentResponse"]]["description"];}
 
-            set(ref(database, `playerChar/${player}/stats/${wholeRespone["ability"]}`), userAddTo);
+            setDoc(`playerChar/${player}/stats/${wholeRespone["ability"]}`, userAddTo);
             usersRoll = lesserDiceRoll("1", "20", userAddTo);
 
             if(abilityDisc.includes("{@save "))
@@ -1179,14 +1179,14 @@ function spellOrAttackBonus(usage)
         else{userAddTo = prompt("What is your Attack Bonus?", wholeChar[player]["stats"]["attackBonus"]);}
         userAddTo = userAddTo.replaceAll(" ", "");
 
-        if(spellLevel){set(ref(database, `playerChar/${player}/stats/addToSpell`), userAddTo);}
-        else{set(ref(database, `playerChar/${player}/stats/attackBonus`), userAddTo);}
+        if(spellLevel){setDoc(`playerChar/${player}/stats/addToSpell`, userAddTo);}
+        else{setDoc(`playerChar/${player}/stats/attackBonus`, userAddTo);}
     }
     
     else if(usage == "@save")
     {
         userAddTo = prompt("What is the DC to beat (Spell DC)?", wholeChar[player]["stats"]["spellDC"]);
-        set(ref(database, `playerChar/${player}/stats/spellDC`), userAddTo);
+        setDoc(`playerChar/${player}/stats/spellDC`, userAddTo);
     }
 
     return userAddTo;
@@ -1210,14 +1210,14 @@ function handleCreateNew()
     {
         spellLevel = "0";
         lastSpell = "Sacred Flame";
-        set(ref(database, `playerChar/${player}/favorites/spells/${spellLevel}/${lastSpell}`), wholeSpells[spellLevel][lastSpell]);
+        setDoc(`playerChar/${player}/favorites/spells/${spellLevel}/${lastSpell}`, wholeSpells[spellLevel][lastSpell]);
     }
 
     else if(this.innerHTML == "Create New Ability")
     {
         curClass = "Artificer";
         lastAbility = "Magical Tinkering";
-        set(ref(database, `playerChar/${player}/favorites/actions/${curClass}/${lastAbility}`), wholeActions[curClass][lastAbility]);
+        setDoc(`playerChar/${player}/favorites/actions/${curClass}/${lastAbility}`, wholeActions[curClass][lastAbility]);
     }
 
     handleEditCard();
@@ -1315,7 +1315,7 @@ function cancelEdit()
     {
         if(lastSpell == "Sacred Flame")
         {
-            set(ref(database, `playerChar/${player}/favorites/spells/${spellLevel}/${lastSpell}`), null);
+            deleteDoc(`playerChar/${player}/favorites/spells/${spellLevel}/${lastSpell}`);
         }
     }
 
@@ -1323,7 +1323,7 @@ function cancelEdit()
     {
         if(lastAbility == "Magical Tinkering")
         {
-            set(ref(database, `playerChar/${player}/favorites/actions/${curClass}/${lastAbility}`), null);
+            deleteDoc(`playerChar/${player}/favorites/actions/${curClass}/${lastAbility}`);
         }   
     }
 
@@ -1336,9 +1336,9 @@ function uploadEdit()
 
     if(spellLevel)
     {
-        set(ref(database, `playerChar/${player}/favorites/spells/${spellLevel}/${lastSpell}`), null);
+        deleteDoc(`playerChar/${player}/favorites/spells/${spellLevel}/${lastSpell}`);
 
-        set(ref(database, `playerChar/${player}/favorites/spells/${spellDisc[1].value.trim()}/${spellDisc[0].value.trim()}`), 
+        setDoc(`playerChar/${player}/favorites/spells/${spellDisc[1].value.trim()}/${spellDisc[0].value.trim()}`,
         {
             castTime : spellDisc[2].value.trim(),
             components : spellDisc[4].value.trim(),
@@ -1353,9 +1353,9 @@ function uploadEdit()
 
     else
     {
-        set(ref(database, `playerChar/${player}/favorites/actions/${curClass}/${lastAbility}`), null);
+        deleteDoc(`playerChar/${player}/favorites/actions/${curClass}/${lastAbility}`);
 
-        set(ref(database, `playerChar/${player}/favorites/actions/${spellDisc[1].value.trim()}/${spellDisc[0].value.trim()}`), 
+        setDoc(`playerChar/${player}/favorites/actions/${spellDisc[1].value.trim()}/${spellDisc[0].value.trim()}`,
         {
             description : spellDisc[2].value.trim(),
             level : spellDisc[1].value.trim(),
@@ -1377,12 +1377,12 @@ function handleFavoriteBtn()
         
         if(spellLevel)
         {
-            set(ref(database, `playerChar/${player}/favorites/spells/${spellLevel}/${titleName}`), wholeSpells[spellLevel][cardName]);
+            setDoc(`playerChar/${player}/favorites/spells/${spellLevel}/${titleName}`, wholeSpells[spellLevel][cardName]);
         }
 
         else
         {
-            set(ref(database, `playerChar/${player}/favorites/actions/${curClass}/${titleName}`), wholeActions[curClass][cardName]);
+            setDoc(`playerChar/${player}/favorites/actions/${curClass}/${titleName}`, wholeActions[curClass][cardName]);
         }
     }
 
@@ -1392,12 +1392,12 @@ function handleFavoriteBtn()
         
         if(spellLevel)
         {
-            set(ref(database, `playerChar/${player}/favorites/spells/${spellLevel}/${titleName}`), null);
+            deleteDoc(`playerChar/${player}/favorites/spells/${spellLevel}/${titleName}`);
         }
 
         else
         {
-            set(ref(database, `playerChar/${player}/favorites/actions/${curClass}/${titleName}`), null);
+            deleteDoc(`playerChar/${player}/favorites/actions/${curClass}/${titleName}`);
         }
         
         emptyCards();
