@@ -8,6 +8,7 @@ import { toTitleCase, auth, database } from './viMethods.js';
 let player;
 let wholeChar = {};
 let stats;
+let firstRun = true;
 
 const charRef = ref(database, 'playerChar/');
 onValue(charRef, (snapshot) => 
