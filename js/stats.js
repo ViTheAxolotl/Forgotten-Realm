@@ -4,7 +4,6 @@ import { getDatabase, ref, set, onValue } from 'https://www.gstatic.com/firebase
 import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
 import { toTitleCase, auth, database } from './viMethods.js';
 
-
 let player;
 let wholeChar = {};
 let stats;

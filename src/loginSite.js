@@ -1,21 +1,7 @@
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
-import { getDatabase} from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
-import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
-import { toTitleCase } from './../js/viMethods.js';
+"use strict";
+import { signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
+import { toTitleCase, auth, database } from './viMethods.js';
 
-const firebaseApp = initializeApp
-({
-    apiKey: "AIzaSyArcsmJkXSeuIHMysYtIzRdjIDlKNQA25Y",
-    authDomain: "forgottenrealmsmap.firebaseapp.com",
-    projectId: "forgottenrealmsmap",
-    storageBucket: "forgottenrealmsmap.appspot.com",
-    messagingSenderId: "697902154695",
-    appId: "1:697902154695:web:ffa5c47817f3097c89cfe2",
-    measurementId: "G-Q2W494NRDT"
-});
-
-let database = getDatabase();
-const auth = getAuth();
 let url = window.location.href.split("/");
 let player;
 let username, password, backBtn, loginBtn;
