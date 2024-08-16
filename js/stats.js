@@ -55,6 +55,7 @@ function init()
     let submitBtn = document.createElement("button");
     submitBtn.innerHTML = "Submit Changes"
     submitBtn.onclick = submitChanges;
+    display.appendChild(submitBtn);
 }
 
 function submitChanges()
