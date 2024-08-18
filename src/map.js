@@ -707,10 +707,11 @@ function handleViewTokens(t)
     {
         let instructions = document.createElement("h3");
         let labels = ["Map", "Stats", "Actions", "Favorites"];
-        
+        let holdingDiv = document.createElement("div");
+
         instructions.innerHTML = "Instructions";
         instructions.style.color = "black";
-        viewDiv.appendChild(instructions);
+        holdingDiv.appendChild(instructions);
 
         for(let i = 0; i < labels.length; i++)
         {
@@ -719,8 +720,10 @@ function handleViewTokens(t)
             label.classList.add("gridButton");
             label.name = labels[i];
             label.onclick = changeInstructions;
-            viewDiv.appendChild(label);
+            holdingDiv.appendChild(label);
         }
+
+        viewDiv.insertBefore(holdingDiv, document.getElementById("viewToken"));
     }
 }
 
@@ -751,7 +754,7 @@ function changeInstructions()
         case "Stats":
             display.innerHTML = fill[labels.indexOf(this.name)];
             display.innerHTML += "<ul>";
-            for(key in Object.keys(keyWords)){display.innerHTML += `<li>${key}: ${keyWords[key]}</li>`}
+            for(let key in Object.keys(keyWords)){display.innerHTML += `<li>${key}: ${keyWords[key]}</li>`}
             display.innerHTML += "</ul>";
             break;
 
