@@ -755,7 +755,7 @@ function changeInstructions()
         case "Stats":
             display.innerHTML = fill[labels.indexOf(this.name)];
             display.innerHTML += "<ul>";
-            for(let key in Object.keys(keyWords)){display.innerHTML += `<li>${key}: ${keyWords[key]}</li>`}
+            for(let key of Object.keys(keyWords)){display.innerHTML += `<li>${key}: ${keyWords[key]}</li>`}
             display.innerHTML += "</ul>";
             break;
 
