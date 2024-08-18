@@ -712,7 +712,7 @@ function handleViewTokens(t)
         instructions.style.color = "black";
         viewDiv.appendChild(instructions);
 
-        for(let i = 0; i < directions.length; i++)
+        for(let i = 0; i < labels.length; i++)
         {
             let label = document.createElement("button");
             label.innerHTML = labels[i];
