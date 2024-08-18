@@ -719,6 +719,7 @@ function handleViewTokens(t)
             let label = document.createElement("button");
             label.innerHTML = labels[i];
             label.classList.add("gridButton");
+            label.style.margin = "3px";
             label.name = labels[i];
             label.onclick = changeInstructions;
             holdingDiv.appendChild(label);
@@ -737,7 +738,7 @@ function changeInstructions()
 
     for(let label of labels)
     {
-        let button = document.getElementsByName(labels[label]);
+        let button = document.getElementsByName(label);
         
         if(this.name == button.name)
         {
@@ -746,7 +747,7 @@ function changeInstructions()
 
         else
         {
-            button.classList = "";
+            button.classList = "gridButton";
         }
     }
 
