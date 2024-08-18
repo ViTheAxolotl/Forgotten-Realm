@@ -83,7 +83,7 @@ function init()
 {
     setInterval(timer, 100);
 
-    document.getElementById("helpBtn").onclick = "handleCharClick";
+    document.getElementById("helpBtn").onclick = handleCharClick;
     
     if(rect.width < 999)
     {
