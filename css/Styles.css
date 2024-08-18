@@ -652,6 +652,13 @@ table, .itemSearch, #itemImg
         width: 300px;
         height: 204px;
     }
+
+    #helpBtn
+    {
+        position: fixed;
+        bottom: 3%;
+        left: 3%;
+    }
   }
 
   @media (max-width: 767px) {

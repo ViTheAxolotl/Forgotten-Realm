@@ -740,14 +740,14 @@ function changeInstructions()
     {
         let button = document.getElementsByName(label);
         
-        if(this.name == button.name)
+        if(this.name == button[0].name)
         {
             this.classList.add("selected");
         }
 
         else
         {
-            button.classList = "gridButton";
+            button[0].classList = "gridButton";
         }
     }
 
