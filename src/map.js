@@ -678,7 +678,7 @@ function handleViewTokens(t)
     viewDiv.style.zIndex = "1011";
     for(let elm of viewDiv.children)
     {
-        if(t.id != "helpBtn" || elm.id == "hideCover")
+        if(t.id != "helpBtn" || elm.id == "hideCover" || elm.id == "showInstructions")
         {
             elm.classList = elm.classList[1];
             elm.style.zIndex = `101${y}`;
@@ -705,35 +705,61 @@ function handleViewTokens(t)
 
     if(t.id == "helpBtn")
     {
-        let instructions = document.createElement("h1");
+        let instructions = document.createElement("h3");
         let labels = ["Map", "Stats", "Actions", "Favorites"];
-        let directions = [document.createElement("p"), document.createElement("p"), document.createElement("p"), document.createElement("p")];
-        let fill = ["The map will change once a character moves, if you click on a character you can see it inlarged. If you click on your own summons you will change tokens into it.", "The stats section contains controls to change the maps status. To move your token you can use the D-Pad or hold Ctrl and the arrow key. You can also change your token through keywords in the title:", "Here is all the spells and abilities for your characters. You can search or scroll to find the spell/ability you wish to use. Once you find it click on it, from here you can use the ability or add it to your favorites. Abilities that have a {@ will preform actions on cast. Then it will display in the display section on the webpage.", "In this section it will show your spells and actions you have favorited, this can be used to organise your abilities. If you click on one of the abilities it will let you edit them. You can also create custom abilites and spells from here. If you wish to create a button to better organise your abilites, all you need to do is select edit on the ability and change the Tag into what you want."];
-        let keyWords = {"Large" : "This will make your token a large creature taking up a 2 x 2 square.", "Huge" : "This will make your token a huge creature taking up a 3 x 3 square.", "Gargantuan" : "This will make your token an Gargantuan creature taking up a 4 x 4 square.", "Top" : "This will make your token on top of other tokens.", "Bottom" : "This will make your token underneath others.", "Invisible" : "This will make only you be able to see your token."};
-
+        
         instructions.innerHTML = "Instructions";
+        instructions.style.color = "black";
         viewDiv.appendChild(instructions);
 
         for(let i = 0; i < directions.length; i++)
         {
-            let label = document.createElement("h3");
+            let label = document.createElement("button");
             label.innerHTML = labels[i];
-            directions[i].innerHTML = fill[i];
-
+            label.classList.add("gridButton");
+            label.name = labels[i];
+            label.onclick = changeInstructions;
             viewDiv.appendChild(label);
-            viewDiv.appendChild(directions[i]);
-            
-            if(i == 1)
-            {
-                for(let key of Object.keys(keyWords))
-                {
-                    let li = document.createElement("li");
-                    li.innerHTML = `${key}: ${keyWords[key]}`;
-                    viewDiv.appendChild(li);
-                }
-            }
+        }
+    }
+}
+
+function changeInstructions()
+{
+    let labels = ["Map", "Stats", "Actions", "Favorites"];
+    let fill = ["The map will change once a character moves, if you click on a character you can see it inlarged. If you click on your own summons you will change tokens into it.", "The stats section contains controls to change the maps status. To move your token you can use the D-Pad or hold Ctrl and the arrow key. You can also change your token through keywords in the title:", "Here is all the spells and abilities for your characters. You can search or scroll to find the spell/ability you wish to use. Once you find it click on it, from here you can use the ability or add it to your favorites. Abilities that have a {@ will preform actions on cast. Then it will display in the display section on the webpage.", "In this section it will show your spells and actions you have favorited, this can be used to organise your abilities. If you click on one of the abilities it will let you edit them. You can also create custom abilites and spells from here. If you wish to create a button to better organise your abilites, all you need to do is select edit on the ability and change the Tag into what you want."];
+    let keyWords = {"Large" : "This will make your token a large creature taking up a 2 x 2 square.", "Huge" : "This will make your token a huge creature taking up a 3 x 3 square.", "Gargantuan" : "This will make your token an Gargantuan creature taking up a 4 x 4 square.", "Top" : "This will make your token on top of other tokens.", "Bottom" : "This will make your token underneath others.", "Invisible" : "This will make only you be able to see your token."};
+    let display = document.getElementById("showInstructions");
+
+    for(let label of labels)
+    {
+        let button = document.getElementsByName(labels[label]);
+        
+        if(this.name == button.name)
+        {
+            this.classList.add("selected");
         }
 
+        else
+        {
+            button.classList = "";
+        }
+    }
+
+    switch(this.name)
+    {
+        case "Stats":
+            display.innerHTML = fill[labels.indexOf(this.name)];
+            display.innerHTML += "<ul>";
+            for(key in Object.keys(keyWords)){display.innerHTML += `<li>${key}: ${keyWords[key]}</li>`}
+            display.innerHTML += "</ul>";
+            break;
+
+        case "Map":
+        case "Actions":
+        case "Favorites":
+            display.innerHTML = fill[labels.indexOf(this.name)];
+            break;
     }
 }
 
