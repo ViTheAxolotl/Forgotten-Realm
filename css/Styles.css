@@ -488,6 +488,13 @@ table, .itemSearch, #itemImg
     width: 7%;
 }
 
+#helpBtn
+{
+    position: fixed;
+    bottom: 90%;
+    left: 0%;
+}
+
 @media (max-width: 1399px) {
     .col-md-6
     {

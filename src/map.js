@@ -82,6 +82,8 @@ onAuthStateChanged(auth, (user) =>
 function init()
 {
     setInterval(timer, 100);
+
+    document.getElementById("helpBtn").onclick = "handleCharClick";
     
     if(rect.width < 999)
     {
@@ -641,6 +643,11 @@ function handleCharClick()
         handleViewTokens(this);
     }
 
+    else if(this.id == "helpBtn")
+    {
+        handleViewTokens(this);
+    }
+
     else if(player == "Vi")
     {
         setDoc(`playerChar/${player}/currentToken`, this.classList[1]);
@@ -671,26 +678,62 @@ function handleViewTokens(t)
     viewDiv.style.zIndex = "1011";
     for(let elm of viewDiv.children)
     {
-        elm.classList = elm.classList[1];
-        elm.style.zIndex = `101${y}`;
-        y++;
-
-        if(elm.src != undefined)
+        if(t.id != "helpBtn" || elm.id == "hideCover")
         {
-            elm.src = currentToken[i].src;
-            elm.title = currentToken[i].title;
-            if(elm.title.includes(":"))
+            elm.classList = elm.classList[1];
+            elm.style.zIndex = `101${y}`;
+            y++;
+
+            if(elm.src != undefined)
             {
-                title = elm.title;
+                elm.src = currentToken[i].src;
+                elm.title = currentToken[i].title;
+                if(elm.title.includes(":"))
+                {
+                    title = elm.title;
+                }
+                
+                i++;
             }
+
+            else if(elm.id == "viewTitle")
+            {
+                elm.innerHTML = title;
+            }
+        }
+    }
+
+    if(t.id == "helpBtn")
+    {
+        let instructions = document.createElement("h1");
+        let labels = ["Map", "Stats", "Actions", "Favorites"];
+        let directions = [document.createElement("p"), document.createElement("p"), document.createElement("p"), document.createElement("p")];
+        let fill = ["The map will change once a character moves, if you click on a character you can see it inlarged. If you click on your own summons you will change tokens into it.", "The stats section contains controls to change the maps status. To move your token you can use the D-Pad or hold Ctrl and the arrow key. You can also change your token through keywords in the title:", "Here is all the spells and abilities for your characters. You can search or scroll to find the spell/ability you wish to use. Once you find it click on it, from here you can use the ability or add it to your favorites. Abilities that have a {@ will preform actions on cast. Then it will display in the display section on the webpage.", "In this section it will show your spells and actions you have favorited, this can be used to organise your abilities. If you click on one of the abilities it will let you edit them. You can also create custom abilites and spells from here. If you wish to create a button to better organise your abilites, all you need to do is select edit on the ability and change the Tag into what you want."];
+        let keyWords = {"Large" : "This will make your token a large creature taking up a 2 x 2 square.", "Huge" : "This will make your token a huge creature taking up a 3 x 3 square.", "Gargantuan" : "This will make your token an Gargantuan creature taking up a 4 x 4 square.", "Top" : "This will make your token on top of other tokens.", "Bottom" : "This will make your token underneath others.", "Invisible" : "This will make only you be able to see your token."};
+
+        instructions.innerHTML = "Instructions";
+        viewDiv.appendChild(instructions);
+
+        for(let i = 0; i < directions.length; i++)
+        {
+            let label = document.createElement("h3");
+            label.innerHTML = labels[i];
+            directions[i].innerHTML = fill[i];
+
+            viewDiv.appendChild(label);
+            viewDiv.appendChild(directions[i]);
             
-            i++;
+            if(i == 1)
+            {
+                for(let key of Object.keys(keyWords))
+                {
+                    let li = document.createElement("li");
+                    li.innerHTML = `${key}: ${keyWords[key]}`;
+                    viewDiv.appendChild(li);
+                }
+            }
         }
 
-        else if(elm.id == "viewTitle")
-        {
-            elm.innerHTML = title;
-        }
     }
 }
 
