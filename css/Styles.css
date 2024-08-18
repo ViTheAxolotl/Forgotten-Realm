@@ -656,8 +656,8 @@ table, .itemSearch, #itemImg
     #helpBtn
     {
         position: fixed;
-        bottom: 3%;
-        left: 3%;
+        bottom: 0%;
+        left: 0%;
     }
   }
 

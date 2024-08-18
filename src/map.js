@@ -708,9 +708,11 @@ function handleViewTokens(t)
         let instructions = document.createElement("h3");
         let labels = ["Map", "Stats", "Actions", "Favorites"];
         let holdingDiv = document.createElement("div");
+        holdingDiv.id = "holdingDiv";
         holdingDiv.classList.add("center");
 
         instructions.innerHTML = "Instructions";
+        instructions.style.marginTop = "5%";
         instructions.style.color = "black";
         holdingDiv.appendChild(instructions);
 
@@ -777,6 +779,8 @@ function hideCover()
         elm.classList = `invisible ${elm.classList[0]}`;
         elm.style.zIndex = "0";
     }
+
+    document.getElementById("holdingDiv").remove();
 
     viewDiv.classList = `invisible`;
     viewDiv.style.zIndex = "0";
