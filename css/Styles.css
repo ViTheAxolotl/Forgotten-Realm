@@ -491,8 +491,8 @@ table, .itemSearch, #itemImg
 #helpBtn
 {
     position: fixed;
-    bottom: 90%;
-    left: 0%;
+    bottom: 3%;
+    left: 3%;
 }
 
 @media (max-width: 1399px) {
