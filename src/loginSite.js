@@ -1,6 +1,6 @@
 "use strict";
 import { signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
-import { toTitleCase, auth, database } from '../viMethods.js';
+import { toTitleCase, auth, database } from '../js/viMethods.js';
 
 let url = window.location.href.split("/");
 let player;

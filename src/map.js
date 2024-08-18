@@ -1,7 +1,7 @@
 "use strict";
 import { ref, onValue } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
 import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
-import { toTitleCase, auth, database, setDoc, deleteDoc } from '../viMethods.js';
+import { toTitleCase, auth, database, setDoc, deleteDoc } from '../js/viMethods.js';
 
 const currentMapRef = ref(database, 'currentMap/');
 onValue(currentMapRef, (snapshot) => 
