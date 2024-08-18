@@ -708,6 +708,7 @@ function handleViewTokens(t)
         let instructions = document.createElement("h3");
         let labels = ["Map", "Stats", "Actions", "Favorites"];
         let holdingDiv = document.createElement("div");
+        holdingDiv.classList.add("center");
 
         instructions.innerHTML = "Instructions";
         instructions.style.color = "black";
