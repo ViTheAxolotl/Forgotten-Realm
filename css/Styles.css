@@ -543,6 +543,12 @@ table, .itemSearch, #itemImg
         height: 5%;
     }
 
+    #gridMap .customImg
+    {
+        width: 4.5%;
+        height: 4.5%;
+    }
+
     .tODiv
     {
         width: 10%;
