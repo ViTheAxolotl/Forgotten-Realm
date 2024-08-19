@@ -319,13 +319,14 @@ function handleGoButton()
 function createChar(curCharacter, curBorder)
 {
     let charName = currentName;
-    let char = {border : curBorder, currentHp : `${document.getElementById("Current Hp").value}`, maxHp : `${document.getElementById("Max Hp").value}`, tempHp : document.getElementById("Temp Hp").value, map : "", id : charName, name : curCharacter, title : " " + charName + ", ", xPos : "1", yPos : "A"};
+    let char = {border : curBorder, currentHp : `${document.getElementById("Current Hp").value}`, maxHp : `${document.getElementById("Max Hp").value}`, tempHp : document.getElementById("Temp Hp").value, map : "", id : charName, name : curCharacter, title : " " + charName + ", ", xPos : "1", yPos : "A", isSummon : false};
 
     if(oldToken != null || oldToken != undefined)
     {
         char["title"] = oldToken["title"];
         char["xPos"] = oldToken["xPos"];
         char["yPos"] = oldToken["yPos"];
+        char["isSummon"] = oldToken["isSummon"];
     }
 
     setDoc(`currentMap/${charName}`, char);

@@ -746,7 +746,8 @@ function hideCover()
         elm.style.zIndex = "0";
     }
 
-    document.getElementById("holdingDiv").remove();
+    let holdingDiv = document.getElementById("holdingDiv");
+    if(holdingDiv != null){holdingDiv.remove();}
 
     viewDiv.classList = `invisible`;
     viewDiv.style.zIndex = "0";
