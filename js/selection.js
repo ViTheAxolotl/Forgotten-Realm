@@ -157,7 +157,6 @@ function setUpCharacters(currentName)
 
         if(oldToken != null || oldToken != undefined)
         {
-            document.getElementById(`${oldToken["name"]}`).onclick();
             document.getElementById(`${oldToken["border"]}`).onclick();
             document.getElementById(`Max Hp`).value = oldToken["maxHp"];
             document.getElementById(`Current Hp`).value = oldToken["currentHp"];
@@ -201,6 +200,11 @@ function addCharacters()
             person.onclick = handleChoose;
             div.insertBefore(person, bord);
         }
+    }
+
+    if(oldToken != null || oldToken != undefined)
+    {
+        document.getElementById(`${oldToken["name"]}`).onclick();
     }
 }
 
