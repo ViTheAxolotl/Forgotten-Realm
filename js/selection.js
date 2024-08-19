@@ -194,7 +194,7 @@ function addCharacters()
         if(wholeCustom[custom]["player"] == player)
         {
             let person = document.createElement("img");
-            person.id = currentName + "-";
+            person.id = wholeCustom[custom]["name"];
             person.src = wholeCustom[custom]["src"];
             person.classList = "char customImg";
             person.style.width = "73px";
@@ -312,14 +312,13 @@ function handleGoButton()
         div.classList.add("center"); 
         div.appendChild(loading);
         div.appendChild(loadingGif);
-        let charName = curCharacter.slice(0, curCharacter.indexOf("-"));
-        setInterval(() => {window.location.href= `map.html?${charName}_${curBorder}_x`;}, 2000);
+        setInterval(() => {window.location.href= `map.html`;}, 2000);
     }
 }
 
 function createChar(curCharacter, curBorder)
 {
-    let charName = curCharacter.slice(0, curCharacter.indexOf("-"));
+    let charName = currentName;
     let char = {border : curBorder, currentHp : `${document.getElementById("Current Hp").value}`, maxHp : `${document.getElementById("Max Hp").value}`, tempHp : document.getElementById("Temp Hp").value, map : "", id : charName, name : curCharacter, title : " " + charName + ", ", xPos : "1", yPos : "A"};
 
     if(oldToken != null || oldToken != undefined)
