@@ -794,12 +794,12 @@ function updateToken(token)
         const currentTokens = document.getElementsByClassName(wholeChar[player]["currentToken"]);
         let char = document.getElementById(wholeChar[player]["currentToken"]);
         let borderColor;
-        let n = char.id + '-';
+        let n = wholeDB[wholeChar[player]["currentToken"]]["name"];
 
-        if(/\d/.test(char.id) && !char.id.includes("guest"))
+        /**if(/\d/.test(char.id) && !char.id.includes("guest"))
         {
             n = char.id.replace(/\d/g, '') + '-';
-        }
+        }*/
 
         for(let token of currentTokens)
         {

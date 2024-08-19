@@ -495,7 +495,7 @@ table, .itemSearch, #itemImg
     left: 3%;
 }
 
-.customImg
+.customImg, .char, .bord, #gridMap .tokens
 {
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
