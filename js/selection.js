@@ -197,6 +197,8 @@ function addCharacters()
             person.id = wholeCustom[custom]["player"];
             person.src = wholeCustom[custom]["src"];
             person.classList = "char";
+            person.style.width = "73px";
+            person.style.height = "73px";
             person.onclick = handleChoose;
             div.insertBefore(person, bord);
         }
