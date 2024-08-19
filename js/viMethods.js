@@ -102,7 +102,7 @@ export function returnHpImage(maxHp, tempHp, currentHp)
 
     if(tempHp != null)
     {
-        if(tempHp.value != "0")
+        if(tempHp != "0")
         {
             return "images/map/hpBar/tempHp.png";
         }

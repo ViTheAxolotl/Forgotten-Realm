@@ -194,7 +194,7 @@ function addCharacters()
         if(wholeCustom[custom]["player"] == player)
         {
             let person = document.createElement("img");
-            person.id = wholeCustom[custom]["player"];
+            person.id = currentName + "-";
             person.src = wholeCustom[custom]["src"];
             person.classList = "char customImg";
             person.style.width = "73px";
@@ -306,7 +306,7 @@ function handleGoButton()
 
         let loading = document.createElement("h3");
         let loadingGif = document.createElement("img");
-        loading.innerHTML = "Loading, AxolMap V3 now with memory...";
+        loading.innerHTML = "Loading, AxolMap V1.4 now with better interface...";
         loadingGif.src = "images/loadingGif.gif";
         loadingGif.style.minWidth = "10%";
         div.classList.add("center"); 
