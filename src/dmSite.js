@@ -1,6 +1,6 @@
 "use strict";
 import { ref, onValue } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
-import { toTitleCase, auth, database, setDoc, deleteDoc } from '../js/viMethods.js';
+import { toTitleCase, auth, database, setDoc, deleteDoc, returnHpImage } from '../js/viMethods.js';
 
 const currentMapRef = ref(database, 'currentMap/');
 onValue(currentMapRef, (snapshot) => 
@@ -389,51 +389,8 @@ function handleChangeCurrent()
 
 function updateHpPic(maxHp, currentHp)
 {
-    let fraction = parseInt(currentHp) / parseInt(maxHp);
     let tempHp = document.getElementById("tempHp");
-
-    if(tempHp != null)
-    {
-        if(tempHp.value != "0")
-        {
-            return "images/map/hpBar/tempHp.png";
-        }
-    }
-
-    if(maxHp == "0" && currentHp == "0")
-    {
-        return "images/map/hpBar/invisible.png";
-    }
-
-    else if(fraction == 1)
-    {
-        return "images/map/hpBar/hpBar1.png";
-    }
-
-    else if(fraction >= .8)
-    {
-        return "images/map/hpBar/hpBar2.png";
-    }
-
-    else if(fraction >= .6)
-    {
-        return "images/map/hpBar/hpBar3.png";
-    }
-
-    else if(fraction >= .4)
-    {
-        return "images/map/hpBar/hpBar4.png";
-    }
-
-    else if(fraction > 0)
-    {
-        return "images/map/hpBar/hpBar5.png";
-    }
-
-    else if(fraction == 0)
-    {
-        return "images/map/hpBar/hpBar6.png";
-    }  
+    return returnHpImage(maxHp, tempHp, currentHp);
 }
 
 function resetState()
@@ -1015,10 +972,11 @@ function loadMap()
 
 function handleGenerate()
 {
-    hideButtons();    
+    hideButtons();
+
     for(let player of Object.keys(wholeChar))
     {
-        setDoc(`playerChar/${player}/token/isSummon`, false);
+        setDoc(`customImages/hold`, {"player" : "none", "src" : "hold"});
     }
 
     alert("done");

@@ -95,3 +95,51 @@ export function deleteDoc(path)
 {
     set(ref(database, path), null);
 }
+
+export function returnHpImage(maxHp, tempHp, currentHp)
+{
+    let fraction = parseInt(currentHp) / parseInt(maxHp);
+
+    if(tempHp != null)
+    {
+        if(tempHp.value != "0")
+        {
+            return "images/map/hpBar/tempHp.png";
+        }
+    }
+
+    if(maxHp == "0" && currentHp == "0")
+    {
+        return "images/map/hpBar/invisible.png";
+    }
+
+    else if(fraction == 1)
+    {
+        return "images/map/hpBar/hpBar1.png";
+    }
+
+    else if(fraction >= .8)
+    {
+        return "images/map/hpBar/hpBar2.png";
+    }
+
+    else if(fraction >= .6)
+    {
+        return "images/map/hpBar/hpBar3.png";
+    }
+
+    else if(fraction >= .4)
+    {
+        return "images/map/hpBar/hpBar4.png";
+    }
+
+    else if(fraction > 0)
+    {
+        return "images/map/hpBar/hpBar5.png";
+    }
+
+    else if(fraction == 0)
+    {
+        return "images/map/hpBar/hpBar6.png";
+    }  
+}

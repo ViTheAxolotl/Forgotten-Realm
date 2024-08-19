@@ -5,6 +5,7 @@ import { toTitleCase, auth, database, setDoc } from './viMethods.js';
 
 let player;
 let wholeChars = {};
+let wholeCustom = {};
 let enter = document.getElementById("enter");
 let charName = document.getElementById("name");
 let currentName;
@@ -29,6 +30,13 @@ onValue(charRef, (snapshot) =>
         wholeChars = data;
         userLoggedIn();
     }
+});
+
+const customsRef = ref(database, 'customImages/');
+onValue(customsRef, (snapshot) => 
+{
+    const data = snapshot.val();
+    wholeCustom = data;
 });
 
 onAuthStateChanged(auth, (user) => 
@@ -171,8 +179,21 @@ function addCharacters()
         person.id = char;
         person.src = `images/map/tokens/${char}.png`;
         person.classList = "char";
-        person.onclick = choose;
+        person.onclick = handleChoose;
         div.appendChild(person);
+    }
+
+    for(let custom of Object.keys(wholeCustom))
+    {
+        if(custom["player"] == player)
+        {
+            let person = document.createElement("img");
+            person.id = custom["player"];
+            person.src = custom["src"];
+            person.classList = "char";
+            person.onclick = handleChoose;
+            div.appendChild(person);
+        }
     }
 }
 
@@ -185,7 +206,7 @@ function addBorders()
         borders[i].src = `images/map/tokens/${color}Border.png`;
         borders[i].id = color;
         borders[i].classList = "bord";
-        borders[i].onclick = choose;
+        borders[i].onclick = handleChoose;
     }
 
     div.appendChild(bord);
@@ -221,7 +242,7 @@ function addHp()
     }
 }
 
-function choose()
+function handleChoose()
 {
     let classL = this.classList.value;
     if(classL.includes("char"))

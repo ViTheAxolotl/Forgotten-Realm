@@ -1,7 +1,7 @@
 "use strict";
 import { ref, onValue } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
 import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
-import { toTitleCase, auth, database, setDoc, deleteDoc } from '../js/viMethods.js';
+import { toTitleCase, auth, database, setDoc, deleteDoc, returnHpImage } from '../js/viMethods.js';
 
 const currentMapRef = ref(database, 'currentMap/');
 onValue(currentMapRef, (snapshot) => 
@@ -35,6 +35,13 @@ onValue(summonsRef, (snapshot) =>
     isSummonOn = wholeSummons["isSummonOn"];
 });
 
+const customsRef = ref(database, 'customImages/');
+onValue(customsRef, (snapshot) => 
+{
+    const data = snapshot.val();
+    wholeCustom = data;
+});
+
 let wholeDB = {};
 let div = document.getElementById("gridMap");
 let html = {};
@@ -60,6 +67,7 @@ let wholeSummons;
 let isSummonOn;
 let player;
 let wholeChar;
+let wholeCustom;
 let firstRun = true;
 let currentTurn;
 let players = ["nibbly", "nook", "razor", "leonier"];
@@ -87,10 +95,10 @@ function init()
     
     if(rect.width < 999)
     {
-        mapSize = rect.width; //remove fraction
-        bumper = 9; //was 9
+        mapSize = rect.width;
+        bumper = 9; 
         distance = Math.round(mapSize / 14);
-        movement = distance - 4; //-4
+        movement = distance - 4; 
     }
 
     else
@@ -254,170 +262,151 @@ function setTurnOrder()
 
 function addCharacter(character, update)
 {
-    //if(document.getElementsByClassName(character["id"]).length == 0)
-    //{
-        let char = [document.createElement("img"), document.createElement("img"), document.createElement("img")];
-        char[0].src = `images/map/tokens/${character["name"]}.png`;
-        char[0].id = character["id"];
-        char[0].classList = `tokens ${character["id"]} char`;
-        char[1].src = `images/map/tokens/${character["border"]}Border.png`;
-        char[1].id = character["border"];
-        char[1].classList = `tokens ${character["id"]} border_`;
-        char[2].src = getHpImg(character);
-        char[2].id = "hp";
-        char[2].classList = `tokens ${character["id"]} hp`;
-        let x = pos[0];
-        let y = pos[0];
-        
-        if(!character["title"].includes("Hidden"))
+    let char = [document.createElement("img"), document.createElement("img"), document.createElement("img")];
+    if(!character["name"].includes("custom-")){char[0].src = `images/map/tokens/${character["name"]}.png`;}
+    else{char[0].src = wholeCustom[character["name"]]["src"];}
+    char[0].id = character["id"];
+    char[0].classList = `tokens ${character["id"]} char`;
+    char[1].src = `images/map/tokens/${character["border"]}Border.png`;
+    char[1].id = character["border"];
+    char[1].classList = `tokens ${character["id"]} border_`;
+    char[2].src = getHpImg(character);
+    char[2].id = "hp";
+    char[2].classList = `tokens ${character["id"]} hp`;
+    let x = pos[0];
+    let y = pos[0];
+    
+    if(!character["title"].includes("Hidden"))
+    {
+        char[1].title = `${toTitleCase(character["id"])}:${character["title"]}`;
+    }
+
+    if(wholeChar[player]["currentToken"] == character["id"])
+    {
+        if(currentHp.value == "" && maxHp.value == "" && title.innerHTML == "Status: ")
         {
-            char[1].title = `${toTitleCase(character["id"])}:${character["title"]}`;
+            currentHp.defaultValue = character["currentHp"];
+            maxHp.defaultValue = character["maxHp"];
+            tempHp.defaultValue = character["tempHp"];
+            document.getElementById("title").innerHTML += character["title"];
+        }
+    }
+
+    if(character.title != "")
+    {
+        let title = character.title;
+        x = pos[xPos.indexOf(character["xPos"])];
+        y = pos[yPos.indexOf(character["yPos"])];
+
+        if(char[0].id == "invisible")
+        {
+            document.getElementById("grid").src = imgs["mapName"][character.map];
         }
 
-        if(wholeChar[player]["currentToken"] == character["id"])
+        if(title.includes("Large"))
         {
-            if(currentHp.value == "" && maxHp.value == "" && title.innerHTML == "Status: ")
-            {
-                currentHp.defaultValue = character["currentHp"];
-                maxHp.defaultValue = character["maxHp"];
-                tempHp.defaultValue = character["tempHp"];
-                document.getElementById("title").innerHTML += character["title"];
-            }
+            setupExp(2, char, "x");
+            setupExp(2, char, "y");
         }
 
-        if(character.title != "")
+        else if(title.includes("Huge"))
         {
-            let title = character.title;
-            x = pos[xPos.indexOf(character["xPos"])];
-            y = pos[yPos.indexOf(character["yPos"])];
+            setupExp(3, char, "x");
+            setupExp(3, char, "y");
+        }
 
-            if(char[0].id == "invisible")
-            {
-                document.getElementById("grid").src = imgs["mapName"][character.map];
-            }
+        else if(title.includes("Gargantuan"))
+        {
+            setupExp(4, char, "x");
+            setupExp(4, char, "y");
+        }
 
-            if(title.includes("Large"))
+        if(title.includes("Top"))
+        {
+            for(let image of char)
             {
-                setupExp(2, char, "x");
-                setupExp(2, char, "y");
-            }
-
-            else if(title.includes("Huge"))
-            {
-                setupExp(3, char, "x");
-                setupExp(3, char, "y");
-            }
-
-            else if(title.includes("Gargantuan"))
-            {
-                setupExp(4, char, "x");
-                setupExp(4, char, "y");
-            }
-
-            if(title.includes("Top"))
-            {
-                for(let image of char)
+                if(image.style.zIndex == "")
                 {
-                    if(image.style.zIndex == "")
-                    {
-                        image.style.zIndex = 400;
-                    }
-
-                    else
-                    {
-                        image.style.zIndex = `${parseInt(image.style.zIndex) + 300}`;
-                    }
-                }
-            }
-
-            else if(title.includes("Bottom"))
-            {
-                for(let image of char)
-                {
-                    if(image.style.zIndex == "")
-                    {
-                        image.style.zIndex = 20;
-                    }
-
-                    else
-                    {
-                        image.style.zIndex = `${parseInt(image.style.zIndex) - 50}`;
-                    }
-                }
-            }
-
-            if(title.includes("90"))
-            {
-                for(let image of char)
-                {
-                    image.style.transform = 'rotate(90deg)';
-                }
-            }
-
-            else if(title.includes("180"))
-            {
-                for(let image of char)
-                {
-                    image.style.transform = 'rotate(180deg)';
-                }
-            }
-
-            else if(title.includes("270"))
-            {
-                for(let image of char)
-                {
-                    image.style.transform = 'rotate(270deg)';
-                }
-            }
-
-            if(title.includes("Opac"))
-            {
-                let opacityStart = title.indexOf("Opac") + 4;
-                let opac = title.slice(opacityStart, opacityStart + 2);
-
-                for(let image of char)
-                {
-                    image.style.opacity = `.${opac}`;
-                } 
-            }
-
-            if(title.includes("FlipX"))
-            {
-                for(let image of char)
-                {
-                    image.style.transform += 'scaleX(-1)';
-                } 
-            }
-
-            if(title.includes("FlipY"))
-            {
-                for(let image of char)
-                {
-                    image.style.transform += 'scaleY(-1)';
-                } 
-            }
-
-            if(title.includes("Invisible"))
-            {
-                if(wholeChar[player]["token"]["id"] != character["id"])
-                {
-                    for(let image of char)
-                    {
-                        image.src = "images/map/tokens/invisible-.png";
-                    }
+                    image.style.zIndex = 400;
                 }
 
                 else
                 {
-                    char.push(document.createElement("img"));
-                    char[3].src = `images/map/tokens/pInvisable.png`;
-                    char[3].id = "tempInvis";
-                    char[3].classList = `tokens ${character["id"]} tempInvis`;
-                    char[3].onclick = handleCharClick;
+                    image.style.zIndex = `${parseInt(image.style.zIndex) + 300}`;
                 }
             }
+        }
 
-            if(title.includes("Hidden"))
+        else if(title.includes("Bottom"))
+        {
+            for(let image of char)
+            {
+                if(image.style.zIndex == "")
+                {
+                    image.style.zIndex = 20;
+                }
+
+                else
+                {
+                    image.style.zIndex = `${parseInt(image.style.zIndex) - 50}`;
+                }
+            }
+        }
+
+        if(title.includes("90"))
+        {
+            for(let image of char)
+            {
+                image.style.transform = 'rotate(90deg)';
+            }
+        }
+
+        else if(title.includes("180"))
+        {
+            for(let image of char)
+            {
+                image.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        else if(title.includes("270"))
+        {
+            for(let image of char)
+            {
+                image.style.transform = 'rotate(270deg)';
+            }
+        }
+
+        if(title.includes("Opac"))
+        {
+            let opacityStart = title.indexOf("Opac") + 4;
+            let opac = title.slice(opacityStart, opacityStart + 2);
+
+            for(let image of char)
+            {
+                image.style.opacity = `.${opac}`;
+            } 
+        }
+
+        if(title.includes("FlipX"))
+        {
+            for(let image of char)
+            {
+                image.style.transform += 'scaleX(-1)';
+            } 
+        }
+
+        if(title.includes("FlipY"))
+        {
+            for(let image of char)
+            {
+                image.style.transform += 'scaleY(-1)';
+            } 
+        }
+
+        if(title.includes("Invisible"))
+        {
+            if(wholeChar[player]["token"]["id"] != character["id"])
             {
                 for(let image of char)
                 {
@@ -425,42 +414,59 @@ function addCharacter(character, update)
                 }
             }
 
-            if(title.includes("Dup x"))
+            else
             {
-                dup("x", char, character, [x, y], title);
+                char.push(document.createElement("img"));
+                char[3].src = `images/map/tokens/pInvisable.png`;
+                char[3].id = "tempInvis";
+                char[3].classList = `tokens ${character["id"]} tempInvis`;
+                char[3].onclick = handleCharClick;
             }
-
-            if(title.includes("Dup y"))
-            {
-                dup("y", char, character, [x, y], title);
-            }
-
-            if(title.includes("Exp x")) 
-            {   
-                exp("x", title, char);             
-            }
-
-            if(title.includes("Exp y")) 
-            {
-                exp("y", title, char);
-            }
-
-            char[0].title = `${character["title"]}`;
         }
 
-        for(let i = 0; i < char.length; i++)
+        if(title.includes("Hidden"))
         {
-            char[i].onclick = handleCharClick;
-            placeTokens(x, y, char[i]);
-            
-            if(update)
+            for(let image of char)
             {
-                char[i].classList.add("update");
+                image.src = "images/map/tokens/invisible-.png";
             }
-
-            div.appendChild(char[i]);
         }
-    //}
+
+        if(title.includes("Dup x"))
+        {
+            dup("x", char, character, [x, y], title);
+        }
+
+        if(title.includes("Dup y"))
+        {
+            dup("y", char, character, [x, y], title);
+        }
+
+        if(title.includes("Exp x")) 
+        {   
+            exp("x", title, char);             
+        }
+
+        if(title.includes("Exp y")) 
+        {
+            exp("y", title, char);
+        }
+
+        char[0].title = `${character["title"]}`;
+    }
+
+    for(let i = 0; i < char.length; i++)
+    {
+        char[i].onclick = handleCharClick;
+        placeTokens(x, y, char[i]);
+        
+        if(update)
+        {
+            char[i].classList.add("update");
+        }
+
+        div.appendChild(char[i]);
+    }
 }
 
 function exp(xOrY, title, char)
@@ -590,47 +596,7 @@ function getHpImg(character)
     let currentHp = character["currentHp"];
     let tempHp = character["tempHp"];
 
-    let fraction = parseInt(currentHp) / parseInt(maxHp);
-
-    if(tempHp > 0)
-    {
-        return "images/map/hpBar/tempHp.png";
-    }
-
-    else if(maxHp == "0" && currentHp == "0")
-    {
-        return "images/map/hpBar/invisible.png";
-    }
-
-    else if(fraction == 1)
-    {
-        return "images/map/hpBar/hpBar1.png";
-    }
-
-    else if(fraction >= .8)
-    {
-        return "images/map/hpBar/hpBar2.png";
-    }
-
-    else if(fraction >= .6)
-    {
-        return "images/map/hpBar/hpBar3.png";
-    }
-
-    else if(fraction >= .4)
-    {
-        return "images/map/hpBar/hpBar4.png";
-    }
-
-    else if(fraction > 0)
-    {
-        return "images/map/hpBar/hpBar5.png";
-    }
-
-    else if(fraction == 0)
-    {
-        return "images/map/hpBar/hpBar6.png";
-    }  
+    return returnHpImage(maxHp, tempHp, currentHp);
 }
 
 function handleCharClick()
