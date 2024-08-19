@@ -258,27 +258,17 @@ function addHp()
 function handleChoose()
 {
     let classL = this.classList.value;
-    if(classL.includes("char"))
-    {
-        let chars = document.getElementsByClassName("char");
-        for(let char of chars)
-        {
-            char.classList = "char"
-        }
+    let elementsToClear;
 
-        this.classList = "char selected";
-    }
+    if(classL.includes("char")){elementsToClear = document.getElementsByClassName("char");}
+    else if(classL.includes("bord")){elementsToClear = document.getElementsByClassName("bord");}
 
-    else if(classL.includes("bord"))
+    for(let element of elementsToClear)
     {
-        let bords = document.getElementsByClassName("bord");
-        for(let bord of bords)
-        {
-            bord.classList = "bord";
-        }
-        
-        this.classList = "bord selected";
+        element.classList.remove("selected");;
     }
+    
+    this.classList.add("selected");
 }
 
 function handleGoButton()

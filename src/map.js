@@ -263,10 +263,10 @@ function setTurnOrder()
 function addCharacter(character, update)
 {
     let char = [document.createElement("img"), document.createElement("img"), document.createElement("img")];
-    if(!character["name"].includes("custom-")){char[0].src = `images/map/tokens/${character["name"]}.png`;}
-    else{char[0].src = wholeCustom[character["name"]]["src"];}
-    char[0].id = character["id"];
     char[0].classList = `tokens ${character["id"]} char`;
+    if(!character["name"].includes("custom-")){char[0].src = `images/map/tokens/${character["name"]}.png`;}
+    else{char[0].src = wholeCustom[character["name"]]["src"]; char[0].classList.add("customImg");}
+    char[0].id = character["id"];
     char[1].src = `images/map/tokens/${character["border"]}Border.png`;
     char[1].id = character["border"];
     char[1].classList = `tokens ${character["id"]} border_`;
