@@ -196,7 +196,7 @@ function addCharacters()
             let person = document.createElement("img");
             person.id = wholeCustom[custom]["player"];
             person.src = wholeCustom[custom]["src"];
-            person.classList = "char, customImg";
+            person.classList = "char customImg";
             person.style.width = "73px";
             person.style.height = "73px";
             person.onclick = handleChoose;
@@ -267,7 +267,7 @@ function handleChoose()
     {
         element.classList.remove("selected");;
     }
-    
+
     this.classList.add("selected");
 }
 
