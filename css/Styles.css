@@ -502,6 +502,12 @@ table, .itemSearch, #itemImg
     border-radius: 50%;
 }
 
+#gridMap .customImg
+{
+    width: 4.5%;
+    height: 4.5%;
+}
+
 @media (max-width: 1399px) {
     .col-md-6
     {
