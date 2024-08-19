@@ -3,6 +3,13 @@ import { ref, onValue } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase
 import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
 import { toTitleCase, auth, database, setDoc, deleteDoc, returnHpImage } from '../js/viMethods.js';
 
+const customsRef = ref(database, 'customImages/');
+onValue(customsRef, (snapshot) => 
+{
+    const data = snapshot.val();
+    wholeCustom = data;
+});
+
 const currentMapRef = ref(database, 'currentMap/');
 onValue(currentMapRef, (snapshot) => 
 {
@@ -33,13 +40,6 @@ onValue(summonsRef, (snapshot) =>
     const data = snapshot.val();
     wholeSummons = data;
     isSummonOn = wholeSummons["isSummonOn"];
-});
-
-const customsRef = ref(database, 'customImages/');
-onValue(customsRef, (snapshot) => 
-{
-    const data = snapshot.val();
-    wholeCustom = data;
 });
 
 let wholeDB = {};
