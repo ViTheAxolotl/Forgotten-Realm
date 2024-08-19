@@ -37,19 +37,7 @@ onValue(customsRef, (snapshot) =>
 {
     const data = snapshot.val();
     wholeCustom = data;
-
-    for(let custom of Object.keys(wholeCustom))
-    {
-        if(custom["player"] == player)
-        {
-            let person = document.createElement("img");
-            person.id = custom["player"];
-            person.src = custom["src"];
-            person.classList = "char";
-            person.onclick = handleChoose;
-            div.insertBefore(person, bord);
-        }
-    }
+    addCharacters();
 });
 
 onAuthStateChanged(auth, (user) => 
@@ -163,7 +151,6 @@ function setUpCharacters(currentName)
 
     if(currentName != "axolotl")
     {
-        addCharacters();
         addBorders();
         addHp();
         div.appendChild(go);
@@ -186,6 +173,13 @@ function openWindow()
 
 function addCharacters()
 {
+    let toDelete = document.getElementsByClassName("char");
+
+    while(toDelete > 0)
+    {
+        toDelete[0].remove();
+    }
+
     for(let char of people)
     {
         let person = document.createElement("img");
@@ -193,7 +187,20 @@ function addCharacters()
         person.src = `images/map/tokens/${char}.png`;
         person.classList = "char";
         person.onclick = handleChoose;
-        div.appendChild(person);
+        div.insertBefore(person, bord);
+    }
+
+    for(let custom of Object.keys(wholeCustom))
+    {
+        if(custom["player"] == player)
+        {
+            let person = document.createElement("img");
+            person.id = custom["player"];
+            person.src = custom["src"];
+            person.classList = "char";
+            person.onclick = handleChoose;
+            div.insertBefore(person, bord);
+        }
     }
 }
 
