@@ -191,11 +191,11 @@ function addCharacters()
 
     for(let custom of Object.keys(wholeCustom))
     {
-        if(custom["player"] == player)
+        if(wholeCustom[custom]["player"] == player)
         {
             let person = document.createElement("img");
-            person.id = custom["player"];
-            person.src = custom["src"];
+            person.id = wholeCustom[custom]["player"];
+            person.src = wholeCustom[custom]["src"];
             person.classList = "char";
             person.onclick = handleChoose;
             div.insertBefore(person, bord);
