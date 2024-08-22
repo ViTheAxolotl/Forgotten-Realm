@@ -467,6 +467,13 @@ function addCharacter(character, update)
 
         div.appendChild(char[i]);
     }
+
+    if(char[0].classList.contains("customImg")) //Center
+    {
+        let offset = (parseFloat(char[1].style.width) / 2) - (parseFloat(char[0].style.width) / 2);
+        char[0].style.top = `${parseFloat(char[0].style.top.replace("px", "")) + offSet}px`;
+        char[0].style.left = `${parseFloat(char[0].style.left.replace("px", "")) + offSet}px`;
+    }
 }
 
 function exp(xOrY, title, char)
