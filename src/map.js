@@ -813,15 +813,14 @@ function updateToken(token)
             if(token.classList.contains("border_"))
             {
                 borderColor = token.id;
+                x = parseInt(token.style.left.replace("px", ""));
+                y = parseInt(token.style.top.replace("px", ""));
+                x = xPos[pos.indexOf(x)];
+                y = yPos[pos.indexOf(y)];
             }
 
             token.classList.remove("update");
         }
-
-        x = parseInt(char.style.left.replace("px", ""));
-        y = parseInt(char.style.top.replace("px", ""));
-        x = xPos[pos.indexOf(x)];
-        y = yPos[pos.indexOf(y)];
 
         switch(char.id)
         {
