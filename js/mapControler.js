@@ -587,37 +587,7 @@ function updateHp()
         this.value = maxHp;
     }
 
-    let fraction = parseInt(this.value) / parseInt(maxHp);
-
-    if(fraction == 1)
-    {
-        hpImg.src = "images/map/hpBar/hpBar1.png";
-    }
-
-    else if(fraction >= .8)
-    {
-        hpImg.src = "images/map/hpBar/hpBar2.png";
-    }
-
-    else if(fraction >= .6)
-    {
-        hpImg.src = "images/map/hpBar/hpBar3.png";
-    }
-
-    else if(fraction >= .4)
-    {
-        hpImg.src = "images/map/hpBar/hpBar4.png";
-    }
-
-    else if(fraction >= .2)
-    {
-        hpImg.src = "images/map/hpBar/hpBar5.png";
-    }
-
-    else if(fraction == 0)
-    {
-        hpImg.src = "images/map/hpBar/hpBar6.png";
-    }  
+    hpImg.src = returnHpImage(maxHp, tempHp, this.value);
 }
 
 function handleArrow()
