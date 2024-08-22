@@ -255,6 +255,9 @@ function handleCustomImg()
 
     let names = ["Url", "Nickname"];
     let objects = [document.createElement("input"), document.createElement("input")];
+    let newDiv = document.createElement("div");
+    newDiv.classList.add("center");
+
     for(let i = 0; i < names.length; i++)
     {
         let label = document.createElement("h6");
@@ -265,8 +268,8 @@ function handleCustomImg()
 
         objects[i].id = names[i];
         objects[i].style.margin = "5px";
-        customsDiv.appendChild(label);
-        customsDiv.appendChild(objects[i]);
+        newDiv.appendChild(label);
+        newDiv.appendChild(objects[i]);
     }
 
     let createBtn = document.createElement("button");
@@ -274,7 +277,8 @@ function handleCustomImg()
     createBtn.innerHTML = "Create Custom Img";
     createBtn.onclick = handleCreateCustom;
     createBtn.style.margin = "5px";
-    customsDiv.appendChild(createBtn);
+    newDiv.appendChild(createBtn);
+    customsDiv.appendChild(newDiv);
 
     div.appendChild(customsDiv);
 }
