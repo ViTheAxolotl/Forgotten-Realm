@@ -623,7 +623,7 @@ function updateHp()
 function handleArrow()
 {
     let dirrection = "";
-    currentPos = [parseInt(currentCharacter[0].style.left.replace("px", "")), parseInt(currentCharacter[0].style.top.replace("px", ""))];
+    currentPos = [parseInt(currentCharacter[1].style.left.replace("px", "")), parseInt(currentCharacter[1].style.top.replace("px", ""))];
 
     for(let token of currentCharacter)
     {
