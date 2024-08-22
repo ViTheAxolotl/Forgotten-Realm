@@ -261,8 +261,10 @@ function handleCustomImg()
         label.innerHTML = `${names[i]}:`;
         label.style.display = "inline";
         label.classList = "color-UP-yellow";
+        label.style.margin = "5px";
 
         objects[i].id = names[i];
+        objects[i].style.margin = "5px";
         customsDiv.appendChild(label);
         customsDiv.appendChild(objects[i]);
     }
@@ -271,6 +273,7 @@ function handleCustomImg()
     createBtn.classList = "gridButton";
     createBtn.innerHTML = "Create Custom Img";
     createBtn.onclick = handleCreateCustom;
+    createBtn.style.margin = "5px";
     customsDiv.appendChild(createBtn);
 
     div.appendChild(customsDiv);
