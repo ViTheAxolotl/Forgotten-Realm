@@ -143,3 +143,37 @@ export function returnHpImage(maxHp, tempHp, currentHp)
         return "images/map/hpBar/hpBar6.png";
     }  
 }
+
+/**
+ * Clenses input to stop hackers from gaining control
+ * @param {*} toClense 
+ * @returns 
+ */
+export function clenseInput(toClense)
+{
+    let badChars = ["<", ">", ";", "@", "(", ")"];
+    let isOk = true;
+
+    toClense = toClense.replaceAll(" ", "");
+    toClense = toClense.replaceAll("\"", "\'");
+    toClense = toClense.replaceAll("\`", "\'");
+
+    for(let bad of badChars)
+    {
+        if(toClense.includes(bad)) //If the input contains a bad char
+        {
+            alert(`Bad char detected: ${bad}. Please remove the char and try again.`);
+            isOk = false;
+        }
+    }
+
+    if(isOk)
+    {
+        return toClense;
+    }
+
+    else
+    {
+        return null;
+    }
+}
