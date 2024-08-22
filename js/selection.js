@@ -238,6 +238,7 @@ function handleCustomImg()
             person.classList = "char customImg";
             person.style.width = "73px";
             person.style.height = "73px";
+            personDiv.appendChild(person);
 
             let deleteBtn = document.createElement("button");
             deleteBtn.classList = "gridButton";
@@ -245,8 +246,7 @@ function handleCustomImg()
             deleteBtn.style.float = "right";
             deleteBtn.onclick = handleDeleteCustom;
             deleteBtn.id = wholeCustom[custom]["name"];
-
-            personDiv.appendChild(person);
+            personDiv.appendChild(deleteBtn);
             customsDiv.appendChild(personDiv);
         }
     }
@@ -268,7 +268,6 @@ function handleCustomImg()
     let createBtn = document.createElement("button");
     createBtn.classList = "gridButton";
     createBtn.innerHTML = "Create Custom Img";
-    createBtn.style.float = "right";
     createBtn.onclick = handleCreateCustom;
     customsDiv.appendChild(createBtn);
 
