@@ -204,10 +204,85 @@ function addCharacters()
         }
     }
 
+    let customsBtn = document.createElement("button");
+    customsBtn.classList = "gridButton";
+    customsBtn.innerHTML = "Manage Custom Imgs";
+    customsBtn.style.float = "right";
+    customsBtn.onclick = handleCustomImg;
+    div.insertBefore(customsBtn, bord);
+
     if(oldToken != null || oldToken != undefined)
     {
         document.getElementById(`${oldToken["name"]}`).onclick();
     }
+}
+
+function handleCustomImg()
+{
+    while(div.children.length > 0)
+    {
+        div.lastChild.remove();
+    }
+
+    let customsDiv = document.createElement("div");
+
+    for(let custom of Object.keys(wholeCustom))
+    {
+        if(wholeCustom[custom]["player"] == player)
+        {
+            let personDiv = document.createElement("div");
+            
+            let person = document.createElement("img");
+            person.id = wholeCustom[custom]["name"];
+            person.src = wholeCustom[custom]["src"];
+            person.classList = "char customImg";
+            person.style.width = "73px";
+            person.style.height = "73px";
+
+            let deleteBtn = document.createElement("button");
+            deleteBtn.classList = "gridButton";
+            deleteBtn.innerHTML = "Delete Custom Img";
+            deleteBtn.style.float = "right";
+            deleteBtn.onclick = handleDeleteCustom;
+            deleteBtn.id = wholeCustom[custom]["name"];
+
+            personDiv.appendChild(person);
+            customsDiv.appendChild(personDiv);
+        }
+    }
+
+    let names = ["Url", "Nickname"];
+    let objects = [document.createElement("input"), document.createElement("input")];
+    for(let i = 0; i < names.length; i++)
+    {
+        let label = document.createElement("h6");
+        label.innerHTML = `${names[i]}:`;
+        label.style.display = "inline";
+        label.classList = "color-UP-yellow";
+
+        objects[i].id = names[i];
+        customsDiv.appendChild(label);
+        customsDiv.appendChild(objects[i]);
+    }
+
+    let createBtn = document.createElement("button");
+    createBtn.classList = "gridButton";
+    createBtn.innerHTML = "Create Custom Img";
+    createBtn.style.float = "right";
+    createBtn.onclick = handleCreateCustom;
+    customsDiv.appendChild(createBtn);
+
+    div.insertBefore(customsDiv, bord);
+}
+
+function handleDeleteCustom()
+{
+    
+}
+
+function handleCreateCustom()
+{
+    
 }
 
 function addBorders()
