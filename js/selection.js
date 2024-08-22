@@ -285,7 +285,7 @@ function handleCustomImg()
 
 function handleDeleteCustom()
 {
-    deleteDoc(this.id);
+    deleteDoc(`customImages/${this.id}`);
     reload(1);
 }
 
