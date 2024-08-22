@@ -272,7 +272,7 @@ function handleCustomImg()
     createBtn.onclick = handleCreateCustom;
     customsDiv.appendChild(createBtn);
 
-    div.insertBefore(customsDiv, bord);
+    div.appendChild(customsDiv);
 }
 
 function handleDeleteCustom()
