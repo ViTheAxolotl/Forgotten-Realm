@@ -661,7 +661,7 @@ function handleViewTokens(t)
             {
                 elm.src = currentToken[i].src;
                 elm.title = currentToken[i].title;
-                elm.classList.add(currentToken[i].classList[-1])
+                elm.classList.add(currentToken[i].classList[currentToken[i].classList.length - 1]);
                 if(elm.title.includes(":"))
                 {
                     title = elm.title;
