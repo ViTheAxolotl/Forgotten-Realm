@@ -1,7 +1,7 @@
 "use strict";
 import { ref, onValue } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
 import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
-import { toTitleCase, auth, database, setDoc, clenseInput, deleteDoc } from './viMethods.js';
+import { toTitleCase, auth, database, setDoc, clenseInput, deleteDoc, reload } from './viMethods.js';
 
 let player;
 let wholeChars = {};
@@ -286,7 +286,7 @@ function handleCustomImg()
 function handleDeleteCustom()
 {
     deleteDoc(this.id);
-    setTimeout(location.reload(), 1000);
+    reload(1);
 }
 
 function handleCreateCustom()
@@ -299,7 +299,7 @@ function handleCreateCustom()
     nickname = "custom-" + nickname;
 
     setDoc(`customImages/${nickname}`, {"name" : nickname, "player" : player, "src" : url});
-    setTimeout(location.reload(), 1000);
+    reload(1);
 }
 
 function addBorders()

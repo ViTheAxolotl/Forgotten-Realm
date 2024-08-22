@@ -177,3 +177,12 @@ export function clenseInput(toClense)
         return null;
     }
 }
+
+/**
+ * Refreshes page after the given seconds
+ * @param {*} seconds 
+ */
+export function reload(seconds)
+{
+    setTimeout(function(){location.reload();}, 1000 * seconds);
+}
