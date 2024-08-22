@@ -286,7 +286,7 @@ function handleCustomImg()
 function handleDeleteCustom()
 {
     deleteDoc(`customImages/${this.id}`);
-    reload(1);
+    reload(.5);
 }
 
 function handleCreateCustom()
@@ -299,7 +299,7 @@ function handleCreateCustom()
     nickname = "custom-" + nickname;
 
     setDoc(`customImages/${nickname}`, {"name" : nickname, "player" : player, "src" : url});
-    reload(1);
+    reload(.5);
 }
 
 function addBorders()
