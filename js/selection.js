@@ -231,6 +231,7 @@ function handleCustomImg()
         if(wholeCustom[custom]["player"] == player)
         {
             let personDiv = document.createElement("div");
+            personDiv.classList.add("center");
             
             let person = document.createElement("img");
             person.id = wholeCustom[custom]["name"];
@@ -239,15 +240,16 @@ function handleCustomImg()
             person.style.width = "73px";
             person.style.height = "73px";
             personDiv.appendChild(person);
+            person.style.margin = "10px";
 
             let deleteBtn = document.createElement("button");
             deleteBtn.classList = "gridButton";
             deleteBtn.innerHTML = "Delete Custom Img";
-            deleteBtn.style.float = "right";
             deleteBtn.onclick = handleDeleteCustom;
             deleteBtn.id = wholeCustom[custom]["name"];
             personDiv.appendChild(deleteBtn);
             customsDiv.appendChild(personDiv);
+            deleteBtn.style.margin = "10px";
         }
     }
 
