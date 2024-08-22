@@ -286,6 +286,7 @@ function handleCustomImg()
 function handleDeleteCustom()
 {
     deleteDoc(this.id);
+    location.reload();
 }
 
 function handleCreateCustom()
@@ -295,6 +296,7 @@ function handleCreateCustom()
     
     url = clenseInput(url);
     nickname = clenseInput(nickname);
+    nickname = "custom-" + nickname;
 
     setDoc(`customImages/${nickname}`, {"name" : nickname, "player" : player, "src" : url});
     location.reload();
