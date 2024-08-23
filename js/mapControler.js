@@ -1103,7 +1103,7 @@ function handleUseAction()
             let token = {border : "blue", currentHp : `0`, maxHp : `0`, tempHp : "0", map : "", id : "", name : "", title : ` ${wholeChar[player]["charName"]}, `, xPos : "1", yPos : "A", isSummon : true};
             let info = discription.slice(discription.indexOf("{@Summon"));
             info = info.slice(info.indexOf(" ") + 1, info.indexOf("}"));
-            info.split(":"); 
+            info = info.split(":"); 
             token.name = info[0];
             let id = info[0];
 
