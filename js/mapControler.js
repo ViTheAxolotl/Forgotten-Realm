@@ -24,6 +24,13 @@ onValue(charRef, (snapshot) =>
     }
 });
 
+const dBRef = ref(database, 'currentMap/');
+onValue(dBRef, (snapshot) => 
+{
+    const data = snapshot.val();
+    wholeDb = data;
+});
+
 let favoriteRef;
 
 onAuthStateChanged(auth, (user) => 
@@ -65,6 +72,7 @@ let actionBtn;
 let wholeTO = {};
 let wholeChar = {};
 let wholeFavorite = {};
+let wholeDb = {};
 let wholeSpells;
 let wholeActions;
 let currentLv = "5th level";
@@ -1085,6 +1093,62 @@ function handleUseAction()
             discription = abilityDisc;
         }
 
+        if(discription.includes("{@summon"))
+        {
+            let token = {border : "blue", currentHp : `0`, maxHp : `0`, tempHp : "0", map : "", id : "", name : "", title : ` ${wholeChar[player]["charName"]}, `, xPos : "1", yPos : "A", isSummon : true};
+            let info = discription.slice(discription.indexOf("{@summon"));
+            info = info.slice(info.indexOf(" ") + 1, info.indexOf("}"));
+            info.split(":"); 
+            token.name = info[0];
+            let id = info[0];
+
+            if(Object.keys(wholeDb).includes(id))
+            {
+                id = id + "1";
+        
+                while(Object.keys(wholeDb).includes(id))
+                {
+                    id = id.slice(0, id.length - 1) + (parseInt(id.charAt(id.length - 1)) + 1);
+                }
+            }
+
+            token.id = id;
+
+            let fin;
+            if(info[1].includes("currentLv"))
+            {
+                let operation = info[1].replace("currentLv", "");
+                operation = operation.charAt(0);
+                let cL = parseInt(currentLv.charAt(0));
+                let num = parseFloat(info[1].slice(info[1].indexOf(operation) + 1));
+
+                switch(operation)
+                {
+                    case "+":
+                        fin = cL + num;
+                        break;
+                    
+                    case "-":
+                        fin = cL - num;
+                        break;
+
+                    case "*":
+                        fin = cL * num;
+                        break;
+
+                    case "/":
+                        fin = cL / num;
+                        break;
+                }
+            }
+            else{fin = parseFloat(info[1]);}
+            token.maxHp = `${fin}`;
+            token.currentHp = `${fin}`;
+            token.border = info[2];
+
+            setDoc(`currentMap/${token.id}`, token);
+        }
+
         if(discription.includes("{@damage"))
         {
             let userAddTo = "";
@@ -1231,7 +1295,7 @@ function handleEditCard()
     cardText.setAttribute("class", "card-text");
     cardText.style.margin = "3px";
     cardText.style.display = "inline";
-    cardText.innerHTML = "<li>{@save} : makes it able to use the save/check rolls. Can use {@save 2d6} to have it roll damage as well, for the skill you need to write strength (etc.) or use {@skil Perception} to show.</li> <li>{@damage 3d4} will roll accuracy then damage of 3d4.</li><li>{@Choice} will make a bullet point.</li><li>{@sDice 2d4} Will just roll 2d4 not accuercy</li>";
+    cardText.innerHTML = "<li>{@save} : makes it able to use the save/check rolls. Can use {@save 2d6} to have it roll damage as well, for the skill you need to write strength (etc.) or use {@skil Perception} to show.</li> <li>{@damage 3d4} will roll accuracy then damage of 3d4.</li><li>{@Choice} will make a bullet point.</li><li>{@sDice 2d4} Will just roll 2d4 not accuercy</li><li>{@Summon pictureName:Hp:border} Picture name decides which picture and id it will have, ask me for an exact one. Hp is the max and current hp the token will have. Border is the color border it will have.</li>";
     cardBody.appendChild(cardText);
     cardBody.appendChild(document.createElement("br"));
 
