@@ -1366,6 +1366,7 @@ function cancelEdit()
     }
 
     emptyCards();
+    firstMenu[2].click();
 }
 
 function uploadEdit()
