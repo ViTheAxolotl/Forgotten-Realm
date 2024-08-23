@@ -998,8 +998,13 @@ function handleUseAction()
         else if(discription.includes("{@absorb")){discription = `{@sDice ${upcast[0].value}}`}
     }
 
-    if(discription.includes("{@") && !discription.includes("{@Choice"))
+    if(discription.includes("{@"))
     {
+        if(discription.includes("{@Choice"))
+        {
+            display = `${wholeChar[player]["charName"]} cast:\n${lastUse}\n${useInfo}`;
+            if(curClass){display = display.replaceAll("cast", "use the ability");}
+        }
         if(discription.includes("{@save")) 
         {
             let skill = "unknown";
@@ -1194,11 +1199,10 @@ function handleUseAction()
     else
     {
         display = `${wholeChar[player]["charName"]} cast:\n${lastUse}\n${useInfo}`;
-
         if(curClass){display = display.replaceAll("cast", "use the ability");}
     }
 
-    display = display.replaceAll("<li>", "\n-");
+    display = display.replaceAll("<li>", "\n- ");
     display = display.replaceAll("</li>", "");
     sendDiscordMessage(display);
 }
