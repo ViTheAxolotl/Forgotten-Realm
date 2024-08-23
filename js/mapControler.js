@@ -1093,10 +1093,10 @@ function handleUseAction()
             discription = abilityDisc;
         }
 
-        if(discription.includes("{@summon"))
+        if(discription.includes("{@Summon"))
         {
             let token = {border : "blue", currentHp : `0`, maxHp : `0`, tempHp : "0", map : "", id : "", name : "", title : ` ${wholeChar[player]["charName"]}, `, xPos : "1", yPos : "A", isSummon : true};
-            let info = discription.slice(discription.indexOf("{@summon"));
+            let info = discription.slice(discription.indexOf("{@Summon"));
             info = info.slice(info.indexOf(" ") + 1, info.indexOf("}"));
             info.split(":"); 
             token.name = info[0];
