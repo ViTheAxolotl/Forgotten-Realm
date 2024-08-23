@@ -1104,7 +1104,7 @@ function handleUseAction()
             let info = discription.slice(discription.indexOf("{@Summon"));
             info = info.slice(info.indexOf(" ") + 1, info.indexOf("}"));
             info = info.split(":"); 
-            token.name = info[0];
+            token.name = info[0] + "-";
             let id = info[0];
 
             if(Object.keys(wholeDb).includes(id))
