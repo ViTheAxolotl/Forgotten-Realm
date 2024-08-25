@@ -4,6 +4,9 @@ import { ref, onValue } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase
 import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
 import { toTitleCase, auth, database, createCard, setDoc, deleteDoc } from './viMethods.js';
 
+/**
+ * When anything under this changes it will use onValue
+ */
 const currentTORef = ref(database, 'currentTO/');
 onValue(currentTORef, (snapshot) => 
 {
@@ -11,19 +14,25 @@ onValue(currentTORef, (snapshot) =>
     wholeTO = data;
 });
 
+/**
+ * When anything under this changes it will use onValue
+ */
 const charRef = ref(database, 'playerChar/');
 onValue(charRef, (snapshot) => 
 {
     const data = snapshot.val();
     wholeChar = data;
 
-    if(firstRun)
+    if(firstRun) //The first time it loads
     {
         firstRun = false;
         init();
     }
 });
 
+/**
+ * When anything under this changes it will use onValue
+ */
 const dBRef = ref(database, 'currentMap/');
 onValue(dBRef, (snapshot) => 
 {
@@ -33,12 +42,15 @@ onValue(dBRef, (snapshot) =>
 
 let favoriteRef;
 
+/**
+ * When it shows that your logged in
+ */
 onAuthStateChanged(auth, (user) => 
 {
-    if (user) 
+    if (user) //If logged in
     {
         player = auth.currentUser.email.split("@");
-        player = toTitleCase(player[0]);
+        player = toTitleCase(player[0]); //gives the players name
     } 
 });
 
@@ -86,6 +98,9 @@ let db;
 let lastSpell;
 let lastAbility;
 
+/**
+ * Runs when JS opens
+ */
 function init()
 {
     arrows.push(document.getElementById("up"));
@@ -93,8 +108,8 @@ function init()
     arrows.push(document.getElementById("right"));
     arrows.push(document.getElementById("down"));
     
-    fetch('https://vitheaxolotl.github.io/Forgotten-Realm/src/spells.json').then(res => res.json()).then((json) => wholeSpells = json);
-    fetch('https://vitheaxolotl.github.io/Forgotten-Realm/src/actions.json').then(res => res.json()).then((json) => wholeActions = json);
+    fetch('https://vitheaxolotl.github.io/Forgotten-Realm/src/spells.json').then(res => res.json()).then((json) => wholeSpells = json); //Opens the spell json file
+    fetch('https://vitheaxolotl.github.io/Forgotten-Realm/src/actions.json').then(res => res.json()).then((json) => wholeActions = json); //Opens the actions json file
 
     currentHp.onchange = updateHp;
     maxHp.onchange = addUpdate;
@@ -107,10 +122,13 @@ function init()
         arrow.touchstart = handleArrow;
     }
 
-    document.addEventListener("keydown", (ev) => {key = ev.key.slice(ev.key.indexOf("w") + 1).toLowerCase(); keyControl = ev; let keyValues = ["left", "right", "down", "up"]; if(keyValues.includes(key) && ev.ctrlKey) {handleArrow();}});
+    document.addEventListener("keydown", (ev) => {key = ev.key.slice(ev.key.indexOf("w") + 1).toLowerCase(); keyControl = ev; let keyValues = ["left", "right", "down", "up"]; if(keyValues.includes(key) && ev.ctrlKey) {handleArrow();}}); //If control is held down and an arrow
     setMainVaribles();
 }
 
+/**
+ * Sets the varibles for the map
+ */
 function setMainVaribles()
 {   
     buttons = document.getElementsByClassName("inOrDe");
@@ -118,24 +136,24 @@ function setMainVaribles()
     currentCharacter = document.getElementsByClassName(wholeChar[player]["currentToken"]);
     let hiddenVi = document.getElementsByClassName("isVi");
     firstMenu = document.getElementsByClassName("firstMenu");
-    for(let fButton of firstMenu){fButton.onclick = handleChangeFirstDisplay;}
+    for(let fButton of firstMenu){fButton.onclick = handleChangeFirstDisplay;} //for each of the first row
     secondMenu = document.getElementsByClassName("secondMenu");
-    for(let sButton of secondMenu){sButton.onclick = handleChangeSecondDisplay;}
+    for(let sButton of secondMenu){sButton.onclick = handleChangeSecondDisplay;} //for each of the second row
     spellBtn = document.getElementsByClassName("spell");
-    for(let sButton of spellBtn){sButton.onclick = handleShowSpells;}
+    for(let sButton of spellBtn){sButton.onclick = handleShowSpells;} //for each of the spells row
     actionBtn = document.getElementsByClassName("action");
-    for(let aButton of actionBtn){aButton.onclick = handleShowActions;}
+    for(let aButton of actionBtn){aButton.onclick = handleShowActions;} //for each of the actions row
     rollDiceBtn = document.getElementById("rollDice").onclick = handleDiceRoll;
 
-    if(player != "Vi")
+    if(player != "Vi") //If player isn't me
     {
-        for(let elem of hiddenVi)
+        for(let elem of hiddenVi) //Hides the controls to change turn order
         {
             elem.style.display = "none";
         }
     }
 
-    if(rect.width < 999)
+    if(rect.width < 999) //If on phone
     {
         mapSize = rect.width;
         bumper = 9;
@@ -143,7 +161,7 @@ function setMainVaribles()
         movement = distance - 4;
     }
 
-    else
+    else //If on computer
     {
         mapSize = (rect.width * (8 / 10));
         bumper = Math.round(rect.width / 10) + 2;
@@ -151,11 +169,11 @@ function setMainVaribles()
         movement = distance - 6;
     }
 
-    let disAndBum = distance + bumper;
-    pos = [disAndBum, disAndBum + movement, disAndBum + (movement * 2), disAndBum + (movement * 3), disAndBum + (movement * 4), disAndBum + (movement * 5), disAndBum + (movement * 6), disAndBum + (movement * 7), disAndBum + (movement * 8), disAndBum + (movement * 9), disAndBum + (movement * 10), disAndBum + (movement * 11), disAndBum + (movement * 12)];
-    bounds = [pos[0], pos[12]];
+    let disAndBum = distance + bumper; //boxes locations
+    pos = [disAndBum, disAndBum + movement, disAndBum + (movement * 2), disAndBum + (movement * 3), disAndBum + (movement * 4), disAndBum + (movement * 5), disAndBum + (movement * 6), disAndBum + (movement * 7), disAndBum + (movement * 8), disAndBum + (movement * 9), disAndBum + (movement * 10), disAndBum + (movement * 11), disAndBum + (movement * 12)]; //Each bod
+    bounds = [pos[0], pos[12]]; //Left, Right, Up, and Down walls
 
-    for(let button of buttons)
+    for(let button of buttons) //All + and - buttons
     {
         if(button.innerHTML == "+")
         {
@@ -168,35 +186,44 @@ function setMainVaribles()
         }
     }
 }
-
+ /**
+  * Sends message into the discord using a webhook
+  * @param {*} message 
+  */
 function sendDiscordMessage(message)
 {
-    message = message + "\n\n ||                ||";
-    let webhook = wholeChar["Vi"]["testingWebhook"];
+    message = message + "\n\n ||                ||"; //Makes message seperating bars
+    let webhook = wholeChar["Vi"]["testingWebhook"]; //Which channel it goes to by webhook
     const contents = `${message}`;
     const request = new XMLHttpRequest();
-    request.open("POST", webhook);
-    request.setRequestHeader("Content-type", "application/json");
+    request.open("POST", webhook); //Opens the webhook
+    request.setRequestHeader("Content-type", "application/json"); //Gives json header
     const prams = 
     {
         content: contents
-    }
-    request.send(JSON.stringify(prams));
+    } 
+    request.send(JSON.stringify(prams)); //Sends message
 }
 
+/**
+ * Rolls number of base dice with no modifier
+ * @param {*} amount 
+ * @param {*} dice 
+ * @returns 
+ */
 function basicRoll(amount, dice)
 {
     let arr = [];
     let rolls = [];
-    for(let i = 1; i < parseInt(dice) + 1; i++){arr.push(i);}
+    for(let i = 1; i < parseInt(dice) + 1; i++){arr.push(i);} //Sets up all possible rolls
 
-    for(let i = 0; i < amount; i++)
+    for(let i = 0; i < amount; i++) //Rolls for each dice needed
     {
-        let roll = arr[(Math.floor(Math.random() * arr.length))];
+        let roll = arr[(Math.floor(Math.random() * arr.length))]; //Gives random roll
         rolls.push(roll);
     }
 
-    return rolls;
+    return rolls; //Returns all rolls
 }
 
 function diceRoller(amount, dice, modifier, ifName)
@@ -1299,7 +1326,7 @@ function handleEditCard()
     cardText.setAttribute("class", "card-text");
     cardText.style.margin = "3px";
     cardText.style.display = "inline";
-    cardText.innerHTML = "<li>{@save} : makes it able to use the save/check rolls. Can use {@save 2d6} to have it roll damage as well, for the skill you need to write strength (etc.) or use {@skil Perception} to show.</li> <li>{@damage 3d4} will roll accuracy then damage of 3d4.</li><li>{@Choice} will make a bullet point.</li><li>{@sDice 2d4} Will just roll 2d4 not accuercy</li><li>{@Summon pictureName:Hp:border} Picture name decides which picture and id it will have, ask me for an exact one. Hp is the max and current hp the token will have. Border is the color border it will have.</li>";
+    cardText.innerHTML = "<li>{@save} : makes it able to use the save/check rolls. Can use {@save 2d6} to have it roll damage as well, for the skill you need to write strength (etc.) or use {@skil Perception} to show.</li> <li>{@damage 3d4} will roll accuracy then damage of 3d4.</li><li>{@Choice} will make a bullet point.</li><li>{@sDice 2d4} Will just roll 2d4 not accuercy</li><li>{@Summon pictureName:Hp:border} Picture name decides which picture and id it will have, ask me for an exact one a universal one is 'genericA-'. Hp is the max and current hp the token will have. Border is the color border it will have.</li>";
     cardBody.appendChild(cardText);
     cardBody.appendChild(document.createElement("br"));
 
