@@ -1,6 +1,6 @@
 "use strict";
 import { ref, onValue } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
-import { toTitleCase, auth, database, setDoc, deleteDoc, returnHpImage } from '../js/viMethods.js';
+import { toTitleCase, auth, database, setDoc, deleteDoc, returnHpImage, placeBefore } from '../js/viMethods.js';
 
 const currentMapRef = ref(database, 'currentMap/');
 onValue(currentMapRef, (snapshot) => 
@@ -400,7 +400,7 @@ function resetState()
     div = document.createElement("div");
     div.id = "story";
     div.classList = "bg-UP-purple color-UP-black col-md-12 col-sm-12";
-    aboveDiv.insertBefore(div, aboveDiv.childNodes[2]);
+    placeBefore(div, aboveDiv.childNodes[2], aboveDiv);
 }
 
 function resetDelete()
@@ -657,7 +657,7 @@ function makeTORow(key)
     TORow[2][3].id = `${key.charName}_Remove`;
     TORow[2][3].style.margin = "5px";
     TORow[0].appendChild(TORow[2][3]);
-    div.insertBefore(TORow[0], div.firstChild);
+    placeBefore(TORow[0], div.firstChild, div);
 }
 
 function DeleteKeys(myObj, array) 

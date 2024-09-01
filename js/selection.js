@@ -1,7 +1,7 @@
 "use strict";
 import { ref, onValue } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
 import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
-import { toTitleCase, auth, database, setDoc, clenseInput, deleteDoc, reload } from './viMethods.js';
+import { toTitleCase, auth, database, setDoc, clenseInput, deleteDoc, reload, placeBefore } from './viMethods.js';
 
 let player;
 let wholeChars = {};
@@ -186,7 +186,7 @@ function addCharacters()
         person.src = `images/map/tokens/${char}.png`;
         person.classList = "char";
         person.onclick = handleChoose;
-        div.insertBefore(person, bord);
+        placeBefore(person, bord, div);
     }
 
     for(let custom of Object.keys(wholeCustom))
@@ -200,7 +200,7 @@ function addCharacters()
             person.style.width = "73px";
             person.style.height = "73px";
             person.onclick = handleChoose;
-            div.insertBefore(person, bord);
+            placeBefore(person, bord, div);
         }
     }
 
@@ -209,7 +209,7 @@ function addCharacters()
     customsBtn.innerHTML = "Manage Custom Imgs";
     customsBtn.style.float = "right";
     customsBtn.onclick = handleCustomImg;
-    div.insertBefore(customsBtn, bord);
+    placeBefore(customsBtn, bord, div);
 
     if(oldToken != null || oldToken != undefined)
     {

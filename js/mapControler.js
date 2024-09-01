@@ -2,7 +2,7 @@
 
 import { ref, onValue } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
 import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
-import { toTitleCase, auth, database, createCard, setDoc, deleteDoc } from './viMethods.js';
+import { toTitleCase, auth, database, createCard, setDoc, deleteDoc, placeBefore } from './viMethods.js';
 
 /**
  * When anything under this changes it will use onValue
@@ -175,17 +175,10 @@ function setMainVaribles()
 
     for(let button of buttons) //All + and - buttons
     {
-        if(button.innerHTML == "+")
-        {
-            button.onclick = increaseValue;
-        }
-
-        else
-        {
-            button.onclick = decreaseValue;
-        }
+        button.onclick = changeValue;
     }
 }
+
  /**
   * Sends message into the discord using a webhook
   * @param {*} message 
@@ -226,152 +219,161 @@ function basicRoll(amount, dice)
     return rolls; //Returns all rolls
 }
 
+/**
+ * Rolls the amount of dice * d(dice) + modifier. If description is needed ifName is true
+ * @param {*} amount 
+ * @param {*} dice 
+ * @param {*} modifier 
+ * @param {*} ifName 
+ * @returns 
+ */
 function diceRoller(amount, dice, modifier, ifName)
 {
-    let rolls = basicRoll(amount, dice);
+    let rolls = basicRoll(amount, dice); //rolls each die
     let sum = 0;
     let viewMod = modifier;
-    if(modifier >= 0 && !viewMod.includes("+")){viewMod = "+" + modifier;}
+    if(modifier >= 0 && !viewMod.includes("+")){viewMod = "+" + modifier;} //Adds the + if the modifier is positive
     let message = ""; 
-    if(ifName){message = `${player} rolled `;}
+    if(ifName == "discord"){message = `${player} rolled `;} //Creates the message for discord
     message += `*${amount}d${dice}${viewMod}*: *(`;
     
-    for(let roll of rolls)
+    for(let roll of rolls) //For each die that was rolled
     {
-        sum += roll;
-        message += `${roll}+`;
+        sum += roll; //Adds the result to the sum
+        message += `${roll}+`; //Adds the number to the message
     }
 
-    if(message[message.length-1] == "+")
+    if(message[message.length-1] == "+") //If the last thing in the message is +
     {
-        message = message.slice(0, message.length - 1);
+        message = message.slice(0, message.length - 1); //Removes the +
     }
     
-    let finalResult = sum + parseInt(modifier);
-    message += `)${viewMod}=* **${finalResult}**`;
+    let finalResult = sum + parseInt(modifier); //Adds the sum and modifier
+    message += `)${viewMod}=* **${finalResult}**`; 
+    if(ifName == "finalResult"){message = `${finalResult}`;}
 
     return message;
 }
 
-function lesserDiceRoll (amount, dice, modifier, ifName)
-{
-    let rolls = basicRoll(amount, dice);
-    let sum = 0;
-    let message = ""; 
-    
-    for(let roll of rolls)
-    {
-        sum += roll;
-    }
-    
-    let finalResult = sum + parseInt(modifier);
-    message += `${finalResult}`;
-
-    return message;
-}
-
+/**
+ * Once the roll dice button is clicked
+ */
 function handleDiceRoll()
 {
     let amount = parseInt(document.getElementById("diceToRoll").value);
     let dice = parseInt(document.getElementById("sides").value);
     let modifier = parseInt(document.getElementById("modifier").value);
     
-    if(amount != "" && dice != "" && modifier != "")
+    if(amount != "" && dice != "" && modifier != "") //If all three values are given
     {
-        sendDiscordMessage(diceRoller(amount, dice, modifier, true));
+        sendDiscordMessage(diceRoller(amount, dice, modifier, "discord")); //Rolls the dice given and send the result to discord
     }
 
-    else{alert("Need input in all 3 spaces.");}
+    else{alert("Need input in all 3 inputs.");} //If one or more of the values are missed
 }
 
+/**
+ * When one of the buttons in the first list is clicked
+ */
 function handleChangeFirstDisplay()
 {
-    if(!this.classList.contains("Selected"))
+    if(!this.classList.contains("Selected")) //If they have clicked a new button
     {
-        emptyCards();
-        document.getElementById("searchDiv").style.display = "none";
+        emptyCards(); 
+        document.getElementById("searchDiv").style.display = "none"; //Makes sure the search bar is hidden.
 
-        for(let fButton of firstMenu)
+        for(let fButton of firstMenu) //For each button in the first list
         {
             let prop;
-            favorite = false;
+            favorite = false; 
 
-            if(this.name != fButton.name)
+            if(this.name != fButton.name) //If current button isn't the button that was clicked
             {
                 prop = document.getElementById(fButton.name);
-                prop.style.display = "none";
+                prop.style.display = "none"; //Hide's the div associated
                 
-                if(fButton.classList.contains("selected"))
+                if(fButton.classList.contains("selected")) //If it was the button selected last
                 {
                     fButton.classList.remove("selected");
                 }
             }
 
-            else
+            else //If this is the button that was clicked
             {
                 prop = document.getElementById(this.name);
-                prop.style.display = "block";
+                prop.style.display = "block"; //Make it's div visible
                 this.classList.add("selected");
             }
         }
 
-        if(this.name == "favorites")
+        if(this.name == "favorites") //If the button clicked was the favorite button
         {
-            favorite = true;
-            favoriteRef = ref(database, `playerChar/${player}/favorites/`);
-            onValue(favoriteRef, (snapshot) => 
-            {
-                const data = snapshot.val();
-                wholeFavorite = data;
-
-                let spellDiv = document.getElementById("spellsF")
-                while(spellDiv.children.length > 0)
-                {
-                    spellDiv.removeChild(spellDiv.lastChild);
-                }
-
-                let actionDiv = document.getElementById("abilityF")
-                while(actionDiv.children.length > 0)
-                {
-                    actionDiv.removeChild(actionDiv.lastChild);
-                }
-
-                spellDiv.classList.add("center");
-                actionDiv.classList.add("center");
-                
-                if(wholeFavorite["spells"])
-                {
-                    for(let spellLv of Object.keys(wholeFavorite["spells"]))
-                    {
-                        let lvlBtn = document.createElement("button");
-                        lvlBtn.name = spellLv;
-                        lvlBtn.classList = "gridButton spell";
-                        lvlBtn.innerHTML = `Lvl ${spellLv}`;
-                        lvlBtn.onclick = handleShowSpells;
-                        if(spellLv == "0"){lvlBtn.innerHTML = "Cantrips";}
-                        else if(spellLv == "hold"){lvlBtn.innerHTML = "Create New Spell"; lvlBtn.onclick = handleCreateNew;}
-                        spellDiv.appendChild(lvlBtn);
-                    }
-                }
-
-                if(wholeFavorite["actions"])
-                {
-                    for(let actionTag of Object.keys(wholeFavorite["actions"]))
-                    {
-                        let tagBtn = document.createElement("button");
-                        tagBtn.name = actionTag;
-                        tagBtn.classList = "gridButton action";
-                        tagBtn.innerHTML = `${actionTag}`;
-                        tagBtn.onclick = handleShowActions;
-                        if(actionTag == "hold"){tagBtn.innerHTML = "Create New Ability"; tagBtn.onclick = handleCreateNew;}
-                        actionDiv.appendChild(tagBtn);
-                    }
-                }
-            });
+            handleFavoriteSelect();
         }
     }
 }
 
+/**
+ * Displays the favored spells and actions
+ */
+function handleFavoriteSelect()
+{
+    favorite = true;
+    favoriteRef = ref(database, `playerChar/${player}/favorites/`); //Connects the the favorites database
+    onValue(favoriteRef, (snapshot) => 
+    { //Every time something changes in the database
+        const data = snapshot.val();
+        wholeFavorite = data;
+
+        let spellDiv = document.getElementById("spellsF")
+        while(spellDiv.children.length > 0) //Until the div is empty
+        {
+            spellDiv.removeChild(spellDiv.lastChild); 
+        }
+
+        let actionDiv = document.getElementById("abilityF")
+        while(actionDiv.children.length > 0) //Until the div is empty
+        {
+            actionDiv.removeChild(actionDiv.lastChild);
+        }
+
+        spellDiv.classList.add("center"); //Centers the spells
+        actionDiv.classList.add("center"); //Centers the actions
+        
+        if(wholeFavorite["spells"]) //The spell btn is active
+        {
+            for(let spellLv of Object.keys(wholeFavorite["spells"])) //For each spell in the favorite of the player
+            {
+                let lvlBtn = document.createElement("button"); //Creates the button
+                lvlBtn.name = spellLv;
+                lvlBtn.classList = "gridButton spell";
+                lvlBtn.innerHTML = `Lvl ${spellLv}`;
+                lvlBtn.onclick = handleShowSpells;
+                if(spellLv == "0"){lvlBtn.innerHTML = "Cantrips";} //If the spell level is 0 change the name to cantrips
+                else if(spellLv == "hold"){lvlBtn.innerHTML = "Create New Spell"; lvlBtn.onclick = handleCreateNew;} //After they reach the last button make it the create new button
+                spellDiv.appendChild(lvlBtn); //Adds the buttons to the div
+            }
+        }
+
+        if(wholeFavorite["actions"]) //If the action btn is active
+        {
+            for(let actionTag of Object.keys(wholeFavorite["actions"])) //For each spell in the favorite of the player
+            {
+                let tagBtn = document.createElement("button"); //Creates the button
+                tagBtn.name = actionTag;
+                tagBtn.classList = "gridButton action";
+                tagBtn.innerHTML = `${actionTag}`;
+                tagBtn.onclick = handleShowActions;
+                if(actionTag == "hold"){tagBtn.innerHTML = "Create New Ability"; tagBtn.onclick = handleCreateNew;} //After they reach the last button make it the create new button
+                actionDiv.appendChild(tagBtn); //Adds the buttons to the div
+            }
+        }
+    });
+}
+
+/**
+ * When one of the buttons in the second list is clicked
+ */
 function handleChangeSecondDisplay()
 {
     if(!this.classList.contains("Selected"))
@@ -380,41 +382,44 @@ function handleChangeSecondDisplay()
 
         spellLevel = undefined;
         curClass = undefined;
-        document.getElementById("searchDiv").style.display = "block";
+        document.getElementById("searchDiv").style.display = "block"; //Displays search bar
 
-        for(let sButton of secondMenu)
+        for(let sButton of secondMenu) //For each button in the second list
         {
             let prop;
 
-            if(this.name != sButton.name)
+            if(this.name != sButton.name) //If button isn't the one that was clicked
             {
                 prop = document.getElementById(sButton.name);
-                prop.style.display = "none";
+                prop.style.display = "none"; //Hides associated div
                 
-                if(sButton.classList.contains("selected"))
+                if(sButton.classList.contains("selected")) //If button was last one clicked
                 {
                     sButton.classList.remove("selected");
                 }
             }
 
-            else
+            else //If button is the one that was clicked
             {
                 prop = document.getElementById(this.name);
-                prop.style.display = "block";
+                prop.style.display = "block"; //Shows the correct div
                 this.classList.add("selected");
             }
         }
 
-        for(let spell of spellBtn){if(spell.classList.contains("selected")){spell.classList.remove("selected");}}
-        for(let action of actionBtn){if(action.classList.contains("selected")){action.classList.remove("selected");}}
+        for(let spell of spellBtn){if(spell.classList.contains("selected")){spell.classList.remove("selected");}} //Unselects buttons if they were previously clicked
+        for(let action of actionBtn){if(action.classList.contains("selected")){action.classList.remove("selected");}} //Unselects buttons if they were previously clicked
     }
 }
 
+/**
+ * When the temp hp is changed
+ */
 function tempHpUpdate()
 {
     let tHp = parseInt(tempHp.value);
     
-    if(tHp < 0)
+    if(tHp < 0) //If the hp was decreased into the negatives
     {
         tempHp.value = "0";
     }
@@ -422,111 +427,108 @@ function tempHpUpdate()
     addUpdate();
 }
 
-function increaseValue()
+/**
+ * When either the + or - button is clicked, it will change the variable associated with it
+ * @returns 
+ */
+function changeValue()
 {
     let cHp = parseInt(currentHp.value);
     let mHp = parseInt(maxHp.value);
     let tHp = parseInt(tempHp.value);
+    let modifier = this.innerHTML;
 
-    if(this.name == "current")
+    switch(this.name) //Checks case on the property of which name was clicked
     {
-        if(!(cHp + 1 > mHp))
-        {
-            currentHp.value = `${cHp + 1}`;
-        }
-    } 
+        case "current": 
+            if(modifier == "+") //If plus button is clicked
+            {
+                if(!(cHp + 1 > mHp)) //If the current hp + 1 isn't higher then the max hp can go
+                {
+                    currentHp.value = `${cHp + 1}`; //Adds one to the current hp
+                }
+            }
 
-    else if(this.name == "max")
-    {
-        maxHp.value = `${mHp + 1}`;
+            else //minus button is clicked
+            {
+                if(!(cHp - 1 < 0)) //If current hp - 1 isn't in the negatives
+                {
+                    currentHp.value = `${cHp - 1}`; //Minus one from the current hp
+                }
+            }
+            break;
+        
+        case "max":
+            if(modifier == "+") //If plus button is clicked
+            {
+                maxHp.value = `${mHp + 1}`; //Increases the max hp you can have by one
+            }
+            
+            else //minus button is clicked
+            {
+                if(!(mHp - 1 < cHp)) //If max hp - 1 isn't in the negatives
+                {
+                    maxHp.value = `${mHp - 1}`; //Minus one from the max hp
+                }
+            }
+            break;
+        
+        case "temp":
+            if(modifier == "+") //If plus button is clicked
+            {
+                tempHp.value = `${tHp + 1}`; //Increases your temp hp by one
+            }
+
+            else //minus button is clicked
+            {
+                if(tHp > 0) //If temp hp - 1 isn't in the negatives
+                {
+                    tempHp.value = `${tHp - 1}`; //Minus one from the temp hp
+                }
+            }
+            break;
+        
+        case "title":
+            let title = document.getElementById("title");
+            let status = document.getElementById("status");
+
+            if(modifier == "+") //If plus button is clicked
+            {
+                title.innerHTML += ` ${toTitleCase(status.value)},`; //Adds the key word written to your title
+            }
+
+            else //minus button is clicked
+            {
+                title.innerHTML = title.innerHTML.replace(` ${toTitleCase(status.value)},`, ""); //Removes the given keyword from the title
+            }
+            break;
+        
+        case "turn":
+            if(modifier == "+") //If plus button is clicked
+            {
+                handleChangeInTurn("up");
+            }
+
+            else //minus button is clicked
+            {
+                handleChangeInTurn("down");
+            }
+            return;
     }
 
-    else if(this.name == "temp")
-    {
-        tempHp.value = `${tHp + 1}`;
-    }
-
-    else if(this.name == "title")
-    {
-        let title = document.getElementById("title");
-        let status = document.getElementById("status");
-
-        title.innerHTML += ` ${toTitleCase(status.value)},`;
-    }
-
-    else if(this.name == "turn")
-    {
-        handleChangeInTurn("up");
-        return;
-    }
-
-    for(let prop of currentCharacter)
-    {
-        if(!(prop.classList.contains("update")))
-        {
-            prop.classList += " update";
-        }
-    }
+    addUpdate();
 }
 
-function decreaseValue()
+/**
+ * Changes the selected field to true if isSet == set or false for anything else
+ * @param {*} data 
+ * @param {*} isSet 
+ */
+function changeTOValue(data, isSet)
 {
-    let cHp = parseInt(currentHp.value);
-    let mHp = parseInt(maxHp.value);
-    let tHp = parseInt(tempHp.value);
-
-    if(this.name == "current")
-    {
-        if(!(cHp - 1 < 0))
-        {
-            currentHp.value = `${cHp - 1}`;
-        }
-    } 
+    let sel = "false"; //Assume that we are unsetting selected
     
-    else if(this.name == "max")
-    {
-        if(!(mHp - 1 < cHp))
-        {
-            maxHp.value = `${mHp - 1}`;
-        }
-    }
-
-    else if(this.name == "temp")
-    {
-        if(tHp > 0)
-        {
-            tempHp.value = `${tHp - 1}`;
-        }
-    }
-
-    else if(this.name == "title")
-    {
-        let title = document.getElementById("title");
-        let status = document.getElementById("status");
-
-        title.innerHTML = title.innerHTML.replace(` ${toTitleCase(status.value)},`, "");
-    }
-
-    else if(this.name == "turn")
-    {
-        handleChangeInTurn("down");
-        return;
-    }
-
-    for(let prop of currentCharacter)
-    {
-        if(!(prop.classList.contains("update")))
-        {
-            prop.classList += " update";
-        }
-    }
-}
-
-function changeTOValue(data, sit)
-{
-    let sel = "false";
-    
-    if(sit == "set")
+    if(isSet == "set") //If we are setting selected
     {
         sel = "true";
     }
@@ -536,52 +538,61 @@ function changeTOValue(data, sit)
         charName : data.charName,
         position : data.position,
         selected : sel
-    });
+    }); //Updates the data
 }
 
-function handleChangeInTurn(dirrection)
+/**
+ * Moves the current turn up or down based on direction
+ * @param {*} direction 
+ */
+function handleChangeInTurn(direction)
 {
     let curSelected;
     let newSelected;
     let newPosition;
 
-    for(let key of Object.keys(wholeTO))
+    for(let key of Object.keys(wholeTO)) //For each turn of the turn order
     {
-        if(wholeTO[key].selected == "true")
+        if(wholeTO[key].selected == "true") //If the current turn is this turn
         {
-            curSelected = key;
+            curSelected = key; 
             break;
         }
     }
 
-    if(dirrection == "up")
+    if(direction == "up") //If the + button is hit
     {
-        if(wholeTO[curSelected].position == Object.keys(wholeTO).length){newPosition = "1";}
-        else{newPosition = `${parseInt(wholeTO[curSelected].position) + 1}`}
+        if(wholeTO[curSelected].position == Object.keys(wholeTO).length){newPosition = "1";} //If the selected is the last one in the order move to the beginning
+        else{newPosition = `${parseInt(wholeTO[curSelected].position) + 1}`} //Else move down one in the order
     }
         
-    else if(dirrection == "down")
+    else if(direction == "down") //If the - button is hit
     {
-        if(wholeTO[curSelected].position == "1"){newPosition = `${Object.keys(wholeTO).length}`;}
-        else{newPosition = `${parseInt(wholeTO[curSelected].position) - 1}`}
+        if(wholeTO[curSelected].position == "1"){newPosition = `${Object.keys(wholeTO).length}`;} //If the selected is the first one in the order move to the end
+        else{newPosition = `${parseInt(wholeTO[curSelected].position) - 1}`} //Else move up one in the order
     }
 
-    for(let key of Object.keys(wholeTO))
+    for(let key of Object.keys(wholeTO)) //For each turn in the turn order
     {
-        if(dirrection == "up" && wholeTO[key].position == newPosition){newSelected = key; break;}
-        else if(dirrection == "down" && wholeTO[key].position == newPosition){newSelected = key; break;}
+        if(direction == "up" && wholeTO[key].position == newPosition){newSelected = key; break;} //If we are moving up in turn order and the current turn is the new turn
+        else if(direction == "down" && wholeTO[key].position == newPosition){newSelected = key; break;} //If we are moving down in turn order and the current turn is the new turn
     }
 
-    document.getElementById(`${curSelected}-div`).classList.remove("selected");
-    document.getElementById(`${newSelected}-div`).classList.add("selected");
+    document.getElementById(`${curSelected}-div`).classList.remove("selected"); //Removes selected class from last turn
+    document.getElementById(`${newSelected}-div`).classList.add("selected"); //Adds selected class to the new turn
 
     changeTOValue(wholeTO[curSelected], "unset");
     changeTOValue(wholeTO[newSelected], "set");
 }
 
+/**
+ * Moves current token to the given X and Y locations from xPos and yPos
+ * @param {*} xPos 
+ * @param {*} yPos 
+ */
 function moveChar(xPos, yPos)
 {
-    for(let prop of currentCharacter)
+    for(let prop of currentCharacter) //For each image of current token
     {
         prop.style.left = xPos + "px";
         prop.style.top = yPos + "px";
@@ -589,9 +600,12 @@ function moveChar(xPos, yPos)
     }   
 }
 
+/**
+ * Adds update class for each image of the current token
+ */
 function addUpdate()
 {
-    for(let prop of currentCharacter)
+    for(let prop of currentCharacter) 
     {
         if(!(prop.classList.contains("update")))
         {
@@ -600,131 +614,141 @@ function addUpdate()
     }
 }
 
+/**
+ * Changes the hp image of the token then makes sure update class is added
+ */
 function updateHp()
 {
     let hpImg;
 
-    for(let prop of currentCharacter)
+    for(let prop of currentCharacter) //For each image in the current token
     {
-        if(prop.classList.contains("hp"))
+        if(prop.classList.contains("hp")) //If the image is the hp image
         {
             hpImg = prop;
-        }
-
-        if(!(prop.classList.contains("update")))
-        {
-            prop.classList += " update";
+            break;
         }
     }
 
-    if(parseInt(this.value) > parseInt(maxHp))
+    addUpdate();
+
+    if(parseInt(this.value) > parseInt(maxHp)) //If the current hp value is higher then max hp
     {
         this.value = maxHp;
     }
 
-    hpImg.src = returnHpImage(maxHp, tempHp, this.value);
+    hpImg.src = returnHpImage(maxHp, tempHp, this.value); //Sets hp image to the current image
 }
 
+/**
+ * When the player hits the arrow button or types an arrow with cntl button moves the tokens
+ */
 function handleArrow()
 {
-    let dirrection = "";
-    currentPos = [parseInt(currentCharacter[1].style.left.replace("px", "")), parseInt(currentCharacter[1].style.top.replace("px", ""))];
+    let direction = "";
+    currentPos = [parseInt(currentCharacter[1].style.left.replace("px", "")), parseInt(currentCharacter[1].style.top.replace("px", ""))]; //Gets both X and Y location of token
 
-    for(let token of currentCharacter)
+    for(let token of currentCharacter) //For each image in the current character
     {
         let title = token.title;
-        if(title != undefined)
+
+        if(title != undefined) //If token has keywords in their title
         {
-            if(title.includes("Large"))
+            if(title.includes("Large")) //If the token is 3X3
             {
-                bounds = [pos[0], pos[11]];
+                bounds = [pos[0], pos[11]]; //Stops the token from moving outside the borders
                 break;
             }
 
-            else if(title.includes("Huge"))
+            else if(title.includes("Huge")) //If the token is 4x4
             {
-                bounds = [pos[0], pos[10]];
+                bounds = [pos[0], pos[10]]; //Stops the token from moving outside the borders
                 break;
             }
 
-            else if (title.includes("Gargantuan"))
+            else if (title.includes("Gargantuan")) //If the token is 5x5
             {
-                bounds = [pos[0], pos[9]];
+                bounds = [pos[0], pos[9]]; //Stops the token from moving outside the borders
                 break;
             }
 
-            else
+            else //If token is 2x2
             {
-                bounds = [pos[0], pos[12]];
+                bounds = [pos[0], pos[12]]; //Sets normal borders
             }
         }
     }
 
-    if(key != undefined)
+    if(key != undefined) //If the arrow key was hit
     {
-        keyControl.preventDefault();
-        dirrection = key;
+        keyControl.preventDefault(); //Stops page from moving 
+        direction = key;
     }
 
-    if (this != undefined)
+    if (this != undefined) //If dPad button is hit
     {
-        dirrection = this.id;
+        direction = this.id;
     }
 
-    if(dirrection == "up")
+    switch(direction) //Switch on which direction their trying to move
     {
-        if(bounds[0] < currentPos[1])
-        {
-            moveChar(currentPos[0], currentPos[1] - movement);
-        }   
-    }
+        case "up":
+            if(bounds[0] < currentPos[1]) //If they are not on the top border
+            {
+                moveChar(currentPos[0], currentPos[1] - movement);
+            }  
+            break;
+        
+        case "down":
+            if(bounds[1] > currentPos[1]) //If they are not on the bottom border
+            {
+                moveChar(currentPos[0], currentPos[1] + movement);
+            }    
+            break;
 
-    else if (dirrection == "left")
-    {
-        if(bounds[0] < currentPos[0])
-        {
-            moveChar(currentPos[0] - movement, currentPos[1]);
-        }
-    }
+        case "left": 
+            if(bounds[0] < currentPos[0]) //If they are not on the left border
+            {
+                moveChar(currentPos[0] - movement, currentPos[1]);
+            }
+            break;
 
-    else if (dirrection == "down")
-    {
-        if(bounds[1] > currentPos[1])
-        {
-            moveChar(currentPos[0], currentPos[1] + movement);
-        }       
-    }
-
-    else if (dirrection == "right")
-    {
-        if(bounds[1] > currentPos[0])
-        {
-            moveChar(currentPos[0] + movement, currentPos[1]);
-        } 
+        case "right":
+            if(bounds[1] > currentPos[0]) //If they are not on the right border
+            {
+                moveChar(currentPos[0] + movement, currentPos[1]);
+            } 
+            break;
     }
 }
 
+/**
+ * Remove all cards displayed
+ */
 function emptyCards()
 {
-    while(upper.children.length > 0)
+    while(upper.children.length > 0) //While cards are still present
     {
-        upper.removeChild(upper.lastChild);
+        upper.removeChild(upper.lastChild); //Removes the last card there
     }
 }
 
+/**
+ * Show spells when a level is clicked
+ */
 function handleShowSpells()
 {
     spellLevel = this.name;
     curClass = undefined;
     db = wholeSpells;
-    if(favorite){db = wholeFavorite["spells"];}
+    if(favorite){db = wholeFavorite["spells"];} //If spell level from player's favorite was clicked change databases
     let spells = db[spellLevel];
     
-    for(let spell of spellBtn)
+    for(let spell of spellBtn) //For each spell button
     {
-        if(spell.classList.contains("selected"))
+        if(spell.classList.contains("selected")) //If this button was selected last
         {
-            spell.classList.remove("selected");
+            spell.classList.remove("selected"); 
         }
     }
 
@@ -732,35 +756,38 @@ function handleShowSpells()
 
     emptyCards()
 
-    if(searchBar[0].value != "")
+    if(searchBar[0].value != "") //If there is something in hte search bar
     {
         handleSearch();
     }
 
-    else
+    else //If nothing is in the search bar
     {
-        document.getElementById("searchDiv").style.display = "block";
+        document.getElementById("searchDiv").style.display = "block"; //Makes search bar visible
 
-        for(let spell of Object.keys(spells))
+        for(let spell of Object.keys(spells)) //For spells in the spell level
         {
             createCard(spell, setUpText(spell, spells), "cards");
         }
 
-        for(let key of document.getElementsByClassName("card-body")){key.onclick = handleCardClick;}
+        for(let key of document.getElementsByClassName("card-body")){key.onclick = handleCardClick;} //For each spell created change it's on click
     }
 }
 
+/**
+ * Shows actions when a action tag is clicked
+ */
 function handleShowActions()
 {
     spellLevel = undefined;
     curClass = this.name;
     db = wholeActions;
-    if(favorite){db = wholeFavorite["actions"];}
+    if(favorite){db = wholeFavorite["actions"];} //If the favorite action tag was clicked change databases
     let actions = db[curClass];
 
-    for(let action of actionBtn)
+    for(let action of actionBtn) //For each action buttons
     {
-        if(action.classList.contains("selected"))
+        if(action.classList.contains("selected")) //If the button was selected last
         {
             action.classList.remove("selected");
         }
@@ -770,23 +797,21 @@ function handleShowActions()
 
     emptyCards()
 
-    if(searchBar[0].value != "")
+    if(searchBar[0].value != "") //If search bar has something in it
     {
         handleSearch();
     }
 
-    else if(db[curClass].length == 0){}
-
-    else
+    else //If the user wants to see all actions
     {
-        document.getElementById("searchDiv").style.display = "block";
+        document.getElementById("searchDiv").style.display = "block"; //Makes search bar visible
 
-        for(let action of Object.keys(actions))
+        for(let action of Object.keys(actions)) //For each action in the tag
         {
             createCard(action, setUpText(action, actions), "cards");
         }
 
-        for(let key of document.getElementsByClassName("card-body")){key.onclick = handleCardClick;}
+        for(let key of document.getElementsByClassName("card-body")){key.onclick = handleCardClick;} //Changes onclick for the new cards created
     }
 }
 
@@ -990,7 +1015,7 @@ function handleCardClick()
 
         optionDiv.appendChild(castBtn);
         this.parentNode.appendChild(wrapper);
-        this.parentNode.parentNode.insertBefore(optionDiv, this.parentNode.nextSibling);
+        placeBefore(optionDiv, this.parentNode.nextSibling, this.parentNode.parentNode);
     }
 
     else
@@ -1083,7 +1108,7 @@ function handleUseAction()
             else{abilityDisc = wholeActions[wholeRespone["ind"]][wholeRespone["currentResponse"]]["description"];}
 
             setDoc(`playerChar/${player}/stats/${wholeRespone["ability"]}`, userAddTo);
-            usersRoll = lesserDiceRoll("1", "20", userAddTo);
+            usersRoll = diceRoller("1", "20", userAddTo, "finalResult");
 
             if(abilityDisc.includes("{@save "))
             {
@@ -1091,7 +1116,7 @@ function handleUseAction()
                 damage = splitRoll(abilityDisc, "@save");
                 if(abilityDisc.includes("{@scaledamage")){damage = splitRoll(wholeRespone["castUp"], "@save")}
                 else if(abilityDisc.includes(currentLv)){damage = splitRoll(abilityDisc.slice(`${abilityDisc.indexOf(currentLv)}`), "@save");}
-                damage = lesserDiceRoll(damage[0], damage[1], damage[2]);
+                damage = diceRoller(damage[0], damage[1], damage[2], "finalResult");
 
                 if(parseInt(usersRoll) >= parseInt(wholeRespone["toBeat"])) 
                 {
@@ -1186,7 +1211,7 @@ function handleUseAction()
             let userAddTo = "";
             if(discription.includes("toHit}")){let temp = discription.indexOf("toHit}"); userAddTo = discription.charAt(temp - 2); userAddTo += discription.charAt(temp - 1)}
             else{userAddTo = spellOrAttackBonus("@damage")}
-            let accurcy = diceRoller(1, 20, userAddTo, false);
+            let accurcy = diceRoller(1, 20, userAddTo, "false");
             
             if(discription.includes(currentLv))
             {
@@ -1195,7 +1220,7 @@ function handleUseAction()
             
             damage = splitRoll(discription, "@damage");
             if(accurcy.includes("(20)")){damage[0] = `${parseInt(damage[0]) * 2}`}
-            damage = diceRoller(damage[0], damage[1], damage[2], false);
+            damage = diceRoller(damage[0], damage[1], damage[2], "false");
             
             if(display){display += `\nAccurcy: ${accurcy} to Hit.\nOn Hit: ${damage} Damage.\n`;}
             else{display = `${wholeChar[player]["charName"]} cast,\n${lastUse}:\n${useInfo}\n\nAccurcy: ${accurcy} to Hit.\nOn Hit: ${damage} Damage.\n`;}
@@ -1206,7 +1231,7 @@ function handleUseAction()
         if(discription.includes("{@sDice"))
         {
             damage = splitRoll(discription, "@sDice");
-            damage = diceRoller(damage[0], damage[1], damage[2], false);
+            damage = diceRoller(damage[0], damage[1], damage[2], "false");
     
             if(display){display += `\nResult: ${damage}. \n`;}
             else{display = `${wholeChar[player]["charName"]} used the ability, \n${lastUse}:\n${useInfo}\n\nResult: ${damage}. \n`;}
@@ -1216,7 +1241,7 @@ function handleUseAction()
         {
             let lvl = currentLv.charAt(0);
             damage = [`${Math.ceil(parseInt(lvl) / 2)}`, "6", "0"];
-            damage = diceRoller(damage[0], damage[1], damage[2], false);
+            damage = diceRoller(damage[0], damage[1], damage[2], "false");
     
             if(display){display += `nResult: ${damage}. \n`;}
             else{display = `${wholeChar[player]["charName"]} used the ability, \n${lastUse}:\n${useInfo}\n\nResult: ${damage}. \n`;}

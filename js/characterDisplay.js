@@ -1,9 +1,14 @@
 "use strict";
+import { reload } from '../js/viMethods.js';
+
+/**
+ * Runs when js is started up
+ */
 function init()
 {
-    let characters = document.getElementsByTagName("button");
+    let characters = document.getElementsByTagName("button"); //Gets all character buttons
 
-    for (let char of characters) 
+    for (let char of characters) //For all the characters in the character buttons
     {
         char.onclick = handleCharacterButton;
     }
@@ -12,18 +17,25 @@ function init()
     characters[characters.length - 1].onclick = handleReset;
 }
 
+/**
+ * Once a character is clicked it will display their information
+ */
 function handleCharacterButton()
 {
     let txtBox = document.getElementById("description");
     let image = document.getElementById("charImg");
     let nameTxt = document.getElementById("name");
-    txtBox.innerHTML = charStories[this.id];
+    
+    txtBox.innerHTML = charStories[this.id]; //Display will show their backstory
     image.style.display = "block";
-    image.src = charImg[this.id];
-    nameTxt.innerHTML = [this.id];
-    document.getElementById("display").scrollIntoView({behavior: 'smooth'});
+    image.src = charImg[this.id]; //Changes the image to theirs
+    nameTxt.innerHTML = [this.id]; //Changes the title to their name
+    document.getElementById("display").scrollIntoView({behavior: 'smooth'}); //Moves the view to their backstories
 }
 
+/**
+ * Allows the button to move the view to the top of the page
+ */
 function handleBringToTop()
 {
     document.getElementById("header").scrollIntoView({behavior: 'smooth'});
@@ -31,10 +43,10 @@ function handleBringToTop()
 
 function handleReset()
 {
-    location.reload(true);
+    reload(.1);
 }
 
-window.onload = init;
+window.onload = init; //Once the page loads run init
 
 let charStories = 
 {
@@ -48,7 +60,7 @@ let charStories =
     "Haven" : "Haven is the person who messagers go to. He takes all the letters and info and distributes it to the right people. Haven is also in charge of the mail throughout Castle Havenport. He has the office space next to him to store mail until his associates take it. He spends most of his time sorting mail by importance and category. He was raised by his father, and when his father passed he took over the family business in the castle. The party will need to talk with him to sign up for the quest, he will get the final say on all quest-related matters.",
     "Laura" : "Laura is the residential/housing lead, not much is known about her. She seems to be close with some of the guards. Even though she doesn't get paid much, she lives in the biggest house and takes many vacations. Something feels off about her, but you can't quite place your finger on it.",
     "Sky" : "Sky is a young girl who lost her memory. She is looking for her mother.",
-    "Mal" : "Mal is the Bar/Innkeep of Lago. He cares for each of his patrons, not only for their gold. He listens to all their woes, and he tries to confert them. By doing this he doesn't only have loyal customers, but he learns what is happening around town. If you need any information, Mal is where you should start.",
+    "Mal" : "Mal is the Bar/Innkeep of Lago. He cares for each of his patrons, not only for their gold. He listens to all their woes, and he tries to confers them. By doing this he doesn't only have loyal customers, but he learns what is happening around town. If you need any information, Mal is where you should start.",
     "Skinin" : "Skinin is an assassin for hire.",
     "Cliven" : "Cliven is the mayor of Lake View, she is also a part-time college student at Stavin University. She spends most of her time reading and learning about magic/magical objects. She is the best friend of the Royal Scientist, she tries to help him with what she can. Her people look up to her and aspire to be just like her.",
     "Fargate" : "Fargate is the owner of the Tiger's Pub. He left the village, needing to get out and find himself. He opened his bar in Lago, and quickly made friends with the locals. He was like an uncle to Leonier, being there for events and making food and baked goods for him and the village.",
@@ -57,7 +69,7 @@ let charStories =
     "Jallion" : "Jallion is the royal map maker of Havenpont. He travels all around and gathers diffrent satistics to base his maps off of. From the most danagerous places to poverty, he has a map showing where and intesity. Resently Prince Grado and some other nearby kingdoms asked him to make a map of high density of MagicVoid. Grado hopes this could be used to find safer routes and what drives their migrations.",
     "Slavve" : "King Slavve is the figurehead of Havenport, however, all he does is sign the papers he is told to. His son, Grado, handles everything in the kingdom. Slavve isn't the man he used to be, he used to be the active king who would go on quests and adventures to benefit his kingdom. That all changed when his husband of 35 years died in battle, the king took it hard. Now he barely leaves his bed, the only time he leaves is to eat. This is because the staff refuses to let him stay in his bed all day. They will not serve food to him in his bed with him only wearing underwear.",
     "Harold" : "Harold the CEO of Firetown has promised to deliver unlimited magic to his loyal customers. The magic seems to be fey magic."
-};
+}; //Backstories
 
 let charImg = 
 {
@@ -80,4 +92,4 @@ let charImg =
     "Jallion" : "images/npcs/Jallion.PNG",
     "Slavve" : "images/npcs/kingSlavve.PNG",
     "Harold" : "images/npcs/firetownHarold.PNG"
-}
+} //Images

@@ -186,3 +186,14 @@ export function reload(seconds)
 {
     setTimeout(function(){location.reload();}, 1000 * seconds);
 }
+
+/**
+ * Places the new element elemToPlace before the referenceElement in the given div
+ * @param {*} elemToPlace 
+ * @param {*} referenceElement 
+ * @param {*} div 
+ */
+export function placeBefore(elemToPlace, referenceElement, div)
+{ 
+    div.insertBefore(elemToPlace, referenceElement);
+}
