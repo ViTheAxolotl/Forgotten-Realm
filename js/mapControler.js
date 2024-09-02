@@ -1556,7 +1556,17 @@ function handleChangeToken()
             img.onclick = changeSourceSelect;
             img.style.width = "40%";
             img.classList.add(selectDiv.id);
+            
+            let temp = img.src;
+            temp = temp.split("/");
+            temp = temp[temp.length - 1];
 
+            if(temp.includes("border"))
+            {
+                temp = temp.slice(0, temp.indexOf("border"));
+            }
+
+            img.classList.add(temp);
             selectDiv.appendChild(img); 
         }
     }
@@ -1565,7 +1575,7 @@ function handleChangeToken()
 function changeSourceSelect()
 {
     let select = document.getElementById(this.classList[0]);
-    select.innerHTML = "";
+    select.innerHTML = this.classList[1];
     select.style.backgroundImage = `url(${this.src})`;
 }
 
