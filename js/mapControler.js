@@ -1506,13 +1506,13 @@ function handleChangeToken()
     changeTokenBtn.onclick = "handleUpdateToken";
 
     let labels = ["Character", "Border"];
-    let selects = [document.createElement("select"), document.createElement("select")];
+    let selects = [document.createElement("div"), document.createElement("div")];
 
     for(let i = 0; i < labels.length; i++)
     {
         let label = createLabel(labels[i]);
 
-        selects[i].classList = "blo";
+        selects[i].classList = "dropdown";
         selects[i].id = labels[i];
 
         switch(i)
@@ -1522,42 +1522,19 @@ function handleChangeToken()
                 break;
             
             case 1:
-                let txt = document.createElement("div");
-                txt.classList = "dropdown";
-                txt.innerHTML = `<button class="dropbtn">
-                Country Flags
-            </button>
-            
-            <div class="dropdown-content">
-                <a href="#">
-                    <img src=
-"images/map/tokens/blueBorder.png"
-                    width="20" height="15"> India</a>
-
-                <a href="#">
-                    <img src=
-"images/map/tokens/blueBorder.png"
-                    width="20" height="15"> USA</a>
-                <a href="#">
-                    <img src=
-"images/map/tokens/blueBorder.png"
-                    width="20" height="15"> England</a>
-                <a href="#">
-                    <img src=
-"images/map/tokens/blueBorder.png"
-                    width="20" height="15"> Brazil</a>
-            </div>`;
-            selects[1] = txt;
-                /**let borders = ["blue", "golden", "green", "grey", "orange", "pink", "purple", "red"];
+                selects[i].innerHTML = `<button class="dropbtn" id="borderButton">Borders</button><div class="dropdown-content" id="borderSelect" >`;
+                
+                let borders = ["blue", "golden", "green", "grey", "orange", "pink", "purple", "red"];
                 
                 for(let x = 0; x < borders.length; x++)
                 {
-                    let option = document.createElement("option");
-                    let bord = document.createElement("img");
-                    bord.src = `images/map/tokens/${borders[x]}Border.png`;
-                    bord.value = borders[x];
-                    selects[i].appendChild(bord);
-                }*/
+                    let ancr = document.createElement("a");
+                    ancr.onclick = handleUpdateToken;
+                    ancr.innerHTML = `<img src="images/map/tokens/${borders[x]}Border.png">`;
+                    document.getElementById("borderSelect").appendChild(ancr);
+                }
+
+                selects[i].innerHTML += "</div>";
                 break;
         }
 
@@ -1573,6 +1550,11 @@ function handleChangeToken()
         option.text = mapImg.slice(mapImg.indexOf("ap/") + 3).replace(".jpg", "");
         select.appendChild(option);
     }*/
+}
+
+function changeSourceSelect()
+{
+
 }
 
 function handleUpdateToken()
