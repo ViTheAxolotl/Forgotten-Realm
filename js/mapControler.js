@@ -1532,6 +1532,8 @@ function handleChangeToken()
         selectDiv.classList.add("dropdown-content");
         selects[i].appendChild(selectDiv);
 
+        let sources;
+
         switch(i)
         {
             case 0:
@@ -1540,18 +1542,19 @@ function handleChangeToken()
             
             case 1:
                 selectDiv.id="borderSelect";
-                
-                let borders = ["blue", "golden", "green", "grey", "orange", "pink", "purple", "red"];
-                
-                for(let x = 0; x < borders.length; x++)
-                {
-                    let img = document.createElement("img");
-                    img.src = `images/map/tokens/${borders[x]}Border.png`;
-                    img.onclick = changeSourceSelect;
-
-                    document.getElementById("borderSelect").appendChild(img); 
-                }
+                sources = ["images/map/tokens/blueBorder.png", "images/map/tokens/goldenBorder.png", "images/map/tokens/greenBorder.png", "images/map/tokens/greyBorder.png", "images/map/tokens/orangeBorder.png", "images/map/tokens/pinkBorder.png", "images/map/tokens/purpleBorder.png", "images/map/tokens/redBorder.png"];
                 break;
+        }
+
+        for(let x = 0; x < sources.length; x++)
+        {
+            let img = document.createElement("img");
+            img.src = sources[x];
+            img.onclick = changeSourceSelect;
+            img.style.width = "40%";
+            img.classList.add(selectDiv.id);
+
+            selectDiv.appendChild(img); 
         }
     }
 }
