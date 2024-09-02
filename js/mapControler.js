@@ -1532,7 +1532,12 @@ function handleChangeToken()
         selectDiv.classList.add("dropdown-content");
         selects[i].appendChild(selectDiv);
 
-        let sources;
+        let cancelBtn = document.createElement("button");
+        cancelBtn.innerHTML = "Cancel";
+        cancelBtn.onclick = handleCancelTokenChange;
+        changeTokenBtn.parentNode.appendChild(cancelBtn);
+
+        let sources = [];
 
         switch(i)
         {
