@@ -1522,6 +1522,16 @@ function handleChangeToken()
         selects[i].id = labels[i];
         selects[i].style.width = "48%";
 
+        let dropBtn = document.createElement("button");
+        dropBtn.classList.add("dropbtn");
+        dropBtn.id = "borderButton";
+        dropBtn.innerHTML = "Borders";
+        selects[i].appendChild(dropBtn);
+
+        let selectDiv = document.createElement("div");
+        selectDiv.classList.add("dropdown-content");
+        selects[i].appendChild(selectDiv);
+
         switch(i)
         {
             case 0:
@@ -1529,26 +1539,19 @@ function handleChangeToken()
                 break;
             
             case 1:
-                selects[i].innerHTML = `<button class="dropbtn" id="borderButton">Borders</button><div class="dropdown-content bord" id="borderSelect" >`;
+                selectDiv.id="borderSelect";
                 
                 let borders = ["blue", "golden", "green", "grey", "orange", "pink", "purple", "red"];
                 
                 for(let x = 0; x < borders.length; x++)
                 {
-                    let ancr = document.createElement("a");
-                    ancr.onclick = changeSourceSelect;
-                    ancr.innerHTML = `<img src="images/map/tokens/${borders[x]}Border.png">`;
-                    ancr.classList.add("borderButton");
-
                     let img = document.createElement("img");
                     img.src = `images/map/tokens/${borders[x]}Border.png`;
                     img.onclick = changeSourceSelect;
 
                     ancr.appendChild(img);
-                    document.getElementById("borderSelect").appendChild(img); //Was ancr
+                    document.getElementById("borderSelect").appendChild(img); 
                 }
-
-                selects[i].innerHTML += "</div>";
                 break;
         }
     }
