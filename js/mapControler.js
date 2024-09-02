@@ -1527,24 +1527,24 @@ function handleChangeToken()
 
         let dropBtn = document.createElement("button");
         dropBtn.classList.add("dropbtn");
-        dropBtn.id = "borderButton";
+        dropBtn.id = `${labels[i]}Button`;
         dropBtn.innerHTML = labels[i];
         selects[i].appendChild(dropBtn);
 
         let selectDiv = document.createElement("div");
         selectDiv.classList.add("dropdown-content");
         selects[i].appendChild(selectDiv);
+        selectDiv.id = `${labels[i]}Select`;
 
         let sources = [];
 
         switch(i)
         {
             case 0:
-                selectDiv.id="characterSelect";
+
                 break;
             
             case 1:
-                selectDiv.id="borderSelect";
                 sources = ["images/map/tokens/blueBorder.png", "images/map/tokens/goldenBorder.png", "images/map/tokens/greenBorder.png", "images/map/tokens/greyBorder.png", "images/map/tokens/orangeBorder.png", "images/map/tokens/pinkBorder.png", "images/map/tokens/purpleBorder.png", "images/map/tokens/redBorder.png"];
                 break;
         }
@@ -1561,9 +1561,9 @@ function handleChangeToken()
             temp = temp.split("/");
             temp = temp[temp.length - 1];
 
-            if(temp.includes("border"))
+            if(temp.includes("Border"))
             {
-                temp = temp.slice(0, temp.indexOf("border"));
+                temp = temp.slice(0, temp.indexOf("Border"));
             }
 
             img.classList.add(temp);
@@ -1576,7 +1576,6 @@ function changeSourceSelect()
 {
     let select = document.getElementById(this.classList[0]);
     select.innerHTML = this.classList[1];
-    select.style.backgroundImage = `url(${this.src})`;
 }
 
 function handleUpdateToken()
@@ -1588,7 +1587,7 @@ function handleCancelTokenChange()
 {
     let elements = changeTokenBtn.parentNode.childNodes;
     let delPoint = "first";
-    while(elements > 1)
+    while(elements.length > 1)
     {   
         switch(delPoint)
         {
