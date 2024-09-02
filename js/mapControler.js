@@ -98,6 +98,7 @@ let db;
 let lastSpell;
 let lastAbility;
 let changeTokenBtn;
+let imgs;
 
 /**
  * Runs when JS opens
@@ -109,6 +110,7 @@ function init()
     arrows.push(document.getElementById("right"));
     arrows.push(document.getElementById("down"));
     
+    fetch('https://vitheaxolotl.github.io/Forgotten-Realm/src/files.json').then(res => res.json()).then((json) => imgs = json);
     fetch('https://vitheaxolotl.github.io/Forgotten-Realm/src/spells.json').then(res => res.json()).then((json) => wholeSpells = json); //Opens the spell json file
     fetch('https://vitheaxolotl.github.io/Forgotten-Realm/src/actions.json').then(res => res.json()).then((json) => wholeActions = json); //Opens the actions json file
 
@@ -1537,15 +1539,18 @@ function handleChangeToken()
         selectDiv.id = `${labels[i]}Select`;
 
         let sources = [];
+        let temp;
 
         switch(i)
         {
             case 0:
-
+                temp = imgs["tokens"];
+                for(let token of Object.keys(temp)){if(token != "invisible-"){sources.push(temp[token]);}} //Populates Sources with all the selectable token images
                 break;
             
             case 1:
-                sources = ["images/map/tokens/blueBorder.png", "images/map/tokens/goldenBorder.png", "images/map/tokens/greenBorder.png", "images/map/tokens/greyBorder.png", "images/map/tokens/orangeBorder.png", "images/map/tokens/pinkBorder.png", "images/map/tokens/purpleBorder.png", "images/map/tokens/redBorder.png"];
+                temp = imgs["borders"];
+                for(let border of Object.keys(temp)){if(border != "invisible"){sources.push(temp[border]);}} //Populates Sources with all the selectable border images
                 break;
         }
 
@@ -1557,13 +1562,18 @@ function handleChangeToken()
             img.style.width = "40%";
             img.classList.add(dropBtn.id);
             
-            let temp = img.src;
+            temp = img.src;
             temp = temp.split("/");
             temp = temp[temp.length - 1];
 
             if(temp.includes("Border"))
             {
                 temp = temp.slice(0, temp.indexOf("Border"));
+            }
+
+            else
+            {
+                temp = temp.slice(0, temp.indexOf("."));
             }
 
             img.classList.add(temp);
@@ -1585,9 +1595,9 @@ function handleUpdateToken()
 
 function handleCancelTokenChange()
 {
-    let elements = changeTokenBtn.parentNode.childNodes;
+    let elements = changeTokenBtn.parentNode;
     let delPoint = "first";
-    while(elements.length > 1)
+    while(elements.childNodes.length > 1)
     {   
         switch(delPoint)
         {

@@ -10,7 +10,7 @@ let enter = document.getElementById("enter");
 let charName = document.getElementById("name");
 let currentName;
 let div = document.getElementById("story");
-let borders = ["blue", "golden", "green", "grey", "orange", "pink", "purple", "red"];
+let borders = [];
 let char = document.createElement("h3");
 let bord = document.createElement("h3");
 let hp = document.createElement("h3");
@@ -18,6 +18,7 @@ let go = document.createElement("button");
 let people = [];
 let numToLet = {0 : "", 1 : "a", 2 : "b"};
 let firstRun = true;
+let imgs = {};
 let oldToken = {};
 
 const charRef = ref(database, 'playerChar/');
@@ -77,6 +78,10 @@ function init()
 
     enter.onclick = handleEnterButton;
     go.onclick = handleGoButton;
+    
+    fetch('https://vitheaxolotl.github.io/Forgotten-Realm/src/files.json').then(res => res.json()).then((json) => imgs = json);
+    let temp = imgs["borders"];
+    for(let border of Object.keys(temp)){if(border != "invisible"){borders.push(border);}} //Populates the borders with each border
 }
 
 function handleEnterButton()
