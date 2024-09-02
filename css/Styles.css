@@ -543,7 +543,7 @@ table, .itemSearch, #itemImg
 }
 
 .dropdown:hover .dropdown-content {
-    display: block;
+    display: inline;
 }
 
 .dropdown:hover .dropbtn {

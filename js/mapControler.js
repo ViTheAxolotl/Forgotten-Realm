@@ -1536,7 +1536,7 @@ function handleChangeToken()
                 {
                     let ancr = document.createElement("a");
                     ancr.onclick = changeSourceSelect;
-                    ancr.innerHTML = `<img src="images/map/tokens/${borders[x]}Border.png">`;
+                    ancr.innerHTML = `<img src="images/map/tokens/${borders[x]}Border.png" class = "bord">`;
                     document.getElementById("borderSelect").appendChild(ancr);
                 }
 
