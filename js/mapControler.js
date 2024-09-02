@@ -1522,18 +1522,46 @@ function handleChangeToken()
                 break;
             
             case 1:
-                let borders = ["blue", "golden", "green", "grey", "orange", "pink", "purple", "red"];
+                let txt = document.createElement("div");
+                txt.classList = "dropdown";
+                txt.innerHTML = `<button class="btn btn-success 
+                    dropdown-toggle" type="button" 
+                    id="dropdownMenuButton" 
+                    data-toggle="dropdown"
+                    aria-haspopup="true" 
+                    aria-expanded="false">
+                Country Flags
+            </button>
+
+            <ul class="dropdown-menu" 
+                aria-labelledby="dropdownMenuButton">
+                <li class="dropdown-item">
+                    <img src=
+"images/map/tokens/blueBorder.png"
+                    width="20" height="15"> India</li>
+                <li class="dropdown-item">
+                    <img src=
+"images/map/tokens/blueBorder.png" 
+                    width="20" height="15"> USA</li>
+                <li class="dropdown-item">
+                    <img src=
+"images/map/tokens/blueBorder.png" 
+                    width="20" height="15"> England</li>
+                <li class="dropdown-item">
+                    <img src=
+"images/map/tokens/blueBorder.png"
+                    width="20" height="15"> Brazil</li>
+            </ul>`;
+                /**let borders = ["blue", "golden", "green", "grey", "orange", "pink", "purple", "red"];
                 
                 for(let x = 0; x < borders.length; x++)
                 {
-                    //let color = document.createElement("option");
+                    let option = document.createElement("option");
                     let bord = document.createElement("img");
                     bord.src = `images/map/tokens/${borders[x]}Border.png`;
-                    //color.innerHTML = bord;
                     bord.value = borders[x];
-                    bord.classList = "bord";
                     selects[i].appendChild(bord);
-                }
+                }*/
                 break;
         }
 
