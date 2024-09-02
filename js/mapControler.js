@@ -1552,6 +1552,7 @@ function handleChangeToken()
 "images/map/tokens/blueBorder.png"
                     width="20" height="15"> Brazil</li>
             </ul>`;
+            selects[1] = txt;
                 /**let borders = ["blue", "golden", "green", "grey", "orange", "pink", "purple", "red"];
                 
                 for(let x = 0; x < borders.length; x++)
