@@ -1503,7 +1503,7 @@ function handleChangeToken()
     let div = document.getElementById("changeToken");
 
     changeTokenBtn.innerHTML = "Update";
-    changeTokenBtn.onclick = "handleUpdateToken";
+    changeTokenBtn.onclick = handleUpdateToken;
 
     let labels = ["Character", "Border"];
     let selects = [document.createElement("div"), document.createElement("div")];
@@ -1512,10 +1512,11 @@ function handleChangeToken()
     {
         let label = createLabel(labels[i]);
 
+        placeBefore(selects[i], changeTokenBtn);
+        placeBefore(label, selects[i]);
         selects[i].classList = "dropdown";
         selects[i].id = labels[i];
-        placeBefore(selects[i], changeTokenBtn);
-        
+
         switch(i)
         {
             case 0:
@@ -1530,7 +1531,7 @@ function handleChangeToken()
                 for(let x = 0; x < borders.length; x++)
                 {
                     let ancr = document.createElement("a");
-                    ancr.onclick = handleUpdateToken;
+                    ancr.onclick = changeSourceSelect;
                     ancr.innerHTML = `<img src="images/map/tokens/${borders[x]}Border.png">`;
                     document.getElementById("borderSelect").appendChild(ancr);
                 }
@@ -1538,23 +1539,14 @@ function handleChangeToken()
                 selects[i].innerHTML += "</div>";
                 break;
         }
-
-        placeBefore(label, selects[i]);
     }
-
-    /*for(let keys of Object.keys(imgs["mapName"]))
-    {
-        let mapImg = imgs["mapName"][keys];
-        let option = document.createElement("option");
-        option.value = keys;
-        option.text = mapImg.slice(mapImg.indexOf("ap/") + 3).replace(".jpg", "");
-        select.appendChild(option);
-    }*/
 }
 
 function changeSourceSelect()
 {
-
+    let select = document.getElementById("borderSelect");
+    select.innerHTML = "";
+    select.style.backgroundImage = `url(${this.childNodes[0].src})`;
 }
 
 function handleUpdateToken()

@@ -515,9 +515,9 @@ table, .itemSearch, #itemImg
     font-size: 16px;
     border: none;
     cursor: pointer;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
+    -moz-border-radius: 30%;
+    -webkit-border-radius: 30%;
+    border-radius: 30%;
 }
 
 .dropdown {
@@ -536,10 +536,7 @@ table, .itemSearch, #itemImg
 }
 
 .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
+    margin: 5px;
 }
 
 .dropdown-content a:hover {
