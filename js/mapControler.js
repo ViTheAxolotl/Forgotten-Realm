@@ -1526,13 +1526,13 @@ function handleChangeToken()
                 
                 for(let x = 0; x < borders.length; x++)
                 {
-                    let color = document.createElement("option");
+                    //let color = document.createElement("option");
                     let bord = document.createElement("img");
                     bord.src = `images/map/tokens/${borders[x]}Border.png`;
-                    color.innerHTML = bord;
-                    color.value = borders[x];
-                    color.classList = "bord";
-                    selects[i].appendChild(color);
+                    //color.innerHTML = bord;
+                    bord.value = borders[x];
+                    bord.classList = "bord";
+                    selects[i].appendChild(bord);
                 }
                 break;
         }
