@@ -1510,7 +1510,7 @@ function handleChangeToken()
 
     for(let i = 0; i < labels.length; i++)
     {
-        let label = createLabel(names[i]);
+        let label = createLabel(labels[i]);
 
         selects[i].classList = "center blo image-dropdown";
         selects[i].id = labels[i];
@@ -1518,7 +1518,7 @@ function handleChangeToken()
         switch(i)
         {
             case 0:
-                
+
                 break;
             
             case 1:
