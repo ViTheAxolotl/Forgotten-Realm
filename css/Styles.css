@@ -528,8 +528,7 @@ table, .itemSearch, #itemImg
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
+    background-color: rgb(121, 120, 120);
     box-shadow: 0px 8px 16px 
         0px rgba(0, 0, 0, 0.2);
     z-index: 1;
@@ -540,7 +539,7 @@ table, .itemSearch, #itemImg
 }
 
 .dropdown-content a:hover {
-    background-color: #f1f1f1
+    background-color: rgb(136, 136, 136);
 }
 
 .dropdown:hover .dropdown-content {

@@ -1513,6 +1513,7 @@ function handleChangeToken()
         let label = createLabel(labels[i]);
         let span = document.createElement("span");
 
+        label.style.padding = "5%";
         span.style.display = "block";
         placeBefore(selects[i], changeTokenBtn);
         placeBefore(label, selects[i]);
