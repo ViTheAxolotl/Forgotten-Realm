@@ -1530,9 +1530,9 @@ function handleChangeToken()
                     let bord = document.createElement("img");
                     bord.src = `images/map/tokens/${borders[x]}Border.png`;
                     color.innerHTML = bord;
-                    color.id = borders[x];
+                    color.value = borders[x];
                     color.classList = "bord";
-                    selects[i].appendChild(option);
+                    selects[i].appendChild(color);
                 }
                 break;
         }
