@@ -1555,7 +1555,7 @@ function handleChangeToken()
             img.src = sources[x];
             img.onclick = changeSourceSelect;
             img.style.width = "40%";
-            img.classList.add(selectDiv.id);
+            img.classList.add(dropBtn.id);
             
             let temp = img.src;
             temp = temp.split("/");
