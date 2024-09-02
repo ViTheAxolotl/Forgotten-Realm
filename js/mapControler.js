@@ -1540,14 +1540,14 @@ function handleChangeToken()
         placeBefore(label, selects[i]);
     }
 
-    for(let keys of Object.keys(imgs["mapName"]))
+    /*for(let keys of Object.keys(imgs["mapName"]))
     {
         let mapImg = imgs["mapName"][keys];
         let option = document.createElement("option");
         option.value = keys;
         option.text = mapImg.slice(mapImg.indexOf("ap/") + 3).replace(".jpg", "");
         select.appendChild(option);
-    }
+    }*/
 }
 
 function handleUpdateToken()
