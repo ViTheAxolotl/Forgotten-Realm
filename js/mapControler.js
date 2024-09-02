@@ -1512,7 +1512,7 @@ function handleChangeToken()
     {
         let label = createLabel(labels[i]);
 
-        selects[i].classList = "center blo image-dropdown";
+        selects[i].classList = "blo";
         selects[i].id = labels[i];
 
         switch(i)
@@ -1524,14 +1524,15 @@ function handleChangeToken()
             case 1:
                 let borders = ["blue", "golden", "green", "grey", "orange", "pink", "purple", "red"];
                 
-                for(let i = 0; i < borders.length; i++)
+                for(let x = 0; x < borders.length; x++)
                 {
                     let color = document.createElement("option");
                     let bord = document.createElement("img");
-                    bord.src = `images/map/tokens/${borders[i]}Border.png`;
+                    bord.src = `images/map/tokens/${borders[x]}Border.png`;
                     color.innerHTML = bord;
-                    color.id = borders[i];
+                    color.id = borders[x];
                     color.classList = "bord";
+                    selects[i].appendChild(option);
                 }
                 break;
         }
