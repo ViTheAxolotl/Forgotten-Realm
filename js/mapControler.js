@@ -1575,3 +1575,8 @@ function handleUpdateToken()
 {
 
 }
+
+function handleCancelTokenChange()
+{
+    
+}
