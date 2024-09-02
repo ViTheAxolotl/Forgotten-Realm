@@ -1500,13 +1500,16 @@ function handleFavoriteBtn()
 
 function handleChangeToken()
 {
-    let div = document.getElementById("changeToken");
-
     changeTokenBtn.innerHTML = "Update";
     changeTokenBtn.onclick = handleUpdateToken;
 
     let labels = ["Character", "Border"];
     let selects = [document.createElement("div"), document.createElement("div")];
+
+    let cancelBtn = document.createElement("button");
+    cancelBtn.innerHTML = "Cancel";
+    cancelBtn.onclick = handleCancelTokenChange;
+    changeTokenBtn.parentNode.appendChild(cancelBtn);
 
     for(let i = 0; i < labels.length; i++)
     {
@@ -1531,11 +1534,6 @@ function handleChangeToken()
         let selectDiv = document.createElement("div");
         selectDiv.classList.add("dropdown-content");
         selects[i].appendChild(selectDiv);
-
-        let cancelBtn = document.createElement("button");
-        cancelBtn.innerHTML = "Cancel";
-        cancelBtn.onclick = handleCancelTokenChange;
-        changeTokenBtn.parentNode.appendChild(cancelBtn);
 
         let sources = [];
 
@@ -1568,7 +1566,7 @@ function changeSourceSelect()
 {
     let select = document.getElementById(this.classList[0]);
     select.innerHTML = "";
-    select.style.backgroundImage = `url(${this.childNodes[0].src})`;
+    select.style.backgroundImage = `url(${this.src})`;
 }
 
 function handleUpdateToken()
@@ -1578,5 +1576,32 @@ function handleUpdateToken()
 
 function handleCancelTokenChange()
 {
-    
+    let elements = changeTokenBtn.parentNode.childNodes;
+    let delPoint = "first";
+    while(elements > 1)
+    {   
+        switch(delPoint)
+        {
+            case "first":
+                if(elements.firstChild.id == changeTokenBtn.id)
+                {
+                    delPoint = "last";
+                }
+
+                else{elements.firstChild.remove()}
+                break;
+            
+            case "last":
+                if(elements.firstChild.id == changeTokenBtn.id)
+                {
+                    delPoint = "first";
+                }
+
+                else{elements.firstChild.remove()}
+                break;
+        }
+    }
+
+    changeTokenBtn.innerHTML = "Change Token";
+    changeTokenBtn.onclick = handleChangeToken;
 }
