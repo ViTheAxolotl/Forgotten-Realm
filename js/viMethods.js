@@ -188,12 +188,25 @@ export function reload(seconds)
 }
 
 /**
- * Places the new element elemToPlace before the referenceElement in the given div
+ * Places the new element elemToPlace before the referenceElement
  * @param {*} elemToPlace 
  * @param {*} referenceElement 
- * @param {*} div 
  */
-export function placeBefore(elemToPlace, referenceElement, div)
+export function placeBefore(elemToPlace, referenceElement)
 { 
-    div.insertBefore(elemToPlace, referenceElement);
+    referenceElement.parentElement.insertBefore(elemToPlace, referenceElement);
+}
+
+/**
+ * Creates the basic label and returns it
+ * @param {*} name 
+ * @returns 
+ */
+export function createLabel(name)
+{
+    let label = document.createElement("h6");
+    label.innerHTML = `${name}:`;
+    label.style.display = "inline";
+    label.classList = "color-UP-yellow";
+    return label;
 }

@@ -1,6 +1,6 @@
 "use strict";
 import { ref, onValue } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
-import { toTitleCase, auth, database, setDoc, deleteDoc, returnHpImage, placeBefore } from '../js/viMethods.js';
+import { toTitleCase, auth, database, setDoc, deleteDoc, returnHpImage, placeBefore, createLabel } from '../js/viMethods.js';
 
 const currentMapRef = ref(database, 'currentMap/');
 onValue(currentMapRef, (snapshot) => 
@@ -292,10 +292,7 @@ function handleEdit()
     
     for(let i = 0; i < 8; i++)
     {
-        let label = document.createElement("h6");
-        label.innerHTML = `${names[i]}:`;
-        label.style.display = "inline";
-        label.classList = "color-UP-yellow";
+        let label = createLabel(names[i]);
         
         if(i == 0)
         {
@@ -400,7 +397,7 @@ function resetState()
     div = document.createElement("div");
     div.id = "story";
     div.classList = "bg-UP-purple color-UP-black col-md-12 col-sm-12";
-    placeBefore(div, aboveDiv.childNodes[2], aboveDiv);
+    placeBefore(div, aboveDiv.childNodes[2]);
 }
 
 function resetDelete()
@@ -450,10 +447,7 @@ function handleQuick()
 
             for(let i = 0; i < 4; i++)
             {
-                let label = document.createElement("h6");
-                label.innerHTML = `${names[i]}:`;
-                label.style.display = "inline";
-                label.classList = "color-UP-yellow";
+                let label = createLabel(names[i]);
 
                 if(i == 0){label.style.margin = `5px 5px 5px 79px`;}
                 else{label.style.margin = `5px`;}
@@ -512,10 +506,7 @@ function handlePreset()
 
         for(let i = 0; i < 3; i++)
         {
-            let label = document.createElement("h6");
-            label.innerHTML = `${names[i]}:`;
-            label.style.display = "inline";
-            label.classList = "color-UP-yellow";
+            let label = createLabel(names[i]);
 
             if(i == 0){label.style.margin = `5px 5px 5px 79px`;}
             else{label.style.margin = `5px`;}
@@ -639,10 +630,7 @@ function makeTORow(key)
 
     for(let i = 0; i < 3; i++)
     {
-        let label = document.createElement("h6");
-        label.innerHTML = `${TORow[1][i]}:`;
-        label.style.display = "inline";
-        label.classList = "color-UP-yellow";
+        let label = createLabel(TORow[1][i]);
         label.style.margin = `5px`;
 
         TORow[2][i].style.display = "inline";
@@ -657,7 +645,7 @@ function makeTORow(key)
     TORow[2][3].id = `${key.charName}_Remove`;
     TORow[2][3].style.margin = "5px";
     TORow[0].appendChild(TORow[2][3]);
-    placeBefore(TORow[0], div.firstChild, div);
+    placeBefore(TORow[0], div.firstChild);
 }
 
 function DeleteKeys(myObj, array) 
@@ -876,12 +864,9 @@ function handleSave()
     listSelect();
 
     let saveName = document.createElement("input");
-    let label = document.createElement("h6");
+    let label = createLabel(`Save Name`);
     let button = document.createElement("button");
     
-    label.innerHTML = `Save Name:`;
-    label.style.display = "inline";
-    label.classList = "color-UP-yellow";
     label.style.margin = "5px 5px 5px 40%";
     saveName.id = "saveName";
     saveName.style.margin = "5px";

@@ -186,7 +186,7 @@ function addCharacters()
         person.src = `images/map/tokens/${char}.png`;
         person.classList = "char";
         person.onclick = handleChoose;
-        placeBefore(person, bord, div);
+        placeBefore(person, bord);
     }
 
     for(let custom of Object.keys(wholeCustom))
@@ -200,7 +200,7 @@ function addCharacters()
             person.style.width = "73px";
             person.style.height = "73px";
             person.onclick = handleChoose;
-            placeBefore(person, bord, div);
+            placeBefore(person, bord);
         }
     }
 
@@ -209,7 +209,7 @@ function addCharacters()
     customsBtn.innerHTML = "Manage Custom Imgs";
     customsBtn.style.float = "right";
     customsBtn.onclick = handleCustomImg;
-    placeBefore(customsBtn, bord, div);
+    placeBefore(customsBtn, bord);
 
     if(oldToken != null || oldToken != undefined)
     {
@@ -304,7 +304,7 @@ function handleCreateCustom()
 
 function addBorders()
 {
-    for(let i = 0; i < 8; i++)
+    for(let i = 0; i < borders.length; i++)
     {
         let color = borders[i];
         borders[i] = document.createElement("img");

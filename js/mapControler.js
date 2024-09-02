@@ -2,7 +2,7 @@
 
 import { ref, onValue } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
 import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
-import { toTitleCase, auth, database, createCard, setDoc, deleteDoc, placeBefore } from './viMethods.js';
+import { toTitleCase, auth, database, createCard, setDoc, deleteDoc, placeBefore, createLabel } from './viMethods.js';
 
 /**
  * When anything under this changes it will use onValue
@@ -97,6 +97,7 @@ let favorite = false;
 let db;
 let lastSpell;
 let lastAbility;
+let changeTokenBtn;
 
 /**
  * Runs when JS opens
@@ -131,6 +132,8 @@ function init()
  */
 function setMainVaribles()
 {   
+    changeTokenBtn = document.getElementById("changeTokenBtn");
+    changeTokenBtn.onclick = handleChangeToken;
     buttons = document.getElementsByClassName("inOrDe");
     playerName.innerHTML = toTitleCase(wholeChar[player]["currentToken"]);
     currentCharacter = document.getElementsByClassName(wholeChar[player]["currentToken"]);
@@ -1015,7 +1018,7 @@ function handleCardClick()
 
         optionDiv.appendChild(castBtn);
         this.parentNode.appendChild(wrapper);
-        placeBefore(optionDiv, this.parentNode.nextSibling, this.parentNode.parentNode);
+        placeBefore(optionDiv, this.parentNode.nextSibling);
     }
 
     else
@@ -1493,4 +1496,61 @@ function handleFavoriteBtn()
         
         emptyCards();
     }
+}
+
+function handleChangeToken()
+{
+    let div = document.getElementById("changeToken");
+
+    changeTokenBtn.innerHTML = "Update";
+    changeTokenBtn.onclick = "handleUpdateToken";
+
+    let labels = ["Character", "Border"];
+    let selects = [document.createElement("select"), document.createElement("select")];
+
+    for(let i = 0; i < labels.length; i++)
+    {
+        let label = createLabel(names[i]);
+
+        selects[i].classList = "center blo image-dropdown";
+        selects[i].id = labels[i];
+
+        switch(i)
+        {
+            case 0:
+                
+                break;
+            
+            case 1:
+                let borders = ["blue", "golden", "green", "grey", "orange", "pink", "purple", "red"];
+                
+                for(let i = 0; i < borders.length; i++)
+                {
+                    let color = document.createElement("option");
+                    let bord = document.createElement("img");
+                    bord.src = `images/map/tokens/${borders[i]}Border.png`;
+                    color.innerHTML = bord;
+                    color.id = borders[i];
+                    color.classList = "bord";
+                }
+                break;
+        }
+
+        placeBefore(selects[i], changeTokenBtn);
+        placeBefore(label, selects[i]);
+    }
+
+    for(let keys of Object.keys(imgs["mapName"]))
+    {
+        let mapImg = imgs["mapName"][keys];
+        let option = document.createElement("option");
+        option.value = keys;
+        option.text = mapImg.slice(mapImg.indexOf("ap/") + 3).replace(".jpg", "");
+        select.appendChild(option);
+    }
+}
+
+function handleUpdateToken()
+{
+
 }
