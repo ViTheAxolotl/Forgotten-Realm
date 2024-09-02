@@ -1514,7 +1514,8 @@ function handleChangeToken()
 
         selects[i].classList = "dropdown";
         selects[i].id = labels[i];
-
+        placeBefore(selects[i], changeTokenBtn);
+        
         switch(i)
         {
             case 0:
@@ -1538,7 +1539,6 @@ function handleChangeToken()
                 break;
         }
 
-        placeBefore(selects[i], changeTokenBtn);
         placeBefore(label, selects[i]);
     }
 
