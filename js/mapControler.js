@@ -1559,7 +1559,6 @@ function handleChangeToken()
             let img = document.createElement("img");
             img.src = sources[x];
             img.onclick = changeSourceSelect;
-            img.style.width = "40%";
             img.classList.add(dropBtn.id);
             
             temp = img.src;
@@ -1607,7 +1606,7 @@ function handleCancelTokenChange()
                     delPoint = "last";
                 }
 
-                else{elements.firstChild.remove()}
+                else{elements.removeChild(elements.firstChild)}
                 break;
             
             case "last":
@@ -1616,7 +1615,7 @@ function handleCancelTokenChange()
                     delPoint = "first";
                 }
 
-                else{elements.firstChild.remove()}
+                else{elements.removeChild(elements.lastChild)}
                 break;
         }
     }
