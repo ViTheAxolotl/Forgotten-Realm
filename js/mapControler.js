@@ -1525,7 +1525,7 @@ function handleChangeToken()
         let dropBtn = document.createElement("button");
         dropBtn.classList.add("dropbtn");
         dropBtn.id = "borderButton";
-        dropBtn.innerHTML = "Borders";
+        dropBtn.innerHTML = labels[i];
         selects[i].appendChild(dropBtn);
 
         let selectDiv = document.createElement("div");
@@ -1535,7 +1535,7 @@ function handleChangeToken()
         switch(i)
         {
             case 0:
-
+                selectDiv.id="characterSelect";
                 break;
             
             case 1:
@@ -1549,7 +1549,6 @@ function handleChangeToken()
                     img.src = `images/map/tokens/${borders[x]}Border.png`;
                     img.onclick = changeSourceSelect;
 
-                    ancr.appendChild(img);
                     document.getElementById("borderSelect").appendChild(img); 
                 }
                 break;
