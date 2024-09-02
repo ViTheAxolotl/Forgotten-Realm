@@ -1520,6 +1520,7 @@ function handleChangeToken()
         placeBefore(span, changeTokenBtn);
         selects[i].classList = "dropdown";
         selects[i].id = labels[i];
+        selects[i].style.width = "48%";
 
         switch(i)
         {
@@ -1528,7 +1529,7 @@ function handleChangeToken()
                 break;
             
             case 1:
-                selects[i].innerHTML = `<button class="dropbtn" id="borderButton">Borders</button><div class="dropdown-content" id="borderSelect" >`;
+                selects[i].innerHTML = `<button class="dropbtn" id="borderButton">Borders</button><div class="dropdown-content bord" id="borderSelect" >`;
                 
                 let borders = ["blue", "golden", "green", "grey", "orange", "pink", "purple", "red"];
                 
@@ -1536,8 +1537,15 @@ function handleChangeToken()
                 {
                     let ancr = document.createElement("a");
                     ancr.onclick = changeSourceSelect;
-                    ancr.innerHTML = `<img src="images/map/tokens/${borders[x]}Border.png" class = "bord">`;
-                    document.getElementById("borderSelect").appendChild(ancr);
+                    ancr.innerHTML = `<img src="images/map/tokens/${borders[x]}Border.png">`;
+                    ancr.classList.add("borderButton");
+
+                    let img = document.createElement("img");
+                    img.src = `images/map/tokens/${borders[x]}Border.png`;
+                    img.onclick = changeSourceSelect;
+
+                    ancr.appendChild(img);
+                    document.getElementById("borderSelect").appendChild(img); //Was ancr
                 }
 
                 selects[i].innerHTML += "</div>";
@@ -1548,7 +1556,7 @@ function handleChangeToken()
 
 function changeSourceSelect()
 {
-    let select = document.getElementById("borderSelect");
+    let select = document.getElementById(this.classList[0]);
     select.innerHTML = "";
     select.style.backgroundImage = `url(${this.childNodes[0].src})`;
 }
