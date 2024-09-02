@@ -1511,9 +1511,12 @@ function handleChangeToken()
     for(let i = 0; i < labels.length; i++)
     {
         let label = createLabel(labels[i]);
+        let span = document.createElement("span");
 
+        span.style.display = "block";
         placeBefore(selects[i], changeTokenBtn);
         placeBefore(label, selects[i]);
+        placeBefore(span, changeTokenBtn);
         selects[i].classList = "dropdown";
         selects[i].id = labels[i];
 
