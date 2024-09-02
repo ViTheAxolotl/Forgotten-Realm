@@ -1524,34 +1524,29 @@ function handleChangeToken()
             case 1:
                 let txt = document.createElement("div");
                 txt.classList = "dropdown";
-                txt.innerHTML = `<button class="btn btn-success 
-                    dropdown-toggle" type="button" 
-                    id="dropdownMenuButton" 
-                    data-toggle="dropdown"
-                    aria-haspopup="true" 
-                    aria-expanded="false">
+                txt.innerHTML = `<button class="dropbtn">
                 Country Flags
             </button>
+            
+            <div class="dropdown-content">
+                <a href="#">
+                    <img src=
+"images/map/tokens/blueBorder.png"
+                    width="20" height="15"> India</a>
 
-            <ul class="dropdown-menu" 
-                aria-labelledby="dropdownMenuButton">
-                <li class="dropdown-item">
+                <a href="#">
                     <img src=
 "images/map/tokens/blueBorder.png"
-                    width="20" height="15"> India</li>
-                <li class="dropdown-item">
-                    <img src=
-"images/map/tokens/blueBorder.png" 
-                    width="20" height="15"> USA</li>
-                <li class="dropdown-item">
-                    <img src=
-"images/map/tokens/blueBorder.png" 
-                    width="20" height="15"> England</li>
-                <li class="dropdown-item">
+                    width="20" height="15"> USA</a>
+                <a href="#">
                     <img src=
 "images/map/tokens/blueBorder.png"
-                    width="20" height="15"> Brazil</li>
-            </ul>`;
+                    width="20" height="15"> England</a>
+                <a href="#">
+                    <img src=
+"images/map/tokens/blueBorder.png"
+                    width="20" height="15"> Brazil</a>
+            </div>`;
             selects[1] = txt;
                 /**let borders = ["blue", "golden", "green", "grey", "orange", "pink", "purple", "red"];
                 
