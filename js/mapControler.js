@@ -1724,7 +1724,6 @@ function handleCustomsButton()
     }
 
     changeTokenBtn.onclick = handleCreateCustom;
-    newDiv.appendChild(createBtn);
     placeBefore(newDiv, changeTokenBtn);
 }
 
