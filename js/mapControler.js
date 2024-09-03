@@ -1659,6 +1659,7 @@ function handleCancelTokenChange()
         }
     }
 
+    changeTokenBtn.innerHTML = "Change Token";
     changeTokenBtn.onclick = handleChangeToken;
 }
 
@@ -1682,8 +1683,6 @@ function handleShowSelect()
 function handleCustomsButton()
 {
     handleCancelTokenChange();
-
-    let customsDiv = changeTokenBtn.parentNode;
 
     for(let custom of Object.keys(wholeCustom))
     {
@@ -1738,7 +1737,11 @@ function handleCustomsButton()
     }
 
     changeTokenBtn.onclick = handleCreateCustom;
+    let cancelBtn = document.createElement("button");
+    cancelBtn.innerHTML = "Cancel";
+    cancelBtn.onclick = handleCancelTokenChange;
     placeBefore(newDiv, changeTokenBtn);
+    placeBefore(cancelBtn, changeTokenBtn);
 }
 
 function handleDeleteCustom()
