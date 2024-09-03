@@ -40,6 +40,13 @@ onValue(customsRef, (snapshot) =>
     wholeCustom = data;
 });
 
+const dbRef = ref(database, 'currentMap/');
+onValue(dbRef, (snapshot) => 
+{
+    const data = snapshot.val();
+    wholeDb = data;
+});
+
 onAuthStateChanged(auth, (user) => 
 {
     if (!user) 
@@ -291,6 +298,19 @@ function handleCustomImg()
 function handleDeleteCustom()
 {
     deleteDoc(`customImages/${this.id}`);
+    
+    for(let tokens of Object.keys(wholeDb))
+    {
+        if(wholeDb[tokens]["name"] == this.id)
+        {
+            let access = document.getElementById("name").innerHTML.toLowerCase();
+            let newToken = wholeDb[access];
+
+            newToken.name = `${newToken.id}-`;
+            setDoc(`currentMap/${access}`, newToken);
+        }
+    }   
+
     reload(.5);
 }
 
