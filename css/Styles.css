@@ -548,11 +548,6 @@ table, .itemSearch, #itemImg
     background-color: #888888;
 }
 
-.ddown:hover .ddown-content 
-{
-    display: block;
-}
-
 .ddown:hover .dropbtn 
 {
     background-color: #797878;
