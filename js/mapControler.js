@@ -1718,12 +1718,11 @@ function handleCustomsButton()
     let objects = [document.createElement("input"), document.createElement("input")];
     let newDiv = document.createElement("div");
     newDiv.classList.add("center");
+    let span = document.createElement("span");
+    span.style.display = "block";
 
     for(let i = 0; i < names.length; i++)
     {
-        let span = document.createElement("span");
-        span.style.display = "block";
-
         let label = document.createElement("h6");
         label.innerHTML = `${names[i]}:`;
         label.style.display = "inline";
@@ -1735,9 +1734,9 @@ function handleCustomsButton()
         objects[i].style.width = "40%";
         newDiv.appendChild(label);
         newDiv.appendChild(objects[i]);
-        placeBefore(span, changeTokenBtn);
     }
 
+    placeBefore(span, document.getElementById("BorderButton"));
     changeTokenBtn.onclick = handleCreateCustom;
     let cancelBtn = document.createElement("button");
     cancelBtn.innerHTML = "Cancel";
