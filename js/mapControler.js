@@ -1597,7 +1597,7 @@ function handleChangeToken()
             {
                 for(let token of Object.keys(wholeCustom))
                 {
-                    if(wholeCustom[token][src] == img.src){temp = wholeCustom[token]["name"];}
+                    if(wholeCustom[token]["src"] == img.src){temp = wholeCustom[token]["name"];}
                 }
             }
 
