@@ -1669,3 +1669,8 @@ function handleShowSelect()
         div.classList.add("ddownHide");
     }
 }
+
+function handleCustomsButton()
+{
+    
+}
