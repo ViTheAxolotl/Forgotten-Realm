@@ -1529,7 +1529,6 @@ function handleChangeToken()
         let dropBtn = document.createElement("button");
         dropBtn.classList.add("dropbtn");
         dropBtn.id = `${labels[i]}Button`;
-        dropBtn.innerHTML = currentCharacter[i].id;
         selects[i].appendChild(dropBtn);
 
         let selectDiv = document.createElement("div");
@@ -1545,12 +1544,13 @@ function handleChangeToken()
             case 0:
                 temp = imgs["tokens"];
                 for(let token of Object.keys(temp)){if(token != "invisible-"){sources.push(temp[token]);}} //Populates Sources with all the selectable token images
-                dropBtn.innerHTML += "-";
+                dropBtn.innerHTML = wholeDb[dropBtn.innerHTML]["name"];
                 break;
             
             case 1:
                 temp = imgs["borders"];
                 for(let border of Object.keys(temp)){if(border != "invisible"){sources.push(temp[border]);}} //Populates Sources with all the selectable border images
+                dropBtn.innerHTML = currentCharacter[i].id;
                 break;
         }
 
