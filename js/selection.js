@@ -280,15 +280,22 @@ function handleCustomImg()
 
         objects[i].id = names[i];
         objects[i].style.margin = "5px";
+        objects[i].style.width = "40%";
         newDiv.appendChild(label);
         newDiv.appendChild(objects[i]);
     }
 
     let createBtn = document.createElement("button");
-    createBtn.classList = "gridButton";
     createBtn.innerHTML = "Create Custom Img";
     createBtn.onclick = handleCreateCustom;
     createBtn.style.margin = "5px";
+
+    let cancelBtn = document.createElement("button");
+    cancelBtn.innerHTML = "Cancel";
+    cancelBtn.onclick = function () {reload(.001);};
+    cancelBtn.style.margin = "5px";
+
+    newDiv.appendChild(cancelBtn);
     newDiv.appendChild(createBtn);
     customsDiv.appendChild(newDiv);
 
