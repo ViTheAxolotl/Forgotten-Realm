@@ -521,6 +521,7 @@ table, .itemSearch, #itemImg
 {
     position: relative;
     display: inline-block;
+    width: 48%;
 }
 
 .dropdown-content 
@@ -851,6 +852,11 @@ table, .itemSearch, #itemImg
 
     .dropdown-content img 
     {
-        width: 100%;
+        width: 80%;
+    }
+
+    .dropdown #Character
+    {
+        width: 42%;
     }
   }

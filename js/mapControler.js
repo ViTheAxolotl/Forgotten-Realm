@@ -1525,7 +1525,6 @@ function handleChangeToken()
         placeBefore(span, changeTokenBtn);
         selects[i].classList = "dropdown";
         selects[i].id = labels[i];
-        selects[i].style.width = "48%";
 
         let dropBtn = document.createElement("button");
         dropBtn.classList.add("dropbtn");
@@ -1546,6 +1545,7 @@ function handleChangeToken()
             case 0:
                 temp = imgs["tokens"];
                 for(let token of Object.keys(temp)){if(token != "invisible-"){sources.push(temp[token]);}} //Populates Sources with all the selectable token images
+                dropBtn.innerHTML += "-";
                 break;
             
             case 1:
