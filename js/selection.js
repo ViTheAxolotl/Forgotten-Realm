@@ -269,12 +269,13 @@ function handleCustomImg()
     let names = ["Url", "Nickname"];
     let objects = [document.createElement("input"), document.createElement("input")];
     let newDiv = document.createElement("div");
-    let span = document.createElement("span");
-    span.style.display = "block";
     newDiv.classList.add("center");
 
     for(let i = 0; i < names.length; i++)
     {
+        let span = document.createElement("span");
+        span.style.display = "block";
+
         let label = document.createElement("h6");
         label.innerHTML = `${names[i]}:`;
         label.style.display = "inline";
@@ -284,6 +285,7 @@ function handleCustomImg()
         objects[i].id = names[i];
         objects[i].style.margin = "5px";
         objects[i].style.width = "40%";
+        
         newDiv.appendChild(label);
         newDiv.appendChild(objects[i]);
         newDiv.appendChild(span);
