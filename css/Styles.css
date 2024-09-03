@@ -521,7 +521,6 @@ table, .itemSearch, #itemImg
 .ddown 
 {
     position: relative;
-    display: inline-block;
 }
 
 .ddown-content 
@@ -534,7 +533,6 @@ table, .itemSearch, #itemImg
     -moz-border-radius: 10%;
     -webkit-border-radius: 10%;
     border-radius: 10%;
-    margin-top: 15%;
 }
 
 .ddown-content img 

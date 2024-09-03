@@ -1530,10 +1530,8 @@ function handleChangeToken()
     for(let i = 0; i < labels.length; i++)
     {
         let label = createLabel(labels[i]);
-        let span = document.createElement("span");
 
         label.style.padding = "5%";
-        span.style.display = "block";
         placeBefore(selects[i], changeTokenBtn);
         placeBefore(label, selects[i]);
         selects[i].classList = "ddown ddownHide";
@@ -1546,7 +1544,6 @@ function handleChangeToken()
         dropBtn.id = `${labels[i]}Button`;
         dropBtn.onclick = handleShowSelect;
         placeBefore(dropBtn, selects[i]);
-        placeBefore(span, changeTokenBtn);
         //selects[i].appendChild(dropBtn);
 
         let selectDiv = document.createElement("div");
