@@ -856,10 +856,10 @@ table, .itemSearch, #itemImg
 
     .ddown-content img 
     {
-        width: 80%;
+        width: 25%;
     }
 
-    #Character
+    #CharacterButton
     {
         width: 38%;
     }
