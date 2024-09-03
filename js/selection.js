@@ -39,6 +39,7 @@ onValue(customsRef, (snapshot) =>
 {
     const data = snapshot.val();
     wholeCustom = data;
+
 });
 
 const dbRef = ref(database, 'currentMap/');
@@ -174,7 +175,7 @@ function setUpCharacters(currentName)
             document.getElementById(`Temp Hp`).value = oldToken["tempHp"];
         }
 
-        addCharacters();
+        setTimeout(addCharacters(), 500);
     }
 }
 
