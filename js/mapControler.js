@@ -1545,7 +1545,7 @@ function handleChangeToken()
         dropBtn.classList.add(labels[i]);
         dropBtn.id = `${labels[i]}Button`;
         dropBtn.onclick = handleShowSelect;
-        placeBefore(dropBtn, selects[i]);
+        placeBefore(dropBtn, changeTokenBtn);
         //selects[i].appendChild(dropBtn);
 
         let selectDiv = document.createElement("div");
