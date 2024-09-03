@@ -1559,7 +1559,7 @@ function handleChangeToken()
         {
             case 0:
                 temp = wholeCustom;
-                for(let token of Object.keys(temp)){if(token != "hold"){sources.push(temp[token]);}} //Populates Sources with all the selectable token images
+                for(let token of Object.keys(temp)){if(token != "hold"){sources.push(temp[token][src]);}} //Populates Sources with all the selectable token images
                 temp = imgs["tokens"];
                 for(let token of Object.keys(temp)){if(token != "invisible-"){sources.push(temp[token]);}} //Populates Sources with all the selectable token images
                 dropBtn.innerHTML = wholeDb[currentCharacter[0].id]["name"];
@@ -1588,12 +1588,21 @@ function handleChangeToken()
                 temp = temp.slice(0, temp.indexOf("Border"));
             }
 
-            else
+            else if(temp.includes("-."))
             {
                 temp = temp.slice(0, temp.indexOf("."));
             }
 
+            else
+            {
+                for(let token of Object.keys(wholeCustom))
+                {
+                    if(wholeCustom[token][src] == img.src){temp = wholeCustom[token]["name"];}
+                }
+            }
+
             img.classList.add(temp);
+            img.classList.add("char");
             selectDiv.appendChild(img); 
         }
     }
