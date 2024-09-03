@@ -2,7 +2,7 @@
 
 import { ref, onValue } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
 import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
-import { toTitleCase, auth, database, createCard, setDoc, deleteDoc, placeBefore, createLabel } from './viMethods.js';
+import { toTitleCase, auth, database, createCard, setDoc, deleteDoc, placeBefore, createLabel, clenseInput } from './viMethods.js';
 
 /**
  * When anything under this changes it will use onValue
@@ -37,7 +37,7 @@ const customRef = ref(database, 'customImages/');
 onValue(customRef, (snapshot) => 
 {
     const data = snapshot.val();
-    wholeCustomImg = data;
+    wholeCustom = data;
 });
 
 /**
@@ -93,7 +93,7 @@ let rollDiceBtn;
 let actionBtn;
 let wholeTO = {};
 let wholeChar = {};
-let wholeCustomImg = {};
+let wholeCustom = {};
 let wholeFavorite = {};
 let wholeDb = {};
 let wholeSpells;
@@ -1524,7 +1524,7 @@ function handleChangeToken()
     cancelBtn.onclick = handleCancelTokenChange;
 
     let customsBtn = document.createElement("button");
-    customsBtn.innerHTML = "Upload Custom Image";
+    customsBtn.innerHTML = "Manage Custom Images";
     customsBtn.onclick = handleCustomsButton;
     
     for(let i = 0; i < labels.length; i++)
@@ -1558,7 +1558,7 @@ function handleChangeToken()
         switch(i)
         {
             case 0:
-                temp = wholeCustomImg;
+                temp = wholeCustom;
                 for(let token of Object.keys(temp)){if(token != "hold"){sources.push(temp[token]);}} //Populates Sources with all the selectable token images
                 temp = imgs["tokens"];
                 for(let token of Object.keys(temp)){if(token != "invisible-"){sources.push(temp[token]);}} //Populates Sources with all the selectable token images
@@ -1673,5 +1673,76 @@ function handleShowSelect()
 
 function handleCustomsButton()
 {
+    handleCancelTokenChange();
 
+    let customsDiv = changeTokenBtn.parentNode;
+
+    for(let custom of Object.keys(wholeCustom))
+    {
+        if(wholeCustom[custom]["player"] == player)
+        {
+            let personDiv = document.createElement("div");
+            personDiv.classList.add("center");
+            
+            let person = document.createElement("img");
+            person.id = wholeCustom[custom]["name"];
+            person.src = wholeCustom[custom]["src"];
+            person.classList = "char customImg";
+            person.style.width = "73px";
+            person.style.height = "73px";
+            personDiv.appendChild(person);
+            person.style.margin = "10px";
+
+            let deleteBtn = document.createElement("button");
+            deleteBtn.classList = "gridButton";
+            deleteBtn.innerHTML = "Delete Custom Img";
+            deleteBtn.onclick = handleDeleteCustom;
+            deleteBtn.id = wholeCustom[custom]["name"];
+            personDiv.appendChild(deleteBtn);
+            placeBefore(personDiv, changeTokenBtn);
+            deleteBtn.style.margin = "10px";
+        }
+    }
+
+    let names = ["Url", "Nickname"];
+    let objects = [document.createElement("input"), document.createElement("input")];
+    let newDiv = document.createElement("div");
+    newDiv.classList.add("center");
+
+    for(let i = 0; i < names.length; i++)
+    {
+        let label = document.createElement("h6");
+        label.innerHTML = `${names[i]}:`;
+        label.style.display = "inline";
+        label.classList = "color-UP-yellow";
+        label.style.margin = "5px";
+
+        objects[i].id = names[i];
+        objects[i].style.margin = "5px";
+        newDiv.appendChild(label);
+        newDiv.appendChild(objects[i]);
+    }
+
+    changeTokenBtn.onclick = handleCreateCustom;
+    newDiv.appendChild(createBtn);
+    placeBefore(newDiv, changeTokenBtn);
+}
+
+function handleDeleteCustom()
+{
+    deleteDoc(`customImages/${this.id}`);
+    reload(.5);
+}
+
+function handleCreateCustom()
+{
+    let url = document.getElementById("Url").value;
+    let nickname = document.getElementById("Nickname").value;
+    
+    url = clenseInput(url);
+    nickname = clenseInput(nickname);
+    nickname = "custom-" + nickname;
+
+    setDoc(`customImages/${nickname}`, {"name" : nickname, "player" : player, "src" : url});
+    reload(.5);
 }
