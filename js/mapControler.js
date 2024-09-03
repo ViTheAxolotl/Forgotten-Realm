@@ -1523,12 +1523,14 @@ function handleChangeToken()
         placeBefore(selects[i], changeTokenBtn);
         placeBefore(label, selects[i]);
         placeBefore(span, changeTokenBtn);
-        selects[i].classList = "ddown";
+        selects[i].classList = "ddown ddownHide";
         selects[i].id = labels[i];
 
         let dropBtn = document.createElement("button");
         dropBtn.classList.add("dropbtn");
+        dropBtn.classList.add(labels[i]);
         dropBtn.id = `${labels[i]}Button`;
+        dropBtn.onclick = handleShowSelect;
         selects[i].appendChild(dropBtn);
 
         let selectDiv = document.createElement("div");
@@ -1550,7 +1552,7 @@ function handleChangeToken()
             case 1:
                 temp = imgs["borders"];
                 for(let border of Object.keys(temp)){if(border != "invisible"){sources.push(temp[border]);}} //Populates Sources with all the selectable border images
-                dropBtn.innerHTML = currentCharacter[i].id;
+                dropBtn.innerHTML = wholeDb[currentCharacter[i].id]["border"];
                 break;
         }
 
@@ -1628,4 +1630,21 @@ function handleCancelTokenChange()
 
     changeTokenBtn.innerHTML = "Change Token";
     changeTokenBtn.onclick = handleChangeToken;
+}
+
+function handleShowSelect()
+{
+    let div = document.getElementById(this.classList[1]);
+
+    if(div.classList.contains("ddownHide"))
+    {
+        div.classList.remove("ddownHide");
+        div.classList.add("ddownShow");
+    }
+
+    else if(div.classList.contains("ddownShow"))
+    {
+        div.classList.remove("ddownShow");
+        div.classList.add("ddownHide");
+    }
 }
