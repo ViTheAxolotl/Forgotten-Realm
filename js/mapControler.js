@@ -1650,7 +1650,6 @@ function handleCancelTokenChange()
         }
     }
 
-    changeTokenBtn.innerHTML = "Change Token";
     changeTokenBtn.onclick = handleChangeToken;
 }
 
@@ -1711,6 +1710,9 @@ function handleCustomsButton()
 
     for(let i = 0; i < names.length; i++)
     {
+        let span = document.createElement("span");
+        span.display = "block";
+
         let label = document.createElement("h6");
         label.innerHTML = `${names[i]}:`;
         label.style.display = "inline";
@@ -1719,8 +1721,10 @@ function handleCustomsButton()
 
         objects[i].id = names[i];
         objects[i].style.margin = "5px";
+        objects[i].style.width = "40%";
         newDiv.appendChild(label);
         newDiv.appendChild(objects[i]);
+        newDiv.appendChild(span);
     }
 
     changeTokenBtn.onclick = handleCreateCustom;
