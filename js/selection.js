@@ -38,7 +38,6 @@ onValue(customsRef, (snapshot) =>
 {
     const data = snapshot.val();
     wholeCustom = data;
-    addCharacters();
 });
 
 onAuthStateChanged(auth, (user) => 
@@ -167,6 +166,8 @@ function setUpCharacters(currentName)
             document.getElementById(`Current Hp`).value = oldToken["currentHp"];
             document.getElementById(`Temp Hp`).value = oldToken["tempHp"];
         }
+
+        addCharacters();
     }
 }
 

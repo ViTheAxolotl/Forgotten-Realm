@@ -1523,7 +1523,7 @@ function handleChangeToken()
         placeBefore(selects[i], changeTokenBtn);
         placeBefore(label, selects[i]);
         placeBefore(span, changeTokenBtn);
-        selects[i].classList = "dropdown";
+        selects[i].classList = "ddown";
         selects[i].id = labels[i];
 
         let dropBtn = document.createElement("button");
@@ -1533,7 +1533,7 @@ function handleChangeToken()
         selects[i].appendChild(dropBtn);
 
         let selectDiv = document.createElement("div");
-        selectDiv.classList.add("dropdown-content");
+        selectDiv.classList.add("ddown-content");
         selects[i].appendChild(selectDiv);
         selectDiv.id = `${labels[i]}Select`;
 

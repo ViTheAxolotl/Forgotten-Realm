@@ -517,14 +517,14 @@ table, .itemSearch, #itemImg
     border-radius: 30%;
 }
 
-.dropdown 
+.ddown 
 {
     position: relative;
     display: inline-block;
     width: 48%;
 }
 
-.dropdown-content 
+.ddown-content 
 {
     display: none;
     position: absolute;
@@ -536,24 +536,24 @@ table, .itemSearch, #itemImg
     border-radius: 10%;
 }
 
-.dropdown-content img 
+.ddown-content img 
 {
     margin: 5px;
     width: 40%;
     padding-left: 5px;
 }
 
-.dropdown-content img:hover 
+.ddown-content img:hover 
 {
     background-color: #888888;
 }
 
-.dropdown:hover .dropdown-content 
+.ddown:hover .ddown-content 
 {
     display: block;
 }
 
-.dropdown:hover .dropbtn 
+.ddown:hover .dropbtn 
 {
     background-color: #797878;
 }
@@ -850,12 +850,12 @@ table, .itemSearch, #itemImg
         margin-left: 0.1%;
     }
 
-    .dropdown-content img 
+    .ddown-content img 
     {
         width: 80%;
     }
 
-    .dropdown #Character
+    .ddown #Character
     {
         width: 42%;
     }
