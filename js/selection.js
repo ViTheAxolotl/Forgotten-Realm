@@ -6,6 +6,7 @@ import { toTitleCase, auth, database, setDoc, clenseInput, deleteDoc, reload, pl
 let player;
 let wholeChars = {};
 let wholeCustom = {};
+let wholeDb = {};
 let enter = document.getElementById("enter");
 let charName = document.getElementById("name");
 let currentName;
