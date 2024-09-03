@@ -78,7 +78,6 @@ function init()
     enter.onclick = handleEnterButton;
     go.onclick = handleGoButton;
     
-    fetch('https://vitheaxolotl.github.io/Forgotten-Realm/src/files.json').then(res => res.json()).then((json) => imgs = json);
     let temp = imgs["borders"];
     for(let border of Object.keys(temp)){if(border != "invisible"){borders.push(border);}} //Populates the borders with each border
 }
@@ -430,3 +429,5 @@ function createChar(curCharacter, curBorder)
     setDoc(`currentMap/${charName}`, char);
     setDoc(`playerChar/${player}/token`, char);
 }
+
+fetch('https://vitheaxolotl.github.io/Forgotten-Realm/src/files.json').then(res => res.json()).then((json) => imgs = json);
