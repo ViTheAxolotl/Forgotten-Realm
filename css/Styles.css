@@ -860,7 +860,7 @@ table, .itemSearch, #itemImg
         width: 80%;
     }
 
-    .ddown #Character
+    #Character .ddown
     {
         width: 2%;
     }
