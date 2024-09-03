@@ -33,6 +33,16 @@ onValue(charRef, (snapshot) =>
 /**
  * When anything under this changes it will use onValue
  */
+const customRef = ref(database, 'customImages/');
+onValue(customRef, (snapshot) => 
+{
+    const data = snapshot.val();
+    wholeCustomImg = data;
+});
+
+/**
+ * When anything under this changes it will use onValue
+ */
 const dBRef = ref(database, 'currentMap/');
 onValue(dBRef, (snapshot) => 
 {
@@ -83,6 +93,7 @@ let rollDiceBtn;
 let actionBtn;
 let wholeTO = {};
 let wholeChar = {};
+let wholeCustomImg = {};
 let wholeFavorite = {};
 let wholeDb = {};
 let wholeSpells;
@@ -1511,7 +1522,12 @@ function handleChangeToken()
     let cancelBtn = document.createElement("button");
     cancelBtn.innerHTML = "Cancel";
     cancelBtn.onclick = handleCancelTokenChange;
-    changeTokenBtn.parentNode.appendChild(cancelBtn);
+    placeBefore(cancelBtn, changeTokenBtn);
+
+    let customsBtn = document.createElement("button");
+    customsBtn.innerHTML = "Cancel";
+    customsBtn.onclick = handleCustomsButton;
+    placeBefore(customsBtn, cancelBtn);
 
     for(let i = 0; i < labels.length; i++)
     {
@@ -1544,6 +1560,8 @@ function handleChangeToken()
         switch(i)
         {
             case 0:
+                temp = wholeCustomImg;
+                for(let token of Object.keys(temp)){if(token != "hold"){sources.push(temp[token]);}} //Populates Sources with all the selectable token images
                 temp = imgs["tokens"];
                 for(let token of Object.keys(temp)){if(token != "invisible-"){sources.push(temp[token]);}} //Populates Sources with all the selectable token images
                 dropBtn.innerHTML = wholeDb[currentCharacter[0].id]["name"];
@@ -1587,6 +1605,7 @@ function changeSourceSelect()
 {
     let select = document.getElementById(this.classList[0]);
     select.innerHTML = this.classList[1];
+    select.click();
 }
 
 function handleUpdateToken()
@@ -1598,12 +1617,14 @@ function handleUpdateToken()
     fields.name = `${document.getElementById("CharacterButton").innerHTML}`;
 
     setDoc(`currentMap/${toUpdate}/`, fields);
+    handleCancelTokenChange();
 }
 
 function handleCancelTokenChange()
 {
     let elements = changeTokenBtn.parentNode;
     let delPoint = "first";
+
     while(elements.childNodes.length > 1)
     {   
         switch(delPoint)
