@@ -2,7 +2,7 @@
 
 import { ref, onValue } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
 import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
-import { toTitleCase, auth, database, createCard, setDoc, deleteDoc, placeBefore, createLabel, clenseInput } from './viMethods.js';
+import { toTitleCase, auth, database, createCard, setDoc, deleteDoc, placeBefore, createLabel, clenseInput, reload } from './viMethods.js';
 
 /**
  * When anything under this changes it will use onValue
@@ -1711,7 +1711,7 @@ function handleCustomsButton()
     for(let i = 0; i < names.length; i++)
     {
         let span = document.createElement("span");
-        span.display = "block";
+        span.style.display = "block";
 
         let label = document.createElement("h6");
         label.innerHTML = `${names[i]}:`;
