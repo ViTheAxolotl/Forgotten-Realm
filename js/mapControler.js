@@ -1544,7 +1544,7 @@ function handleChangeToken()
             case 0:
                 temp = imgs["tokens"];
                 for(let token of Object.keys(temp)){if(token != "invisible-"){sources.push(temp[token]);}} //Populates Sources with all the selectable token images
-                dropBtn.innerHTML = wholeDb[dropBtn.innerHTML]["name"];
+                dropBtn.innerHTML = wholeDb[currentCharacter[i].id]["name"];
                 break;
             
             case 1:
