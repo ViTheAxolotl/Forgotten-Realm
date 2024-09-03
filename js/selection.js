@@ -205,7 +205,7 @@ function addCharacters()
         person.src = `images/map/tokens/${char}.png`;
         person.classList = "char";
         person.onclick = handleChoose;
-        placeBefore(person, bord);
+        div.appendChild(person);
     }
 
     if(oldToken != null || oldToken != undefined)
