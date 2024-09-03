@@ -1513,7 +1513,7 @@ function handleFavoriteBtn()
 
 function handleChangeToken()
 {
-    changeTokenBtn.innerHTML = "Update";
+    changeTokenBtn.innerHTML = "Upload";
     changeTokenBtn.onclick = handleUpdateToken;
 
     let labels = ["Character", "Border"];
@@ -1522,13 +1522,11 @@ function handleChangeToken()
     let cancelBtn = document.createElement("button");
     cancelBtn.innerHTML = "Cancel";
     cancelBtn.onclick = handleCancelTokenChange;
-    placeBefore(cancelBtn, changeTokenBtn);
 
     let customsBtn = document.createElement("button");
-    customsBtn.innerHTML = "Cancel";
+    customsBtn.innerHTML = "Upload Custom Image";
     customsBtn.onclick = handleCustomsButton;
-    placeBefore(customsBtn, cancelBtn);
-
+    
     for(let i = 0; i < labels.length; i++)
     {
         let label = createLabel(labels[i]);
@@ -1599,6 +1597,9 @@ function handleChangeToken()
             selectDiv.appendChild(img); 
         }
     }
+
+    placeBefore(cancelBtn, changeTokenBtn);
+    placeBefore(customsBtn, cancelBtn);
 }
 
 function changeSourceSelect()
@@ -1672,5 +1673,5 @@ function handleShowSelect()
 
 function handleCustomsButton()
 {
-    
+
 }
