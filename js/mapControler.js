@@ -1546,13 +1546,13 @@ function handleChangeToken()
             case 0:
                 temp = imgs["tokens"];
                 for(let token of Object.keys(temp)){if(token != "invisible-"){sources.push(temp[token]);}} //Populates Sources with all the selectable token images
-                dropBtn.innerHTML = wholeDb[currentCharacter[i].id]["name"];
+                dropBtn.innerHTML = wholeDb[currentCharacter[0].id]["name"];
                 break;
             
             case 1:
                 temp = imgs["borders"];
                 for(let border of Object.keys(temp)){if(border != "invisible"){sources.push(temp[border]);}} //Populates Sources with all the selectable border images
-                dropBtn.innerHTML = wholeDb[currentCharacter[i].id]["border"];
+                dropBtn.innerHTML = wholeDb[currentCharacter[0].id]["border"];
                 break;
         }
 
