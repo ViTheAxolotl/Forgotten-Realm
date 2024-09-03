@@ -1559,7 +1559,7 @@ function handleChangeToken()
         {
             case 0:
                 temp = wholeCustom;
-                for(let token of Object.keys(temp)){if(token != "hold"){sources.push(temp[token][src]);}} //Populates Sources with all the selectable token images
+                for(let token of Object.keys(temp)){if(token != "hold"){sources.push(temp[token]["src"]);}} //Populates Sources with all the selectable token images
                 temp = imgs["tokens"];
                 for(let token of Object.keys(temp)){if(token != "invisible-"){sources.push(temp[token]);}} //Populates Sources with all the selectable token images
                 dropBtn.innerHTML = wholeDb[currentCharacter[0].id]["name"];
