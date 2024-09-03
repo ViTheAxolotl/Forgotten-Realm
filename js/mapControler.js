@@ -1539,6 +1539,7 @@ function handleChangeToken()
         placeBefore(span, changeTokenBtn);
         selects[i].classList = "ddown ddownHide";
         selects[i].id = labels[i];
+        selects[i].style.width = "100%";
 
         let dropBtn = document.createElement("button");
         dropBtn.classList.add("dropbtn");
