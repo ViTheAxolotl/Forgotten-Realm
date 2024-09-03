@@ -19,6 +19,7 @@ let go = document.createElement("button");
 let people = [];
 let numToLet = {0 : "", 1 : "a", 2 : "b"};
 let firstRun = true;
+let firstRunCustom = true;
 let imgs = {};
 let oldToken = {};
 
@@ -39,7 +40,12 @@ onValue(customsRef, (snapshot) =>
 {
     const data = snapshot.val();
     wholeCustom = data;
-
+    
+    if(firstRunCustom)
+    {
+        addCustomImgs();
+        firstRunCustom = false;
+    }
 });
 
 const dbRef = ref(database, 'currentMap/');
@@ -163,6 +169,7 @@ function setUpCharacters(currentName)
 
     if(currentName != "axolotl")
     {
+        addCharacters()
         addBorders();
         addHp();
         div.appendChild(go);
@@ -174,8 +181,6 @@ function setUpCharacters(currentName)
             document.getElementById(`Current Hp`).value = oldToken["currentHp"];
             document.getElementById(`Temp Hp`).value = oldToken["tempHp"];
         }
-
-        setTimeout(addCharacters(), 500);
     }
 }
 
@@ -186,12 +191,12 @@ function openWindow()
 
 function addCharacters()
 {
-    let toDelete = document.getElementsByClassName("char");
+    /*let toDelete = document.getElementsByClassName("char");
 
     while(toDelete > 0)
     {
         toDelete[0].remove();
-    }
+    }*/
 
     for(let char of people)
     {
@@ -203,6 +208,14 @@ function addCharacters()
         placeBefore(person, bord);
     }
 
+    if(oldToken != null || oldToken != undefined)
+    {
+        document.getElementById(`${oldToken["name"]}`).onclick();
+    }
+}
+
+function addCustomImgs()
+{
     for(let custom of Object.keys(wholeCustom))
     {
         if(wholeCustom[custom]["player"] == player)
@@ -224,11 +237,6 @@ function addCharacters()
     customsBtn.style.float = "right";
     customsBtn.onclick = handleCustomImg;
     placeBefore(customsBtn, bord);
-
-    if(oldToken != null || oldToken != undefined)
-    {
-        document.getElementById(`${oldToken["name"]}`).onclick();
-    }
 }
 
 function handleCustomImg()
