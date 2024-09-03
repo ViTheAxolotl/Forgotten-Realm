@@ -1545,7 +1545,8 @@ function handleChangeToken()
         dropBtn.classList.add(labels[i]);
         dropBtn.id = `${labels[i]}Button`;
         dropBtn.onclick = handleShowSelect;
-        selects[i].appendChild(dropBtn);
+        placeBefore(dropBtn, selects[i]);
+        //selects[i].appendChild(dropBtn);
 
         let selectDiv = document.createElement("div");
         selectDiv.classList.add("ddown-content");
