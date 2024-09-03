@@ -1693,13 +1693,14 @@ function handleCustomsButton()
             person.style.margin = "10px";
 
             let deleteBtn = document.createElement("button");
-            deleteBtn.classList = "gridButton";
             deleteBtn.innerHTML = "Delete Custom Img";
             deleteBtn.onclick = handleDeleteCustom;
             deleteBtn.id = wholeCustom[custom]["name"];
             personDiv.appendChild(deleteBtn);
             placeBefore(personDiv, changeTokenBtn);
             deleteBtn.style.margin = "10px";
+            deleteBtn.style.display = "inline";
+            deleteBtn.style.width = "auto";
         }
     }
 
