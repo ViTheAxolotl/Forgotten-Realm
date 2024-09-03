@@ -268,6 +268,8 @@ function handleCustomImg()
     let names = ["Url", "Nickname"];
     let objects = [document.createElement("input"), document.createElement("input")];
     let newDiv = document.createElement("div");
+    let span = document.createElement("span");
+    span.style.display = "block";
     newDiv.classList.add("center");
 
     for(let i = 0; i < names.length; i++)
@@ -283,6 +285,7 @@ function handleCustomImg()
         objects[i].style.width = "40%";
         newDiv.appendChild(label);
         newDiv.appendChild(objects[i]);
+        newDiv.appendChild(span);
     }
 
     let createBtn = document.createElement("button");
