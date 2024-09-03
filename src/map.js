@@ -804,11 +804,6 @@ function updateToken(token)
         let borderColor;
         let n = wholeDB[wholeChar[player]["currentToken"]]["name"];
 
-        /**if(/\d/.test(char.id) && !char.id.includes("guest"))
-        {
-            n = char.id.replace(/\d/g, '') + '-';
-        }*/
-
         for(let token of currentTokens)
         {
             if(token.classList.contains("border_"))
@@ -840,37 +835,12 @@ function updateToken(token)
                 break;
         }
 
-        setDoc(`currentMap/${char.id}`,
-        {
-            border : borderColor,
-            currentHp : currentHp.value,
-            maxHp : maxHp.value,
-            tempHp : tempHp.value,
-            map : "",
-            isSummon : wholeDB[char.id]["isSummon"],
-            id : char.id,
-            name : n,
-            title : t,
-            xPos : x,
-            yPos : y
-        });
+        let token = {border : borderColor, currentHp : currentHp.value, maxHp : maxHp.value, tempHp : tempHp.value, isSummon : wholeDB[char.id]["isSummon"], id : char.id, name : n, title : t, xPos : x, yPos : y, map : ""};
+        setDoc(`currentMap/${char.id}`, token);
 
         if(wholeChar[player]["currentToken"] == wholeChar[player]["token"]["id"])
         {
-            setDoc(`playerChar/${player}/token`, 
-            {
-                border : borderColor,
-                currentHp : currentHp.value,
-                maxHp : maxHp.value,
-                tempHp : tempHp.value,
-                map : "",
-                isSummon : false,
-                id : char.id,
-                name : n,
-                title : t,
-                xPos : x,
-                yPos : y
-            });
+            setDoc(`playerChar/${player}/token`, token);
         }
 
         else if(isSummonOn)
@@ -884,20 +854,7 @@ function updateToken(token)
 
                 else
                 {
-                    setDoc(`playerChar/Vi/summons/${char.id}`,
-                    {
-                        border : borderColor,
-                        currentHp : currentHp.value,
-                        maxHp : maxHp.value,
-                        tempHp : tempHp.value,
-                        map : "",
-                        isSummon : wholeDB[char.id]["isSummon"],
-                        id : char.id,
-                        name : n,
-                        title : t,
-                        xPos : x,
-                        yPos : y
-                    });
+                    setDoc(`playerChar/Vi/summons/${char.id}`, token);
                 }
             }
         }

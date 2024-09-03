@@ -1530,7 +1530,7 @@ function handleChangeToken()
         let dropBtn = document.createElement("button");
         dropBtn.classList.add("dropbtn");
         dropBtn.id = `${labels[i]}Button`;
-        dropBtn.innerHTML = labels[i];
+        dropBtn.innerHTML = currentCharacter[i].id;
         selects[i].appendChild(dropBtn);
 
         let selectDiv = document.createElement("div");
@@ -1589,7 +1589,13 @@ function changeSourceSelect()
 
 function handleUpdateToken()
 {
+    let toUpdate = document.getElementById("name").innerHTML.toLowerCase();
+    let fields = wholeDb[toUpdate];
 
+    fields.border = `${document.getElementById("BorderButton").innerHTML}`;
+    fields.name = `${document.getElementById("CharacterButton").innerHTML}`;
+
+    setDoc(`currentMap/${toUpdate}/`, fields);
 }
 
 function handleCancelTokenChange()
@@ -1610,7 +1616,7 @@ function handleCancelTokenChange()
                 break;
             
             case "last":
-                if(elements.firstChild.id == changeTokenBtn.id)
+                if(elements.lastChild.id == changeTokenBtn.id)
                 {
                     delPoint = "first";
                 }
