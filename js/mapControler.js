@@ -1536,7 +1536,6 @@ function handleChangeToken()
         span.style.display = "block";
         placeBefore(selects[i], changeTokenBtn);
         placeBefore(label, selects[i]);
-        placeBefore(span, changeTokenBtn);
         selects[i].classList = "ddown ddownHide";
         selects[i].id = labels[i];
         selects[i].style.width = "100%";
@@ -1547,6 +1546,7 @@ function handleChangeToken()
         dropBtn.id = `${labels[i]}Button`;
         dropBtn.onclick = handleShowSelect;
         placeBefore(dropBtn, changeTokenBtn);
+        placeBefore(span, changeTokenBtn);
         //selects[i].appendChild(dropBtn);
 
         let selectDiv = document.createElement("div");
@@ -1718,11 +1718,12 @@ function handleCustomsButton()
     let objects = [document.createElement("input"), document.createElement("input")];
     let newDiv = document.createElement("div");
     newDiv.classList.add("center");
-    let span = document.createElement("span");
-    span.style.display = "block";
 
     for(let i = 0; i < names.length; i++)
     {
+        let span = document.createElement("span");
+        span.style.display = "block";
+
         let label = document.createElement("h6");
         label.innerHTML = `${names[i]}:`;
         label.style.display = "inline";
@@ -1734,9 +1735,9 @@ function handleCustomsButton()
         objects[i].style.width = "40%";
         newDiv.appendChild(label);
         newDiv.appendChild(objects[i]);
+        newDiv.appendChild(span);
     }
 
-    placeBefore(span, document.getElementById("BorderButton"));
     changeTokenBtn.onclick = handleCreateCustom;
     let cancelBtn = document.createElement("button");
     cancelBtn.innerHTML = "Cancel";
