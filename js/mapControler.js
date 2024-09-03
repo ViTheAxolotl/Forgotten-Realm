@@ -1735,7 +1735,7 @@ function handleCustomsButton()
         objects[i].style.width = "40%";
         newDiv.appendChild(label);
         newDiv.appendChild(objects[i]);
-        newDiv.appendChild(span);
+        placeBefore(span, changeTokenBtn);
     }
 
     changeTokenBtn.onclick = handleCreateCustom;
