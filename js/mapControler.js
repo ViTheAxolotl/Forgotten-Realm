@@ -831,36 +831,43 @@ function handleShowActions()
     }
 }
 
+/**
+ * Sets up text to show spells and actions info, from lst (spells or actions database) and current (level or tag)
+ * @param {*} current 
+ * @param {*} lst 
+ * @returns 
+ */
 function setUpText(current, lst)
 {
     let txt = [""];
     
-    if(spellLevel)
+    if(spellLevel) //If it is a spell create fields to show all of them
     {
         txt = [`Casting Time: ${toTitleCase(lst[current]["castTime"])}`, `Range: ${toTitleCase(lst[current]["range"])}`, `Components: ${lst[current]["components"]}`, `Duration: ${toTitleCase(lst[current]["duration"])}`];
         if(lst[current]["concentration"] == "true"){txt.push(`Concentration`);}
         txt.push(" ");
     }
 
-    let lineNum = txt.length - 1;
-    let temp = JSON.stringify(lst[current]["description"]).replaceAll("\"", "").split("\\n");
-    for(let t in temp)
+    let lineNum = txt.length - 1; //Keep track of line number when list is involved.
+    let temp = JSON.stringify(lst[current]["description"]).replaceAll("\"", "").split("\\n"); //gets rid of \ and splits it by paragraphs
+
+    for(let t in temp) //For each line in the description
     {
-        if(temp[t].includes("{@Choice}"))
+        if(temp[t].includes("{@Choice}")) //If its is a list
         {
-            txt.push(temp[t].replace("{@Choice}", "<li>") + "</li>");
+            txt.push(temp[t].replace("{@Choice}", "<li>") + "</li>"); //Makes the choice into a list
             lineNum++;
         }
 
-        else
+        else //If the line isn't apart of the list
         {
-            if(lineNum > 0 && txt[`${lineNum}`].includes("<li>"))
+            if(lineNum > 0 && txt[`${lineNum}`].includes("<li>")) //If the last line was apart of the list
             {
                 lineNum++;
                 txt.push("");
             }
 
-            txt[`${lineNum}`] = txt[`${lineNum}`] + ` ${temp[t]}`;
+            txt[`${lineNum}`] = txt[`${lineNum}`] + ` ${temp[t]}`; //Adds the sentence to the text
         }
     }
     
@@ -868,45 +875,52 @@ function setUpText(current, lst)
     return txt;
 }
 
+/**
+ * When the search bar text changes, it will show cards matching it
+ */
 function handleSearch()
 {
-    let search = searchBar[0].value;
+    let search = searchBar[0].value; //Gets what is written
     let listOf;
 
-    if(spellLevel)
+    if(spellLevel) //If we are viewing spells
     {
         listOf = db[spellLevel];
     }
 
-    else
+    else //If we are viewing actions
     {
         listOf = db[curClass];
     }
 
     emptyCards();
     
-    for(let elm of Object.keys(listOf))
+    for(let elm of Object.keys(listOf)) //For each spell/action in the db
     {
-        if(elm.toLowerCase().includes(search.toLowerCase()))
+        if(elm.toLowerCase().includes(search.toLowerCase())) //If the spell has any of the search term in it
         {
-            createCard(elm, setUpText(elm, listOf), "cards");
+            createCard(elm, setUpText(elm, listOf), "cards"); //Add it to the cards
         }
     }
 
-    for(let key of document.getElementsByClassName("card-body")){key.onclick = handleCardClick;}
+    for(let key of document.getElementsByClassName("card-body")){key.onclick = handleCardClick;} //Changes onclick to what it needs to be
 }
 
+/**
+ * When someone clicks the card, gives button options of Favorite button, Cast Button and upcast, or edit for favored cards
+ */
 function handleCardClick()
 {
-    let children = this.childNodes;
-    let currentTitle = children[0].innerHTML;
+    let children = this.childNodes; 
+    let currentTitle = children[0].innerHTML; //Get title from card
     
     let temp = document.getElementById("optionDiv");
-    if(temp){temp.remove();}
+    if(temp){temp.remove();} //Removes other cards options that was visible
+
     let favBtn = document.getElementById("favBtn");
-    if(favBtn){favBtn.remove();}
+    if(favBtn){favBtn.remove();} //Removes other cards options that was visible
     
-    if(lastAbility != currentTitle && lastSpell != currentTitle)
+    if(lastAbility != currentTitle && lastSpell != currentTitle) //If they didn't click the same card twice
     {
         let optionDiv = document.createElement("div");
         optionDiv.classList.add("center");
@@ -918,6 +932,7 @@ function handleCardClick()
         favoriteBtn.style.height = "20px";
         favoriteBtn.style.width = "20px";
         favoriteBtn.setAttribute("src", "images/unFavorite.png");
+
         let wrapper = document.createElement("button");
         wrapper.classList.add("gridButton");
         wrapper.classList.add("center");
@@ -932,7 +947,7 @@ function handleCardClick()
         castBtn.name = currentTitle;
         castBtn.style.margin = "0px 5px";
 
-        if(spellLevel)
+        if(spellLevel) //If it was a spell clicked
         {
             lastSpell = currentTitle;
             let spellDisc = db[spellLevel][currentTitle]["description"];
@@ -1544,7 +1559,6 @@ function handleChangeToken()
         dropBtn.id = `${labels[i]}Button`;
         dropBtn.onclick = handleShowSelect;
         placeBefore(dropBtn, selects[i]);
-        //selects[i].appendChild(dropBtn);
 
         let selectDiv = document.createElement("div");
         selectDiv.classList.add("ddown-content");

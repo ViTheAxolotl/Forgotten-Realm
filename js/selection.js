@@ -191,13 +191,6 @@ function openWindow()
 
 function addCharacters()
 {
-    /*let toDelete = document.getElementsByClassName("char");
-
-    while(toDelete > 0)
-    {
-        toDelete[0].remove();
-    }*/
-
     for(let char of people)
     {
         let person = document.createElement("img");
