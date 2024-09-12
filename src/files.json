@@ -67,7 +67,8 @@
         "MVElemental-" : "images/map/tokens/MVElemental-.png",
         "magicAura-" : "images/map/tokens/magicAura-.png",
         "guest1-" : "images/map/tokens/guest1-.png",
-        "guest2-" : "images/map/tokens/guest2-.png"
+        "guest2-" : "images/map/tokens/guest2-.png",
+        "ember-" : "images/map/tokens/ember-.png"
     },
  
     "borders" : 

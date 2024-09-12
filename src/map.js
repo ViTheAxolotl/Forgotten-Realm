@@ -833,6 +833,20 @@ function updateToken(token)
                     n = "sky-";
                 }
                 break;
+
+            case "ember":
+                if(t.includes("ember-cat"))
+                {
+                    n = "ember-cat";
+                }
+                break;
+            
+            case "ember-cat":
+                if(!(t.includes("ember-cat")))
+                {
+                    n = "ember-";
+                }
+                break;
         }
 
         let token = {border : borderColor, currentHp : currentHp.value, maxHp : maxHp.value, tempHp : tempHp.value, isSummon : wholeDB[char.id]["isSummon"], id : char.id, name : n, title : t, xPos : x, yPos : y, map : ""};
