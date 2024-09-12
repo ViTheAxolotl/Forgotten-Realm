@@ -502,10 +502,16 @@ table, .itemSearch, #itemImg
     border-radius: 50%;
 }
 
-#gridMap .customImg, #story .tokens
+#gridMap .customImg
 {
     width: 4.5%;
     height: 4.5%;
+}
+
+#story .tokens
+{
+    width: 12vh;
+    height: 12vh;
 }
 
 .dropbtn 
