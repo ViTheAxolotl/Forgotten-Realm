@@ -835,14 +835,14 @@ function updateToken(token)
                 break;
 
             case "ember":
-                if(t.includes("ember-cat"))
+                if(t.includes("Ember-cat"))
                 {
                     n = "ember-cat";
                 }
                 break;
             
             case "ember-cat":
-                if(!(t.includes("ember-cat")))
+                if(!(t.includes("Ember-cat")))
                 {
                     n = "ember-";
                 }
