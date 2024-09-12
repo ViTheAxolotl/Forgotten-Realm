@@ -825,10 +825,8 @@ function updateToken(token)
                 {
                     n = "sky-dragon";
                 }
-                break;
-            
-            case "sky-dragon":
-                if(!(t.includes("Sky-dragon")))
+                
+                else 
                 {
                     n = "sky-";
                 }
@@ -839,10 +837,8 @@ function updateToken(token)
                 {
                     n = "ember-cat";
                 }
-                break;
-            
-            case "ember-cat":
-                if(!(t.includes("Ember-cat")))
+                
+                else 
                 {
                     n = "ember-";
                 }
