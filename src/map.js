@@ -821,7 +821,7 @@ function updateToken(token)
         switch(char.id)
         {
             case "sky":
-                if(t.includes("Sky-dragon"))
+                if(t.includes("Dragon"))
                 {
                     n = "sky-dragon";
                 }
@@ -833,7 +833,7 @@ function updateToken(token)
                 break;
 
             case "ember":
-                if(t.includes("Ember-cat"))
+                if(t.includes("Cat"))
                 {
                     n = "ember-cat";
                 }
