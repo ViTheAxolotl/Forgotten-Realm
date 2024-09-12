@@ -495,14 +495,14 @@ table, .itemSearch, #itemImg
     left: 3%;
 }
 
-.customImg, .char, .bord, #gridMap .tokens
+.customImg, .char, .bord, #gridMap .tokens, #story .tokens
 {
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
     border-radius: 50%;
 }
 
-#gridMap .customImg
+#gridMap .customImg, #story .tokens
 {
     width: 4.5%;
     height: 4.5%;
