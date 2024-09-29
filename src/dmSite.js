@@ -938,14 +938,54 @@ function loadMap()
 function handleGenerate()
 {
     hideButtons();
-
-    for(let player of Object.keys(wholeChar))
-    {
-        setDoc(`customImages/hold`, {"player" : "none", "src" : "hold"});
-    }
+    backupFavorites();
 
     alert("done");
     handleDone();
+}
+
+function backupFavorites()
+{
+    let classes = ["Artificer", "Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard"];
+
+    for(let player of Object.keys(wholeChar))
+    {
+        let favoriteSpells = wholeChar[player]["favorites"]["spells"];
+        let favoriteActions = wholeChar[player]["favorites"]["actions"];
+
+        for(let spellLv of Object.keys(favoriteSpells))
+        {
+            for(let spell of Object.keys(spellLv))
+            {
+                wholeSpells[spellLv][spell] = favoriteSpells[spellLv][spell];
+            }
+        }
+
+        for(let tag of Object.keys(favoriteActions))
+        {
+            for(let action of Object.keys)
+            {
+                if(!classes.includes(tag))
+                {
+                    wholeActions["Misc"][action] = favoriteActions[tag][action];
+                }
+
+                else{wholeActions[tag][action] = favoriteActions[tag][action];}
+            }
+        }
+    }
+
+    let dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(wholeSpells));
+    let dlAnchorElem = document.createElement('a');
+    dlAnchorElem.setAttribute("href",     dataStr     );
+    dlAnchorElem.setAttribute("download", "spells.json");
+    dlAnchorElem.click();
+
+    dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(wholeActions));
+    dlAnchorElem = document.createElement('a');
+    dlAnchorElem.setAttribute("href",     dataStr     );
+    dlAnchorElem.setAttribute("download", "actions.json");
+    dlAnchorElem.click();
 }
 
 function handleDone()
