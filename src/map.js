@@ -270,6 +270,7 @@ function addCharacter(character, update)
     char[1].src = `images/map/tokens/${character["border"]}Border.png`;
     char[1].id = character["border"];
     char[1].classList = `tokens ${character["id"]} border_`;
+    if(!char[1].src.includes("invisible")){for(let c of char){c.classList.add("noCircle");}}
     char[2].src = getHpImg(character);
     char[2].id = "hp";
     char[2].classList = `tokens ${character["id"]} hp`;
