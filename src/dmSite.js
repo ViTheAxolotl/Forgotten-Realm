@@ -805,7 +805,7 @@ function updateMap()
         }
     }
 
-    setDoc(`currentMap/${n.slice(0, n.indexOf("-"))}`,
+    setDoc(`currentMap/invisible`,
     {
         border : b,
         currentHp : c,
