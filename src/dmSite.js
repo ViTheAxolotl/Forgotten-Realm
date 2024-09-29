@@ -957,7 +957,7 @@ function backupFavorites()
         {
             for(let spell of Object.keys(favoriteSpells[spellLv]))
             {
-                wholeSpells[spellLv][spell] = favoriteSpells[spellLv][spell];
+                if(spell != "hold"){wholeSpells[spellLv][spell] = favoriteSpells[spellLv][spell]};
             }
         }
 
@@ -965,12 +965,15 @@ function backupFavorites()
         {
             for(let action of Object.keys(favoriteActions[tag]))
             {
-                if(!classes.includes(tag))
+                if(action != "hold")
                 {
-                    wholeActions["Misc"][action] = favoriteActions[tag][action];
+                    if(!classes.includes(tag))
+                    {
+                        wholeActions["Misc"][action] = favoriteActions[tag][action];
+                    }
+    
+                    else{wholeActions[tag][action] = favoriteActions[tag][action];}
                 }
-
-                else{wholeActions[tag][action] = favoriteActions[tag][action];}
             }
         }
     }
