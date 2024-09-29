@@ -318,7 +318,7 @@ function handleDeleteCustom()
     {
         if(wholeDb[tokens]["name"] == this.id)
         {
-            let access = document.getElementById("name").innerHTML.toLowerCase();
+            let access = wholeDb[tokens]["id"];
             let newToken = wholeDb[access];
 
             newToken.name = `${newToken.id}-`;
