@@ -495,7 +495,7 @@ table, .itemSearch, #itemImg
     left: 3%;
 }
 
-.customImg, .char, .bord, #story .tokens
+.customImg, #story .tokens
 {
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
