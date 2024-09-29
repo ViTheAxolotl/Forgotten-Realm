@@ -785,40 +785,20 @@ function handleChangeMap()
 
 function updateMap()
 {
-    let b, c, mH, m, n, t, x, y;
     let select = document.getElementById("select");
+    let invisible;
     
     for(let key of Object.keys(wholeDB))
     {
         if(wholeDB[key].name == "invisible-")
         {
-            b = wholeDB[key].border;
-            c = wholeDB[key].currentHp;
-            mH = wholeDB[key].maxHp;
-            m = select[select.selectedIndex].value;
-            n = wholeDB[key].name;
-            t = wholeDB[key].title;
-            x = wholeDB[key].xPos;
-            y = wholeDB[key].yPos;
-            tH = wholeDB[key].tempHp;
-            s = wholeDB[key].isSummon;
+            invisible = wholeDB[key];
         }
     }
 
-    setDoc(`currentMap/invisible`,
-    {
-        border : b,
-        currentHp : c,
-        maxHp : mH,
-        map : m,
-        id : n.slice(0, n.indexOf("-")),
-        name : n,
-        title : t,
-        xPos : x,
-        yPos : y,
-        tempHp : tH,
-        isSummon : s
-    });
+    invisible.map = select[select.selectedIndex].value;
+
+    setDoc(`currentMap/invisible`, invisible);
 
     handleDone();
 }
