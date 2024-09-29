@@ -955,7 +955,7 @@ function backupFavorites()
 
         for(let spellLv of Object.keys(favoriteSpells))
         {
-            for(let spell of Object.keys(spellLv))
+            for(let spell of Object.keys(favoriteSpells[spellLv]))
             {
                 wholeSpells[spellLv][spell] = favoriteSpells[spellLv][spell];
             }
@@ -963,7 +963,7 @@ function backupFavorites()
 
         for(let tag of Object.keys(favoriteActions))
         {
-            for(let action of Object.keys)
+            for(let action of Object.keys(favoriteActions[tag]))
             {
                 if(!classes.includes(tag))
                 {
