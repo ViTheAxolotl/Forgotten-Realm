@@ -843,6 +843,15 @@ function updateToken(token)
                     n = "ember-";
                 }
                 break;
+
+            case "leonier":
+                if(t.includes("Fin"))
+                {
+                    n = "leonier-fin";
+                    maxHp.value = "85";
+                    currentHp.value = "85";
+                }
+                break;
         }
 
         let token = {border : borderColor, currentHp : currentHp.value, maxHp : maxHp.value, tempHp : tempHp.value, isSummon : wholeDB[char.id]["isSummon"], id : char.id, name : n, title : t, xPos : x, yPos : y, map : ""};

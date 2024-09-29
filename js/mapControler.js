@@ -511,6 +511,16 @@ function changeValue()
             if(modifier == "+") //If plus button is clicked
             {
                 title.innerHTML += ` ${toTitleCase(status.value)},`; //Adds the key word written to your title
+                
+                if(title.innerHTML.includes("Fin"))
+                {
+                    switch(player)
+                    {
+                        case "Okami":
+                            //Favorite new abilities
+                            break;
+                    }
+                }
             }
 
             else //minus button is clicked
