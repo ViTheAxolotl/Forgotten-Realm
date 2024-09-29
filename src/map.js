@@ -273,7 +273,6 @@ function addCharacter(character, update)
     char[2].src = getHpImg(character);
     char[2].id = "hp";
     char[2].classList = `tokens ${character["id"]} hp`;
-    if(char[1].src.includes("invisible")){for(let c of char){c.classList = `noCircle ${c.classList}`;}}
     let x = pos[0];
     let y = pos[0];
     
