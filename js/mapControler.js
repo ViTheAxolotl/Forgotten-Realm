@@ -222,13 +222,11 @@ function sendDiscordMessage(message)
  */
 function basicRoll(amount, dice)
 {
-    let arr = [];
     let rolls = [];
-    for(let i = 1; i < parseInt(dice) + 1; i++){arr.push(i);} //Sets up all possible rolls
 
     for(let i = 0; i < amount; i++) //Rolls for each dice needed
     {
-        let roll = arr[(Math.floor(Math.random() * arr.length))]; //Gives random roll
+        let roll = Math.floor(Math.random() * (dice + 1)); //Gives random roll
         rolls.push(roll);
     }
 
@@ -517,7 +515,9 @@ function changeValue()
                     switch(player)
                     {
                         case "Okami":
-                            //Favorite new abilities
+                            setDoc(`playerChar/${player}/favorites/actions/Final/${titleName}`, wholeActions["Misc"]["Life-Steal"]);
+                            setDoc(`playerChar/${player}/favorites/actions/Final/${titleName}`, wholeActions["Misc"]["Beastly_Claws"]);
+                            setDoc(`playerChar/${player}/favorites/actions/Final/${titleName}`, wholeActions["Misc"]["Beastly_Fangs"]);
                             break;
                     }
                 }
