@@ -519,6 +519,12 @@ function changeValue()
                             setDoc(`playerChar/${player}/favorites/actions/Final/Beastly Claws`, wholeActions["Misc"]["Beastly Claws"]);
                             setDoc(`playerChar/${player}/favorites/actions/Final/Beastly Fangs`, wholeActions["Misc"]["Beastly Fangs"]);
                             break;
+
+                        case "Alejandro":
+                            setDoc(`playerChar/${player}/favorites/actions/Final/Life-Steal`, wholeActions["Misc"]["Life-Steal"]);
+                            setDoc(`playerChar/${player}/favorites/actions/Final/Beastly Fangs`, wholeActions["Misc"]["Beastly Fangs"]);
+                            setDoc(`playerChar/${player}/favorites/actions/Final/Absorb Enviornment`, wholeActions["Misc"]["Absorb Enviornment"]);
+                            break;
                     }
                 }
             }

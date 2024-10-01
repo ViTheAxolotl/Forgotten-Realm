@@ -852,6 +852,15 @@ function updateToken(token)
                     currentHp.value = "85";
                 }
                 break;
+
+            case "razor":
+                if(t.includes("Fin"))
+                    {
+                        n = "razor-fin";
+                        maxHp.value = "73";
+                        currentHp.value = "73";
+                    }
+                break;
         }
 
         let token = {border : borderColor, currentHp : currentHp.value, maxHp : maxHp.value, tempHp : tempHp.value, isSummon : wholeDB[char.id]["isSummon"], id : char.id, name : n, title : t, xPos : x, yPos : y, map : ""};
