@@ -515,9 +515,9 @@ function changeValue()
                     switch(player)
                     {
                         case "Okami":
-                            setDoc(`playerChar/${player}/favorites/actions/Final/${titleName}`, wholeActions["Misc"]["Life-Steal"]);
-                            setDoc(`playerChar/${player}/favorites/actions/Final/${titleName}`, wholeActions["Misc"]["Beastly_Claws"]);
-                            setDoc(`playerChar/${player}/favorites/actions/Final/${titleName}`, wholeActions["Misc"]["Beastly_Fangs"]);
+                            setDoc(`playerChar/${player}/favorites/actions/Final/Life-Steal`, wholeActions["Misc"]["Life-Steal"]);
+                            setDoc(`playerChar/${player}/favorites/actions/Final/Beastly Claws`, wholeActions["Misc"]["Beastly_Claws"]);
+                            setDoc(`playerChar/${player}/favorites/actions/Final/Beastly Fangs`, wholeActions["Misc"]["Beastly_Fangs"]);
                             break;
                     }
                 }
