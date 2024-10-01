@@ -510,22 +510,33 @@ function changeValue()
             {
                 title.innerHTML += ` ${toTitleCase(status.value)},`; //Adds the key word written to your title
                 
-                if(title.innerHTML.includes("Fin"))
+                if(status.value.includes("Fin"))
                 {
+                    let currentToken = wholeChar[player][token];
+
                     switch(player)
                     {
                         case "Okami":
                             setDoc(`playerChar/${player}/favorites/actions/Final/Life-Steal`, wholeActions["Misc"]["Life-Steal"]);
                             setDoc(`playerChar/${player}/favorites/actions/Final/Beastly Claws`, wholeActions["Misc"]["Beastly Claws"]);
                             setDoc(`playerChar/${player}/favorites/actions/Final/Beastly Fangs`, wholeActions["Misc"]["Beastly Fangs"]);
+                            currentToken.name = "leonier-fin";
+                            currentToken.maxHp = "85";
+                            currentToken.currentHp = "85";
                             break;
 
                         case "Alejandro":
                             setDoc(`playerChar/${player}/favorites/actions/Final/Life-Steal`, wholeActions["Misc"]["Life-Steal"]);
                             setDoc(`playerChar/${player}/favorites/actions/Final/Beastly Fangs`, wholeActions["Misc"]["Beastly Fangs"]);
                             setDoc(`playerChar/${player}/favorites/actions/Final/Absorb Enviornment`, wholeActions["Misc"]["Absorb Enviornment"]);
+                            currentToken.name = "razor-fin";
+                            currentToken.maxHp = "73";
+                            currentToken.currentHp = "73";
                             break;
                     }
+
+                    setDoc(`currentMap/${currentToken.id}`, currentToken);
+                    setDoc(`playerChar/${currentToken.id}`, currentToken);
                 }
             }
 
