@@ -519,7 +519,6 @@ function changeValue()
                         case "Okami":
                             setDoc(`playerChar/${player}/favorites/actions/Final/Life-Steal`, wholeActions["Misc"]["Life-Steal"]);
                             setDoc(`playerChar/${player}/favorites/actions/Final/Beastly Claws`, wholeActions["Misc"]["Beastly Claws"]);
-                            setDoc(`playerChar/${player}/favorites/actions/Final/Beastly Fangs`, wholeActions["Misc"]["Beastly Fangs"]);
                             currentToken.name = "leonier-fin";
                             currentToken.maxHp = "85";
                             currentToken.currentHp = "85";
@@ -528,11 +527,23 @@ function changeValue()
                         case "Alejandro":
                             setDoc(`playerChar/${player}/favorites/actions/Final/Life-Steal`, wholeActions["Misc"]["Life-Steal"]);
                             setDoc(`playerChar/${player}/favorites/actions/Final/Beastly Fangs`, wholeActions["Misc"]["Beastly Fangs"]);
-                            setDoc(`playerChar/${player}/favorites/actions/Final/Absorb Enviornment`, wholeActions["Misc"]["Absorb Enviornment"]);
                             currentToken.name = "razor-fin";
                             currentToken.maxHp = "73";
                             currentToken.currentHp = "73";
                             break;
+
+                        case "Garrett":
+                            setDoc(`playerChar/${player}/favorites/actions/Final/Enhanced Wild Shape`, wholeActions["Misc"]["Enhanced Wild Shape"]);
+                            currentToken.name = "nook-fin";
+                            currentToken.maxHp = "69";
+                            currentToken.currentHp = "69";
+                            break;
+
+                        case "Ben":
+                            setDoc(`playerChar/${player}/favorites/actions/Final/Enhanced Rage`, wholeActions["Misc"]["Enhanced Rage"]);
+                            currentToken.name = "nibbly-fin";
+                            currentToken.maxHp = "95";
+                            currentToken.currentHp = "95";
                     }
 
                     setDoc(`currentMap/${currentToken.id}`, currentToken);
